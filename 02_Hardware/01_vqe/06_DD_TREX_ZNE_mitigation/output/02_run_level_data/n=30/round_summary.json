@@ -1,0 +1,129 @@
+{
+  "round": "replicate_block_repaired_vqe-independent-n-01-n30-target-n30-chunk-5",
+  "n_observed_results": 240,
+  "best_pub_selection": {
+    "M0_Baseline": 27,
+    "M1_DD": 22,
+    "M2_TREX": 8,
+    "M3_ZNE": 7,
+    "M4_DD_TREX": 8,
+    "M5_DD_ZNE": 8,
+    "M6_TREX_ZNE": 13,
+    "M7_ALL": 12
+  },
+  "best_selection_rule": "PUB with minimum measured EIS SSE per treatment",
+  "per_treatment_counts": {
+    "M0_Baseline": 30,
+    "M1_DD": 30,
+    "M2_TREX": 30,
+    "M3_ZNE": 30,
+    "M4_DD_TREX": 30,
+    "M5_DD_ZNE": 30,
+    "M6_TREX_ZNE": 30,
+    "M7_ALL": 30
+  },
+  "ideal_SSE": 258.05897604193257,
+  "ideal_RMSE": 0.988684035155295,
+  "classical_SSE_supplied": null,
+  "model_frequency_input": "Hz; impedance_model internally computes omega = 2*pi*f",
+  "sse_definition": "sum(abs(Z_fit-Z_exp)**2) over all EIS frequencies",
+  "rmse_definition": "sqrt(SSE/(2*N)) over real and imaginary components",
+  "statistics": [
+    {
+      "treatment": "M0_Baseline",
+      "n": 30,
+      "median_SSE": 454.1776518453223,
+      "mean_SSE": 504.4735401626441,
+      "std_SSE": 216.18719137357263,
+      "IQR_SSE": 404.5601897838818,
+      "median_RMSE": 1.3116135693981614,
+      "median_expectation_MAE": 0.02687418029192889,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M1_DD",
+      "n": 30,
+      "median_SSE": 414.087695212957,
+      "mean_SSE": 472.54321337565136,
+      "std_SSE": 217.539051095345,
+      "IQR_SSE": 235.30535359373266,
+      "median_RMSE": 1.2521333201271374,
+      "median_expectation_MAE": 0.028151074267548506,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M2_TREX",
+      "n": 30,
+      "median_SSE": 473.79186841234326,
+      "mean_SSE": 521.075365848004,
+      "std_SSE": 261.1789155452639,
+      "IQR_SSE": 423.57389450787474,
+      "median_RMSE": 1.3396498415168985,
+      "median_expectation_MAE": 0.021834591646386993,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M3_ZNE",
+      "n": 30,
+      "median_SSE": 487.8541905378857,
+      "mean_SSE": 609.7170659271698,
+      "std_SSE": 378.81235639448175,
+      "IQR_SSE": 478.9244182707611,
+      "median_RMSE": 1.3590646157766426,
+      "median_expectation_MAE": 0.028499221428005213,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M4_DD_TREX",
+      "n": 30,
+      "median_SSE": 446.52892042602866,
+      "mean_SSE": 537.5890232254125,
+      "std_SSE": 307.0789399418607,
+      "IQR_SSE": 399.6349041240025,
+      "median_RMSE": 1.300497523161916,
+      "median_expectation_MAE": 0.023343421031997668,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M5_DD_ZNE",
+      "n": 30,
+      "median_SSE": 516.6144312516619,
+      "mean_SSE": 648.9372209102585,
+      "std_SSE": 502.95363926660616,
+      "IQR_SSE": 637.8408307495945,
+      "median_RMSE": 1.3948446684591205,
+      "median_expectation_MAE": 0.03517296394548233,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M6_TREX_ZNE",
+      "n": 30,
+      "median_SSE": 484.82356429703634,
+      "mean_SSE": 523.7899650071975,
+      "std_SSE": 276.44511286627755,
+      "IQR_SSE": 407.7731278702079,
+      "median_RMSE": 1.3551555317223825,
+      "median_expectation_MAE": 0.02446539576780274,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M7_ALL",
+      "n": 30,
+      "median_SSE": 573.4159962258697,
+      "mean_SSE": 653.8631076032237,
+      "std_SSE": 448.29925750144423,
+      "IQR_SSE": 363.5686666034162,
+      "median_RMSE": 1.4737706289440484,
+      "median_expectation_MAE": 0.027082338443118432,
+      "qpu_usage_s_job": null
+    }
+  ],
+  "created_utc": "2026-11-09T11:54:20.101113+00:00",
+  "warning": "One round of 5 PUBs per treatment is insufficient for robust between-job rankings.",
+  "experiment_id": "vqe-independent-n-01-n30",
+  "n": 30,
+  "target_id": "vqe-independent-n-01-n30-target-n30-chunk-5",
+  "source_run": "run_02",
+  "analysis_state": "REPAIRED_COMPLETE",
+  "incomplete_batches_preserved": true
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "enabled_account_labels": [
+    "labA",
+    "labB",
+    "labC",
+    "labD",
+    "labE",
+    "labF",
+    "labG",
+    "labH",
+    "labI",
+    "labK"
+  ],
+  "allowed_backend": "ibm_fez",
+  "runtime_budget_seconds_per_account": 600,
+  "safety_margin_seconds": 10,
+  "maximum_replacement_attempts": null,
+  "maximum_replacement_qpu_budget_seconds": 0,
+  "auto_recovery_enabled": true,
+  "live_submission_enabled": true,
+  "account_by_n": {},
+  "allowed_instance_refs": {
+    "labA": [
+      "deeb2483ae3b"
+    ],
+    "labB": [
+      "e25c19040e3f"
+    ],
+    "labC": [
+      "dcc1ac73b72a"
+    ],
+    "labD": [
+      "3b68d33fa257"
+    ],
+    "labE": [
+      "345d52378e20"
+    ],
+    "labF": [
+      "7144e1e1c79c"
+    ],
+    "labH": [
+      "f8af7d3ec5d2"
+    ],
+    "labG": [
+      "ef9fa3ee9ce8"
+    ],
+    "labI": [
+      "44b73d4a8edc"
+    ],
+    "labK": [
+      "4b49146454da"
+    ]
+  },
+  "campaign_runtime_budget_seconds": 1800,
+  "maximum_batches": 21,
+  "account_selection": "highest_available_quota"
+}

@@ -1,0 +1,123 @@
+{
+  "round": "replicate_block_repaired_vqe-independent-n-01-n5-target-n5-chunk-5",
+  "n_observed_results": 40,
+  "best_pub_selection": {
+    "M0_Baseline": 2,
+    "M1_DD": 2,
+    "M2_TREX": 4,
+    "M3_ZNE": 5,
+    "M4_DD_TREX": 3,
+    "M5_DD_ZNE": 2,
+    "M6_TREX_ZNE": 5,
+    "M7_ALL": 4
+  },
+  "best_selection_rule": "PUB with minimum measured EIS SSE per treatment",
+  "per_treatment_counts": {
+    "M0_Baseline": 5,
+    "M1_DD": 5,
+    "M2_TREX": 5,
+    "M3_ZNE": 5,
+    "M4_DD_TREX": 5,
+    "M5_DD_ZNE": 5,
+    "M6_TREX_ZNE": 5,
+    "M7_ALL": 5
+  },
+  "ideal_SSE": 258.05897604193257,
+  "ideal_RMSE": 0.988684035155295,
+  "classical_SSE_supplied": null,
+  "model_frequency_input": "Hz; impedance_model internally computes omega = 2*pi*f",
+  "sse_definition": "sum(abs(Z_fit-Z_exp)**2) over all EIS frequencies",
+  "rmse_definition": "sqrt(SSE/(2*N)) over real and imaginary components",
+  "statistics": [
+    {
+      "treatment": "M0_Baseline",
+      "n": 5,
+      "median_SSE": 479.82750438406254,
+      "mean_SSE": 529.5674193919003,
+      "std_SSE": 144.77004959293086,
+      "IQR_SSE": 31.414970767062925,
+      "median_RMSE": 1.3481574187375918,
+      "median_expectation_MAE": 0.017187464698901575,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M1_DD",
+      "n": 5,
+      "median_SSE": 462.193945233821,
+      "mean_SSE": 543.9915135165252,
+      "std_SSE": 399.80386139609595,
+      "IQR_SSE": 216.04595895891669,
+      "median_RMSE": 1.3231532946099636,
+      "median_expectation_MAE": 0.017389322569854725,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M2_TREX",
+      "n": 5,
+      "median_SSE": 847.0435918592401,
+      "mean_SSE": 738.4721006323658,
+      "std_SSE": 421.00628496833946,
+      "IQR_SSE": 339.92862685250475,
+      "median_RMSE": 1.7912281970793875,
+      "median_expectation_MAE": 0.019383509853909582,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M3_ZNE",
+      "n": 5,
+      "median_SSE": 463.10298455791036,
+      "mean_SSE": 606.2817896538155,
+      "std_SSE": 449.33965931681905,
+      "IQR_SSE": 501.2312770372477,
+      "median_RMSE": 1.3244538390635843,
+      "median_expectation_MAE": 0.017340293593870102,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M4_DD_TREX",
+      "n": 5,
+      "median_SSE": 475.77298335361866,
+      "mean_SSE": 444.3338474248162,
+      "std_SSE": 191.01301978251976,
+      "IQR_SSE": 221.45776317034915,
+      "median_RMSE": 1.3424493999741591,
+      "median_expectation_MAE": 0.018504841420089353,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M5_DD_ZNE",
+      "n": 5,
+      "median_SSE": 559.3663647204534,
+      "mean_SSE": 628.0525068260131,
+      "std_SSE": 341.1986147874741,
+      "IQR_SSE": 337.9359463539306,
+      "median_RMSE": 1.4556139555450391,
+      "median_expectation_MAE": 0.024712817589528757,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M6_TREX_ZNE",
+      "n": 5,
+      "median_SSE": 578.0033316661985,
+      "mean_SSE": 551.7487726627744,
+      "std_SSE": 303.7651762771065,
+      "IQR_SSE": 438.4975397206963,
+      "median_RMSE": 1.479664340092597,
+      "median_expectation_MAE": 0.019380044425329344,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M7_ALL",
+      "n": 5,
+      "median_SSE": 211.36302616676994,
+      "mean_SSE": 415.29505101368557,
+      "std_SSE": 397.3668759906073,
+      "IQR_SSE": 297.3563786467963,
+      "median_RMSE": 0.8947723304612056,
+      "median_expectation_MAE": 0.016384016813587296,
+      "qpu_usage_s_job": null
+    }
+  ],
+  "created_utc": "2026-11-09T12:42:24.861220+00:00",
+  "warning": "One round of 5 PUBs per treatment is insufficient for robust between-job rankings."
+}

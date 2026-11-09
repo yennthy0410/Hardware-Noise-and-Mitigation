@@ -1,0 +1,42 @@
+{
+  "state": "COMPLETE",
+  "verified": true,
+  "measured_M0_median_SSE": 570.1580954461737,
+  "classical_SSE": 120.22451879422375,
+  "ideal_SSE": 258.05897604193257,
+  "omissions": {},
+  "verification": {
+    "classical": "Canonical validator cross-checks reported SSE against 132 archived complex residuals",
+    "ideal": "Offline seven-qubit Statevector from locked theta; canonical parameter/model mapping; all six exported curves agree",
+    "qiskit_version": "2.6.1"
+  },
+  "recalculation": {
+    "observations": 840,
+    "max_abs_SSE_error": 0.0,
+    "max_abs_RMSE_error": 0.0,
+    "SSE_formula": "sum(abs(Zfit-Zexp)**2)",
+    "RMSE_formula": "sqrt(SSE/(2*132))"
+  },
+  "ordinary_bootstrap": {
+    "draws": 3000,
+    "seed": 1013,
+    "percentiles": [
+      2.5,
+      97.5
+    ],
+    "quantile_method": "linear",
+    "treatment_order": [
+      "M0_Baseline",
+      "M1_DD",
+      "M2_TREX",
+      "M3_ZNE",
+      "M4_DD_TREX",
+      "M5_DD_ZNE",
+      "M6_TREX_ZNE",
+      "M7_ALL"
+    ],
+    "unit": "pooled logical PUB; IID sensitivity only",
+    "legacy_CI_columns": "CI_low/CI_high denote sensitivity bounds, not inferential confidence intervals"
+  },
+  "visual_reference_policy": "visual templates only; no supplied numerical targets"
+}

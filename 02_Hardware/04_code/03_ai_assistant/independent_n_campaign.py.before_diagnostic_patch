@@ -1,0 +1,1335 @@
+"""Sequential orchestrator for six fully independent VQE sample-size experiments."""
+from __future__ import annotations
+
+from datetime import datetime, timezone
+import hashlib
+import json
+import math
+import os
+from pathlib import Path
+import re
+import time
+from contextlib import nullcontext
+from typing import Any, Callable
+
+from calibration import utc_now
+from experiment_manifest import build_manifest, build_target_manifest
+from job_registry import JobRegistry, ACCOUNT_LABELS
+from repository_paths import MITIGATION_REL, contained, repository_root
+
+N_LEVELS=(5,10,15,20,25,30)
+N_ACTIONS={"prepare","preflight","dry-run","submit","monitor","collect","validate","analyze","plot","report"}
+
+
+def _sha(payload: Any) -> str:
+    return hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(",",":"),default=str).encode()).hexdigest()
+
+
+def campaign_root(root,campaign_id: str) -> Path:
+    return contained(repository_root(root)/MITIGATION_REL/"output"/"03_IBM_execution_records"/
+                     "ai_assistant"/"independent_n_campaigns",campaign_id)
+
+
+def _contains_sensitive_fields(value: Any, key: str="") -> bool:
+    if any(part in key.lower() for part in ("api_key","apikey","secret","token","crn","credential")):
+        return True
+    if isinstance(value,dict): return any(_contains_sensitive_fields(v,str(k)) for k,v in value.items())
+    if isinstance(value,list): return any(_contains_sensitive_fields(v,key) for v in value)
+    return isinstance(value,str) and bool(re.search(r"crn:v1:",value,re.I))
+
+
+def validate_operator_authorization(auth: dict[str,Any]) -> dict[str,Any]:
+    if _contains_sensitive_fields(auth):
+        raise ValueError("Authorization must use opaque instance references and contain no credentials or CRNs")
+    allowed=auth.get("allowed_accounts")
+    if not isinstance(allowed,list) or not allowed or len(set(allowed))!=len(allowed) or any(x not in ACCOUNT_LABELS for x in allowed):
+        raise ValueError("allowed_accounts must explicitly list unique labels from "+", ".join(ACCOUNT_LABELS))
+    by_n=auth.get("account_by_n", {})
+    auto_selection=auth.get("account_selection")=="highest_available_quota"
+    if auth.get("account_selection", "fixed_by_n") not in ("fixed_by_n", "highest_available_quota"):
+        raise ValueError("Unsupported account selection mode")
+    if not isinstance(by_n,dict) or any(str(k) not in {str(n) for n in N_LEVELS} or v not in allowed for k,v in by_n.items()):
+        raise ValueError("account_by_n contains invalid levels or account labels")
+    if not auto_selection and set(by_n)!={str(n) for n in N_LEVELS}:
+        raise ValueError("Fixed account mode requires an account for each n level")
+    refs=auth.get("allowed_instance_refs")
+    if not isinstance(refs,dict) or set(refs)!=set(allowed):
+        raise ValueError("allowed_instance_refs must map every authorized account label to approved opaque instance refs")
+    for label,values in refs.items():
+        if not isinstance(values,list) or not values or any(not isinstance(v,str) or not re.fullmatch(r"[0-9a-f]{12}",v) for v in values):
+            raise ValueError(f"{label} must have one or more 12-character read-only preflight instance refs")
+    budgets=auth.get("account_runtime_budget_seconds")
+    if not isinstance(budgets,dict) or set(budgets)!=set(allowed):
+        raise ValueError("account_runtime_budget_seconds must specify a separate cap for each authorized account")
+    for label,value in budgets.items():
+        if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(float(value)) or not 0<float(value)<=600:
+            raise ValueError(f"{label} runtime cap must be positive and no greater than 600 planning seconds")
+    total=auth.get("total_runtime_budget_seconds")
+    if isinstance(total,bool) or not isinstance(total,(int,float)) or not math.isfinite(float(total)) or total<=0:
+        raise ValueError("total_runtime_budget_seconds must be a positive explicit campaign cap")
+    batches=auth.get("maximum_batches")
+    if isinstance(batches,bool) or not isinstance(batches,int) or not 1<=batches<=21:
+        raise ValueError("maximum_batches must be in [1,21]")
+    margin=auth.get("safety_margin_seconds")
+    if isinstance(margin,bool) or not isinstance(margin,(int,float)) or not math.isfinite(float(margin)) or margin<0:
+        raise ValueError("safety_margin_seconds must be finite and nonnegative")
+    recovery=auth.get("recovery_limits")
+    if not isinstance(recovery,dict): raise ValueError("recovery_limits are required")
+    reads=recovery.get("max_read_attempts",3);resubmits=recovery.get("max_qpu_resubmissions",0)
+    if isinstance(reads,bool) or not isinstance(reads,int) or not 1<=reads<=10:
+        raise ValueError("max_read_attempts must be an integer in [1,10]")
+    if resubmits!=0:
+        raise ValueError("QPU resubmission recovery is not enabled in Phase 8B; max_qpu_resubmissions must be 0")
+    actions=auth.get("allowed_actions")
+    if not isinstance(actions,list) or not actions or len(set(actions))!=len(actions) or not set(actions)<=N_ACTIONS:
+        raise ValueError("allowed_actions must be an explicit subset of the documented campaign actions")
+    auto=auth.get("live_auto_submit",False)
+    if not isinstance(auto,bool): raise ValueError("live_auto_submit must be a boolean; default is false")
+    policy=auth.get("completeness_policy",{})
+    if not isinstance(policy,dict): raise ValueError("completeness_policy must be an explicit policy object")
+    version=policy.get("version","1.0")
+    threshold=policy.get("minimum_valid_pub_fraction_per_treatment",0.8)
+    analysis_approved=policy.get("partial_analysis_approved",False)
+    partial_approved=policy.get("partial_progression_approved",False)
+    insufficient_action=policy.get("insufficient_data_action","STOP")
+    insufficient_approved=policy.get("insufficient_data_policy_approved",False)
+    if not isinstance(version,str) or not re.fullmatch(r"[A-Za-z0-9._-]{1,32}",version):
+        raise ValueError("completeness_policy.version must be a short immutable version label")
+    if isinstance(threshold,bool) or not isinstance(threshold,(int,float)) or not math.isfinite(float(threshold)) or not 0<float(threshold)<=1:
+        raise ValueError("minimum_valid_pub_fraction_per_treatment must be within (0,1]")
+    if not isinstance(analysis_approved,bool) or not isinstance(partial_approved,bool) or not isinstance(insufficient_approved,bool):
+        raise ValueError("Completeness policy approvals must be booleans")
+    if insufficient_action not in ("STOP","CONTINUE_WITH_WARNING"):
+        raise ValueError("insufficient_data_action must be STOP or CONTINUE_WITH_WARNING")
+    if insufficient_action!="STOP" and not insufficient_approved:
+        raise ValueError("CONTINUE_WITH_WARNING requires explicit insufficient_data_policy_approved=true")
+    policy={"version":version,"minimum_valid_pub_fraction_per_treatment":float(threshold),
+        "partial_analysis_approved":analysis_approved,"partial_progression_approved":partial_approved,
+        "insufficient_data_action":insufficient_action,
+        "insufficient_data_policy_approved":insufficient_approved,
+        "threshold_is_operational_heuristic":True}
+    result={**auth,"total_runtime_budget_seconds":float(total),
+        "account_runtime_budget_seconds":{k:float(v) for k,v in budgets.items()},
+        "safety_margin_seconds":float(margin),
+        "recovery_limits":{"max_read_attempts":reads,"max_qpu_resubmissions":0},
+        "allowed_actions":actions,"live_auto_submit":auto,"completeness_policy":policy}
+    return result
+
+
+def _authorization_revision_directory(root,campaign_id: str) -> Path:
+    return campaign_root(root,campaign_id)/"authorization_versions"
+
+
+def load_campaign_authorization(root,campaign_id: str,manifest: dict[str,Any],manifest_sha256: str):
+    """Load the immutable base authorization or its validated append-only revision chain."""
+    base=validate_operator_authorization(manifest["operator_authorization"])
+    directory=_authorization_revision_directory(root,campaign_id)
+    paths=sorted(directory.glob("authorization_v*.json"),key=lambda path:path.name) if directory.is_dir() else []
+    previous=_sha({"operator_authorization":base})
+    expected_version=2
+    current=base
+    metadata={"version":1,"sha256":previous,"path":None,"is_revision":False}
+    for path in paths:
+        match=re.fullmatch(r"authorization_v(\d+)\.json",path.name)
+        if not match or int(match.group(1))!=expected_version:
+            raise ValueError("Campaign authorization revision chain is nonsequential; operator review is required")
+        payload=json.loads(path.read_text(encoding="utf-8"))
+        core={key:value for key,value in payload.items() if key!="authorization_sha256"}
+        digest=_sha(core)
+        if (payload.get("schema_version")!=1 or payload.get("campaign_id")!=campaign_id or
+            payload.get("parent_manifest_sha256")!=manifest_sha256 or
+            payload.get("authorization_version")!=expected_version or
+            payload.get("previous_authorization_sha256")!=previous or
+            payload.get("authorization_sha256")!=digest):
+            raise ValueError("Campaign authorization revision failed its parent/hash-chain validation")
+        revised=validate_operator_authorization(payload.get("operator_authorization",{}))
+        if (revised["account_by_n"].get("5",base["account_by_n"].get("5"))
+            !=base["account_by_n"].get("5")):
+            raise ValueError("Versioned authorization must preserve the existing official n=5 account mapping")
+        current=revised;previous=digest;metadata={"version":expected_version,"sha256":digest,
+            "path":str(path),"is_revision":True};expected_version+=1
+    return current,metadata
+
+
+def stage_campaign_authorization_revision(root,campaign_id: str,authorization: dict[str,Any],registry: JobRegistry,*,approved: bool=False):
+    """Append a new operator-approved authorization without editing the campaign manifest."""
+    if not approved:
+        raise PermissionError("Versioned authorization activation requires explicit operator approval")
+    status=registry.independent_campaign_status(campaign_id)
+    if not status.get("exists"):raise KeyError(campaign_id)
+    manifest=status["manifest"];base=validate_operator_authorization(manifest["operator_authorization"])
+    revised=validate_operator_authorization(authorization)
+    if (revised["account_by_n"].get("5",base["account_by_n"].get("5"))
+            !=base["account_by_n"].get("5")):
+        raise ValueError("A revision may not change n=5; it must preserve the official data/account mapping")
+    _current,_meta=load_campaign_authorization(root,campaign_id,manifest,status["manifest_sha256"])
+    version=_meta["version"]+1
+    core={"schema_version":1,"campaign_id":campaign_id,"authorization_version":version,
+        "parent_manifest_sha256":status["manifest_sha256"],"previous_authorization_sha256":_meta["sha256"],
+        "operator_authorization":revised}
+    payload={**core,"authorization_sha256":_sha(core)}
+    path=_authorization_revision_directory(root,campaign_id)/f"authorization_v{version:03d}.json"
+    _exclusive_json(path,payload)
+    return {"campaign_id":campaign_id,"authorization_version":version,"path":str(path),
+        "authorization_sha256":payload["authorization_sha256"],"campaign_manifest_modified":False,
+        "live_submission_performed":False}
+
+
+def build_campaign_manifest(root,campaign_id: str,operator_authorization: dict[str,Any]) -> dict[str,Any]:
+    if not campaign_id or campaign_id in (".","..") or any(c in campaign_id for c in "/\\:"):
+        raise ValueError("campaign_id must be one safe path component")
+    auth=validate_operator_authorization(operator_authorization)
+    levels=[]
+    for index,n in enumerate(N_LEVELS):
+        experiment_id=f"{campaign_id}-n{n}"
+        target=build_target_manifest(root,target_n=n,chunk_n=5,shots=4096,experiment_id=experiment_id)
+        levels.append({"level_index":index,"target_n":n,"experiment_id":experiment_id,
+            "target_id":target.target_id,"manifest":target.to_dict(),"manifest_sha256":target.sha256,
+            "account_label":auth["account_by_n"].get(str(n)) if not auth.get("account_selection")=="highest_available_quota" else None,"required_batches":n//5,
+            "required_jobs":8*(n//5),"requested_pubs":8*n})
+    core={"schema_version":1,"campaign_id":campaign_id,"campaign_type":"independent_n_vqe_mitigation",
+        "levels":levels,"total_levels":6,"total_batches_required":21,"total_estimator_jobs":168,
+        "total_requested_pubs":840,"chunk_n":5,"shots_per_pub":4096,"backend":"ibm_fez",
+        "source_run":"run_02","source_bundle":levels[0]["manifest"]["source_bundle"],
+        "input_hashes":levels[0]["manifest"]["input_hashes"],"physical_qubits":list(range(140,147)),
+        "theta_count":21,"observable_count":7,"treatment_ids":list(levels[0]["manifest"]["treatment_ids"]),
+        "operator_authorization":auth,"live_submission_enabled_by_default":False,
+        "calibration_data_excluded":True,"created_utc":utc_now()}
+    core["manifest_sha256"]=_sha(core)
+    return core
+
+
+def _exclusive_json(path: Path,payload: dict) -> None:
+    path.parent.mkdir(parents=True,exist_ok=True)
+    encoded=json.dumps(payload,ensure_ascii=False,indent=2,sort_keys=True,default=str)
+    if path.exists():
+        if path.read_text(encoding="utf-8")!=encoded: raise FileExistsError(f"Immutable campaign artifact differs; refusing overwrite: {path}")
+        return
+    with path.open("x",encoding="utf-8") as handle:
+        handle.write(encoded);handle.flush();os.fsync(handle.fileno())
+
+
+def plan_independent_campaign(root,campaign_id: str,authorization: dict[str,Any],registry: JobRegistry) -> dict[str,Any]:
+    manifest=build_campaign_manifest(root,campaign_id,authorization)
+    directory=campaign_root(root,campaign_id)
+    _exclusive_json(directory/"campaign_manifest.json",manifest)
+    for level in manifest["levels"]:
+        target=level["manifest"]|{"manifest_sha256":level["manifest_sha256"]}
+        _exclusive_json(directory/f"n{level['target_n']}"/"experiment_manifest.json",target)
+        from adaptive_targets import register_target
+        from experiment_manifest import TargetManifest
+        values={**level["manifest"],"physical_qubits":tuple(level["manifest"]["physical_qubits"]),
+            "treatment_ids":tuple(level["manifest"]["treatment_ids"]),"treatments":tuple(level["manifest"]["treatments"])}
+        register_target(TargetManifest(**values),registry)
+    registry.register_independent_campaign(manifest)
+    return {"manifest":manifest,"manifest_path":str(directory/"campaign_manifest.json"),
+            "batch_count":21,"job_count":168,"requested_pub_count":840,
+            "live_submission_enabled":False,"submission_performed":False}
+
+
+def dry_run_independent_campaign(root,campaign_id: str,registry: JobRegistry) -> dict[str,Any]:
+    status=registry.independent_campaign_status(campaign_id)
+    if not status.get("exists"): raise KeyError(campaign_id)
+    manifest=status["manifest"]
+    levels=[]
+    for item in status["levels"]:
+        target=item["target_status"]
+        counts=target.get("cumulative_validated_pubs_by_treatment",{})
+        level_manifest=next(entry for entry in manifest["levels"] if entry["level_index"]==item["level_index"])
+        blocks=target.get("blocks",[])
+        sequence=len(blocks)+1
+        levels.append({"n":item["target_n"],"experiment_id":item["experiment_id"],
+            "target_id":item["target_id"],"account_label":(None if item["state"]=="PLANNED" else level_manifest.get("account_label")), "account_selection_pending":item["state"]=="PLANNED",
+            "required_batches":item["target_n"]//5,"registered_batches":len(blocks),
+            "next_block_id":(f"{item['experiment_id']}-block-{sequence:03d}" if sequence<=item["target_n"]//5 else None),
+            "planned_jobs_in_next_batch":8 if sequence<=item["target_n"]//5 else 0,
+            "planned_pubs_in_next_batch":40 if sequence<=item["target_n"]//5 else 0,
+            "backend":"ibm_fez","shots_per_pub":4096,"chunk_n":5,
+            "treatment_ids":level_manifest["manifest"]["treatment_ids"],
+            "input_hashes":level_manifest["manifest"]["input_hashes"],
+            "result_directory":str(repository_root(root)/MITIGATION_REL/"output"/"02_run_level_data"/"adaptive_targets"/item["target_id"]),
+            "batch_records_directory":str(repository_root(root)/MITIGATION_REL/"output"/"03_IBM_execution_records"/"ai_assistant"/"independent_n_campaigns"/campaign_id/f"n{item['target_n']}"),
+            "runtime_preflight_performed":False,"quota_gate_performed":False,
+            "validated_pubs_by_treatment":counts,"ready_to_advance":item["state"]=="COMPLETE" or not any(
+                block["status"] not in ("VALIDATED","COMPLETE","CONFIRMED_NOT_SUBMITTED") for block in blocks)})
+    return {"campaign_id":campaign_id,"state":status["state"],"levels":levels,
+        "planned_batches":21,"planned_jobs":168,"requested_pubs":840,
+        "live_auto_submit_authorized":manifest["operator_authorization"]["live_auto_submit"],
+        "live_submission_enabled":False,"batch_created":False,"submission_performed":False}
+
+
+def _target_from_level(root, level: dict[str,Any]):
+    """Rebuild and verify a target from its immutable campaign record."""
+    saved=level["manifest"]
+    target=build_target_manifest(root,target_n=int(level["target_n"]),chunk_n=5,shots=4096,
+                                 experiment_id=level["experiment_id"])
+    if target.target_id!=level["target_id"] or target.sha256!=level["manifest_sha256"]:
+        raise RuntimeError("Independent n target differs from its immutable campaign manifest")
+    if saved.get("input_hashes")!=target.input_hashes or saved.get("source_run")!="run_02":
+        raise RuntimeError("Independent n manifest no longer matches frozen Fixed ISA run_02")
+    return target
+
+
+def _campaign_report(directory: Path, name: str, payload: dict[str,Any]) -> Path:
+    """Write a campaign-scoped report once; reports are immutable evidence."""
+    path=directory/name
+    _exclusive_json(path,payload)
+    if json.loads(path.read_text(encoding="utf-8"))!=payload:
+        raise RuntimeError("Campaign report read-back verification failed: "+str(path))
+    return path
+
+
+def _validated_pub_fractions(registry: JobRegistry,target,*,logical_block_id: str | None=None) -> dict[str,float]:
+    """Return valid PUB fractions from this independent target only."""
+    values=registry.validated_pub_values(target.target_id)
+    counts={name:0 for name in target.treatment_ids}
+    for row in values:
+        if logical_block_id is None or row["logical_block_id"]==logical_block_id:
+            if row["treatment_id"] in counts:counts[row["treatment_id"]]+=1
+    denominator=target.chunk_n if logical_block_id else target.target_n
+    return {name:min(1.0,counts[name]/float(denominator)) for name in target.treatment_ids}
+
+
+def _partial_policy_allows(policy: dict[str,Any],fractions: dict[str,float]) -> tuple[bool,dict[str,Any]]:
+    threshold=float(policy["minimum_valid_pub_fraction_per_treatment"])
+    below={name:value for name,value in fractions.items() if value+1e-12<threshold}
+    approved=bool(policy.get("partial_analysis_approved") and policy.get("partial_progression_approved"))
+    insufficient_override=(bool(below) and policy.get("insufficient_data_action")=="CONTINUE_WITH_WARNING"
+        and bool(policy.get("insufficient_data_policy_approved")))
+    return approved and (not below or insufficient_override),{
+        "policy_version":policy["version"],"minimum_valid_pub_fraction_per_treatment":threshold,
+        "threshold_is_operational_heuristic":True,"valid_fraction_by_treatment":fractions,
+        "below_threshold":below,"insufficient_data_action":policy["insufficient_data_action"],
+        "partial_analysis_approved":bool(policy.get("partial_analysis_approved")),
+        "partial_progression_approved":bool(policy.get("partial_progression_approved")),
+        "eligible":approved and (not below or insufficient_override)}
+
+
+def _ai_event(ai_mode: str, event: dict[str,Any], *, explicit: bool=False) -> dict[str,Any] | None:
+    if ai_mode not in ("python","ai-assisted","autonomous"):
+        raise ValueError("ai_mode must be python, ai-assisted, or autonomous")
+    if ai_mode=="python" or not explicit:
+        return None
+    from ai_assistance import request_diagnosis
+    # The wrapper allowlists fields and has no tools or mutation capability.
+    try: return request_diagnosis(event)
+    except Exception as exc:
+        return {"available":False,"reason":"AI diagnostics unavailable: "+type(exc).__name__,
+                "ai_actions_executed":False}
+
+
+def control_independent_campaign(root,campaign_id: str,registry: JobRegistry,action: str) -> dict[str,Any]:
+    if action not in ("pause","stop"):
+        raise ValueError("Campaign control action must be pause or stop")
+    status=registry.independent_campaign_status(campaign_id)
+    if not status.get("exists"): raise KeyError(campaign_id)
+    if status["current_level_index"]>=6 or status["state"]=="COMPLETE":
+        return {"campaign_id":campaign_id,"state":"COMPLETE","stop_requested":False,
+                "submission_performed":False,"cancellation_performed":False}
+    directory=campaign_root(root,campaign_id)
+    marker=directory/(".campaign.pause" if action=="pause" else ".campaign.stop")
+    marker.parent.mkdir(parents=True,exist_ok=True)
+    with marker.open("a",encoding="utf-8") as handle:
+        handle.write(utc_now()+"\n");handle.flush();os.fsync(handle.fileno())
+    registry.checkpoint_independent_campaign(campaign_id,state="PAUSED" if action=="pause" else "STOPPED",
+        level_index=status["current_level_index"],checkpoint={"control_marker":str(marker)},
+        event_type="CAMPAIGN_"+action.upper()+"_REQUESTED")
+    return {"campaign_id":campaign_id,"state":action.upper()+"_REQUESTED","marker":str(marker),
+            "submission_performed":False,"cancellation_performed":False}
+
+
+def _read_only_repaired_progress(registry: JobRegistry, level: dict[str, Any]) -> dict[str, Any]:
+    """Display effective logical-PUB coverage; never modify provider or campaign state.
+
+    Original counts are retained separately for historical traceability.
+    A replacement counts only when JobRegistry.repaired_pub_values selects it.
+    """
+    original = dict(level["target_status"].get("cumulative_validated_pubs_by_treatment", {}) or {})
+    target_id = level["target_id"]
+    expected_n = int(level["target_n"])
+    manifest = level.get("manifest") or {}
+    treatments = tuple(manifest.get("treatment_ids") or original.keys())
+    records = registry.repaired_pub_values(target_id)
+    slots = {}
+    replacement_slots = set()
+    for item in records:
+        treatment = item.get("treatment_id")
+        index = item.get("logical_pub_index")
+        if treatment not in treatments or isinstance(index, bool) or not isinstance(index, int):
+            continue
+        if not 1 <= index <= expected_n:
+            continue
+        key = (treatment, index)
+        slots[key] = item
+        if item.get("source") == "REPLACEMENT":
+            replacement_slots.add(key)
+    effective = {name: sum((name, i) in slots for i in range(1, expected_n + 1)) for name in treatments}
+    complete = bool(treatments) and all(effective[name] == expected_n for name in treatments)
+    return {
+        "progress": effective,
+        "original_progress": original,
+        "validated_replacement_pubs": len(replacement_slots),
+        "repaired_valid_pubs": sum(effective.values()),
+        "expected_pubs": expected_n * len(treatments),
+        "repaired_complete": complete,
+        "progress_source": "selected_repaired_logical_pub_slots",
+    }
+
+
+
+def _verified_repaired_block_evidence(root, registry, target, block_id: str) -> tuple[bool, dict]:
+    """Verify one repaired Batch independently of its RECOVERED review or whole-n status.
+
+    Read-only. Never promote a replacement based on count alone.
+    """
+    from adaptive_targets import audit_incomplete_batch_archives
+    audit = audit_incomplete_batch_archives(root, target, registry, block_id)
+    if audit.get("raw_archives_verified") is not True or audit.get("provenance_verified") is not True:
+        return False, audit
+    rows = registry.rows(block_id)
+    latest = {}
+    for row in rows:
+        key = row["treatment_id"]
+        if key not in latest or int(row.get("attempt", 1)) > int(latest[key].get("attempt", 1)):
+            latest[key] = row
+    if set(latest) != set(target.treatment_ids) or any(not row.get("job_id") or row.get("input_hashes") != target.input_hashes for row in latest.values()):
+        return False, audit
+    sequence = int(block_id.rsplit("-block-", 1)[-1])
+    start = (sequence - 1) * target.chunk_n + 1
+    end = sequence * target.chunk_n
+    selected = [row for row in registry.repaired_pub_values(target.target_id)
+                if row.get("logical_block_id") == block_id]
+    expected = {(name, i) for name in target.treatment_ids for i in range(start, end + 1)}
+    keys = set()
+    replacement_jobs = {str(row.get("job_id")): row for row in registry.replacement_jobs(target.target_id)
+                        if row.get("logical_block_id") == block_id}
+    for row in selected:
+        name, index = row.get("treatment_id"), row.get("logical_pub_index")
+        key = (name, index)
+        if key not in expected or key in keys or row.get("input_hashes") != target.input_hashes:
+            return False, audit
+        if row.get("source") == "REPLACEMENT":
+            replacement = replacement_jobs.get(str(row.get("job_id")))
+            if (not replacement or replacement.get("state") != "VALIDATED"
+                    or replacement.get("treatment_id") != name
+                    or replacement.get("logical_pub_index") != index):
+                return False, audit
+            # The registry's selected replacement is independently validated;
+            # never treat a merely submitted or DONE job as repaired.
+        keys.add(key)
+    unresolved = {"PLANNED", "RESERVED", "SUBMITTING", "UNKNOWN", "SUBMITTED", "DONE"}
+    if any(row.get("state") in unresolved for row in replacement_jobs.values()):
+        return False, audit
+    return keys == expected, audit
+
+
+def _repaired_block_complete(registry, target, block_id: str) -> bool:
+    """A recovered block is logically complete without rewriting original PUB counts.
+
+    Selection comes exclusively from Registry's validated original/replacement slots.
+    Require the persisted RECOVERED review and verified provenance flags as well.
+    """
+    rows=registry.rows(block_id)
+    latest={}
+    for row in rows:
+        name=row["treatment_id"]
+        if name not in latest or int(row.get("attempt",1))>int(latest[name].get("attempt",1)):
+            latest[name]=row
+    if set(latest)!=set(target.treatment_ids) or any(not r.get("job_id") for r in latest.values()):
+        return False
+    review=registry.latest_batch_recovery_review(block_id)
+    if not review or review.get("recovery_status")!="RECOVERED":
+        return False
+    if review.get("raw_archives_verified") is not True or review.get("provenance_verified") is not True:
+        return False
+    sequence=int(block_id.rsplit("-block-",1)[-1])
+    start=(sequence-1)*target.chunk_n+1
+    end=sequence*target.chunk_n
+    selected=registry.repaired_pub_values(target.target_id)
+    keys=set()
+    for row in selected:
+        if row.get("logical_block_id")!=block_id:
+            continue
+        treatment=row.get("treatment_id")
+        index=row.get("logical_pub_index")
+        if treatment not in target.treatment_ids or type(index) is not int or not start<=index<=end:
+            return False
+        if row.get("input_hashes")!=target.input_hashes:
+            return False
+        key=(treatment,index)
+        if key in keys:
+            return False
+        keys.add(key)
+    expected={(name,index) for name in target.treatment_ids for index in range(start,end+1)}
+    if keys!=expected:
+        return False
+    unresolved={"PLANNED","RESERVED","SUBMITTING","UNKNOWN","SUBMITTED","DONE"}
+    return not any(row.get("logical_block_id")==block_id and row.get("state") in unresolved
+                   for row in registry.replacement_jobs(target.target_id))
+
+def inspect_independent_campaign(registry: JobRegistry,campaign_id: str,root: str | Path | None=None) -> dict[str,Any]:
+    status=registry.independent_campaign_status(campaign_id)
+    if not status.get("exists"): return status
+    manifest=status["manifest"]
+    authorization,auth_meta=(manifest["operator_authorization"],{"version":1,"is_revision":False,"path":None})
+    if root is not None:
+        authorization,auth_meta=load_campaign_authorization(root,campaign_id,manifest,status["manifest_sha256"])
+    usage=_campaign_usage(registry,manifest,authorization)
+    levels=[]
+    for level in status["levels"]:
+        jobs=[]
+        for row in registry.rows():
+            if row.get("target_id")!=level["target_id"]:continue
+            metadata=row.get("metadata",{})
+            remote=metadata.get("last_remote_monitor",{})
+            jobs.append({"job_id":row.get("job_id"),"treatment_id":row["treatment_id"],
+                "ibm_job_status":remote.get("status","UNKNOWN"),
+                "local_submission_state":row.get("submission_state"),"logical_block_id":row["logical_block_id"],
+                "batch_id":row.get("batch_id"),"qpu_usage_seconds":row.get("qpu_usage_seconds")})
+        coverage = _read_only_repaired_progress(registry, level)
+        levels.append({"n":level["target_n"],"experiment_id":level["experiment_id"],"target_id":level["target_id"],
+            "state":level["state"],**coverage,
+            "blocks":level["target_status"].get("blocks",[]),"jobs":jobs})
+    return {"campaign_id":campaign_id,"state":status["state"],"current_level_index":status["current_level_index"],
+        "manifest_sha256":status["manifest_sha256"],"levels":levels,
+        "execution_account_labels":list(authorization["allowed_accounts"]),
+        "usage":usage,"events":status["events"]}
+
+
+def _finalize_level(root,campaign_id: str,level_index: int,level: dict[str,Any],target,
+                   registry: JobRegistry,directory: Path) -> Path:
+    """Run canonical cumulative analysis, verify exports, then atomically advance state."""
+    from adaptive_targets import analyze_target
+    analysis=analyze_target(root,target,registry)
+    if analysis.get("artifacts_verified") is not True:
+        raise RuntimeError("Cumulative analysis or required figure validation did not pass")
+    from scientific_exports import export_n_level_results
+    paper_export=export_n_level_results(root,target,registry,analysis)
+    analysis_manifest=json.loads((Path(analysis["output"])/"analysis_manifest.json").read_text(encoding="utf-8"))
+    stable_analysis={key:analysis.get(key) for key in ("target_id","output","validated_pubs_by_treatment",
+        "blocks_included","artifacts_verified") if key in analysis}
+    report_state=analysis_manifest.get("dataset_status","COMPLETE")
+    report={"campaign_id":campaign_id,"experiment_id":target.experiment_id,"target_id":target.target_id,
+        "n":target.target_n,"state":report_state,"validated_pubs_per_treatment":target.target_n,
+        "analysis":stable_analysis,"paper_export":paper_export,"source_run":"run_02","input_hashes":target.input_hashes,
+        "account_labels":sorted({item["account_label"] for item in registry.target_status(target.target_id)["blocks"]}),
+        "generated_utc":analysis_manifest["created_utc"]}
+    report_path=_campaign_report(directory/f"n{target.target_n}","scientific_report.json",report)
+    if report_state=="REPAIRED_COMPLETE":
+        export_manifest=Path(paper_export["data"])/"export_manifest.json"
+        analysis_path=Path(analysis["output"])/"analysis_manifest.json"
+        import hashlib
+        registry.complete_independent_level_repaired(campaign_id,level_index,
+            analysis_manifest_sha256=hashlib.sha256(analysis_path.read_bytes()).hexdigest(),
+            export_manifest_sha256=hashlib.sha256(export_manifest.read_bytes()).hexdigest())
+    else:
+        registry.complete_independent_level(campaign_id,level_index)
+    return report_path
+
+
+def _campaign_completion_verification(root,registry: JobRegistry,status: dict[str,Any]) -> dict[str,Any]:
+    """Recheck all six complete-only levels and paper artifacts before final COMPLETE."""
+    failures=[];verified=[]
+    from targeted_recovery import repaired_dataset_status
+    from scientific_exports import (_sha,_verify_figures,_verify_optional_figure,
+        CSV_FILES,PAPER_FIGURES,WIDE_FIGURES,OPTIONAL_FIGURES)
+    campaign_id=status["campaign_id"]
+    directory=campaign_root(root,campaign_id)
+    levels=status.get("levels",[])
+    if len(levels)!=6:failures.append("campaign must contain exactly six n levels")
+    for index,level_row in enumerate(levels):
+        n=int(level_row.get("target_n",(index+1)*5))
+        if level_row.get("state") not in ("COMPLETE","REPAIRED_COMPLETE"):
+            failures.append(f"n={n} registry state is not complete")
+            continue
+        level=status["manifest"]["levels"][index]
+        target=_target_from_level(root,level)
+        data=repaired_dataset_status(target,registry)
+        if not data["analysis_eligible"] or any(data["counts_by_treatment"].get(name)!=n for name in target.treatment_ids):
+            failures.append(f"n={n} does not have exactly {n} validated PUB slots for every treatment")
+            continue
+        target_status=registry.target_status(target.target_id)
+        if len(target_status.get("blocks",[]))!=target.blocks_required:
+            failures.append(f"n={n} has a missing or extra original Batch")
+            continue
+        if data["status"]!="REPAIRED_COMPLETE" and any(
+                block.get("status") not in ("VALIDATED","COMPLETE") for block in target_status["blocks"]):
+            failures.append(f"n={n} contains an incomplete Batch without a complete repaired dataset")
+            continue
+        unresolved=[item["replacement_id"] for item in registry.replacement_jobs(target.target_id)
+            if item["state"] in {"PLANNED","RESERVED","SUBMITTING","UNKNOWN","SUBMITTED","DONE"}]
+        if unresolved:
+            failures.append(f"n={n} has unresolved replacement records")
+            continue
+        report_path=directory/f"n{n}"/"scientific_report.json"
+        if not report_path.is_file():
+            failures.append(f"n={n} scientific report is missing")
+            continue
+        try:
+            report=json.loads(report_path.read_text(encoding="utf-8"))
+            if (report.get("target_id")!=target.target_id or report.get("experiment_id")!=target.experiment_id or
+                    report.get("n")!=n or report.get("input_hashes")!=target.input_hashes or
+                    report.get("source_run")!="run_02" or report.get("state") not in ("COMPLETE","REPAIRED_COMPLETE") or
+                    report.get("analysis",{}).get("artifacts_verified") is not True or
+                    report.get("paper_export",{}).get("files_verified") is not True):
+                failures.append(f"n={n} scientific report provenance or artifact flag is invalid")
+                continue
+            export=report["paper_export"]
+            data_dir=Path(export["data"]);figure_dir=Path(export["figures"])
+            export_path=data_dir/"export_manifest.json"
+            if not export_path.is_file():
+                failures.append(f"n={n} export manifest is missing")
+                continue
+            export_manifest=json.loads(export_path.read_text(encoding="utf-8"))
+            analysis_manifest_path=Path(report["analysis"]["output"])/"analysis_manifest.json"
+            if (export_manifest.get("target_id")!=target.target_id or export_manifest.get("n")!=n or
+                    export_manifest.get("input_hashes")!=target.input_hashes or
+                    export_manifest.get("source_run")!="run_02" or export_manifest.get("partial_diagnostic_only") is not False):
+                failures.append(f"n={n} export manifest provenance is invalid")
+                continue
+            if (not analysis_manifest_path.is_file() or
+                    export_manifest.get("source_analysis_manifest_sha256")!=_sha(analysis_manifest_path)):
+                failures.append(f"n={n} canonical analysis manifest hash does not verify")
+                continue
+            if set(export_manifest.get("csv_sha256",{}))!=set(CSV_FILES):
+                failures.append(f"n={n} exported CSV inventory is incomplete")
+                continue
+            if any(not (data_dir/name).is_file() or _sha(data_dir/name)!=digest
+                    for name,digest in export_manifest.get("csv_sha256",{}).items()):
+                failures.append(f"n={n} CSV hashes do not verify")
+                continue
+            expected_figures=set(PAPER_FIGURES+WIDE_FIGURES)
+            saved_figures=export_manifest.get("figures",{})
+            if "generated_figures" in export_manifest:
+                generated=set(export_manifest["generated_figures"])
+            else:
+                # Legacy manifests did not distinguish optional figures; their
+                # recorded figure hashes are the authoritative inventory.
+                generated=set(saved_figures) or expected_figures
+            usage_coverage=export_manifest.get("qpu_usage_coverage")
+            usage_complete=(usage_coverage.get("complete_comparable") is True
+                if isinstance(usage_coverage,dict) else "04_mitigation_accuracy_cost.png" in generated)
+            if (not expected_figures.issubset(generated) or generated-expected_figures-set(OPTIONAL_FIGURES)
+                    or (usage_complete != ("04_mitigation_accuracy_cost.png" in generated))):
+                failures.append(f"n={n} optional figure inventory does not match verified QPU-usage coverage")
+                continue
+            if "04_mitigation_accuracy_cost.png" in generated:
+                optional_figure=_verify_optional_figure(figure_dir,"04_mitigation_accuracy_cost.png")
+            else:optional_figure=None
+            current_figures=_verify_figures(figure_dir)
+            if optional_figure is not None:current_figures["04_mitigation_accuracy_cost.png"]=optional_figure
+            if set(saved_figures)!=generated or set(current_figures)!=generated or any(
+                    saved_figures[name].get("sha256")!=current_figures[name].get("sha256")
+                    for name in current_figures):
+                failures.append(f"n={n} publication PNG inventory or hashes do not verify")
+                continue
+            verified.append(n)
+        except Exception as exc:
+            failures.append(f"n={n} output verification failed: {type(exc).__name__}")
+    return {"ready":not failures and len(verified)==6,"verified_n_levels":verified,"failures":failures}
+
+
+def run_independent_campaign(root,campaign_id: str,registry: JobRegistry, *,
+        authorize_live_campaign: bool=False, ai_mode: str="python", explicit_ai: bool=False,
+        account_label: str | None=None,
+        once: bool=False, resume: bool=False, service_factory: Callable[[str],Any] | None=None,
+        sleeper: Callable[[float],None]=time.sleep, poll_seconds: int=60,
+        final_config: dict[str,Any] | None=None,_worker_lock_held: bool=False) -> dict[str,Any]:
+    """Run one-at-a-time n/Batch pipeline. Only explicit, fully gated mode can touch IBM.
+
+    Original jobs are never resubmitted. Invalid PUB slots may receive a distinct
+    replacement job only through the separately gated final-config path.
+    ``service_factory`` is injection-only for offline tests; production uses saved profiles.
+    """
+    from worker_runtime import WorkerLock, RetryingReadOnlyService
+    status=registry.independent_campaign_status(campaign_id)
+    if not status.get("exists"): raise KeyError(campaign_id)
+    manifest=status["manifest"]
+    if final_config is not None:
+        from final_configuration import validate_final_config,campaign_authorization_from_final_config
+        final_config=validate_final_config(final_config)
+        if final_config.get("allowed_backend") != manifest.get("backend"):
+            raise RuntimeError("Final configuration backend does not match the immutable campaign")
+        if not final_config.get("live_submission_enabled",False):
+            return {"campaign_id":campaign_id,"state":"BLOCKED_AUTHORIZATION","live_submission_enabled":False,
+                "reason":"Live submission is disabled by final_config.json","submission_performed":False,"batch_created":False}
+        # The distributable application's final_config is the execution policy.
+        # Old campaign authorization files remain audit data, not active flags.
+        authorization=campaign_authorization_from_final_config(final_config)
+        authorization_revision={"source":"final_config.json","legacy_authorization_read_only":True}
+    else:
+        authorization,authorization_revision=load_campaign_authorization(root,campaign_id,manifest,status["manifest_sha256"])
+    if not authorize_live_campaign or not authorization.get("live_auto_submit",False):
+        return {"campaign_id":campaign_id,"state":"BLOCKED_AUTHORIZATION","live_submission_enabled":False,
+            "reason":"Both operator live_auto_submit=true and --authorize-live-campaign are required",
+            "submission_performed":False,"batch_created":False}
+    if not authorization["allowed_accounts"]:
+        raise RuntimeError("No authorized account has verified instance scope for quota selection")
+    required_actions={"prepare","preflight","dry-run","submit","monitor","collect","validate","analyze","plot","report"}
+    missing_actions=required_actions-set(authorization["allowed_actions"])
+    if missing_actions:
+        raise RuntimeError("Campaign authorization omits required pipeline actions: "+", ".join(sorted(missing_actions)))
+    if manifest.get("calibration_data_excluded") is not True or manifest.get("source_run")!="run_02":
+        raise RuntimeError("Campaign manifest is not an independent production run_02 campaign")
+    directory=campaign_root(root,campaign_id)
+    stop=directory/".campaign.stop";pause=directory/".campaign.pause"
+    if pause.exists():
+        if not resume:
+            return {"campaign_id":campaign_id,"state":"PAUSED","reason":"Use resume-independent-n-campaign to clear the pause marker",
+                "submission_performed":False}
+        pause.unlink()
+    if stop.exists(): raise RuntimeError("A stopped campaign cannot be resumed; create a new campaign ID after review")
+    if status["state"]=="STOPPED": raise RuntimeError("A stopped campaign cannot be resumed")
+    if explicit_ai and ai_mode!="python":
+        _ai_event(ai_mode,{"campaign_id":campaign_id,"event_class":"OPERATOR_REQUEST",
+            "local_state":status["state"],"safe_summary":"Operator explicitly requested one campaign status diagnosis"},explicit=True)
+    reports=[]
+    initial_level_index=int(status["current_level_index"])
+    lock_context=nullcontext() if _worker_lock_held else WorkerLock(directory/"worker.lock")
+    with lock_context:
+        while True:
+            status=registry.independent_campaign_status(campaign_id)
+            index=int(status["current_level_index"])
+            if index>=6:
+                completion=_campaign_completion_verification(root,registry,status)
+                if completion["ready"]:
+                    registry.checkpoint_independent_campaign(campaign_id,state="COMPLETE",
+                        checkpoint={"completion_verification":completion},event_type="CAMPAIGN_COMPLETE")
+                    return inspect_independent_campaign(registry,campaign_id)|{"reports":reports,
+                        "completion_verification":completion,"submission_performed":bool(reports)}
+                registry.checkpoint_independent_campaign(campaign_id,state="BLOCKED",
+                    checkpoint={"completion_verification":completion},event_type="CAMPAIGN_COMPLETION_VERIFICATION_FAILED")
+                return inspect_independent_campaign(registry,campaign_id)|{"reports":reports,
+                    "completion_verification":completion,"submission_performed":bool(reports)}
+            if stop.exists():
+                registry.checkpoint_independent_campaign(campaign_id,state="STOPPED",level_index=index,event_type="CAMPAIGN_STOPPED")
+                return inspect_independent_campaign(registry,campaign_id)|{"reports":reports,"submission_performed":bool(reports)}
+            if pause.exists():
+                registry.checkpoint_independent_campaign(campaign_id,state="PAUSED",level_index=index,event_type="CAMPAIGN_PAUSED")
+                return inspect_independent_campaign(registry,campaign_id)|{"reports":reports,"submission_performed":bool(reports)}
+            level=manifest["levels"][index];target=_target_from_level(root,level)
+            progress=registry.target_status(target.target_id)
+            blocks=progress.get("blocks",[])
+            # Existing jobs must always be accessed through their registered account.
+            # For a new Batch, this value is only a placeholder: the fresh quota
+            # selector below chooses the actual submitting account.
+            account=_account_for_level(target,authorization,blocks)
+            if (account_label is not None and index==initial_level_index and
+                authorization.get("account_selection")!="highest_available_quota" and account_label!=account):
+                raise RuntimeError("--account-label must match the configured account for this execution/recovery step")
+            if account not in authorization["allowed_accounts"]: raise RuntimeError("Selected n-level account is not enabled")
+            if target.target_n==5:
+                if not blocks:
+                    raise RuntimeError("n=5 is reserved for its existing official dataset; no new n=5 Batch may be created")
+            if blocks and blocks[-1]["status"] not in ("VALIDATED","COMPLETE") and not _repaired_block_complete(registry,target,blocks[-1]["logical_block_id"]):
+                block_id=blocks[-1]["logical_block_id"]
+            else:
+                sequence=len(blocks)+1
+                if sequence>target.blocks_required:
+                    progress_counts=progress.get("cumulative_validated_pubs_by_treatment",{})
+                    from targeted_recovery import repaired_dataset_status
+                    repaired_final=repaired_dataset_status(target,registry)
+                    fully_complete=(len(blocks)==target.blocks_required
+                        and repaired_final.get("analysis_eligible") is True
+                        and all(repaired_final.get("counts_by_treatment",{}).get(name)==target.target_n for name in target.treatment_ids)
+                        and all(item.get("status") in ("VALIDATED", "COMPLETE") or
+                                _repaired_block_complete(registry,target,item["logical_block_id"]) for item in blocks))
+                    if fully_complete:
+                        if level["state"] not in ("COMPLETE","REPAIRED_COMPLETE"):
+                            report_path=_finalize_level(root,campaign_id,index,level,target,registry,directory)
+                            reports.append({"n":target.target_n,"state":"COMPLETE","report":str(report_path)})
+                        continue
+                    registry.checkpoint_independent_campaign(campaign_id,state="PAUSED",level_index=index,
+                        level_state="RECOVERY_REQUIRED",checkpoint={"reason":"incomplete data cannot be analyzed or progressed under complete-only policy",
+                            "batch_execution_states":[item.get("batch_execution_status", item.get("status", "UNKNOWN")) for item in blocks]},
+                        event_type="CAMPAIGN_INCOMPLETE_BLOCK")
+                    raise RuntimeError("Independent n is incomplete; recover or replace invalid PUB slots before analysis or progression")
+                block_id=f"{target.experiment_id}-block-{sequence:03d}"
+            current_rows=registry.rows(block_id)
+            if current_rows:
+                registered_accounts={row["account_label"] for row in current_rows}
+                if len(registered_accounts)!=1:
+                    raise RuntimeError("Existing Batch has inconsistent registered accounts")
+                account=next(iter(registered_accounts))
+                if account not in authorization["allowed_accounts"]:
+                    raise RuntimeError("Existing Batch account is not authorized")
+                if not authorization["allowed_instance_refs"].get(account):
+                    raise RuntimeError("Existing Batch account lacks authorized instance scope")
+            service=None;active=None
+            if current_rows:
+                if any(row["submission_state"] in ("UNKNOWN","SUBMITTING","RESERVED") for row in current_rows):
+                    registry.checkpoint_independent_campaign(campaign_id,state="BLOCKED",level_index=index,
+                        level_state="BLOCKED",checkpoint={"block_id":block_id,"reason":"ambiguous or interrupted submission requires reconciliation"},
+                        event_type="CAMPAIGN_AMBIGUOUS_SUBMISSION")
+                    _ai_event(ai_mode,{"campaign_id":campaign_id,"sequence_no":index+1,"event_class":"SUBMISSION_AMBIGUITY",
+                        "local_state":"BLOCKED","safe_summary":"Existing block has unresolved submit state; no retry was attempted"},explicit=True)
+                    raise RuntimeError("Existing Batch has ambiguous submission state; reconcile existing IDs before resume")
+                from account_config import load_saved_account_profiles,make_saved_profile_service
+                service=service_factory(account) if service_factory else make_saved_profile_service(
+                    load_saved_account_profiles((account,))[account])
+                active=service.active_instance() if callable(getattr(service,"active_instance",None)) else None
+                if active:
+                    from read_only_preflight import _instance_ref
+                    if _instance_ref(active) not in authorization["allowed_instance_refs"][account]:
+                        raise RuntimeError("Current saved profile instance is not authorized for this campaign")
+            elif len(blocks)<target.blocks_required:
+                if target.target_n==5:
+                    raise RuntimeError("n=5 has no original Batch to recover; new execution starts at n=10")
+                usage=_campaign_usage(registry,manifest,authorization)
+                if usage["original_batches_reserved_or_attempted"]>=authorization["maximum_batches"]:
+                    raise RuntimeError("Campaign maximum_batches authorization is exhausted")
+                # Prepare is local and read-only with respect to the frozen source.
+                from vqe_adapter import prepare_block
+                record=__import__("vqe_adapter").record_directory(root,block_id)
+                if not (record/"round_plan.json").is_file():
+                    try: prepare_block(root,block_id,shots=4096,n=5)
+                    except Exception as exc:
+                        diagnosis=_ai_event(ai_mode,{"campaign_id":campaign_id,"sequence_no":index+1,
+                            "event_class":"PREPARE_ERROR","local_state":"BLOCKED",
+                            "safe_summary":"Offline VQE preparation raised "+type(exc).__name__},explicit=True)
+                        registry.checkpoint_independent_campaign(campaign_id,state="BLOCKED",level_index=index,
+                            level_state="BLOCKED",checkpoint={"block_id":block_id,"error_type":type(exc).__name__,
+                            "ai_diagnosis":diagnosis},event_type="CAMPAIGN_PREPARE_ERROR")
+                        raise
+                from account_config import load_saved_account_profiles,make_saved_profile_service
+                from read_only_preflight import preflight_account,_instance_ref,frozen_bundle_summary
+                from vqe_adapter import verify_frozen_inputs
+                def frozen_validator():
+                    verify_frozen_inputs(root)
+                    return {"source_run":"run_02","input_sha256":target.input_hashes}
+                from experiment_manifest import build_manifest
+                runtime_manifest=build_manifest(root,n=5,replicate_blocks=1,shots=4096,experiment_id=target.experiment_id)
+                from runtime_estimator import historical_batch_estimate as _historical_runtime_estimate
+                try:
+                    estimate=_historical_runtime_estimate(root,runtime_manifest,require_defensible=True)
+                except Exception as exc:
+                    diagnosis=_ai_event(ai_mode,{"campaign_id":campaign_id,"sequence_no":index+1,
+                        "event_class":"RUNTIME_EVIDENCE_UNAVAILABLE","local_state":"BLOCKED",
+                        "safe_summary":"Defensible whole-Batch runtime evidence unavailable: "+type(exc).__name__},explicit=True)
+                    registry.checkpoint_independent_campaign(campaign_id,state="BLOCKED",level_index=index,
+                        level_state="BLOCKED",checkpoint={"block_id":block_id,"error_type":type(exc).__name__,
+                        "ai_diagnosis":diagnosis},event_type="CAMPAIGN_RUNTIME_EVIDENCE_BLOCKED")
+                    raise
+                if authorization.get("account_selection")=="highest_available_quota":
+                    from quota import select_highest_available_account
+                    reports={}
+                    profiles=load_saved_account_profiles(tuple(authorization["allowed_accounts"]))
+                    for candidate in authorization["allowed_accounts"]:
+                        try:
+                            candidate_service=(service_factory(candidate) if service_factory
+                                else make_saved_profile_service(profiles[candidate]))
+                            reports[candidate]=preflight_account(profiles[candidate],
+                                allowed_instance_refs=authorization["allowed_instance_refs"].get(candidate,()),
+                                service_factory=lambda _p,svc=candidate_service:svc,
+                                frozen_validator=lambda: frozen_bundle_summary(root))
+                        except Exception:
+                            reports[candidate]={"status":"FAIL","submission_eligible":False}
+                    chosen=select_highest_available_account(reports,runtime_estimate=estimate,
+                        usage=usage,authorization=authorization,expected_hashes=target.input_hashes)
+                    account=chosen["account_label"]
+                    service=(service_factory(account) if service_factory
+                        else make_saved_profile_service(profiles[account]))
+                    preflight=preflight_account(profiles[account],service_factory=lambda _:service,
+                        allowed_instance_refs=authorization["allowed_instance_refs"].get(account,()),
+                        frozen_validator=lambda: frozen_bundle_summary(root))
+                else:
+                    profile=load_saved_account_profiles((account,))[account]
+                    service=(service_factory(account) if service_factory else make_saved_profile_service(profile))
+                    preflight=preflight_account(profile,service_factory=lambda _:service,
+                        allowed_instance_refs=authorization["allowed_instance_refs"].get(account,()),
+                        frozen_validator=lambda: frozen_bundle_summary(root))
+                active=service.active_instance()
+                reference=_instance_ref(active)
+                if reference not in authorization["allowed_instance_refs"].get(account,()):
+                    raise RuntimeError("Selected account instance is not authorized")
+                checked=datetime.fromisoformat(preflight["checked_utc"].replace("Z","+00:00"))
+                pf_dir=directory/f"n{target.target_n}"/"preflight_reports"
+                pf_dir.mkdir(parents=True,exist_ok=True)
+                _exclusive_json(pf_dir/f"preflight_{account}_{checked.strftime('%Y%m%dT%H%M%S%fZ')}.json",preflight)
+                from adaptive_targets import evaluate_new_batch,remaining_seconds_from_report,usage_fields_from_report
+                from vqe_adapter import treatment_options
+                treatment_options_json={}
+                for treatment in target.treatment_ids:
+                    options=treatment_options(treatment,4096,root)
+                    treatment_options_json[treatment]=(options.model_dump(mode="json") if callable(getattr(options,"model_dump",None)) else str(options))
+                _campaign_report(directory/f"n{target.target_n}",f"batch_{len(blocks)+1:03d}_dry_run.json",
+                    {"experiment_id":target.experiment_id,"target_id":target.target_id,"target_manifest_sha256":target.sha256,
+                     "source_run":"run_02","input_hashes":target.input_hashes,"backend":"ibm_fez",
+                     "physical_qubits":list(range(140,147)),"theta_count":21,"observable_count":7,
+                     "shots_per_pub":4096,"chunk_n":5,"jobs":[{"treatment_id":t,"submission_order":i+1,
+                        "requested_pubs":5,"estimator_options":treatment_options_json[t]} for i,t in enumerate(target.treatment_ids)],
+                     "batch_mode":"Runtime Batch","requested_pub_count":40,"submission_performed":False,
+                     "batch_created":False,"job_ids_created":False})
+                quota=remaining_seconds_from_report(preflight)
+                if quota is None: raise RuntimeError("Fresh provider remaining quota is missing or ambiguous")
+                provider_usage=usage_fields_from_report(preflight)
+                if provider_usage is None: raise RuntimeError("Fresh provider quota fields or account-wide scope are unavailable")
+                account_cap=authorization["account_runtime_budget_seconds"][account]-usage["per_account"][account]["consumed_seconds"]-usage["per_account"][account]["reserved_seconds"]
+                campaign_cap=authorization["total_runtime_budget_seconds"]-usage["campaign_consumed_seconds"]-usage["campaign_reserved_seconds"]
+                from quota import available_quota_seconds
+                reservations=usage["provider_reservations"][account]
+                if reservations["ambiguous"]:
+                    raise RuntimeError("Provider quota reservation overlap is ambiguous; reconcile existing jobs")
+                effective_remaining=available_quota_seconds(provider_remaining_seconds=quota,
+                    outstanding_reservations_seconds=reservations["reserved_seconds"],
+                    local_budget_remaining_seconds=max(0.0,min(account_cap,campaign_cap)))
+                gate=evaluate_new_batch(target,account_label=account,preflight_report=preflight,
+                    runtime_estimate=estimate,remaining_seconds=effective_remaining,
+                    safety_margin_seconds=authorization["safety_margin_seconds"])
+                gate_path=directory/f"n{target.target_n}"/f"batch_{len(blocks)+1:03d}_quota_gate_{checked.strftime('%Y%m%dT%H%M%S%fZ')}.json"
+                _campaign_report(directory/f"n{target.target_n}",gate_path.name,{"experiment_id":target.experiment_id,
+                    "n":target.target_n,"block_id":block_id,"account_label":account,"preflight_checked_utc":preflight.get("checked_utc"),
+                    "provider_remaining_seconds":quota,"authorization_account_remaining_seconds":account_cap,
+                    "campaign_remaining_seconds":campaign_cap,"effective_remaining_seconds":effective_remaining,
+                    "runtime_upper_bound_seconds":estimate.stress_block_seconds,"safety_margin_seconds":authorization["safety_margin_seconds"],
+                    "eligible":gate["eligible"],"gate":gate,"batch_created":False})
+                if not gate["eligible"]:
+                    diagnosis=_ai_event(ai_mode,{"campaign_id":campaign_id,"sequence_no":index+1,
+                        "event_class":"PREFLIGHT_OR_QUOTA_REFUSAL","local_state":"BLOCKED",
+                        "safe_summary":"Fresh Batch eligibility checks refused this submission"},explicit=True)
+                    registry.checkpoint_independent_campaign(campaign_id,state="BLOCKED",level_index=index,level_state="BLOCKED",
+                        checkpoint={"block_id":block_id,"quota_gate":gate,"ai_diagnosis":diagnosis},event_type="CAMPAIGN_QUOTA_REFUSED")
+                    raise RuntimeError("Independent Batch quota/preflight gate refused: "+"; ".join(gate["reasons"]))
+                from batch_scheduler import submit_runtime_block
+                reservation=max(float(item["stress_envelope_seconds"]) for item in estimate.per_treatment.values())/5.0
+                from adaptive_targets import register_target
+                register_target(target,registry)
+                context={"target_id":target.target_id,"target_n":target.target_n,"chunk_n":5,
+                    "manifest_sha256":target.sha256,"account_label":account,
+                    "runtime_upper_bound_seconds":estimate.stress_block_seconds,
+                    "safety_margin_seconds":authorization["safety_margin_seconds"],
+                    "preflight_checked_at":preflight["checked_utc"],"quota_scope":"account_wide_verified"}
+                try:
+                    ids=submit_runtime_block(runtime_manifest,registry,service,logical_block_id=block_id,
+                        account_label=account,instance=active,reservation_seconds_per_job=reservation,
+                        safety_margin_seconds=authorization["safety_margin_seconds"],runtime_estimate=estimate,
+                        authorize_live=True,preflight_verified=True,
+                        quota_budget_seconds=provider_usage["consumed_seconds"]+effective_remaining,
+                        local_budget_remaining_seconds=max(0.0,min(account_cap,campaign_cap)),
+                        adaptive_target_context=context,root=root)
+                except Exception as exc:
+                    # The scheduler persists UNKNOWN on ambiguous submit errors.
+                    # This checkpoint is diagnostic only; never retry this block.
+                    diagnosis=_ai_event(ai_mode,{"campaign_id":campaign_id,"sequence_no":index+1,
+                        "event_class":"BATCH_SUBMISSION_ERROR","local_state":"BLOCKED",
+                        "safe_summary":"Batch submit raised "+type(exc).__name__+"; inspect registered job IDs"},explicit=True)
+                    registry.checkpoint_independent_campaign(campaign_id,state="BLOCKED",level_index=index,
+                        level_state="BLOCKED",checkpoint={"block_id":block_id,"error_type":type(exc).__name__,
+                        "ai_diagnosis":diagnosis,"automatic_qpu_retry":False},event_type="CAMPAIGN_SUBMISSION_ERROR")
+                    raise
+                _campaign_report(directory/f"n{target.target_n}",f"batch_{len(blocks)+1:03d}_submission.json",
+                    {"experiment_id":target.experiment_id,"n":target.target_n,"block_id":block_id,
+                     "batch_id":registry.rows(block_id)[0].get("batch_id"),"job_ids":ids,"account_label":account,
+                     "submitted_utc":utc_now(),"submission_order":[f"M{i}" for i in range(8)],
+                     "execution_order_guaranteed":False,"input_hashes":target.input_hashes})
+            else:
+                service=service_factory(account) if service_factory else make_saved_profile_service(
+                    load_saved_account_profiles((account,))[account])
+                active=service.active_instance() if callable(getattr(service,"active_instance",None)) else None
+            registry.checkpoint_independent_campaign(campaign_id,state="RUNNING",level_index=index,level_state="RUNNING",
+                checkpoint={"n":target.target_n,"experiment_id":target.experiment_id,"block_id":block_id},event_type="CAMPAIGN_BATCH_ACTIVE")
+            # Always collect existing jobs with their recorded original account and instance.
+            recorded_rows=registry.rows(block_id)
+            recorded_accounts={row["account_label"] for row in recorded_rows}
+            recorded_instances={str((row.get("metadata") or {}).get("instance") or "")
+                                for row in recorded_rows}
+            if len(recorded_accounts)!=1 or len(recorded_instances)!=1 or "" in recorded_instances:
+                raise RuntimeError("Recorded batch account/instance missing or inconsistent; collect paused")
+            collect_account=next(iter(recorded_accounts))
+            collect_instance=next(iter(recorded_instances))
+            collect_service=(service if collect_account==account and str(active)==collect_instance else
+                (service_factory(collect_account) if service_factory else
+                 make_saved_profile_service(load_saved_account_profiles((collect_account,))[collect_account])))
+            collect_active=(collect_service.active_instance() if
+                callable(getattr(collect_service,"active_instance",None)) else None)
+            if str(collect_active)!=collect_instance:
+                raise RuntimeError("Original submitted instance differs from collection service; no resubmission")
+            retry_service=RetryingReadOnlyService(collect_service,attempts=authorization["recovery_limits"]["max_read_attempts"])
+            from batch_monitor import monitor_batch
+            incomplete_read_attempts=0
+            max_read_attempts=authorization["recovery_limits"]["max_read_attempts"]
+            while True:
+                if stop.exists() or pause.exists(): break
+                try:
+                    observed=monitor_batch(registry,retry_service,block_id,treatments=target.treatment_ids,
+                        chunk_n=5,expected_hashes=target.input_hashes,quota_scope="account_wide_verified")
+                except Exception as exc:
+                    event={"campaign_id":campaign_id,"sequence_no":index+1,"event_class":"MONITOR_ERROR",
+                        "local_state":"PAUSED","safe_summary":type(exc).__name__}
+                    diagnosis=_ai_event(ai_mode,event,explicit=True)
+                    registry.checkpoint_independent_campaign(campaign_id,state="PAUSED",level_index=index,level_state="PAUSED",
+                        checkpoint={"block_id":block_id,"error_type":type(exc).__name__,"ai_diagnosis":diagnosis},event_type="CAMPAIGN_MONITOR_ERROR")
+                    raise
+                if observed["block_status"] in ("READY_TO_COLLECT","INCOMPLETE"):
+                    job_reports=observed.get("jobs",[])
+                    if observed["block_status"]=="INCOMPLETE":
+                        latest_review=registry.latest_batch_recovery_review(block_id)
+                        if not latest_review or latest_review["recovery_status"]!="INVESTIGATING":
+                            registry.record_batch_recovery_review(block_id,batch_execution_status="INCOMPLETE",
+                                recovery_status="INVESTIGATING",completeness_policy_version=authorization["completeness_policy"]["version"],
+                                valid_fraction_by_treatment=_validated_pub_fractions(registry,target,logical_block_id=block_id),
+                                raw_archives_verified=False,provenance_verified=False,
+                                details={"reason":"Inspecting provider status, local PUB validation, and immutable archives",
+                                    "automatic_qpu_resubmit":False})
+                    terminal_statuses={"DONE","COMPLETED","ERROR","CANCELLED","CANCELED","FAILED"}
+                    all_terminal=bool(job_reports) and all(str(item.get("status","")).upper() in terminal_statuses for item in job_reports)
+                    if observed["block_status"]=="INCOMPLETE" and all_terminal and incomplete_read_attempts<max_read_attempts:
+                        incomplete_read_attempts+=1
+                        from vqe_adapter import collect_block
+                        # Re-read existing job results only. The adapter's raw response archive is content-addressed.
+                        try:
+                            collect_block(root,block_id,shots=4096,n=5,account_label=collect_account,ibm_account=collect_account,
+                                instance=collect_instance,registry=registry,service_override=retry_service,ai_mode=ai_mode)
+                        except Exception:
+                            pass
+                        if incomplete_read_attempts<max_read_attempts:
+                            sleeper(min(2**(incomplete_read_attempts-1),8))
+                        continue
+                if observed["block_status"]=="READY_TO_COLLECT":
+                    from vqe_adapter import collect_block
+                    collect_block(root,block_id,shots=4096,n=5,account_label=collect_account,ibm_account=collect_account,
+                        instance=collect_instance,registry=registry,service_override=retry_service,
+                        ai_mode=ai_mode)
+                    observed=monitor_batch(registry,retry_service,block_id,treatments=target.treatment_ids,
+                        chunk_n=5,expected_hashes=target.input_hashes,quota_scope="account_wide_verified")
+                reports.append({"n":target.target_n,"block_id":block_id,"status":observed["block_status"]})
+                if observed["block_status"]=="VALIDATED":
+                    from scientific_exports import export_batch_evidence
+                    batch_export=export_batch_evidence(root,target,registry,block_id)
+                    reports[-1]["per_pub_export"]=batch_export
+                    latest_review=registry.latest_batch_recovery_review(block_id)
+                    if latest_review and latest_review["recovery_status"]=="INVESTIGATING":
+                        registry.record_batch_recovery_review(block_id,batch_execution_status="COMPLETE",
+                            recovery_status="RECOVERED",completeness_policy_version=authorization["completeness_policy"]["version"],
+                            valid_fraction_by_treatment={name:1.0 for name in target.treatment_ids},
+                            raw_archives_verified=True,provenance_verified=True,
+                            details={"reason":"Read-only retrieval/revalidation restored complete PUB validation",
+                                "automatic_qpu_resubmit":False})
+                    break
+                if observed["block_status"] in ("INCOMPLETE",):
+                    from targeted_recovery import (plan_invalid_pub_slots,collect_replacement,
+                        repaired_dataset_status)
+                    plan=plan_invalid_pub_slots(root,target,registry,final_config=final_config,
+                        # Automatic bounded retries are permitted only when the
+                        # operator enabled auto recovery and authorized this live
+                        # campaign. Registry enforces max attempts per PUB.
+                        # UNKNOWN/SUBMITTING jobs are never retried.
+                        explicit_retry_authorization=bool(
+                            authorize_live_campaign and final_config
+                            and final_config.get("live_submission_enabled")
+                            and final_config.get("auto_recovery_enabled")
+                            and int(final_config.get("maximum_replacement_attempts", 0)) > 0))
+                    # Every n level uses the same recovery policy. Never silently
+                    # advance when archive verification blocked a missing PUB.
+                    if plan.get("blocked"):
+                        registry.record_independent_target_event(target.target_id,
+                            "RECOVERY_SOURCE_VERIFICATION_BLOCKED", {
+                                "block_id": block_id,
+                                "blocked_treatments": sorted({str(x.get("treatment_id")) for x in plan["blocked"]}),
+                                "blocked_count": len(plan["blocked"]),
+                                "automatic_qpu_retry": False})
+                        raise RuntimeError("Recovery source verification blocked; inspect immutable archive provenance before retry")
+                    replacement_results=[]
+                    replacement_rows=registry.replacement_jobs(target.target_id)
+                    planned=[item for item in replacement_rows if item["state"]=="PLANNED"]
+                    if planned and authorize_live_campaign and final_config and final_config.get("live_submission_enabled"):
+                        from account_config import load_saved_account_profiles,make_saved_profile_service
+                        from read_only_preflight import preflight_account,_instance_ref
+                        from runtime_estimator import targeted_replacement_estimate as _targeted_replacement_runtime_estimate
+                        from experiment_manifest import build_manifest
+                        from targeted_recovery import submit_replacement_slot
+                        runtime_manifest=build_manifest(root,n=5,replicate_blocks=1,shots=4096,experiment_id=target.experiment_id)
+                        for replacement in planned:
+                            # A durable PLANNED record is the only state eligible
+                            # for a new QPU action. Never resubmit UNKNOWN/DONE.
+                            stage="replacement_runtime"
+                            try:
+                                stage="account_selection"
+                                replacement_account=replacement["account_label"]
+                                if authorization.get("account_selection")=="highest_available_quota":
+                                    from quota import select_highest_available_account
+                                    from read_only_preflight import preflight_account
+                                    from runtime_estimator import targeted_replacement_estimate
+                                    replacement_estimate=targeted_replacement_estimate(root,runtime_manifest,
+                                        replacement["treatment_id"],registry=registry,target_id=target.target_id)
+                                    replacement_reports={}
+                                    candidate_profiles=load_saved_account_profiles(tuple(authorization["allowed_accounts"]))
+                                    for candidate in authorization["allowed_accounts"]:
+                                        try:
+                                            svc=(service_factory(candidate) if service_factory else
+                                                make_saved_profile_service(candidate_profiles[candidate]))
+                                            replacement_reports[candidate]=preflight_account(candidate_profiles[candidate],
+                                                allowed_instance_refs=authorization["allowed_instance_refs"].get(candidate,()),
+                                                service_factory=lambda _p,svc=svc:svc,
+                                                frozen_validator=lambda: __import__("read_only_preflight").frozen_bundle_summary(root))
+                                        except Exception:
+                                            replacement_reports[candidate]={"status":"FAIL","submission_eligible":False}
+                                    selected=select_highest_available_account(replacement_reports,
+                                        runtime_estimate=replacement_estimate,usage=_campaign_usage(registry,manifest,authorization),
+                                        authorization=authorization,workload_type="targeted_replacement",
+                                        expected_hashes=target.input_hashes)
+                                    replacement_account=selected["account_label"]
+                                    if replacement_account!=replacement["account_label"]:
+                                        replacement=registry.reassign_planned_replacement_account(
+                                            int(replacement["replacement_id"]),replacement_account)
+                                stage="replacement_preflight"
+                                profile=load_saved_account_profiles((replacement_account,))[replacement_account]
+                                replacement_service=(service_factory(replacement_account) if service_factory
+                                    else make_saved_profile_service(profile))
+                                replacement_instance=replacement_service.active_instance()
+                                replacement_ref=_instance_ref(replacement_instance)
+                                if replacement_ref not in authorization["allowed_instance_refs"].get(replacement_account,[]):
+                                    raise RuntimeError("Replacement profile instance is outside the selected campaign scope")
+                                replacement_estimate=_targeted_replacement_runtime_estimate(
+                                    root,runtime_manifest,replacement["treatment_id"],registry=registry,target_id=target.target_id)
+                                # Every replacement is a distinct Runtime Batch; re-preflight and re-check quota each time.
+                                fresh=preflight_account(profile,service_factory=lambda _:replacement_service,
+                                    allowed_instance_refs=authorization["allowed_instance_refs"].get(replacement_account,()),
+                                    frozen_validator=lambda: __import__("read_only_preflight").frozen_bundle_summary(root))
+                                registry.record_independent_target_event(target.target_id,"REPLACEMENT_PREFLIGHT",
+                                    {"replacement_id":replacement["replacement_id"],"account_label":replacement_account,
+                                     "checked_utc":fresh.get("checked_utc"),"status":fresh.get("status"),
+                                     "batch_created":False})
+                                stage="replacement_submission"
+                                replacement_results.append(submit_replacement_slot(root,target,registry,
+                                    int(replacement["replacement_id"]),replacement_service,final_config=final_config,
+                                    campaign_authorization=authorization,preflight_report=fresh,
+                                    runtime_estimate=replacement_estimate,explicit_authorization=True,
+                                    active_instance_ref=replacement_ref,
+                                    authorized_instance_refs=authorization["allowed_instance_refs"].get(replacement_account,[])))
+                            except Exception as exc:
+                                # Keep the error actionable without logging credentials,
+                                # instance refs, provider payloads or arbitrary exception text.
+                                registry.record_independent_target_event(target.target_id,
+                                    "REPLACEMENT_GATE_BLOCKED",{
+                                        "replacement_id":int(replacement["replacement_id"]),
+                                        "treatment_id":replacement["treatment_id"],
+                                        "logical_pub_index":int(replacement["logical_pub_index"]),
+                                        "stage":stage,"error_type":type(exc).__name__,
+                                        "automatic_retry":False})
+                                raise
+                    # Read-only result polling/revalidation for previously registered replacements.
+                    for replacement in registry.replacement_jobs(target.target_id):
+                        if replacement["state"] in ("SUBMITTED","DONE"):
+                            try:
+                                replacement_account=replacement["account_label"]
+                                from account_config import load_saved_account_profiles,make_saved_profile_service
+                                replacement_profile=load_saved_account_profiles((replacement_account,))[replacement_account]
+                                replacement_service=(service_factory(replacement_account) if service_factory
+                                    else make_saved_profile_service(replacement_profile))
+                                replacement_results.append(collect_replacement(root,target,registry,
+                                    int(replacement["replacement_id"]),replacement_service))
+                            except Exception as exc:
+                                replacement_results.append({"replacement_id":replacement["replacement_id"],
+                                    "state":"RECOVERY_REQUIRED","error_type":type(exc).__name__})
+                    # Batch-level recovery must not depend on whole-n analysis eligibility.
+                    # The original Batch remains INCOMPLETE; only selected logical slots
+                    # are promoted after independent archive/provenance verification.
+                    block_recovered=_repaired_block_complete(registry,target,block_id)
+                    if not block_recovered:
+                        evidence_ok, evidence=_verified_repaired_block_evidence(root,registry,target,block_id)
+                        if evidence_ok:
+                            registry.record_batch_recovery_review(block_id,batch_execution_status="INCOMPLETE",
+                                recovery_status="RECOVERED",completeness_policy_version="complete-only-repaired-v1",
+                                valid_fraction_by_treatment={name:1.0 for name in target.treatment_ids},
+                                raw_archives_verified=True,provenance_verified=True,
+                                details={"reason":"Verified selected original/replacement logical slots and immutable archives",
+                                    "batch_execution_status_preserved":"INCOMPLETE","automatic_qpu_resubmit":False})
+                            block_recovered=_repaired_block_complete(registry,target,block_id)
+                    if not block_recovered:
+                        pending=[item for item in registry.replacement_jobs(target.target_id)
+                            if item.get("logical_block_id")==block_id and item.get("state") in ("PLANNED","SUBMITTED","DONE")]
+                        if pending:
+                            if once:
+                                return inspect_independent_campaign(registry,campaign_id,root)|{
+                                    "reports":reports,"recovery_waiting":True,"submission_performed":False}
+                            sleeper(poll_seconds)
+                            continue
+                        registry.checkpoint_independent_campaign(campaign_id,state="PAUSED",level_index=index,
+                            level_state="RECOVERY_REQUIRED",checkpoint={"block_id":block_id,
+                                "reason":"Batch evidence or selected logical PUB slots remain unverified",
+                                "automatic_qpu_resubmit":False,"analysis_allowed":False},
+                            event_type="CAMPAIGN_INCOMPLETE_BLOCK")
+                        raise RuntimeError("Batch recovery evidence is incomplete; no progression or new submission occurred")
+                    break
+                if once: break
+                sleeper(poll_seconds)
+            if stop.exists() or pause.exists(): continue
+            # A Batch is complete and PUB-validated before canonical EIS work begins.
+            status=registry.target_status(target.target_id)
+            from targeted_recovery import repaired_dataset_status
+            repaired_status=repaired_dataset_status(target,registry)
+            batch_complete=(all(item.get("status") in ("VALIDATED", "COMPLETE") or
+                _repaired_block_complete(registry,target,item["logical_block_id"])
+                for item in status["blocks"]))
+            if (repaired_status["analysis_eligible"] and batch_complete
+                    and len(status["blocks"])==target.blocks_required):
+                try:
+                    report_path=_finalize_level(root,campaign_id,index,level,target,registry,directory)
+                except Exception as exc:
+                    diagnosis=_ai_event(ai_mode,{"campaign_id":campaign_id,"sequence_no":index+1,
+                        "event_class":"ANALYSIS_OR_FIGURE_VALIDATION_ERROR","local_state":"PAUSED",
+                        "safe_summary":"Canonical EIS analysis or artifact verification raised "+type(exc).__name__},explicit=True)
+                    registry.checkpoint_independent_campaign(campaign_id,state="PAUSED",level_index=index,
+                        level_state="PAUSED",checkpoint={"error_type":type(exc).__name__,"ai_diagnosis":diagnosis},
+                        event_type="CAMPAIGN_ANALYSIS_ERROR")
+                    raise
+                if once:
+                    return inspect_independent_campaign(registry,campaign_id)|{"reports":reports,
+                        "level_report":str(report_path),"submission_performed":bool(reports)}
+            elif once:
+                return inspect_independent_campaign(registry,campaign_id)|{"reports":reports,"submission_performed":bool(reports)}
+
+
+def run_campaign_auto_manager(root,campaign_id: str,registry: JobRegistry, *,
+        authorize_live_campaign: bool=False,ai_mode: str="python",explicit_ai: bool=False,
+        account_label: str | None=None,resume: bool=False,
+        service_factory: Callable[[str],Any] | None=None,sleeper: Callable[[float],None]=time.sleep,
+        poll_seconds: int=60,final_config: dict[str,Any] | None=None) -> dict[str,Any]:
+    """Keep the campaign process alive across polling cycles and recoverable blocks.
+
+    Each cycle delegates all science, quota gates, collection, analysis and
+    progression to ``run_independent_campaign``. Exceptions are checkpointed
+    without raw messages or secrets; the next cycle re-runs fresh gates against
+    durable job IDs. Unknown submissions remain unretryable in the registry.
+    """
+    if isinstance(poll_seconds,bool) or not isinstance(poll_seconds,int) or poll_seconds<1:
+        raise ValueError("poll_seconds must be a positive integer")
+    from worker_runtime import WorkerLock
+    directory=campaign_root(root,campaign_id)
+    status=registry.independent_campaign_status(campaign_id)
+    if not status.get("exists"):raise KeyError(campaign_id)
+    failure_count=0;resume_next=resume;last_diagnostic_key=None
+    with WorkerLock(directory/"worker.lock"):
+        while True:
+            stop=directory/".campaign.stop";pause=directory/".campaign.pause"
+            try:
+                result=run_independent_campaign(root,campaign_id,registry,
+                    authorize_live_campaign=authorize_live_campaign,ai_mode=ai_mode,
+                    explicit_ai=explicit_ai,account_label=account_label,once=True,
+                    resume=resume_next,service_factory=service_factory,sleeper=sleeper,
+                    poll_seconds=poll_seconds,final_config=final_config,_worker_lock_held=True)
+                resume_next=False;failure_count=0;last_diagnostic_key=None
+                state=result.get("state")
+                if state in ("COMPLETE","STOPPED") or stop.exists():return result
+                if pause.exists() or state=="PAUSED":return result
+                if state=="BLOCKED_AUTHORIZATION":return result
+            except KeyboardInterrupt:
+                current=registry.independent_campaign_status(campaign_id)
+                index=min(int(current.get("current_level_index",0)),5)
+                registry.checkpoint_independent_campaign(campaign_id,state="PAUSED",level_index=index,
+                    checkpoint={"reason":"Auto Manager interrupted by operator","automatic_submission_retry":False},
+                    event_type="AUTO_MANAGER_INTERRUPTED")
+                return inspect_independent_campaign(registry,campaign_id,root)|{"state":"PAUSED"}
+            except Exception as exc:
+                current=registry.independent_campaign_status(campaign_id)
+                if current.get("state")=="COMPLETE" or int(current.get("current_level_index",0))>=6:
+                    return inspect_independent_campaign(registry,campaign_id,root)|{"state":"COMPLETE"}
+                index=min(int(current.get("current_level_index",0)),5)
+                failure_count+=1
+                delay=min(poll_seconds*(2**min(failure_count-1,4)),900)
+                category=_auto_manager_error_category(exc)
+                if category in {"QUOTA_OR_BUDGET","SUBMISSION_AMBIGUITY"}:
+                    checkpoint={"failure_category":category,"error_type":type(exc).__name__,
+                        "automatic_new_qpu_submission":False,
+                        "reason":"Operator action or fresh evidence is required before campaign work can continue."}
+                    registry.checkpoint_independent_campaign(campaign_id,state="PAUSED",level_index=index,
+                        checkpoint=checkpoint,event_type="AUTO_MANAGER_PAUSED_SAFETY_GATE")
+                    if ai_mode!="python":
+                        diagnosis=_ai_event(ai_mode,{"campaign_id":campaign_id,
+                            "event_class":"AUTO_MANAGER_SAFETY_GATE","local_state":"PAUSED",
+                            "error_type":type(exc).__name__,"failure_category":category,
+                            "safe_summary":"Campaign paused at a quota/budget or ambiguous-submission gate; no automatic retry occurred"},explicit=True)
+                        registry.checkpoint_independent_campaign(campaign_id,state="PAUSED",level_index=index,
+                            checkpoint=checkpoint|{"ai_diagnosis":diagnosis},event_type="AUTO_MANAGER_SAFETY_DIAGNOSTIC")
+                    return inspect_independent_campaign(registry,campaign_id,root)|{
+                        "state":"PAUSED","resume_required":True,"submission_performed":False}
+                checkpoint={"failure_category":category,"error_type":type(exc).__name__,
+                    "retry_cycle":failure_count,"retry_after_seconds":delay,
+                    "automatic_new_qpu_submission":False,
+                    "note":"A later cycle must pass fresh preflight, quota, scope, runtime and duplicate gates."}
+                registry.checkpoint_independent_campaign(campaign_id,state="BLOCKED",level_index=index,
+                    checkpoint=checkpoint,event_type="AUTO_MANAGER_BLOCKED_RETRYABLE")
+                diagnostic_key=(type(exc).__name__,category)
+                if ai_mode!="python" and diagnostic_key!=last_diagnostic_key:
+                    diagnosis=_ai_event(ai_mode,{"campaign_id":campaign_id,"event_class":"AUTO_MANAGER_BLOCKED",
+                        "local_state":"BLOCKED","error_type":type(exc).__name__,
+                        "failure_category":category,"safe_summary":"Automatic campaign cycle was blocked; no automatic retry submission is permitted"},explicit=True)
+                    registry.checkpoint_independent_campaign(campaign_id,state="BLOCKED",level_index=index,
+                        checkpoint=checkpoint|{"ai_diagnosis":diagnosis},event_type="AUTO_MANAGER_DIAGNOSTIC")
+                    last_diagnostic_key=diagnostic_key
+                if stop.exists() or pause.exists():continue
+                sleeper(delay)
+                continue
+            if stop.exists() or pause.exists():continue
+            sleeper(poll_seconds)
+
+
+def _auto_manager_error_category(exc: Exception) -> str:
+    message=str(exc).lower()
+    if any(term in message for term in ("quota","runtime budget","safety margin","budget cap",
+            "maximum_batches","maximum batches","replacement budget","runtime evidence",
+            "runtime upper bound","runtime bound")):return "QUOTA_OR_BUDGET"
+    if any(term in message for term in ("ambiguous","unknown submission","reconcile")):return "SUBMISSION_AMBIGUITY"
+    if any(term in message for term in ("authentication","credential","profile")):return "AUTHENTICATION"
+    if any(term in message for term in ("backend","instance","preflight")):return "PREFLIGHT_OR_BACKEND"
+    if any(term in message for term in ("pub","archive","validation","incomplete")):return "RECOVERY_OR_VALIDATION"
+    if any(term in message for term in ("analysis","figure","export")):return "SCIENTIFIC_EXPORT"
+    return "TRANSIENT_OR_UNCLASSIFIED"
+
+
+def _account_for_level(target, authorization: dict[str,Any], blocks: list[dict[str,Any]]) -> str:
+    """Resolve a provisional account only; fresh quota selects new Batch account.
+
+    Existing Batch account identity comes from registered jobs, never this fallback.
+    """
+    account=(authorization["account_by_n"].get(str(target.target_n))
+        if authorization.get("account_selection")!="highest_available_quota"
+        else authorization["allowed_accounts"][0])
+    if not account: raise RuntimeError("No configured account for this n level")
+    if blocks and blocks[-1].get("status") not in ("VALIDATED","COMPLETE"):
+        account=blocks[-1]["account_label"]
+        if account not in authorization["allowed_accounts"]:
+            raise RuntimeError("Original Batch account is not enabled in final_config.json")
+        if not authorization.get("allowed_instance_refs",{}).get(account):
+            raise RuntimeError("Original Batch account has no configured instance scope for recovery")
+    return account
+
+
+def _campaign_usage(registry: JobRegistry,manifest: dict[str,Any],authorization: dict[str,Any] | None=None) -> dict[str,Any]:
+    ids=[level["target_id"] for level in manifest["levels"]]
+    placeholders=",".join("?" for _ in ids)
+    with registry._connection() as db:
+        rows=db.execute(f"SELECT account_label,submission_state,qpu_usage_seconds,quota_reserved_seconds FROM jobs WHERE target_id IN ({placeholders})",ids).fetchall()
+        replacement_rows=db.execute(f"SELECT account_label,state,qpu_usage_seconds,quota_reserved_seconds,job_id FROM pub_replacement_jobs WHERE target_id IN ({placeholders})",ids).fetchall()
+    authorized=authorization or manifest["operator_authorization"]
+    by_account={label:{"consumed_seconds":0.0,"reserved_seconds":0.0} for label in authorized["allowed_accounts"]}
+    total_used=total_reserved=0.0;submitted_blocks=0
+    for row in rows:
+        info=by_account.setdefault(row["account_label"],{"consumed_seconds":0.0,"reserved_seconds":0.0})
+        if row["qpu_usage_seconds"] is not None:
+            info["consumed_seconds"]+=float(row["qpu_usage_seconds"]);total_used+=float(row["qpu_usage_seconds"])
+        if row["submission_state"] in ("RESERVED","SUBMITTING","SUBMITTED","UNKNOWN"):
+            outstanding=max(0.0,float(row["quota_reserved_seconds"] or 0)-float(row["qpu_usage_seconds"] or 0))
+            info["reserved_seconds"]+=outstanding;total_reserved+=outstanding
+    replacement_batches=0
+    for row in replacement_rows:
+        info=by_account.get(row["account_label"])
+        if info is None:
+            info=by_account.setdefault(row["account_label"],{"consumed_seconds":0.0,"reserved_seconds":0.0})
+        if row["qpu_usage_seconds"] is not None:
+            info["consumed_seconds"]+=float(row["qpu_usage_seconds"]);total_used+=float(row["qpu_usage_seconds"])
+        if row["state"] in ("SUBMITTING","UNKNOWN","SUBMITTED","DONE"):
+            outstanding=max(0.0,float(row["quota_reserved_seconds"] or 0)-float(row["qpu_usage_seconds"] or 0))
+            info["reserved_seconds"]+=outstanding;total_reserved+=outstanding
+        if row["job_id"] or row["state"] in ("SUBMITTING","UNKNOWN","SUBMITTED","DONE","VALIDATED"):
+            replacement_batches+=1
+    with registry._connection() as db:
+        submitted_blocks=db.execute(f"SELECT COUNT(*) FROM experiment_blocks WHERE target_id IN ({placeholders}) AND status!='CONFIRMED_NOT_SUBMITTED'",ids).fetchone()[0]
+    with registry._connection() as db:
+        historical_rows=[dict(row) for row in db.execute("SELECT account_label,consumed_seconds,quota_scope,source,checked_at,logical_block_id FROM account_usage_snapshots ORDER BY id").fetchall()]
+    from quota import provider_reservations
+    return {"per_account":by_account,"provider_reservations":provider_reservations(registry),
+        "historical_usage_records":historical_rows,
+        "campaign_consumed_seconds":total_used,
+        "campaign_reserved_seconds":total_reserved,"original_batches_reserved_or_attempted":int(submitted_blocks),"replacement_batches_reserved_or_attempted":replacement_batches,"batches_reserved_or_attempted":int(submitted_blocks)+replacement_batches}

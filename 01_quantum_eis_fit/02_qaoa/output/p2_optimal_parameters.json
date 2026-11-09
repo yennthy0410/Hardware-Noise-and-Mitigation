@@ -1,0 +1,45 @@
+{
+  "dataset": "EIS14",
+  "p": 2,
+  "optimizer_protocol": "Sobol global screening + multi-start bound-constrained COBYLA + optional bounded Powell polish",
+  "selection_objective": "minimum exact ideal Ising expectation <H_C>",
+  "true_eis_used_for_optimizer_selection": false,
+  "preset": "thorough",
+  "optimizer_seed": 1013,
+  "gamma_parameterization": "tau = gamma * std(H_C - C); tau in [-2.0pi,+2.0pi]",
+  "energy_scale": 0.6861138485380804,
+  "gamma_window_pi": 2.0,
+  "screen_samples": 96,
+  "restart_count": 8,
+  "local_maxiter": 120,
+  "polish_maxiter": 60,
+  "selected_solution_source": "powell_polish",
+  "selected_cobyla_restart": 1,
+  "optimal_gamma": [
+    1.5600559903577167,
+    -2.9092875332488024
+  ],
+  "optimal_beta": [
+    2.761923084406597,
+    0.1916328609727395
+  ],
+  "optimal_scaled_tau": [
+    1.0703760194792196,
+    -1.9961024659411946
+  ],
+  "optimal_expectation_energy": 2.9366333297495246,
+  "exact_ground_energy": 2.0489310905235496,
+  "expectation_ground_gap": 0.887702239225975,
+  "normalized_expectation_ground_gap": 0.18611667154303005,
+  "exact_ground_bitstring": "010100100010101011100",
+  "ground_state_probability": 3.61425809183711e-05,
+  "most_probable_bitstring": "011010011101001100011",
+  "most_probable_probability": 4.5486260575728364e-05,
+  "most_probable_ising_energy": 2.394564274549634,
+  "most_probable_hamming_to_ground": 16,
+  "recommended_eis_candidate_rule": "lowest-Ising-energy bitstring observed in finite-shot sampling; TRUE EIS loss is not used for selection",
+  "recommended_eis_candidate_bitstring": "011100100011101011100",
+  "recommended_eis_candidate_energy": 2.051201897666983,
+  "recommended_eis_candidate_hamming_to_ground": 2,
+  "ideal_shots": 4096
+}

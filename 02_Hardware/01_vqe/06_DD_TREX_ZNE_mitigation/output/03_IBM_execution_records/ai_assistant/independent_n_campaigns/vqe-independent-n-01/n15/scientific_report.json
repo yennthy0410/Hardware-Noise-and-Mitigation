@@ -1,0 +1,71 @@
+{
+  "account_labels": [
+    "labE",
+    "labF",
+    "labH"
+  ],
+  "analysis": {
+    "artifacts_verified": true,
+    "output": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\adaptive_targets\\vqe-independent-n-01-n15-target-n15-chunk-5",
+    "target_id": "vqe-independent-n-01-n15-target-n15-chunk-5",
+    "validated_pubs_by_treatment": {
+      "M0_Baseline": 15,
+      "M1_DD": 15,
+      "M2_TREX": 15,
+      "M3_ZNE": 15,
+      "M4_DD_TREX": 15,
+      "M5_DD_ZNE": 15,
+      "M6_TREX_ZNE": 15,
+      "M7_ALL": 15
+    }
+  },
+  "campaign_id": "vqe-independent-n-01",
+  "experiment_id": "vqe-independent-n-01-n15",
+  "generated_utc": "2026-11-05T11:10:15.454488+00:00",
+  "input_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff"
+  },
+  "n": 15,
+  "paper_export": {
+    "already_exists": true,
+    "csv_files": [
+      "accuracy_cost_data.csv",
+      "bode_curves.csv",
+      "nyquist_curves.csv",
+      "params_table.csv",
+      "per_repeat.csv",
+      "residual_curves.csv",
+      "sse_plot_data.csv",
+      "summary_mean_std.csv",
+      "tail_stats.csv",
+      "round_summary.json",
+      "per_pub_validation.csv",
+      "errors.csv",
+      "runtime.csv"
+    ],
+    "data": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=15",
+    "export_version": 0,
+    "figures": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=15",
+    "files_verified": true,
+    "partial_diagnostic_only": false,
+    "png_files": [
+      "05_mitigation_median_CI_convergence.png",
+      "06_mitigation_three_tier_positioning.png",
+      "bode_magnitude.png",
+      "bode_phase.png",
+      "distribution_pilot.png",
+      "nyquist.png",
+      "residual_imag.png",
+      "residual_imag_normalized.png",
+      "residual_real.png",
+      "residual_real_normalized.png"
+    ],
+    "source_analysis_manifest_sha256": "21c9c6c1e82cbbb1c3e0fef2254cc1982212e5d05fb99f74d20a79e91b2ac68a"
+  },
+  "source_run": "run_02",
+  "state": "REPAIRED_COMPLETE",
+  "target_id": "vqe-independent-n-01-n15-target-n15-chunk-5",
+  "validated_pubs_per_treatment": 15
+}

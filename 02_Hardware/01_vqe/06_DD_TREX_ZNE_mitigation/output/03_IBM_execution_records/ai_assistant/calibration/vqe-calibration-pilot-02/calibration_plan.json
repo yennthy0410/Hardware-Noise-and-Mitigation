@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "campaign_id": "vqe-calibration-pilot-02",
+  "campaign_type": "runtime_quota_calibration",
+  "source_run": "run_02",
+  "source_bundle": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\03_IBM_execution_records\\locked_inputs",
+  "input_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d"
+  },
+  "backend": "ibm_fez",
+  "physical_qubits": [
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146
+  ],
+  "circuit_parameter_count": 0,
+  "theta_count": 21,
+  "observable_count": 7,
+  "shots_per_pub": 4096,
+  "chunk_n": 5,
+  "treatment_ids": [
+    "M0_Baseline",
+    "M1_DD",
+    "M2_TREX",
+    "M3_ZNE",
+    "M4_DD_TREX",
+    "M5_DD_ZNE",
+    "M6_TREX_ZNE",
+    "M7_ALL"
+  ],
+  "treatments": [
+    {
+      "treatment_id": "M0_Baseline",
+      "flags": {
+        "DD": 0,
+        "TREX": 0,
+        "ZNE": 0
+      },
+      "options_repr": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=False, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=False, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=False, zne=ZneOptions(amplifier=Unset, noise_factors=Unset, extrapolator=Unset, extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+    },
+    {
+      "treatment_id": "M1_DD",
+      "flags": {
+        "DD": 1,
+        "TREX": 0,
+        "ZNE": 0
+      },
+      "options_repr": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=True, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=False, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=False, zne=ZneOptions(amplifier=Unset, noise_factors=Unset, extrapolator=Unset, extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+    },
+    {
+      "treatment_id": "M2_TREX",
+      "flags": {
+        "DD": 0,
+        "TREX": 1,
+        "ZNE": 0
+      },
+      "options_repr": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=False, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=True, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=False, zne=ZneOptions(amplifier=Unset, noise_factors=Unset, extrapolator=Unset, extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+    },
+    {
+      "treatment_id": "M3_ZNE",
+      "flags": {
+        "DD": 0,
+        "TREX": 0,
+        "ZNE": 1
+      },
+      "options_repr": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=False, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=False, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=True, zne=ZneOptions(amplifier='gate_folding', noise_factors=(1.0, 3.0, 5.0), extrapolator='exponential', extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+    },
+    {
+      "treatment_id": "M4_DD_TREX",
+      "flags": {
+        "DD": 1,
+        "TREX": 1,
+        "ZNE": 0
+      },
+      "options_repr": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=True, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=True, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=False, zne=ZneOptions(amplifier=Unset, noise_factors=Unset, extrapolator=Unset, extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+    },
+    {
+      "treatment_id": "M5_DD_ZNE",
+      "flags": {
+        "DD": 1,
+        "TREX": 0,
+        "ZNE": 1
+      },
+      "options_repr": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=True, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=False, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=True, zne=ZneOptions(amplifier='gate_folding', noise_factors=(1.0, 3.0, 5.0), extrapolator='exponential', extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+    },
+    {
+      "treatment_id": "M6_TREX_ZNE",
+      "flags": {
+        "DD": 0,
+        "TREX": 1,
+        "ZNE": 1
+      },
+      "options_repr": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=False, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=True, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=True, zne=ZneOptions(amplifier='gate_folding', noise_factors=(1.0, 3.0, 5.0), extrapolator='exponential', extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+    },
+    {
+      "treatment_id": "M7_ALL",
+      "flags": {
+        "DD": 1,
+        "TREX": 1,
+        "ZNE": 1
+      },
+      "options_repr": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=True, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=True, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=True, zne=ZneOptions(amplifier='gate_folding', noise_factors=(1.0, 3.0, 5.0), extrapolator='exponential', extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+    }
+  ],
+  "calibration_batches_required": 1,
+  "jobs_per_batch": 8,
+  "requested_pubs_per_batch": 40,
+  "total_batches": 1,
+  "total_requested_jobs": 8,
+  "total_requested_pubs": 40,
+  "account_label": "labB",
+  "budget_cap_seconds": 140.0,
+  "budget_cap_is_provider_enforced": false,
+  "runtime_evidence_policy": "historical usage is preliminary only; three separately validated calibration Batch samples per M0-M7 are required",
+  "qiskit_version": "2.6.1",
+  "planned_utc": "2026-11-02T17:18:07.205382Z",
+  "plan_sha256": "fee28bdf6f29c8d0b54e1d5774b8610d77e1c6b9eaebe7a57dbd843b23becc41"
+}

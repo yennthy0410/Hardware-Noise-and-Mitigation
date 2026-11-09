@@ -1,0 +1,28 @@
+{
+  "status": "SUBMITTED",
+  "attempt_id": "0573b12af8a7459a8a214a56ff258dc7",
+  "logical_block_id": "vqe-independent-n-01-n30-block-006",
+  "treatment_id": "M3_ZNE",
+  "account_label": "labI",
+  "instance": "crn:v1:bluemix:public:quantum-computing:us-east:a/d46a698a30d1490ebbb24a2275a98e49:1579251d-a950-421e-ad13-fae8b1f7fcf7::",
+  "backend": "ibm_fez",
+  "input_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d"
+  },
+  "created_utc": "2026-11-08T09:14:01.013982+00:00",
+  "updated_utc": "2026-11-08T09:14:10.874033+00:00",
+  "n": 5,
+  "pubs_per_treatment": 5,
+  "replicate_blocks": 1,
+  "requested_shots_per_pub": 4096,
+  "quota_reservation_seconds_per_treatment": 18.75,
+  "estimated_runtime_seconds": 22.5,
+  "safety_margin_seconds": 10.0,
+  "quota_policy": "verified-unreserved-fixed-threshold-v1",
+  "submission_order": 3,
+  "execution_order": "not_assumed",
+  "submit_started_utc": "2026-11-08T09:14:09.375123+00:00",
+  "job_id": "dbo3qooqtr0c73adv1ug"
+}

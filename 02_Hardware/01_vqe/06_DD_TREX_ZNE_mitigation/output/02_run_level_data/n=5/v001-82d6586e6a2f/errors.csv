@@ -1,0 +1,2 @@
+﻿experiment_id,n,logical_pub_index,batch_id,IBM_job_id,treatment,treatment_label,PUB_index,expectation_valid,uncertainty_valid,error_code,source_sha256,selected_for_repaired_dataset,source
+vqe-independent-n-01-n5,5,,60a3ae20-ba8b-4909-a4d1-62fffc1d64e9,dbkcdnt6p51s73cmc1c0,M5_DD_ZNE,DD+ZNE,2,0,0,"[""NONFINITE_OR_INVALID_EXPECTATION"", ""NONFINITE_OR_INVALID_UNCERTAINTY""]",bb09d6689e18280c478b0202c258405656b7242191e8f94dffab366cd5fec8b7,False,INVALID_ORIGINAL

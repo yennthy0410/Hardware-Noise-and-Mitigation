@@ -1,0 +1,5 @@
+# Local credentials, conversations, authorization grants, receipts and test state.
+state/
+.venv_dashboard/
+__pycache__/
+*.pyc

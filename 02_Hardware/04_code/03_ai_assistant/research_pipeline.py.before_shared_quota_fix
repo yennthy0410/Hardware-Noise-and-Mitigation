@@ -1,0 +1,337 @@
+"""Thin command-line entry point for the existing VQE independent-n backend.
+
+Routine and processing commands are local Python operations. Live Batch
+submission is reachable only through ``mxene run --live`` with two explicit
+operator confirmations, and remains subject to final_config.json, fresh
+preflight, quota, and runtime-evidence gates.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import sys
+from typing import Any
+from account_config import ACCOUNT_LABELS
+
+
+AI_DIR=Path(__file__).resolve().parent
+VQE_DIR=AI_DIR.parent/"01_vqe"
+if str(VQE_DIR) not in sys.path:
+    sys.path.insert(0,str(VQE_DIR))
+if str(AI_DIR) not in sys.path:
+    sys.path.insert(0,str(AI_DIR))
+
+N_LEVELS=(5,10,15,20,25,30)
+
+
+def _registry_path(project: str | Path, registry_path: str | Path | None=None) -> Path:
+    if registry_path is not None:
+        return Path(registry_path).resolve()
+    from job_registry import JobRegistry
+    return JobRegistry.default_database(project)
+
+
+def _typed_target(level: dict[str,Any]):
+    from experiment_manifest import TargetManifest
+    raw=level["manifest"]
+    return TargetManifest(**(raw|{"physical_qubits":tuple(raw["physical_qubits"]),
+        "treatment_ids":tuple(raw["treatment_ids"]),"treatments":tuple(raw["treatments"])}))
+
+
+def run_pipeline(project: str | Path, campaign_id: str, *, mode: str="offline",
+                 confirm_live_submission: bool=False, authorize_live_campaign: bool=False,
+                 registry_path: str | Path | None=None, account_label: str | None=None, ai_mode: str="python",
+                 ask_ai: bool=False, once: bool=False, resume: bool=False) -> dict[str,Any]:
+    """Run a read-only dry-run by default, or explicitly invoke the live backend."""
+    if mode not in ("offline","live"):
+        raise ValueError("mode must be offline or live")
+    database=_registry_path(project,registry_path)
+    if mode=="offline":
+        if not database.is_file():
+            return {"campaign_id":campaign_id,"state":"NOT_PLANNED","mode":"offline",
+                "submission_performed":False,"batch_created":False,
+                "reason":"Campaign is not registered in SQLite; restore or explicitly plan it before running."}
+        from independent_n_campaign import dry_run_independent_campaign
+        from job_registry import JobRegistry
+        report=dry_run_independent_campaign(project,campaign_id,JobRegistry(database,readonly=True))
+        return {"campaign_id":campaign_id,"mode":"offline","state":"OFFLINE_DRY_RUN",
+            "submission_performed":False,"batch_created":False,"dry_run":report}
+    if not confirm_live_submission or not authorize_live_campaign:
+        raise RuntimeError("Live mode requires --authorize-live-campaign and --confirm-live-submission")
+    from final_configuration import load_final_config
+    final_config=load_final_config(project)
+    if not final_config["live_submission_enabled"]:
+        raise RuntimeError("Live submission is disabled by final_config.json")
+    if not database.is_file():
+        raise FileNotFoundError("Campaign registry is missing; restore or explicitly plan it before live execution")
+    from job_registry import JobRegistry
+    snapshot=JobRegistry(database,readonly=True).independent_campaign_status(campaign_id)
+    if not snapshot.get("exists"):
+        raise KeyError(f"Unknown independent-n campaign: {campaign_id}")
+    level_index=int(snapshot.get("current_level_index",0))
+    if level_index < 0 or level_index >= len(snapshot["manifest"]["levels"]):
+        raise RuntimeError("Campaign has no pending n level")
+    level=snapshot["manifest"]["levels"][level_index]
+    # In automatic mode, the immutable manifest account is historical only.
+    # The executor selects a fresh eligible account before each new Batch.
+    if final_config.get("account_selection") != "highest_available_quota":
+        selected_account = final_config.get("account_by_n", {}).get(str(level["target_n"]))
+        if selected_account not in final_config["enabled_account_labels"]:
+            raise RuntimeError("Configured n-level account is not enabled in final_config.json")
+    if snapshot["manifest"].get("backend") != final_config["allowed_backend"]:
+        raise RuntimeError("Campaign backend is not allowed by final_config.json")
+    from independent_n_campaign import run_independent_campaign,run_campaign_auto_manager
+    if once:
+        result=run_independent_campaign(project,campaign_id,JobRegistry(database),
+            authorize_live_campaign=True,ai_mode=ai_mode,explicit_ai=ask_ai,account_label=account_label,
+            once=True,resume=resume,final_config=final_config)
+    else:
+        result=run_campaign_auto_manager(project,campaign_id,JobRegistry(database),
+            authorize_live_campaign=True,ai_mode=ai_mode,explicit_ai=ask_ai,account_label=account_label,
+            resume=resume,final_config=final_config)
+    return {"campaign_id":campaign_id,"mode":"live","pipeline":result}
+
+
+def _paper_artifacts(output: str | Path) -> dict[str,Any]:
+    """Inventory generated paper data/figures without recreating them."""
+    import math
+    directory=Path(output)
+    csv_files=sorted(path for path in directory.rglob("*.csv") if path.is_file())
+    png_files=sorted(path for path in directory.rglob("*.png") if path.is_file())
+    if not csv_files or not png_files:
+        raise RuntimeError("Analysis output must contain both CSV tables and PNG figures")
+    from PIL import Image
+    figures=[]
+    for path in png_files:
+        with Image.open(path) as image:
+            image.verify()
+        with Image.open(path) as image:
+            dpi=image.info.get("dpi")
+            figures.append({"path":str(path),"width":image.width,"height":image.height,
+                "dpi":list(dpi[:2]) if dpi else None,
+                "sha256":hashlib.sha256(path.read_bytes()).hexdigest()})
+    tables=[{"path":str(path),"sha256":hashlib.sha256(path.read_bytes()).hexdigest()} for path in csv_files]
+    return {"csv_count":len(tables),"png_count":len(figures),"csv":tables,"png":figures,
+        "files_verified":all(math.isfinite(item["width"]) and item["width"]>0 and item["height"]>0 for item in figures)}
+
+
+def process_pipeline(project: str | Path, campaign_id: str, *, n: int | None=None,
+                     registry_path: str | Path | None=None,
+                     plan_replacements: bool=False,
+                     replacement_account: str | None=None,
+                     dry_run_replacements: bool=False,
+                     reapprove_replacement_attempt: bool=False) -> dict[str,Any]:
+    """Analyze only n-levels with exactly n validated PUBs for every treatment."""
+    if n is not None and n not in N_LEVELS:
+        raise ValueError(f"n must be one of {N_LEVELS}")
+    if dry_run_replacements and not plan_replacements:
+        raise ValueError("--dry-run-replacements requires --plan-replacements")
+    if replacement_account and not plan_replacements:
+        raise ValueError("--replacement-account requires --plan-replacements")
+    if reapprove_replacement_attempt and not plan_replacements:
+        raise ValueError("--reapprove-replacement-attempt requires --plan-replacements")
+    database=_registry_path(project,registry_path)
+    if not database.is_file():
+        raise FileNotFoundError("No campaign registry exists; plan the campaign first")
+    from independent_n_campaign import inspect_independent_campaign
+    from job_registry import JobRegistry
+    registry=JobRegistry(database,readonly=not plan_replacements or dry_run_replacements)
+    campaign=registry.independent_campaign_status(campaign_id)
+    if not campaign.get("exists"):
+        raise KeyError(f"Unknown independent-n campaign: {campaign_id}")
+    status=inspect_independent_campaign(registry,campaign_id,project)
+    levels=[item for item in campaign["manifest"]["levels"] if n is None or int(item["target_n"])==n]
+    results=[]
+    for level in levels:
+        target=_typed_target(level)
+        target_status=registry.target_status(target.target_id)
+        from targeted_recovery import repaired_dataset_status
+        repaired=repaired_dataset_status(target,registry)
+        counts=repaired["counts_by_treatment"]
+        blocks=target_status.get("blocks",[])
+        complete=repaired["analysis_eligible"] and repaired["status"] in ("COMPLETE","REPAIRED_COMPLETE")
+        if complete:
+            from adaptive_targets import analyze_target
+            report=analyze_target(project,target,registry)
+            if report.get("artifacts_verified") is not True:
+                raise RuntimeError(f"Paper output verification failed for n={target.target_n}")
+            from scientific_exports import export_n_level_results
+            export=export_n_level_results(project,target,registry,report)
+            artifacts=_paper_artifacts(report["output"])
+            analysis_state="COMPLETE_ANALYSIS" if repaired["status"]=="COMPLETE" else "REPAIRED_COMPLETE_ANALYSIS"
+            results.append({"n":target.target_n,"experiment_id":target.experiment_id,
+                "state":analysis_state,"dataset_status":repaired["status"],
+                "output":report["output"],"paper_export":export,"artifacts_verified":True,
+                "paper_artifacts":artifacts})
+        else:
+            item={"n":target.target_n,"experiment_id":target.experiment_id,
+                "state":"NOT_READY","validated_pubs_by_treatment":counts,
+                "required_pubs_per_treatment":target.target_n,
+                "reason":"Complete-only policy: recovery must produce exactly n valid PUBs for every treatment before analysis."}
+            if plan_replacements:
+                from targeted_recovery import plan_invalid_pub_slots
+                from final_configuration import load_final_config
+                item["replacement_plan"]=plan_invalid_pub_slots(project,target,registry,
+                    final_config=load_final_config(project),replacement_account=replacement_account,
+                    dry_run=dry_run_replacements,
+                    explicit_retry_authorization=reapprove_replacement_attempt)
+            results.append(item)
+    return {"campaign_id":campaign_id,"results":results,
+        "completed_levels":sum(item["state"] in ("COMPLETE_ANALYSIS","REPAIRED_COMPLETE_ANALYSIS") for item in results),
+        "campaign_progression_changed":False}
+
+
+def status_pipeline(project: str | Path,campaign_id: str,*,registry_path: str | Path | None=None) -> dict[str,Any]:
+    """Read campaign state without opening IBM services or mutating SQLite."""
+    database=_registry_path(project,registry_path)
+    if not database.is_file():
+        return {"campaign_id":campaign_id,"exists":False,"state":"NOT_PLANNED"}
+    from independent_n_campaign import inspect_independent_campaign
+    from job_registry import JobRegistry
+    report = inspect_independent_campaign(JobRegistry(database,readonly=True),campaign_id,project)
+    if not report.get("exists", True):
+        return report
+    # Display-only: distinguish immutable historical authorization from active
+    # final_config. No IBM access, quota selection, or Registry writes here.
+    from final_configuration import load_final_config
+    config = load_final_config(project)
+    historical = list(report.get("execution_account_labels", []))
+    active = list(config["enabled_account_labels"])
+    automatic = config.get("account_selection") == "highest_available_quota"
+    report["historical_accounts"] = historical
+    report["active_accounts"] = active
+    report["account_selection"] = config.get("account_selection", "fixed_by_n")
+    report["live_submission_enabled"] = config["live_submission_enabled"]
+    report["next_batch_account"] = "PENDING_QUOTA_SELECTION" if automatic else None
+    for level in report.get("levels", []):
+        if level.get("state") in ("PLANNED", "PENDING") and not level.get("blocks"):
+            level["selected_account_label"] = None if automatic else config.get("account_by_n", {}).get(str(level["n"]))
+            level["account_selection_pending"] = automatic
+    # Derived display summary only; campaign state and original IBM Batch status remain unchanged.
+    report["repaired_progress_summary"] = [
+        {"n": level["n"], "valid": level.get("repaired_valid_pubs", 0),
+         "expected": level.get("expected_pubs", 0),
+         "complete": level.get("repaired_complete", False),
+         "replacement_pubs": level.get("validated_replacement_pubs", 0)}
+        for level in report.get("levels", [])
+    ]
+    return report
+
+
+def _replacement_context(project: str | Path,campaign_id: str,n: int,treatment: str,pub_index: int,
+                         registry_path: str | Path | None=None):
+    """Resolve one already-planned logical PUB replacement without guessing IDs."""
+    if n not in N_LEVELS or not 1<=pub_index<=n:
+        raise ValueError("n and one-based --pub-index must identify a supported logical PUB slot")
+    from job_registry import JobRegistry
+    database=_registry_path(project,registry_path)
+    if not database.is_file():raise FileNotFoundError("No independent-n registry exists")
+    registry=JobRegistry(database)
+    campaign=registry.independent_campaign_status(campaign_id)
+    if not campaign.get("exists"):raise KeyError(f"Unknown independent-n campaign: {campaign_id}")
+    level=next((item for item in campaign["manifest"]["levels"] if int(item["target_n"])==n),None)
+    if level is None:raise KeyError(f"Campaign has no independent n={n} experiment")
+    target=_typed_target(level)
+    if treatment not in target.treatment_ids:raise ValueError("Treatment must be one of the frozen M0-M7 treatment IDs")
+    rows=[row for row in registry.replacement_jobs(target.target_id)
+        if row["treatment_id"]==treatment and int(row["logical_pub_index"])==pub_index]
+    if not rows:raise RuntimeError("No durable replacement plan exists for this logical PUB; run process --plan-replacements first")
+    latest=max(rows,key=lambda row:int(row["attempt"]))
+    if sum(int(row["attempt"])==int(latest["attempt"]) for row in rows)!=1:
+        raise RuntimeError("Replacement attempts for this logical PUB are ambiguous in the registry")
+    return registry,target,latest
+
+
+def submit_replacement_pipeline(project: str | Path,campaign_id: str,n: int,treatment: str,pub_index: int,
+        account_label: str,*,authorize_live_replacement: bool=False,confirm_live_submission: bool=False,
+        registry_path: str | Path | None=None) -> dict[str,Any]:
+    """Submit exactly one planned invalid PUB after fresh account/runtime gates."""
+    from final_configuration import load_final_config,campaign_authorization_from_final_config
+    from account_config import load_saved_account_profiles,make_saved_profile_service
+    from read_only_preflight import preflight_account,_instance_ref
+    from runtime_estimator import targeted_replacement_estimate as _targeted_replacement_runtime_estimate
+    from experiment_manifest import build_manifest
+    from targeted_recovery import submit_replacement_slot
+    config=load_final_config(project)
+    if not authorize_live_replacement or not confirm_live_submission:
+        raise RuntimeError("Live replacement requires --authorize-live-replacement and --confirm-live-submission")
+    if account_label not in config["enabled_account_labels"]:
+        raise RuntimeError("Requested replacement account is not enabled in final_config.json")
+    registry,target,item=_replacement_context(project,campaign_id,n,treatment,pub_index,registry_path)
+    if item["state"]!="PLANNED" or item["job_id"] is not None:
+        raise RuntimeError("Only an unsubmitted PLANNED replacement may be submitted; reconcile every other state")
+    if item["account_label"]!=account_label:
+        raise RuntimeError("Replacement plan account differs; select it with process --plan-replacements --replacement-account first")
+    if item["backend"]!=config["allowed_backend"] or item["backend"]!="ibm_fez":
+        raise RuntimeError("Replacement backend is not the configured ibm_fez backend")
+    if config["maximum_replacement_attempts"]<1 or config["maximum_replacement_qpu_budget_seconds"]<=0:
+        raise RuntimeError("Replacement attempt limit and QPU budget must be explicitly enabled in final_config.json")
+    if not config["live_submission_enabled"]:
+        raise RuntimeError("Live submission is disabled in final_config.json")
+    profile=load_saved_account_profiles((account_label,))[account_label]
+    service=make_saved_profile_service(profile)
+    active=service.active_instance()
+    instance_ref=_instance_ref(active)
+    authorized_refs=config["allowed_instance_refs"].get(account_label,[])
+    if not authorized_refs or instance_ref not in authorized_refs:
+        raise RuntimeError("Saved profile active instance is outside this account's approved opaque instance scope")
+    from vqe_adapter import verify_frozen_inputs
+    fresh=preflight_account(profile,service_factory=lambda _:service,
+        frozen_validator=lambda: {"source_run":"run_02","input_sha256":target.input_hashes,
+            "verified_circuit_parameters":len(verify_frozen_inputs(project)[2])})
+    if fresh.get("status")!="PASS" or not fresh.get("submission_eligible"):
+        raise RuntimeError("Fresh read-only preflight did not pass all account, backend, quota, scope and pending-job checks")
+    if fresh.get("configured_instance_ref")!=instance_ref:
+        raise RuntimeError("Fresh preflight instance differs from the saved profile's active instance")
+    runtime_manifest=build_manifest(project,n=5,replicate_blocks=1,shots=4096,experiment_id=target.experiment_id)
+    estimate=_targeted_replacement_runtime_estimate(project,runtime_manifest,treatment,registry=registry,target_id=target.target_id)
+    authorization=campaign_authorization_from_final_config(config)
+    return submit_replacement_slot(project,target,registry,int(item["replacement_id"]),service,
+        final_config=config,campaign_authorization=authorization,preflight_report=fresh,
+        runtime_estimate=estimate,explicit_authorization=True,active_instance_ref=instance_ref,
+        authorized_instance_refs=authorized_refs)
+
+
+def collect_replacement_pipeline(project: str | Path,campaign_id: str,n: int,treatment: str,pub_index: int,
+        account_label: str,*,registry_path: str | Path | None=None) -> dict[str,Any]:
+    """Collect one existing replacement ID; never submits or retries a job."""
+    from final_configuration import load_final_config
+    from account_config import load_saved_account_profiles,make_saved_profile_service
+    from read_only_preflight import _instance_ref
+    from targeted_recovery import collect_replacement
+    config=load_final_config(project)
+    registry,target,item=_replacement_context(project,campaign_id,n,treatment,pub_index,registry_path)
+    if item["account_label"]!=account_label:
+        raise RuntimeError("Collection account must match the registered replacement account")
+    service=None
+    if not item.get("raw_archive_path"):
+        profile=load_saved_account_profiles((account_label,))[account_label]
+        service=make_saved_profile_service(profile)
+        active_ref=_instance_ref(service.active_instance())
+        expected_ref=item["metadata"].get("instance_ref")
+        allowed=config["allowed_instance_refs"].get(account_label,[])
+        if not expected_ref or active_ref!=expected_ref or active_ref not in allowed:
+            raise RuntimeError("Replacement job's saved-profile instance does not match its recorded approved scope")
+    return collect_replacement(project,target,registry,int(item["replacement_id"]),service)
+
+
+def validate_replacement_pipeline(project: str | Path,campaign_id: str,n: int,treatment: str,pub_index: int,
+        *,registry_path: str | Path | None=None) -> dict[str,Any]:
+    """Revalidate the immutable one-PUB archive offline; no IBM service is opened."""
+    from targeted_recovery import revalidate_replacement_archive,repaired_dataset_status
+    registry,target,item=_replacement_context(project,campaign_id,n,treatment,pub_index,registry_path)
+    validation=revalidate_replacement_archive(project,target,registry,int(item["replacement_id"]))
+    return validation|{"repaired_dataset":repaired_dataset_status(target,registry),
+        "ibm_connection":False,"submission_performed":False}
+
+
+def main(argv=None) -> int:
+    """Forward the retired process/slot-command CLI to the single mxene CLI."""
+    from mxene import main as mxene_main
+    return mxene_main(argv)
+
+
+if __name__=="__main__":
+    raise SystemExit(main())

@@ -1,0 +1,160 @@
+{
+  "__type__": "PrimitiveResult",
+  "__value__": {
+    "pub_results": [
+      {
+        "__type__": "PubResult",
+        "__value__": {
+          "data": {
+            "__type__": "DataBin",
+            "__value__": {
+              "field_names": [
+                "evs",
+                "stds"
+              ],
+              "shape": [],
+              "fields": {
+                "evs": {
+                  "__type__": "ndarray",
+                  "__value__": "eJyb7BfqGxDJyFDGUK2eklqcXKRupaBuk2ahrqOgnpZfVFKUmBefX5SSChJ3S8wpTtVRUC/OSCxIVbdS0DDX0dRRqFWgAHCZdzomPL3wbP9xbxDr4f7TC123ff57Z3/lSzVDjjVX9htxrJGJStltf1eFrXGq8+n9J8v2zZfSX2sPALz3OJc="
+                },
+                "stds": {
+                  "__type__": "ndarray",
+                  "__value__": "eJyb7BfqGxDJyFDGUK2eklqcXKRupaBuk2ahrqOgnpZfVFKUmBefX5SSChJ3S8wpTtVRUC/OSCxIVbdS0DDX0dRRqFWgAHBVi6xzf1jVYk8qDQAmWzTQ"
+                }
+              }
+            }
+          },
+          "metadata": {
+            "mock": true,
+            "pub_index": 1,
+            "shots": 4096
+          }
+        }
+      },
+      {
+        "__type__": "PubResult",
+        "__value__": {
+          "data": {
+            "__type__": "DataBin",
+            "__value__": {
+              "field_names": [
+                "evs",
+                "stds"
+              ],
+              "shape": [],
+              "fields": {
+                "evs": {
+                  "__type__": "ndarray",
+                  "__value__": "eJyb7BfqGxDJyFDGUK2eklqcXKRupaBuk2ahrqOgnpZfVFKUmBefX5SSChJ3S8wpTtVRUC/OSCxIVbdS0DDX0dRRqFWgAHCdPQMCz/bH9h/6qhHzcP83jZj+Q1/v7F9SYMt1ffGV/W2vA3fIte62NwaD0/sLQcIFa+0BOFs6uw=="
+                },
+                "stds": {
+                  "__type__": "ndarray",
+                  "__value__": "eJyb7BfqGxDJyFDGUK2eklqcXKRupaBuk2ahrqOgnpZfVFKUmBefX5SSChJ3S8wpTtVRUC/OSCxIVbdS0DDX0dRRqFWgAHBVi6xzf1jVYk8qDQAmWzTQ"
+                }
+              }
+            }
+          },
+          "metadata": {
+            "mock": true,
+            "pub_index": 2,
+            "shots": 4096
+          }
+        }
+      },
+      {
+        "__type__": "PubResult",
+        "__value__": {
+          "data": {
+            "__type__": "DataBin",
+            "__value__": {
+              "field_names": [
+                "evs",
+                "stds"
+              ],
+              "shape": [],
+              "fields": {
+                "evs": {
+                  "__type__": "ndarray",
+                  "__value__": "eJyb7BfqGxDJyFDGUK2eklqcXKRupaBuk2ahrqOgnpZfVFKUmBefX5SSChJ3S8wpTtVRUC/OSCxIVbdS0DDX0dRRqFWgAHAlCURYbjnxbP+nS75JAhEP9ytuKMqY+PbO/vPfgx8vnX1l/61zIMZu+07HhKcXlE7vl2QJ49PdtNYeAPH5Ot8="
+                },
+                "stds": {
+                  "__type__": "ndarray",
+                  "__value__": "eJyb7BfqGxDJyFDGUK2eklqcXKRupaBuk2ahrqOgnpZfVFKUmBefX5SSChJ3S8wpTtVRUC/OSCxIVbdS0DDX0dRRqFWgAHBVi6xzf1jVYk8qDQAmWzTQ"
+                }
+              }
+            }
+          },
+          "metadata": {
+            "mock": true,
+            "pub_index": 3,
+            "shots": 4096
+          }
+        }
+      },
+      {
+        "__type__": "PubResult",
+        "__value__": {
+          "data": {
+            "__type__": "DataBin",
+            "__value__": {
+              "field_names": [
+                "evs",
+                "stds"
+              ],
+              "shape": [],
+              "fields": {
+                "evs": {
+                  "__type__": "ndarray",
+                  "__value__": "eJyb7BfqGxDJyFDGUK2eklqcXKRupaBuk2ahrqOgnpZfVFKUmBefX5SSChJ3S8wpTtVRUC/OSCxIVbdS0DDX0dRRqFWgAHD9CH68dPaRZ/s7xG6e+x78cL+PeadjwtM7+3/VZe0pmXxlv96mue+XH9ttf9+/d3qe0On9B08tdN32ea09AESHPgI="
+                },
+                "stds": {
+                  "__type__": "ndarray",
+                  "__value__": "eJyb7BfqGxDJyFDGUK2eklqcXKRupaBuk2ahrqOgnpZfVFKUmBefX5SSChJ3S8wpTtVRUC/OSCxIVbdS0DDX0dRRqFWgAHBVi6xzf1jVYk8qDQAmWzTQ"
+                }
+              }
+            }
+          },
+          "metadata": {
+            "mock": true,
+            "pub_index": 4,
+            "shots": 4096
+          }
+        }
+      },
+      {
+        "__type__": "PubResult",
+        "__value__": {
+          "data": {
+            "__type__": "DataBin",
+            "__value__": {
+              "field_names": [
+                "evs",
+                "stds"
+              ],
+              "shape": [],
+              "fields": {
+                "evs": {
+                  "__type__": "ndarray",
+                  "__value__": "eJyb7BfqGxDJyFDGUK2eklqcXKRupaBuk2ahrqOgnpZfVFKUmBefX5SSChJ3S8wpTtVRUC/OSCxIVbdS0DDX0dRRqFWgAHD1Ts8Taj7wbL9sVIr1ff+H+8v3zZfSv3tnvypb41Tn7iv7m6Y6d+c8321vGrfLk4fp9P7MiW9r7E3X2QMAgJw3LQ=="
+                },
+                "stds": {
+                  "__type__": "ndarray",
+                  "__value__": "eJyb7BfqGxDJyFDGUK2eklqcXKRupaBuk2ahrqOgnpZfVFKUmBefX5SSChJ3S8wpTtVRUC/OSCxIVbdS0DDX0dRRqFWgAHBVi6xzf1jVYk8qDQAmWzTQ"
+                }
+              }
+            }
+          },
+          "metadata": {
+            "mock": true,
+            "pub_index": 5,
+            "shots": 4096
+          }
+        }
+      }
+    ],
+    "metadata": {
+      "mock": true
+    }
+  }
+}

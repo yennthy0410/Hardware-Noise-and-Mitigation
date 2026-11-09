@@ -1,0 +1,14 @@
+{
+  "T1_s": 0.0002716470090171,
+  "T2_s": 0.0001368208389036,
+  "readout_p10": 0.00634765625,
+  "readout_p01": 0.0126953125,
+  "readout_model": "asymmetric_calibration",
+  "oneq_error": 0.0002089751938743,
+  "twoq_error": 0.00162873672736515,
+  "oneq_duration_s": 1.38e-06,
+  "twoq_duration_s": 6.8e-08,
+  "calibration_source": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\experiments\\HEA_VQE\\01_simulator_to_qpu_hardware\\results\\EIS14\\04_noise_characterization",
+  "n_qubit_rows": 21,
+  "n_gate_rows": 324
+}

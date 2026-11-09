@@ -1,0 +1,43 @@
+{
+  "created_utc": "2026-11-03T18:35:23.763247+00:00",
+  "files": {
+    "calibration_registry.sqlite3": {
+      "backup_path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\03_IBM_execution_records\\ai_assistant\\migration_backups\\final_app_20261103T183523Z\\calibration_registry.sqlite3",
+      "bytes": 192512,
+      "integrity_check": "ok",
+      "sha256": "05ce317b6828a3735dc5770ee875da7715da8c31157f1b436b07871b529dd3a4",
+      "source_path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\03_IBM_execution_records\\ai_assistant\\calibration\\calibration_registry.sqlite3",
+      "table_counts": {
+        "calibration_batches": 1,
+        "calibration_events": 43,
+        "calibration_jobs": 8,
+        "calibration_raw_results": 8,
+        "calibration_worker_state": 1,
+        "campaigns": 2
+      }
+    },
+    "job_registry.sqlite3": {
+      "backup_path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\03_IBM_execution_records\\ai_assistant\\migration_backups\\final_app_20261103T183523Z\\job_registry.sqlite3",
+      "bytes": 294912,
+      "integrity_check": "ok",
+      "sha256": "387ef2791dee836a85c367f2b8991155122740684946d1aaad4c342540194210",
+      "source_path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\03_IBM_execution_records\\ai_assistant\\job_registry.sqlite3",
+      "table_counts": {
+        "account_usage_snapshots": 0,
+        "batch_monitor_events": 0,
+        "batch_monitor_state": 0,
+        "batch_recovery_reviews": 0,
+        "experiment_blocks": 1,
+        "experiment_targets": 6,
+        "independent_n_campaign_events": 2,
+        "independent_n_campaign_levels": 6,
+        "independent_n_campaigns": 1,
+        "jobs": 8,
+        "pub_validation_records": 40,
+        "recovery_events": 0,
+        "validated_pub_values": 39
+      }
+    }
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,15 @@
+{
+  "analysis_state": "PARTIAL_HISTORICAL",
+  "completed_n_level": false,
+  "data_directory": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=5\\PARTIAL_HISTORICAL_2feab2d1609e",
+  "diagnostic_report_sha256": "a32dd3a5f69fc764aab6db05f8c24b5a701ec204ff6fc5cc180cce038e019bb9",
+  "figures_directory": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=5\\PARTIAL_HISTORICAL_2feab2d1609e",
+  "invalid_pubs": 1,
+  "n5_resubmission_permitted": false,
+  "production_complete": false,
+  "requested_pubs": 40,
+  "source_batch_status": "INCOMPLETE",
+  "source_campaign_id": "vqe-calibration-pilot-02",
+  "source_sequence": 1,
+  "valid_pubs": 39
+}

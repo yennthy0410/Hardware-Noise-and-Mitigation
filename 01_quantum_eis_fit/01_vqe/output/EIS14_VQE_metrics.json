@@ -1,0 +1,18 @@
+[
+  {
+    "dataset": "EIS14",
+    "method": "Classical",
+    "N": 132,
+    "SSE_ohm2": 120.22451879422375,
+    "RMSE_ohm": 0.954354131885617,
+    "mean_relative_absolute_error_pct": 4.400110845194778
+  },
+  {
+    "dataset": "EIS14",
+    "method": "VQE/VQA",
+    "N": 132,
+    "SSE_ohm2": 258.05897604193257,
+    "RMSE_ohm": 1.3982103714183762,
+    "mean_relative_absolute_error_pct": 1.5707659943206238
+  }
+]

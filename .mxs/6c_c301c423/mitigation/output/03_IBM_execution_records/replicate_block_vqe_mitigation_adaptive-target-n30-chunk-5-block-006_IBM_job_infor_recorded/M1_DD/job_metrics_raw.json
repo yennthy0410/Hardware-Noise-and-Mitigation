@@ -1,0 +1,9 @@
+{
+  "usage": {
+    "quantum_seconds": 0.5
+  },
+  "timestamps": {
+    "running": "offline-mock",
+    "finished": "offline-mock"
+  }
+}

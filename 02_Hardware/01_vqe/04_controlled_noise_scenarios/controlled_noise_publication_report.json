@@ -1,0 +1,7 @@
+{
+  "png_generated": 9,
+  "main_figures": 5,
+  "source": "stored Aer CSV, no IBM calls",
+  "dpi": 600,
+  "notes": "per-backend diagnostics retained in legacy_figure; main plots use actual seven-parameter drift"
+}

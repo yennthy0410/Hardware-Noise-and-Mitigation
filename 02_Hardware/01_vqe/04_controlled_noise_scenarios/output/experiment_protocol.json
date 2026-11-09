@@ -1,0 +1,25 @@
+{
+  "theta_source": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\experiments\\HEA_VQE\\02_optimizer_seed_sensitivity\\results\\seed_sensitivity_real\\EIS14\\seed_1013\\optimal_angles.csv",
+  "data_source": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\data\\EIS14.csv",
+  "scenarios": [
+    "ideal",
+    "measurement",
+    "decoherence",
+    "gate",
+    "combined_calibrated"
+  ],
+  "method": "Aer density matrix, exact single-Z expectations; no finite-shot noise",
+  "no_reoptimization": true,
+  "noise_mechanisms": [
+    "measurement_error",
+    "decoherence",
+    "gate_error"
+  ],
+  "combined_scenario": "measurement + decoherence + gate error",
+  "limitations": [
+    "7-qubit logical surrogate; not native ISA/layout-aware",
+    "median hardware calibration parameters are used as homogeneous channels",
+    "depolarizing parameters approximately follow calibration gate error; not exact fitted gate channels",
+    "independent scenario effects need not add linearly"
+  ]
+}

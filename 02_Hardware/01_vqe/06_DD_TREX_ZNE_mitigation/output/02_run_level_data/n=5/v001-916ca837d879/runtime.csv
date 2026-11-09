@@ -1,0 +1,10 @@
+﻿experiment_id,n,logical_block_id,batch_id,IBM_job_id,treatment,account_label,backend,IBM_job_status,provider_qpu_usage_seconds,requested_shots_per_PUB,requested_PUBs
+vqe-independent-n-01-n5,5,historical-vqe-calibration-pilot-02-seq-1,60a3ae20-ba8b-4909-a4d1-62fffc1d64e9,dbkcdmd6p51s73cmc170,M0_Baseline,labB,ibm_fez,DONE,8.0,4096,5
+vqe-independent-n-01-n5,5,historical-vqe-calibration-pilot-02-seq-1,60a3ae20-ba8b-4909-a4d1-62fffc1d64e9,dbkcdmpffo6c73bb7thg,M1_DD,labB,ibm_fez,DONE,8.0,4096,5
+vqe-independent-n-01-n5,5,historical-vqe-calibration-pilot-02-seq-1,60a3ae20-ba8b-4909-a4d1-62fffc1d64e9,dbkcdn56p51s73cmc180,M2_TREX,labB,ibm_fez,DONE,16.0,4096,5
+vqe-independent-n-01-n5,5,historical-vqe-calibration-pilot-02-seq-1,60a3ae20-ba8b-4909-a4d1-62fffc1d64e9,dbkcdnd6p51s73cmc19g,M3_ZNE,labB,ibm_fez,DONE,18.0,4096,5
+vqe-independent-n-01-n5,5,historical-vqe-calibration-pilot-02-seq-1,60a3ae20-ba8b-4909-a4d1-62fffc1d64e9,dbkcdnhffo6c73bb7tig,M4_DD_TREX,labB,ibm_fez,DONE,16.0,4096,5
+vqe-independent-n-01-n5,5,historical-vqe-calibration-pilot-02-seq-1,60a3ae20-ba8b-4909-a4d1-62fffc1d64e9,dbkcdnt6p51s73cmc1c0,M5_DD_ZNE,labB,ibm_fez,DONE,18.0,4096,5
+vqe-independent-n-01-n5,5,historical-vqe-calibration-pilot-02-seq-1,60a3ae20-ba8b-4909-a4d1-62fffc1d64e9,dbkcdo56p51s73cmc1d0,M6_TREX_ZNE,labB,ibm_fez,DONE,28.0,4096,5
+vqe-independent-n-01-n5,5,historical-vqe-calibration-pilot-02-seq-1,60a3ae20-ba8b-4909-a4d1-62fffc1d64e9,dbkcdo9kdqps739263h0,M7_ALL,labB,ibm_fez,DONE,28.0,4096,5
+vqe-independent-n-01-n5,5,historical-vqe-calibration-pilot-02-seq-1,e169f692-a292-4dd2-9d1e-6151e2f23e21,dblhda9kbkrc73cnnmgg,M5_DD_ZNE,labD,ibm_fez,VALIDATED,5.0,4096,1

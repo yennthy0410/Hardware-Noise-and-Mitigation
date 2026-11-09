@@ -1,0 +1,80 @@
+{
+  "authorization_sha256": "13d11bae8bf6f9c96e0991d7b2da255b343b90300e0ad5e6a81579249564de66",
+  "authorization_version": 2,
+  "campaign_id": "vqe-independent-n-01",
+  "operator_authorization": {
+    "account_by_n": {
+      "10": "labB",
+      "15": "labC",
+      "20": "labD",
+      "25": "labA",
+      "30": "labB",
+      "5": "labA"
+    },
+    "account_runtime_budget_seconds": {
+      "labA": 600.0,
+      "labB": 600.0,
+      "labC": 600.0,
+      "labD": 600.0
+    },
+    "allowed_accounts": [
+      "labA",
+      "labB",
+      "labC",
+      "labD"
+    ],
+    "allowed_actions": [
+      "prepare",
+      "dry-run",
+      "validate",
+      "analyze",
+      "plot",
+      "report"
+    ],
+    "allowed_instance_refs": {
+      "labA": [
+        "deeb2483ae3b"
+      ],
+      "labB": [
+        "e25c19040e3f"
+      ],
+      "labC": [
+        "dcc1ac73b72a"
+      ],
+      "labD": [
+        "3b68d33fa257"
+      ]
+    },
+    "completeness_policy": {
+      "insufficient_data_action": "STOP",
+      "insufficient_data_policy_approved": false,
+      "minimum_valid_pub_fraction_per_treatment": 0.8,
+      "partial_analysis_approved": true,
+      "partial_progression_approved": false,
+      "threshold_is_operational_heuristic": true,
+      "version": "partial-80-v2-analysis-only"
+    },
+    "live_auto_submit": false,
+    "maximum_batches": 21,
+    "recovery_limits": {
+      "max_qpu_resubmissions": 0,
+      "max_read_attempts": 3
+    },
+    "recovery_policy": {
+      "automatic_qpu_resubmission": false,
+      "investigate_archives_before_progression": true,
+      "max_qpu_resubmissions": 0,
+      "max_read_attempts": 3,
+      "version": "recovery-first-v1"
+    },
+    "safety_margin_seconds": 60.0,
+    "time_window_utc": {
+      "end": "2030-11-03T00:00:00Z",
+      "start": "2026-11-03T00:00:00Z"
+    },
+    "total_runtime_budget_seconds": 2400.0
+  },
+  "parent_manifest_sha256": "20bb3408b602958ba39a0bea664b3111888e6bb7c42aa0ec1a5265ee8f146075",
+  "previous_authorization_sha256": "dbb98f9fa52be5c7c6bb59a2b62a0606a0d6b163b03a034a88e81e529a1294fe",
+  "schema_version": 1
+}

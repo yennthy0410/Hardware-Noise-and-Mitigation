@@ -1,0 +1,16 @@
+backend,mode,run,job_id,physical_qubits,twoq_couplers,crosstalk_measured,note
+ibm_fez,fixed,1,dbagqi9gv2cc73e6ri4g,"140,141,142,143,144,145,146",140-141;141-142;142-143;143-144;144-145;145-146,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_fez,fixed,2,dbagsjhgv2cc73e6rkm0,"140,141,142,143,144,145,146",140-141;141-142;142-143;143-144;144-145;145-146,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_fez,fixed,3,dbagt6ni0auc73920p6g,"140,141,142,143,144,145,146",140-141;141-142;142-143;143-144;144-145;145-146,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_fez,fixed,4,dbagtt7i0auc73920pt0,"140,141,142,143,144,145,146",140-141;141-142;142-143;143-144;144-145;145-146,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_fez,fixed,5,dbaguehgv2cc73e6rmm0,"140,141,142,143,144,145,146",140-141;141-142;142-143;143-144;144-145;145-146,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_kingston,fixed,1,dbagqjhgv2cc73e6ri5g,"54,55,59,73,74,75,79",54-55;55-59;59-75;73-79;74-73;75-74,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_kingston,fixed,2,dbagskpgv2cc73e6rkn0,"54,55,59,73,74,75,79",54-55;55-59;59-75;73-79;74-73;75-74,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_kingston,fixed,3,dbagt7c24mrc7385cupg,"54,55,59,73,74,75,79",54-55;55-59;59-75;73-79;74-73;75-74,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_kingston,fixed,4,dbagttpgv2cc73e6rm40,"54,55,59,73,74,75,79",54-55;55-59;59-75;73-79;74-73;75-74,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_kingston,fixed,5,dbaguooc77vs7382q6b0,"54,55,59,73,74,75,79",54-55;55-59;59-75;73-79;74-73;75-74,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_marrakesh,fixed,1,dbagqkk24mrc7385cr8g,"11,12,13,14,15,19,35",11-12;12-13;13-14;14-15;15-19;19-35,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_marrakesh,fixed,2,dbagslhgv2cc73e6rkog,"11,12,13,14,15,19,35",11-12;12-13;13-14;14-15;15-19;19-35,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_marrakesh,fixed,3,dbagt88c77vs7382q4gg,"11,12,13,14,15,19,35",11-12;12-13;13-14;14-15;15-19;19-35,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_marrakesh,fixed,4,dbagua424mrc7385d02g,"11,12,13,14,15,19,35",11-12;12-13;13-14;14-15;15-19;19-35,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized
+ibm_marrakesh,fixed,5,dbagupgc77vs7382q6d0,"11,12,13,14,15,19,35",11-12;12-13;13-14;14-15;15-19;19-35,False,No isolated-versus-simultaneous crosstalk diagnostic in saved calibration; not characterized

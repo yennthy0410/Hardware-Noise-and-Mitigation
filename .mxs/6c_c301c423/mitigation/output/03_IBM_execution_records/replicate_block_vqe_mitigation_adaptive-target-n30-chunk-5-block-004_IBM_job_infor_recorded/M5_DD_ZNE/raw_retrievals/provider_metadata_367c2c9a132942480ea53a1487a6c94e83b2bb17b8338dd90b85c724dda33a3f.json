@@ -1,0 +1,81 @@
+{
+  "job_id": "fake-0030",
+  "job_status": "DONE",
+  "metadata_errors": [],
+  "metrics": {
+    "timestamps": {
+      "finished": "offline-mock",
+      "running": "offline-mock"
+    },
+    "usage": {
+      "quantum_seconds": 0.5
+    }
+  },
+  "pubs": [
+    {
+      "data_fields": {
+        "evs": "[-0.7091 -0.5391 -0.4491 -0.3191  0.1109 -0.2091  0.0609]",
+        "stds": "[0.01 0.01 0.01 0.01 0.01 0.01 0.01]"
+      },
+      "metadata": {
+        "mock": true,
+        "pub_index": 1,
+        "shots": 4096
+      },
+      "pub": 1
+    },
+    {
+      "data_fields": {
+        "evs": "[-0.7086 -0.5386 -0.4486 -0.3186  0.1114 -0.2086  0.0614]",
+        "stds": "[0.01 0.01 0.01 0.01 0.01 0.01 0.01]"
+      },
+      "metadata": {
+        "mock": true,
+        "pub_index": 2,
+        "shots": 4096
+      },
+      "pub": 2
+    },
+    {
+      "data_fields": {
+        "evs": "[-0.7081 -0.5381 -0.4481 -0.3181  0.1119 -0.2081  0.0619]",
+        "stds": "[0.01 0.01 0.01 0.01 0.01 0.01 0.01]"
+      },
+      "metadata": {
+        "mock": true,
+        "pub_index": 3,
+        "shots": 4096
+      },
+      "pub": 3
+    },
+    {
+      "data_fields": {
+        "evs": "[-0.7076 -0.5376 -0.4476 -0.3176  0.1124 -0.2076  0.0624]",
+        "stds": "[0.01 0.01 0.01 0.01 0.01 0.01 0.01]"
+      },
+      "metadata": {
+        "mock": true,
+        "pub_index": 4,
+        "shots": 4096
+      },
+      "pub": 4
+    },
+    {
+      "data_fields": {
+        "evs": "[-0.7071 -0.5371 -0.4471 -0.3171  0.1129 -0.2071  0.0629]",
+        "stds": "[0.01 0.01 0.01 0.01 0.01 0.01 0.01]"
+      },
+      "metadata": {
+        "mock": true,
+        "pub_index": 5,
+        "shots": 4096
+      },
+      "pub": 5
+    }
+  ],
+  "raw_result_sha256": "93759fc8f4a684a7db42e04a170b8e486682133d18f10e126c4411601d8e4d40",
+  "schema_version": 1,
+  "timestamps": {
+    "creation_date": "2026-11-03 16:14:06.193299+00:00"
+  }
+}

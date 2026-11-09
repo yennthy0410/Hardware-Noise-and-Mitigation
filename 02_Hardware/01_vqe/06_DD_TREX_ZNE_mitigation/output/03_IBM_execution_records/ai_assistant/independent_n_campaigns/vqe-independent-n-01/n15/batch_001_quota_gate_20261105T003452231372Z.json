@@ -1,0 +1,55 @@
+{
+  "account_label": "labF",
+  "authorization_account_remaining_seconds": 585.0,
+  "batch_created": false,
+  "block_id": "vqe-independent-n-01-n15-block-001",
+  "campaign_remaining_seconds": 1360.0,
+  "effective_remaining_seconds": 585.0,
+  "eligible": false,
+  "experiment_id": "vqe-independent-n-01-n15",
+  "gate": {
+    "account_label": "labF",
+    "backend": "ibm_fez",
+    "batch_created": false,
+    "checks": {
+      "authorized_account": true,
+      "backend": true,
+      "batch_compatibility": true,
+      "configured_instance": true,
+      "defensible_runtime_bound": false,
+      "fresh_preflight": true,
+      "frozen_hashes": true,
+      "frozen_source": true,
+      "isa_compatibility": true,
+      "pending_jobs_reconciled": true,
+      "preflight_backend": true,
+      "provider_usage": true,
+      "quota_headroom": true,
+      "quota_scope": true,
+      "runtime_estimate_matches_chunk": true
+    },
+    "chunk_n": 5,
+    "eligible": false,
+    "quota": {
+      "eligible": true,
+      "estimated_seconds": 175.0,
+      "minimum_remaining_seconds": 45.0,
+      "reasons": [],
+      "remaining_seconds": 585.0,
+      "required_seconds_including_margin": 185.0,
+      "safety_margin_seconds": 10.0
+    },
+    "reasons": [
+      "defensible full eight-treatment runtime upper bound is unavailable"
+    ],
+    "runtime_bound_seconds": 175.0,
+    "submission": false,
+    "target_id": "vqe-independent-n-01-n15-target-n15-chunk-5",
+    "target_n": 15
+  },
+  "n": 15,
+  "preflight_checked_utc": "2026-11-05T00:34:52.231372Z",
+  "provider_remaining_seconds": 585.0,
+  "runtime_upper_bound_seconds": 175.0,
+  "safety_margin_seconds": 10.0
+}

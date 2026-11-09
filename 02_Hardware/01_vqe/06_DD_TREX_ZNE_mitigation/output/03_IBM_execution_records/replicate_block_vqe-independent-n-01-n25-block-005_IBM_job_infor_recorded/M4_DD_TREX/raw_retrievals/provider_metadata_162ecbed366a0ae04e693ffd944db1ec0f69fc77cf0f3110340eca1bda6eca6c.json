@@ -1,0 +1,114 @@
+{
+  "job_id": "dbndbrc4148s7390q7rg",
+  "job_status": "DONE",
+  "metadata_errors": [],
+  "metrics": {
+    "caller": "qiskit_ibm_runtime~estimator.py",
+    "circuits_execution_time_ns": 13775067904,
+    "qiskit_version": "qiskit_ibm_runtime-0.51.0,qiskit-2.6.1*,qiskit_aer-0.18.2",
+    "timestamps": {
+      "created": "2026-11-07T07:40:29.31178Z",
+      "finished": "2026-11-07T07:42:53.98196Z",
+      "running": "2026-11-07T07:40:30.503303Z"
+    },
+    "usage": {
+      "details": [
+        {
+          "metric": {
+            "id": "caffe3ca-729c-5750-8777-df63bbf8bfd9",
+            "value": 16
+          },
+          "unit": "resource_units",
+          "value": 0.264324
+        }
+      ],
+      "qpu_charge_time_seconds": 16,
+      "status": "complete",
+      "unit": "resource_units",
+      "value": 0.264324
+    }
+  },
+  "pubs": [
+    {
+      "data_fields": {
+        "ensemble_standard_error": "[0.01535748 0.05048027 0.01574675 0.01543373 0.01560422 0.01584804\n 0.01482444]",
+        "evs": "[-0.28419804  0.12776025  0.11038921  0.20336062 -0.13181678 -0.14354486\n -0.35733729]",
+        "stds": "[0.01410881 0.31950035 0.01609391 0.01807047 0.01680623 0.01650586\n 0.01708976]"
+      },
+      "metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "pub": 1
+    },
+    {
+      "data_fields": {
+        "ensemble_standard_error": "[0.01540581 0.0504772  0.01566224 0.01550224 0.01556871 0.01588316\n 0.01488719]",
+        "evs": "[-0.27320971  0.09621451  0.15197079  0.18071028 -0.14804796 -0.12653954\n -0.3464489 ]",
+        "stds": "[0.01415484 0.31753178 0.01494759 0.01631645 0.01514206 0.01629017\n 0.01514113]"
+      },
+      "metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "pub": 2
+    },
+    {
+      "data_fields": {
+        "ensemble_standard_error": "[0.01532565 0.05047429 0.01566804 0.01545088 0.01557436 0.01587729\n 0.01496657]",
+        "evs": "[-0.29119061  0.05047319  0.1494957   0.19794424 -0.14558869 -0.12954048\n -0.33209602]",
+        "stds": "[0.01456148 0.31247922 0.01560646 0.01610647 0.01339829 0.01871961\n 0.01577059]"
+      },
+      "metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "pub": 3
+    },
+    {
+      "data_fields": {
+        "ensemble_standard_error": "[0.01531175 0.05048117 0.01571485 0.01551056 0.01557881 0.01586095\n 0.01497456]",
+        "evs": "[-0.29418743  0.13564669  0.12771487  0.17775589 -0.14362127 -0.13754298\n -0.33061123]",
+        "stds": "[0.01536393 0.31025282 0.02079039 0.01432648 0.01357319 0.01360418\n 0.01526971]"
+      },
+      "metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "pub": 4
+    },
+    {
+      "data_fields": {
+        "ensemble_standard_error": "[0.01531408 0.05047645 0.01571969 0.01550224 0.01558102 0.01585884\n 0.01478928]",
+        "evs": "[-0.29368796  0.08675079  0.12523977  0.18071028 -0.14263757 -0.13854329\n -0.36327642]",
+        "stds": "[0.01466424 0.31558097 0.01567556 0.01355696 0.01531801 0.01299766\n 0.01269877]"
+      },
+      "metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "pub": 5
+    }
+  ],
+  "raw_result_sha256": "9bb6b48f5bef54289abe97540bad59a6960d0d7af83f227920bb771be2aac2ce",
+  "schema_version": 1,
+  "timestamps": {
+    "creation_date": "2026-11-07 15:40:29.311780+08:00",
+    "done": "True"
+  }
+}

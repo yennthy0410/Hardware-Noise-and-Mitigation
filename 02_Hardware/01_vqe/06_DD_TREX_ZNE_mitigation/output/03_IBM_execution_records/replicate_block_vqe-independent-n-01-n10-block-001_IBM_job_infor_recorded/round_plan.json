@@ -1,0 +1,17 @@
+{
+  "round": "replicate_block_vqe-independent-n-01-n10-block-001",
+  "repeat_count": 5,
+  "treatment_order": [
+    "M0_Baseline",
+    "M1_DD",
+    "M2_TREX",
+    "M3_ZNE",
+    "M4_DD_TREX",
+    "M5_DD_ZNE",
+    "M6_TREX_ZNE",
+    "M7_ALL"
+  ],
+  "created_utc": "2026-11-04T17:51:05.418323+00:00",
+  "locked_inputs": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\03_IBM_execution_records\\locked_inputs",
+  "submission_default": "disabled"
+}

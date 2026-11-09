@@ -1,0 +1,9 @@
+{
+  "base_ISA_sha256": null,
+  "locked_archive_sha256": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+  "theta_sha256": null,
+  "observables_sha256": null,
+  "job_id": "dbng4i0qtr0c73ad1uvg",
+  "mitigation_options_requested_path": "mitigation_options_requested.json",
+  "note": "Verifies the shared input only. Runtime-internal modified circuits are not claimed."
+}

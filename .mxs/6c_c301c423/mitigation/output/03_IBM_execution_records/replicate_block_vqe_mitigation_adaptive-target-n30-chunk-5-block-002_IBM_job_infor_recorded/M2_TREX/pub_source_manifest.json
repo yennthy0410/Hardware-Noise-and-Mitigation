@@ -1,0 +1,11 @@
+{
+  "original_job_id": "fake-0011",
+  "per_pub_job_id": {
+    "1": "fake-0011",
+    "2": "fake-0011",
+    "3": "fake-0011",
+    "4": "fake-0011",
+    "5": "fake-0011"
+  },
+  "replacements": []
+}

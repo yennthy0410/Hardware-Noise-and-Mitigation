@@ -1,0 +1,621 @@
+{
+  "schema_version": 3,
+  "export_version": 0,
+  "export_id": "n15-v000-21c9c6c1e82c",
+  "experiment_id": "vqe-independent-n-01-n15",
+  "target_id": "vqe-independent-n-01-n15-target-n15-chunk-5",
+  "n": 15,
+  "source_run": "run_02",
+  "source_analysis_manifest_sha256": "21c9c6c1e82cbbb1c3e0fef2254cc1982212e5d05fb99f74d20a79e91b2ac68a",
+  "input_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d"
+  },
+  "partial_diagnostic_only": false,
+  "figure_directory": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=15",
+  "data_directory": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=15",
+  "csv_sha256": {
+    "accuracy_cost_data.csv": "9d6523044d99973cc67a67f93c9a7448e369ae0eea0161be500db623de3fa8d0",
+    "bode_curves.csv": "5c58d7d982f041a4cccf8ff75ce7c4ea2f43346a6eb917434beeb42cffb4d56f",
+    "nyquist_curves.csv": "91b1ec7040dc0b04f9d9de81389efc527a81dfc4a2fc3c8ac971a0b467115330",
+    "params_table.csv": "91939f57f67c0f46a057ea12755cb6b97d5ca673538e195d114e21d32b15f735",
+    "per_repeat.csv": "91939f57f67c0f46a057ea12755cb6b97d5ca673538e195d114e21d32b15f735",
+    "residual_curves.csv": "c47466594fd2090b00dce1633ff6f283378e232c922d038c0d6e7f647ac72c4b",
+    "sse_plot_data.csv": "0a4d8311ba78ab4f4919b09a891448ae77c733e39350f6f5f78da392f3d982cd",
+    "summary_mean_std.csv": "74e6ccc96a38bd02f800d1d911f51430e5450a1741f274ae6d102a7d678f2349",
+    "tail_stats.csv": "e2bfb77a1704a011a28636c9c2cc31750023578d6910a168748287dbeab047e4",
+    "round_summary.json": "ea7ad5ae7d8aeaee32c80aa84f38a61f3a463e473752e32add0e07d5bbea34f4",
+    "per_pub_validation.csv": "6a91ea922c1698fceae7924bb5f398f27d62d397d3f8c65ebd07a5c0ba1891a9",
+    "errors.csv": "e1ea2df836fcb8f68923038e4e57225fbe2a933a41a80fb087845644a83cd997",
+    "runtime.csv": "7e404fe4549c2010fe6c3101c8aec60323d15980a37c46d59807f3065ff37e53"
+  },
+  "figures": {
+    "nyquist.png": {
+      "sha256": "dd08649c7b9cb7e7d80f209bd91b0034923b46b505fc2e7cf338c87cb2af21e3",
+      "valid": true,
+      "width": 3060,
+      "height": 3060,
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    "bode_magnitude.png": {
+      "sha256": "ed00a7e3ac083f9b90eca343c44dddf074e6cb0bd0b8532d47573d59dff0786f",
+      "valid": true,
+      "width": 2100,
+      "height": 2100,
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    "bode_phase.png": {
+      "sha256": "27f6622edc13cb4a1fb28b9338a80e69970682cfe8b0208c39dd7562ad28df62",
+      "valid": true,
+      "width": 2100,
+      "height": 2100,
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    "residual_real.png": {
+      "sha256": "776c13d88329b5f5c04f3c7cf62d43bcb38302723cf02719368215be85a0fcaf",
+      "valid": true,
+      "width": 2100,
+      "height": 2100,
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    "residual_imag.png": {
+      "sha256": "f4c10d70355d54261e244393ac15cd72acd5f5fce14c288f0663c28278fc8dcf",
+      "valid": true,
+      "width": 2100,
+      "height": 2100,
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    "residual_real_normalized.png": {
+      "sha256": "174140eebad5cf38026f73faffa40633130cc4932c0e69aa686e6574643ec151",
+      "valid": true,
+      "width": 2100,
+      "height": 2100,
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    "residual_imag_normalized.png": {
+      "sha256": "aca42755692e430f4bba065d56507e7555c99789eaf14d73f13a6ae8e5f20de6",
+      "valid": true,
+      "width": 2100,
+      "height": 2100,
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    "distribution_pilot.png": {
+      "sha256": "179b006ace92c24b2f77fac35f24daad824f8794962325d76a55fa6600cd256f",
+      "valid": true,
+      "width": 9000,
+      "height": 4500,
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    "05_mitigation_median_CI_convergence.png": {
+      "sha256": "116e2edbd984644b658f358a4076edd7270cd8bb935405c7a392d8809bd7c5a1",
+      "valid": true,
+      "width": 11327,
+      "height": 5385,
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    "06_mitigation_three_tier_positioning.png": {
+      "sha256": "84c274f960632792b8e300943ea989f52ddea027d805a8aa0609b341d4f40f65",
+      "valid": true,
+      "width": 8934,
+      "height": 3831,
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    }
+  },
+  "generated_figures": [
+    "05_mitigation_median_CI_convergence.png",
+    "06_mitigation_three_tier_positioning.png",
+    "bode_magnitude.png",
+    "bode_phase.png",
+    "distribution_pilot.png",
+    "nyquist.png",
+    "residual_imag.png",
+    "residual_imag_normalized.png",
+    "residual_real.png",
+    "residual_real_normalized.png"
+  ],
+  "omitted_optional_figures": [
+    {
+      "name": "04_mitigation_accuracy_cost.png",
+      "reason": "verified comparable provider job-level QPU usage is incomplete"
+    }
+  ],
+  "qpu_usage_coverage": {
+    "scope": "job-level provider charges summed once per selected job; no Batch allocation or per-PUB division",
+    "jobs": [
+      {
+        "job_id": "dblt60d8ft8s738tnht0",
+        "treatment_id": "M0_Baseline",
+        "account_label": "labF",
+        "backend": "ibm_fez",
+        "batch_id": "f086fbc9-1bc4-4bc3-9e68-ee8ca3c707d8",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dblt60hkbkrc73coc6kg",
+        "treatment_id": "M1_DD",
+        "account_label": "labF",
+        "backend": "ibm_fez",
+        "batch_id": "f086fbc9-1bc4-4bc3-9e68-ee8ca3c707d8",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dblt611kbkrc73coc6m0",
+        "treatment_id": "M2_TREX",
+        "account_label": "labF",
+        "backend": "ibm_fez",
+        "batch_id": "f086fbc9-1bc4-4bc3-9e68-ee8ca3c707d8",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dblt619kbkrc73coc6mg",
+        "treatment_id": "M3_ZNE",
+        "account_label": "labF",
+        "backend": "ibm_fez",
+        "batch_id": "f086fbc9-1bc4-4bc3-9e68-ee8ca3c707d8",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dblt61u74qds73dr4mlg",
+        "treatment_id": "M4_DD_TREX",
+        "account_label": "labF",
+        "backend": "ibm_fez",
+        "batch_id": "f086fbc9-1bc4-4bc3-9e68-ee8ca3c707d8",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dblt62674qds73dr4mm0",
+        "treatment_id": "M5_DD_ZNE",
+        "account_label": "labF",
+        "backend": "ibm_fez",
+        "batch_id": "f086fbc9-1bc4-4bc3-9e68-ee8ca3c707d8",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dblt62d8mdtc73d6qbtg",
+        "treatment_id": "M6_TREX_ZNE",
+        "account_label": "labF",
+        "backend": "ibm_fez",
+        "batch_id": "f086fbc9-1bc4-4bc3-9e68-ee8ca3c707d8",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dblt62t8ft8s738tni20",
+        "treatment_id": "M7_ALL",
+        "account_label": "labF",
+        "backend": "ibm_fez",
+        "batch_id": "f086fbc9-1bc4-4bc3-9e68-ee8ca3c707d8",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm43k58mdtc73d78300",
+        "treatment_id": "M0_Baseline",
+        "account_label": "labE",
+        "backend": "ibm_fez",
+        "batch_id": "f24cb9bd-6080-4019-a826-9ed7a94bc60b",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm43km74qds73drifvg",
+        "treatment_id": "M1_DD",
+        "account_label": "labE",
+        "backend": "ibm_fez",
+        "batch_id": "f24cb9bd-6080-4019-a826-9ed7a94bc60b",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm43kt8mdtc73d78320",
+        "treatment_id": "M2_TREX",
+        "account_label": "labE",
+        "backend": "ibm_fez",
+        "batch_id": "f24cb9bd-6080-4019-a826-9ed7a94bc60b",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm43le74qds73drig20",
+        "treatment_id": "M3_ZNE",
+        "account_label": "labE",
+        "backend": "ibm_fez",
+        "batch_id": "f24cb9bd-6080-4019-a826-9ed7a94bc60b",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm43ll8ft8s738u51l0",
+        "treatment_id": "M4_DD_TREX",
+        "account_label": "labE",
+        "backend": "ibm_fez",
+        "batch_id": "f24cb9bd-6080-4019-a826-9ed7a94bc60b",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm43m58ft8s738u51n0",
+        "treatment_id": "M5_DD_ZNE",
+        "account_label": "labE",
+        "backend": "ibm_fez",
+        "batch_id": "f24cb9bd-6080-4019-a826-9ed7a94bc60b",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm43mm74qds73drig6g",
+        "treatment_id": "M6_TREX_ZNE",
+        "account_label": "labE",
+        "backend": "ibm_fez",
+        "batch_id": "f24cb9bd-6080-4019-a826-9ed7a94bc60b",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm43mpkbkrc73copo8g",
+        "treatment_id": "M7_ALL",
+        "account_label": "labE",
+        "backend": "ibm_fez",
+        "batch_id": "f24cb9bd-6080-4019-a826-9ed7a94bc60b",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm48qpkbkrc73coq41g",
+        "treatment_id": "M0_Baseline",
+        "account_label": "labH",
+        "backend": "ibm_fez",
+        "batch_id": "012e2c3d-1520-4838-beae-3a294114e0bf",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm48rd8mdtc73d78feg",
+        "treatment_id": "M1_DD",
+        "account_label": "labH",
+        "backend": "ibm_fez",
+        "batch_id": "012e2c3d-1520-4838-beae-3a294114e0bf",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm48rhkbkrc73coq450",
+        "treatment_id": "M2_TREX",
+        "account_label": "labH",
+        "backend": "ibm_fez",
+        "batch_id": "012e2c3d-1520-4838-beae-3a294114e0bf",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm48s674qds73dris4g",
+        "treatment_id": "M3_ZNE",
+        "account_label": "labH",
+        "backend": "ibm_fez",
+        "batch_id": "012e2c3d-1520-4838-beae-3a294114e0bf",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm48se74qds73dris5g",
+        "treatment_id": "M4_DD_TREX",
+        "account_label": "labH",
+        "backend": "ibm_fez",
+        "batch_id": "012e2c3d-1520-4838-beae-3a294114e0bf",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm48su74qds73dris70",
+        "treatment_id": "M5_DD_ZNE",
+        "account_label": "labH",
+        "backend": "ibm_fez",
+        "batch_id": "012e2c3d-1520-4838-beae-3a294114e0bf",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm48t674qds73dris80",
+        "treatment_id": "M6_TREX_ZNE",
+        "account_label": "labH",
+        "backend": "ibm_fez",
+        "batch_id": "012e2c3d-1520-4838-beae-3a294114e0bf",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm48tl8mdtc73d78fkg",
+        "treatment_id": "M7_ALL",
+        "account_label": "labH",
+        "backend": "ibm_fez",
+        "batch_id": "012e2c3d-1520-4838-beae-3a294114e0bf",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": null,
+        "observed_utc": null,
+        "verification_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+      },
+      {
+        "job_id": "dbm4bgu74qds73drj2b0",
+        "treatment_id": "M3_ZNE",
+        "account_label": "labF",
+        "backend": "ibm_fez",
+        "batch_id": "5938b14e-43c2-4777-962f-d9d6f069e514",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": true,
+        "qpu_usage_seconds": 5.0,
+        "archive_sha256": "c1395ce5434f98da0b65b29a5646b5cb97efa3e4b7fa45701301922ab80509ba",
+        "observed_utc": "2026-11-05T09:01:10.866785Z",
+        "archive_path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\03_IBM_execution_records\\ai_assistant\\replacements\\vqe-independent-n-01-n15-target-n15-chunk-5\\5\\raw_result.json",
+        "provider_usage_status": "complete",
+        "provider_usage_unit": "resource_units",
+        "provider_resource_value": 0.081501
+      },
+      {
+        "job_id": "dbm4but8mdtc73d78mog",
+        "treatment_id": "M5_DD_ZNE",
+        "account_label": "labF",
+        "backend": "ibm_fez",
+        "batch_id": "b3b13310-dbdf-4286-9bcd-c08171c1753f",
+        "usage_scope": "JOB_LEVEL",
+        "usage_source": "IMMUTABLE_JOB_RESULT_ARCHIVE_PROVIDER_METRICS",
+        "verified": false,
+        "qpu_usage_seconds": null,
+        "archive_sha256": "5cdc6740a3d4c8494f231c29238b3fef6301436584db372ac9e1b957c8d3431f",
+        "observed_utc": null,
+        "verification_error": "provider usage metric is not marked complete in the immutable archive"
+      }
+    ],
+    "by_treatment": {
+      "M0_Baseline": {
+        "selected_job_count": 3,
+        "verified_job_count": 0,
+        "total_job_level_qpu_seconds": null,
+        "job_ids": [
+          "dblt60d8ft8s738tnht0",
+          "dbm43k58mdtc73d78300",
+          "dbm48qpkbkrc73coq41g"
+        ],
+        "complete": false
+      },
+      "M1_DD": {
+        "selected_job_count": 3,
+        "verified_job_count": 0,
+        "total_job_level_qpu_seconds": null,
+        "job_ids": [
+          "dblt60hkbkrc73coc6kg",
+          "dbm43km74qds73drifvg",
+          "dbm48rd8mdtc73d78feg"
+        ],
+        "complete": false
+      },
+      "M2_TREX": {
+        "selected_job_count": 3,
+        "verified_job_count": 0,
+        "total_job_level_qpu_seconds": null,
+        "job_ids": [
+          "dblt611kbkrc73coc6m0",
+          "dbm43kt8mdtc73d78320",
+          "dbm48rhkbkrc73coq450"
+        ],
+        "complete": false
+      },
+      "M3_ZNE": {
+        "selected_job_count": 4,
+        "verified_job_count": 1,
+        "total_job_level_qpu_seconds": null,
+        "job_ids": [
+          "dblt619kbkrc73coc6mg",
+          "dbm43le74qds73drig20",
+          "dbm48s674qds73dris4g",
+          "dbm4bgu74qds73drj2b0"
+        ],
+        "complete": false
+      },
+      "M4_DD_TREX": {
+        "selected_job_count": 3,
+        "verified_job_count": 0,
+        "total_job_level_qpu_seconds": null,
+        "job_ids": [
+          "dblt61u74qds73dr4mlg",
+          "dbm43ll8ft8s738u51l0",
+          "dbm48se74qds73dris5g"
+        ],
+        "complete": false
+      },
+      "M5_DD_ZNE": {
+        "selected_job_count": 4,
+        "verified_job_count": 0,
+        "total_job_level_qpu_seconds": null,
+        "job_ids": [
+          "dblt62674qds73dr4mm0",
+          "dbm43m58ft8s738u51n0",
+          "dbm48su74qds73dris70",
+          "dbm4but8mdtc73d78mog"
+        ],
+        "complete": false
+      },
+      "M6_TREX_ZNE": {
+        "selected_job_count": 3,
+        "verified_job_count": 0,
+        "total_job_level_qpu_seconds": null,
+        "job_ids": [
+          "dblt62d8mdtc73d6qbtg",
+          "dbm43mm74qds73drig6g",
+          "dbm48t674qds73dris80"
+        ],
+        "complete": false
+      },
+      "M7_ALL": {
+        "selected_job_count": 3,
+        "verified_job_count": 0,
+        "total_job_level_qpu_seconds": null,
+        "job_ids": [
+          "dblt62t8ft8s738tni20",
+          "dbm43mpkbkrc73copo8g",
+          "dbm48tl8mdtc73d78fkg"
+        ],
+        "complete": false
+      }
+    },
+    "complete_comparable": false,
+    "batch_level_usage_available": false,
+    "estimated_per_pub_usage_used": false,
+    "sha256": "b258b53c2e8d35b8a427b72bf1d3e6cf11b45c709902317dbe74a732e1ee989a"
+  }
+}

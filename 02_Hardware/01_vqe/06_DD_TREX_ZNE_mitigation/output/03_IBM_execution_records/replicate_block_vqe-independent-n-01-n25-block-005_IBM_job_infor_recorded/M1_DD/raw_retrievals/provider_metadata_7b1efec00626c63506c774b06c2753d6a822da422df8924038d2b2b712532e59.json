@@ -1,0 +1,109 @@
+{
+  "job_id": "dbndbpoou4as73b4boag",
+  "job_status": "DONE",
+  "metadata_errors": [],
+  "metrics": {
+    "caller": "qiskit_ibm_runtime~estimator.py",
+    "circuits_execution_time_ns": 5301193984,
+    "qiskit_version": "qiskit_ibm_runtime-0.51.0,qiskit-2.6.1*,qiskit_aer-0.18.2",
+    "timestamps": {
+      "created": "2026-11-07T07:40:23.960207Z",
+      "finished": "2026-11-07T07:40:43.337423Z",
+      "running": "2026-11-07T07:40:25.457902Z"
+    },
+    "usage": {
+      "details": [
+        {
+          "metric": {
+            "id": "caffe3ca-729c-5750-8777-df63bbf8bfd9",
+            "value": 8
+          },
+          "unit": "resource_units",
+          "value": 0.116856
+        }
+      ],
+      "qpu_charge_time_seconds": 8,
+      "status": "complete",
+      "unit": "resource_units",
+      "value": 0.116856
+    }
+  },
+  "pubs": [
+    {
+      "data_fields": {
+        "ensemble_standard_error": "[0.0150968  0.01346941 0.01546647 0.01530713 0.01548142 0.01549064\n 0.01480433]",
+        "evs": "[-0.2578125  -0.50683594  0.14208984  0.20068359 -0.13525391 -0.13085938\n -0.31982422]",
+        "stds": "[0.0150968  0.01346941 0.01546647 0.01530713 0.01548142 0.01549064\n 0.01480433]"
+      },
+      "metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 1,
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "pub": 1
+    },
+    {
+      "data_fields": {
+        "ensemble_standard_error": "[0.01493237 0.01358843 0.01550532 0.0154004  0.01546865 0.01548556\n 0.0147546 ]",
+        "evs": "[-0.29443359 -0.49365234  0.12353516  0.16894531 -0.14111328 -0.13330078\n -0.32910156]",
+        "stds": "[0.01493237 0.01358843 0.01550532 0.0154004  0.01546865 0.01548556\n 0.0147546 ]"
+      },
+      "metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 1,
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "pub": 2
+    },
+    {
+      "data_fields": {
+        "ensemble_standard_error": "[0.01501863 0.01350955 0.01551553 0.01543788 0.01551095 0.01546205\n 0.01458994]",
+        "evs": "[-0.27587891 -0.50244141  0.11816406  0.15429688 -0.12060547 -0.14404297\n -0.35791016]",
+        "stds": "[0.01501863 0.01350955 0.01551553 0.01543788 0.01551095 0.01546205\n 0.01458994]"
+      },
+      "metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 1,
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "pub": 3
+    },
+    {
+      "data_fields": {
+        "ensemble_standard_error": "[0.01497172 0.01351398 0.01552872 0.01526013 0.01551279 0.01546973\n 0.01468119]",
+        "evs": "[-0.28613281 -0.50195312  0.11083984  0.21484375 -0.11962891 -0.140625\n -0.34228516]",
+        "stds": "[0.01497172 0.01351398 0.01552872 0.01526013 0.01551279 0.01546973\n 0.01468119]"
+      },
+      "metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 1,
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "pub": 4
+    },
+    {
+      "data_fields": {
+        "ensemble_standard_error": "[0.01500984 0.01342881 0.01547404 0.01537068 0.01544729 0.01543669\n 0.01463329]",
+        "evs": "[-0.27783203 -0.51123047  0.13867188  0.1796875  -0.15039062 -0.15478516\n -0.35058594]",
+        "stds": "[0.01500984 0.01342881 0.01547404 0.01537068 0.01544729 0.01543669\n 0.01463329]"
+      },
+      "metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 1,
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "pub": 5
+    }
+  ],
+  "raw_result_sha256": "6b6dbac6464e18a87efa8bb5509c8e5265cc80a48174b22ea91b42c2ee75c185",
+  "schema_version": 1,
+  "timestamps": {
+    "creation_date": "2026-11-07 15:40:23.960207+08:00",
+    "done": "True"
+  }
+}

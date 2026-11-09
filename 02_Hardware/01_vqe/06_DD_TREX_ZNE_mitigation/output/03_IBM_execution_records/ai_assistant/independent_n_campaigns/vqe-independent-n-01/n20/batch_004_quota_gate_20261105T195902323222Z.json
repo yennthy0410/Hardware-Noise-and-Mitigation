@@ -1,0 +1,53 @@
+{
+  "account_label": "labF",
+  "authorization_account_remaining_seconds": 295.0,
+  "batch_created": false,
+  "block_id": "vqe-independent-n-01-n20-block-004",
+  "campaign_remaining_seconds": 505.0,
+  "effective_remaining_seconds": 295.0,
+  "eligible": true,
+  "experiment_id": "vqe-independent-n-01-n20",
+  "gate": {
+    "account_label": "labF",
+    "backend": "ibm_fez",
+    "batch_created": false,
+    "checks": {
+      "authorized_account": true,
+      "backend": true,
+      "batch_compatibility": true,
+      "configured_instance": true,
+      "defensible_runtime_bound": true,
+      "fresh_preflight": true,
+      "frozen_hashes": true,
+      "frozen_source": true,
+      "isa_compatibility": true,
+      "pending_jobs_reconciled": true,
+      "preflight_backend": true,
+      "provider_usage": true,
+      "quota_headroom": true,
+      "quota_scope": true,
+      "runtime_estimate_matches_chunk": true
+    },
+    "chunk_n": 5,
+    "eligible": true,
+    "quota": {
+      "eligible": true,
+      "minimum_remaining_seconds": 175.0,
+      "policy": "operator_quota_floor_v1",
+      "reasons": [],
+      "remaining_seconds": 295.0,
+      "required_seconds_including_margin": 175.0,
+      "safety_margin_seconds": 0.0
+    },
+    "reasons": [],
+    "runtime_bound_seconds": 175.0,
+    "submission": false,
+    "target_id": "vqe-independent-n-01-n20-target-n20-chunk-5",
+    "target_n": 20
+  },
+  "n": 20,
+  "preflight_checked_utc": "2026-11-05T19:59:02.323222Z",
+  "provider_remaining_seconds": 295.0,
+  "runtime_upper_bound_seconds": 175.0,
+  "safety_margin_seconds": 10.0
+}

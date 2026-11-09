@@ -1,0 +1,1450 @@
+"""MXene EIS14: reproducible, submission-explicit 2^3 mitigation pilot (7 qubits).
+Commands: prepare / preflight / submit / collect / analyze.
+Requires read-only canonical Study A modules and an explicitly verified original frozen bundle.
+"""
+from __future__ import annotations
+import argparse, csv, hashlib, json, os, shutil, sys, traceback, uuid
+import gc
+from collections import Counter
+from dataclasses import asdict
+from datetime import datetime, timezone
+from pathlib import Path
+from repository_paths import repository_root, MITIGATION_REL, register_science, frozen_source, round_name, contained
+# Limit BLAS threads BEFORE importing NumPy, SciPy, Qiskit or other numerical modules.
+# This avoids excessive OpenBLAS thread initialization on memory-constrained Windows PCs.
+# Single-threaded BLAS does not alter the frozen circuit/theta/observable inputs.
+for _blas_var in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
+    os.environ[_blas_var] = "1"
+import numpy as np
+
+TREATMENTS = [
+ ('M0_Baseline',0,0,0),('M1_DD',1,0,0),('M2_TREX',0,1,0),
+ ('M3_ZNE',0,0,1),('M4_DD_TREX',1,1,0),('M5_DD_ZNE',1,0,1),
+ ('M6_TREX_ZNE',0,1,1),('M7_ALL',1,1,1),
+]
+NAMES=['Rs','L','Rct','Q1','n1','Q2','n2']
+# Human-readable display labels; internal treatment IDs remain unchanged.
+TREATMENT_DISPLAY = {
+ 'M0_Baseline':'None', 'M1_DD':'DD', 'M2_TREX':'TREX',
+ 'M3_ZNE':'ZNE', 'M4_DD_TREX':'DD+TREX',
+ 'M5_DD_ZNE':'DD+ZNE', 'M6_TREX_ZNE':'TREX+ZNE',
+ 'M7_ALL':'DD+TREX+ZNE',
+}
+def treatment_display(name):
+ return TREATMENT_DISPLAY.get(name, name)
+
+
+def _classical_sse_reference(root):
+ """Read and cross-check the frozen Study A Classical SSE reference."""
+ import pandas as pd
+ root=Path(root)
+ metrics=root/'01_quantum_eis_fit'/'01_vqe'/'output'/'EIS14_VQE_metrics.csv'
+ spectrum=root/'01_quantum_eis_fit'/'01_vqe'/'output'/'classical_fitted_spectrum.csv'
+ if not metrics.is_file() or not spectrum.is_file():
+  raise FileNotFoundError('Verified Study A Classical SSE metrics/spectrum are required')
+ metric=pd.read_csv(metrics)
+ rows=metric.loc[(metric['dataset']=='EIS14')&(metric['method']=='Classical')]
+ if len(rows)!=1:raise ValueError('Study A must contain one EIS14 Classical metrics row')
+ reported=float(rows.iloc[0]['SSE_ohm2'])
+ frame=pd.read_csv(spectrum)
+ needed={'residual_real_fit_minus_data_ohm','residual_imag_fit_minus_data_ohm'}
+ if not needed.issubset(frame.columns) or len(frame)!=132:
+  raise ValueError('Study A Classical fitted spectrum schema or 132-point coverage is invalid')
+ residual=frame[list(needed)].to_numpy(dtype=float)
+ if not np.isfinite(residual).all():raise ValueError('Study A Classical residuals contain nonfinite values')
+ computed=float(np.sum(residual[:,0]**2+residual[:,1]**2))
+ if not np.isclose(computed,reported,rtol=1e-10,atol=1e-9):
+  raise ValueError('Study A Classical SSE does not match its archived residual spectrum')
+ return reported
+
+
+def sse_plot_statistics(frame):
+ """Treatment-ordered statistics for validated, actual per-PUB SSE rows."""
+ ordered=[item[0] for item in TREATMENTS]
+ if not {'treatment','SSE'}.issubset(frame.columns):
+  raise ValueError('Per-PUB plot data requires treatment and SSE columns')
+ result=[]
+ for name in ordered:
+  values=frame.loc[frame.treatment==name,'SSE'].to_numpy(dtype=float)
+  if not len(values):raise ValueError(f'No validated PUB SSE values for {name}')
+  if not np.isfinite(values).all() or np.any(values<=0):
+   raise ValueError(f'Invalid/nonpositive SSE present for {name}; refusing to silently drop PUB data')
+  result.append({'treatment':name,'count':int(len(values)),
+      'median_SSE':float(np.median(values)),
+      'q25_SSE':float(np.percentile(values,25)),
+      'q75_SSE':float(np.percentile(values,75)),
+      'min_SSE':float(np.min(values)),'max_SSE':float(np.max(values))})
+ return result
+
+
+def plot_sse_treatment_figures(frame, output_dir, classical_sse, round_label=''):
+ """Render the canonical wide M0-M7 per-PUB SSE distribution.
+
+ ``frame`` must contain validated per-PUB SSE values only. Invalid PUBs remain
+ represented in the associated validation/error exports; this function never
+ drops invalid values or fabricates replacement observations.
+ """
+ import matplotlib
+ matplotlib.use('Agg')
+ import matplotlib.pyplot as plt
+ output=Path(output_dir)
+ output.mkdir(parents=True,exist_ok=True)
+ for filename in ('distribution_pilot.png','sse_plot_summary.csv'):
+  if (output/filename).exists():raise FileExistsError('Refusing to overwrite existing SSE plot artifact: '+str(output/filename))
+ classical_sse=float(classical_sse)
+ if not np.isfinite(classical_sse) or classical_sse<=0:
+  raise ValueError('Classical SSE reference must be finite and positive')
+ stats=sse_plot_statistics(frame)
+ ordered=[item[0] for item in TREATMENTS]
+ colors=plt.get_cmap('tab10').colors
+ positions=np.arange(1,len(ordered)+1)
+ groups=[frame.loc[frame.treatment==name,'SSE'].to_numpy(dtype=float) for name in ordered]
+ summary=[]
+ for name,values,item in zip(ordered,groups,stats):
+  summary.append(item|{'classical_SSE':classical_sse,
+      'median_over_classical_SSE':item['median_SSE']/classical_sse,
+      'q25_over_classical_SSE':item['q25_SSE']/classical_sse,
+      'q75_over_classical_SSE':item['q75_SSE']/classical_sse})
+ # Distribution: actual values appear both in Tukey box/whiskers and as points.
+ fig,ax=plt.subplots(figsize=(12,6.2))
+ boxes=ax.boxplot(groups,tick_labels=[treatment_display(x) for x in ordered],
+     showfliers=False,patch_artist=True,boxprops={'edgecolor':'black','linewidth':1.25},
+     whiskerprops={'color':'black','linewidth':1.15},capprops={'color':'black','linewidth':1.15},
+     medianprops={'color':'#d55e00','linewidth':1.8})
+ for index,box in enumerate(boxes['boxes']):
+  box.set_facecolor(colors[index%len(colors)]);box.set_alpha(.48)
+ for index,values in enumerate(groups):
+  offsets=np.linspace(-.11,.11,len(values)) if len(values)>1 else np.zeros(1)
+  ax.scatter(np.full(len(values),positions[index])+offsets,values,s=42,
+      color=colors[index%len(colors)],edgecolor='white',linewidth=.45,alpha=.9,zorder=5)
+ ax.axhline(classical_sse,color='black',linestyle='--',linewidth=1.5,
+     label=f'Classical SSE = {classical_sse:.4g} $\\Omega^2$')
+ ax.set_yscale('log');ax.set_ylabel(r'Per-PUB complex SSE ($\Omega^2$, log scale)')
+ ax.set_title('MXene EIS14: validated per-PUB SSE distributions'+(f' — {round_label}' if round_label else ''))
+ ax.tick_params(axis='x',rotation=30);ax.grid(axis='y',which='both',alpha=.2);ax.legend(loc='best')
+ fig.tight_layout();fig.savefig(output/'distribution_pilot.png',dpi=600);plt.close(fig)
+ csvout(output/'sse_plot_summary.csv',summary)
+ return ['distribution_pilot.png','sse_plot_summary.csv']
+
+RESULT_FOLDERS=['01_results_and_figures','02_run_level_data','03_IBM_execution_records','04_runtime_logs']
+
+def stamp():return datetime.now(timezone.utc).isoformat()
+def _release_figure(plt,fig):
+ plt.close(fig)
+ fig.clear()
+ gc.collect()
+def js(obj,p):
+ p=Path(p)
+ text=json.dumps(obj,ensure_ascii=False,indent=2,default=str)
+ if p.exists():
+  if p.read_text(encoding='utf-8')==text:return
+  raise FileExistsError('Refusing to overwrite existing JSON: '+str(p))
+ p.parent.mkdir(parents=True,exist_ok=True)
+ with p.open('x',encoding='utf-8') as handle:handle.write(text)
+def load(p):return json.loads(Path(p).read_text(encoding='utf-8'))
+def atomic_json(obj,path):
+ path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
+ temp=path.with_name(path.name+'.tmp.'+uuid.uuid4().hex)
+ try:
+  temp.write_text(json.dumps(obj,ensure_ascii=False,indent=2,default=str),encoding='utf-8')
+  os.replace(temp,path)
+ finally:
+  if temp.exists():temp.unlink()
+def exclusive_json(obj,path):
+ """No-overwrite claim; concurrent submit commands cannot claim the same treatment."""
+ path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
+ flags=os.O_WRONLY|os.O_CREAT|os.O_EXCL
+ fd=os.open(str(path),flags,0o600)
+ with os.fdopen(fd,'w',encoding='utf-8') as f:
+  json.dump(obj,f,ensure_ascii=False,indent=2,default=str)
+  f.flush();os.fsync(f.fileno())
+def account_key(args):
+ # Never store API keys. A user-provided label identifies the IBM login context.
+ return args.account_label or 'default-account'
+def identity_matches(info,args):
+ return info.get('account_label','default-account')==account_key(args) and info.get('instance')==args.instance
+
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def flat(a):return np.asarray(a,dtype=float).ravel().tolist()
+def project_root(path):
+ return repository_root(path)
+
+def paths(args):
+ root=project_root(args.project)
+ base=root/MITIGATION_REL
+ round_name(args.round)
+ source=frozen_source(root,args.source)
+ out=contained(base/'output','02_run_level_data',args.round)
+ return root,base,source,out
+
+def ibm_round_dir(base, round_name):
+ return contained(base/'output','03_IBM_execution_records',f'{round_name}_IBM_job_infor_recorded')
+
+def migrate_legacy_job_files(base, round_name):
+ """Safely relocate earlier per-treatment IBM files out of analysis-only folder.
+
+ Never overwrite an existing record; move the whole legacy treatment directory
+ only when the corresponding destination does not already exist.
+ """
+ raise RuntimeError('Historical record migration is disabled; preserve original records')
+ run=base/'output'/'02_run_level_data'/round_name
+ dst=ibm_round_dir(base,round_name)
+ if not run.is_dir():return
+ for treatment,*_ in TREATMENTS:
+  legacy=run/treatment
+  if not legacy.exists():continue
+  target=dst/treatment
+  if target.exists():
+   raise RuntimeError(f'Legacy IBM records still in {legacy}; destination already exists at {target}. Reconcile manually to avoid overwrite.')
+  dst.mkdir(parents=True,exist_ok=True)
+  shutil.move(str(legacy),str(target))
+  print('MIGRATED saved IBM treatment records:',legacy,'->',target)
+ for name in ('round_plan.json','preflight_report.json','collection_status.csv'):
+  old=run/name; new=dst/name
+  if old.exists():
+   if new.exists():raise RuntimeError(f'Both old and new copies exist: {old}, {new}. Reconcile manually.')
+   dst.mkdir(parents=True,exist_ok=True);shutil.move(str(old),str(new))
+
+def verify_source(source, root=None):
+ source=frozen_source(root,source)
+ from qiskit import qpy
+ from qiskit.quantum_info import SparsePauliOp,Statevector
+ from qiskit import __version__ as qver
+ qcpath=source/'circuit.qpy'; theta_path=source/'theta.csv'; obspath=source/'observables.json'
+ for p in [qcpath,theta_path,obspath]:
+  if not p.exists():raise FileNotFoundError(f'Missing {p}')
+ with qcpath.open('rb') as f:qc=qpy.load(f)[0]
+ if qc.num_qubits<7:raise RuntimeError(f'ISA circuit only {qc.num_qubits} wires')
+ import pandas as pd
+ try:
+  theta=np.loadtxt(theta_path,delimiter=',',ndmin=1).ravel()
+ except ValueError:
+  frame=pd.read_csv(theta_path)
+  key=next((c for c in ('theta_rad','optimal_angle_rad','angle_rad','value') if c in frame),None)
+  if key is None:raise ValueError(f'Cannot find theta column in {theta_path}')
+  theta=frame[key].to_numpy(dtype=float)
+ if len(theta)!=21 or not np.isfinite(theta).all():raise RuntimeError('theta.csv must contain 21 finite values')
+ if len(qc.parameters):
+  raise RuntimeError('Saved ISA still parameterized. Prepare with bound Fixed ISA circuit.qpy from Study A or explicitly rebuild with known parameter order.')
+ arr=load(obspath)
+ if isinstance(arr,dict):arr=arr.get('observables',arr.get('paulis',[]))
+ obs=[]
+ for value in arr:
+  # Qiskit SparsePauliOp.to_list() serializes as [[pauli, complex coeff], ...]
+  if isinstance(value,dict):value=value.get('isa_sparse_pauli',value.get('paulis',value))
+  if isinstance(value,str):obs.append(SparsePauliOp(value));continue
+  try:obs.append(SparsePauliOp.from_list([(p,complex(c)) for p,c in value]))
+  except Exception as exc:raise ValueError(f'Cannot parse observables.json entry {value}: {exc}')
+ if len(obs)!=7:raise RuntimeError(f'Expected seven observables, got {len(obs)}')
+ for o in obs:
+  if o.num_qubits!=qc.num_qubits:raise RuntimeError('Observable/ISA circuit wire count mismatch')
+ # physical indices used for single-Z observable
+ physical=[]
+ for o in obs:
+  lab=o.paulis[0].to_label(); physical.append(qc.num_qubits-1-lab.index('Z') if lab.count('Z')==1 else None)
+ if any(q is None for q in physical) or len(set(physical))!=7:
+  raise RuntimeError(f'Observables not seven distinct physical single-Z measurements: {physical}')
+ # A backend-wide ISA (e.g. 156 physical wires) must NEVER be simulated by Statevector.
+ # Recompute ideal on the original seven-logical-qubit HEA at the locked angles.
+ register_science(root)
+ from hea_ansatz import build_hea_7qubit_3layer,assign_angles
+ logical,parameters=build_hea_7qubit_3layer(measure=False)
+ bound=assign_angles(logical,parameters,theta)
+ from qiskit.quantum_info import Statevector
+ state=Statevector.from_instruction(bound)
+ logical_obs=[SparsePauliOp('I'*(6-i)+'Z'+'I'*i) for i in range(7)]
+ ev=np.array([float(state.expectation_value(o).real) for o in logical_obs])
+ return qc,obs,theta,physical,ev,qver
+
+def configuration(name,shots):
+ from qiskit_ibm_runtime.options import EstimatorOptions
+ item=next(x for x in TREATMENTS if x[0]==name); _,dd,trex,zne=item
+ o=EstimatorOptions();o.resilience_level=0;o.default_shots=shots
+ o.dynamical_decoupling.enable=bool(dd)
+ o.dynamical_decoupling.sequence_type='XpXm'
+ o.dynamical_decoupling.scheduling_method='alap'
+ o.resilience.measure_mitigation=bool(trex)
+ o.resilience.zne_mitigation=bool(zne)
+ o.resilience.pec_mitigation=False
+ o.twirling.enable_gates=False
+ # Do NOT force measurement twirling off when TREX requires it.
+ if zne:
+  o.resilience.zne.noise_factors=(1,3,5)
+  o.resilience.zne.extrapolator='exponential'
+  o.resilience.zne.amplifier='gate_folding'
+ return o
+
+
+def save_treatment_options(base, round_name, name, shots, lock):
+ """Save per-treatment Runtime options; use the single shared locked_inputs bundle."""
+ dest=ibm_round_dir(base,round_name)/name
+ dest.mkdir(parents=True,exist_ok=True)
+ opts=configuration(name,shots)
+ js(opts.model_dump(mode='json') if hasattr(opts,'model_dump') else {'repr':str(opts)},
+    dest/'mitigation_options_requested.json')
+ return dest
+
+def prepare(args, *, archive_evidence=True):
+ root,base,source,out=paths(args)
+ qc,obs,theta,physical,ideal,qver=verify_source(source, root)
+ records=ibm_round_dir(base,args.round)
+ if records.exists() and any(records.iterdir()):
+  raise FileExistsError('Refusing to re-prepare existing round records: '+str(records))
+ for f in RESULT_FOLDERS:(base/'output'/f).mkdir(parents=True,exist_ok=True)
+ bundle=base/'output'/'03_IBM_execution_records'/'locked_inputs'
+ bundle.mkdir(parents=True,exist_ok=True)
+ if (bundle/'lock.json').exists():
+  lock=load(bundle/'lock.json')
+  for name,p in [('circuit.qpy',source/'circuit.qpy'),('theta.csv',source/'theta.csv'),('observables.json',source/'observables.json')]:
+   if lock['hashes'][name]!=sha(p):raise RuntimeError(f'Locked {name} differs from saved source; use new experiment directory, do not overwrite.')
+ else:
+  for name in ('circuit.qpy','theta.csv','observables.json'):shutil.copy2(source/name,bundle/name)
+  lock={'created_utc':stamp(),'backend':'ibm_fez','dataset':'EIS14','source':str(source),
+        'hashes':{n:sha(bundle/n) for n in ['circuit.qpy','theta.csv','observables.json']},
+        'physical_observable_qubits':physical,'ideal_expectations':flat(ideal),
+        'base_ISA_depth':qc.depth(),'base_ISA_counts':dict(qc.count_ops()),
+        'qiskit_version_on_prepare':qver,'shots':args.shots}
+  js(lock,bundle/'lock.json')
+ # Archive calibration, timing and native-operation evidence without modifying the input run.
+ calib_dest=bundle/'studyA_hardware_evidence'
+ if archive_evidence and not calib_dest.exists():
+  calib_dest.mkdir(parents=True,exist_ok=True)
+  evidence_files=['selected_physical_qubits.csv','oneq_operations.csv','twoq_operations.csv',
+                  'transpiler_info.json','circuit_timing.json','circuit_coherence_summary.json',
+                  'run_config.json','job_retrieved_metadata.json']
+  for n in evidence_files:
+   if (source/n).is_file():shutil.copy2(source/n,calib_dest/n)
+  if (source/'calibrations').is_dir():shutil.copytree(source/'calibrations',calib_dest/'calibrations',dirs_exist_ok=True)
+ if archive_evidence:
+  js({'noise_scenarios':['measurement_error','gate_error','decoherence'],
+      'meaning':'Hardware evidence only; DD/TREX/ZNE are mitigation treatments, not exclusive physical noise switches.',
+      'evidence':sorted(str(x.relative_to(calib_dest)) for x in calib_dest.rglob('*') if x.is_file()),
+      'source_run':str(source)},calib_dest/'noise_provenance.json')
+ # Support the immutable run_02 lock schema without rewriting lock.json.
+ # The legacy bundle records shots_requested, rather than shots.
+ locked_shots=lock.get('shots',lock.get('shots_requested'))
+ if isinstance(locked_shots,bool) or not isinstance(locked_shots,int) or locked_shots<=0:
+  raise RuntimeError('Frozen lock has no valid shots/shots_requested integer')
+ if locked_shots!=args.shots:
+  raise RuntimeError(f'Shots differ from locked inputs: locked={locked_shots}, requested={args.shots}')
+ if 'shots' in lock and 'shots_requested' in lock and lock['shots']!=lock['shots_requested']:
+  raise RuntimeError('Frozen lock contains contradictory shot counts')
+ for name in ('circuit.qpy','theta.csv','observables.json'):
+  if not (bundle/name).is_file() or sha(bundle/name)!=lock['hashes'][name]:
+   raise RuntimeError(f'Locked bundle file differs from its immutable hash: {name}')
+ if 'ideal_expectations' in lock:
+  if not np.allclose(lock['ideal_expectations'],ideal,atol=1e-10):
+   raise RuntimeError('Ideal expectations differ from locked reference')
+ else:
+  # This older lock stores hashes of the frozen scientific inputs, but not
+  # a derived ideal expectation vector. Recompute it from verified inputs,
+  # in memory only; never alter the immutable on-disk lock.
+  lock=dict(lock)
+  lock['ideal_expectations']=flat(ideal)
+
+ for name,_,_,_ in TREATMENTS:
+  p=ibm_round_dir(base,args.round)/name;p.mkdir(parents=True,exist_ok=True)
+  save_treatment_options(base,args.round,name,args.shots,lock)
+  js({'treatment':name,'flags':dict(zip(['DD','TREX','ZNE'],next(x[1:] for x in TREATMENTS if x[0]==name))),
+      'shots_per_PUB_requested':args.shots,'repeats':args.repeats,'source_lock_hashes':lock['hashes']},p/'treatment_plan.json')
+ js({'round':args.round,'repeat_count':args.repeats,'treatment_order':[v[0] for v in TREATMENTS],
+      'created_utc':stamp(),'locked_inputs':str(bundle),'submission_default':'disabled'},ibm_round_dir(base,args.round)/'round_plan.json')
+ print(f'PREPARED: {base}\nSOURCE: {source}\nISA depth={qc.depth()} physical observables={physical}\n')
+ print('NO IBM jobs submitted.')
+ return root,base,out,lock
+
+def check_lock(base):
+ bundle=base/'output'/'03_IBM_execution_records'/'locked_inputs'; lock=load(bundle/'lock.json')
+ for n,h in lock['hashes'].items():
+  if sha(bundle/n)!=h:raise RuntimeError('Locked input modified: '+n)
+ return bundle,lock
+
+def service_obj(args):
+ """Select an explicitly saved IBM account or preserve the legacy default.
+
+ --account-label is a provenance label, NOT authentication. --ibm-account
+ is the local Qiskit saved-account name. Never persist credentials in results.
+ """
+ from qiskit_ibm_runtime import QiskitRuntimeService
+ if args.ibm_account:
+  kw={'name':args.ibm_account}
+ else:
+  kw={'channel':'ibm_quantum_platform'}
+ if args.instance:kw['instance']=args.instance
+ try:
+  return QiskitRuntimeService(**kw)
+ except Exception as exc:
+  raise RuntimeError('Cannot open IBM credentials for saved account %r. '
+   'Verify QiskitRuntimeService.saved_accounts() and access to the requested instance. '
+   'Original error: %s' % (args.ibm_account or '<default>',exc)) from exc
+
+def preflight(args):
+ root,base,source,out=paths(args)
+ if not (base/'output'/'03_IBM_execution_records/locked_inputs/lock.json').exists():raise FileNotFoundError('No validated locked bundle; preparation must be explicit')
+ bundle,lock=check_lock(base)
+ qc,obs,theta,physical,ev,_=verify_source(bundle, root)
+ from qiskit_ibm_runtime import __version__ as runtime_version
+ configs={}
+ for name,*_ in TREATMENTS:
+  opts=configuration(name,args.shots)
+  configs[name]=opts.model_dump(mode='json') if hasattr(opts,'model_dump') else str(opts)
+ report={'timestamp_utc':stamp(),'base_isa_sha256':lock['hashes']['circuit.qpy'],
+         'observables_sha256':lock['hashes']['observables.json'],
+         'theta_sha256':lock['hashes']['theta.csv'],'ideal_expectations':flat(ev),
+         'physical_observable_qubits':physical,'repeats':args.repeats,'shots':args.shots,
+         'estimated_PUB_count':len(TREATMENTS)*args.repeats,'runtime_version':runtime_version,
+         'options':configs,'IBMQPU_submission':False}
+ if args.online:
+  svc=service_obj(args);backend=svc.backend('ibm_fez')
+  report['backend_status']=str(backend.status())
+  # Ensure a real backend accepts native ISA instruction names/physical indices.
+  unsupported=[]
+  for instruction in qc.data:
+   op=instruction.operation.name
+   qubits=tuple(qc.find_bit(q).index for q in instruction.qubits)
+   if op not in ['barrier','delay'] and not backend.target.instruction_supported(operation_name=op,qargs=qubits):unsupported.append((op,qubits))
+  report['unsupported_instructions']=unsupported
+  if unsupported:raise RuntimeError(f'Unsupported ISA: {unsupported[:6]}')
+ js(report,ibm_round_dir(base,args.round)/'preflight_report.json')
+ print('PREFLIGHT PASS; submit not invoked. Physical qubits:',physical)
+ return report
+
+def submit(args):
+ if not args.submit:raise RuntimeError('Submission disabled: add --submit to authorize QPU jobs')
+ preflight(args)
+ root,base,source,out=paths(args);bundle,lock=check_lock(base)
+ qc,obs,theta,*_=verify_source(bundle, root)
+ from qiskit_ibm_runtime import EstimatorV2
+ plans=[x[0] for x in TREATMENTS if args.treatment is None or x[0]==args.treatment]
+ if not plans:raise RuntimeError(f'Unknown treatment: {args.treatment}')
+ if args.shuffle:plans=list(np.random.default_rng(args.shuffle_seed).permutation(plans))
+ record_root=ibm_round_dir(base,args.round)
+ existing=[n for n in plans if (record_root/n/'job_submitted.json').exists()]
+ ambiguous=[n for n in plans if (record_root/n/'submission_state.json').exists() and
+            load(record_root/n/'submission_state.json').get('status')=='SUBMITTING' and
+            not (record_root/n/'job_submitted.json').exists()]
+ if ambiguous:
+  raise RuntimeError('UNCERTAIN SUBMISSIONS '+str(ambiguous)+'. IBM might have accepted a job before client lost connection. '
+    'Check Jobs in the originating IBM account; use reconcile --treatment NAME --job-id ID if found, '
+    'or reconcile --treatment NAME --confirm-not-submitted ONLY after verifying no job exists.')
+ if existing and not args.resume:
+  raise RuntimeError(f'Existing job IDs: {existing}; use --resume to skip them')
+ svc=service_obj(args);backend=svc.backend('ibm_fez')
+ count=0
+ for name in plans:
+  p=record_root/name; submitted=p/'job_submitted.json';state=p/'submission_state.json'
+  if submitted.exists():continue
+  if state.exists():
+   st=load(state)
+   if st.get('status') not in ('CONFIRMED_NOT_SUBMITTED',):
+    raise RuntimeError(f'Unresolved state for {name}: {st.get("status")}. Manual reconciliation required.')
+  if count>=args.max_jobs:break
+  check_lock(base);save_treatment_options(base,args.round,name,args.shots,lock)
+  attempt=uuid.uuid4().hex
+  claim={'status':'SUBMITTING','attempt_id':attempt,'created_utc':stamp(),
+         'account_label':account_key(args),'instance':args.instance,'treatment':name,
+         'locked_hashes_sha256':lock['hashes'],'repeats':args.repeats,'shots':args.shots}
+  # Existing CONFIRMED_NOT_SUBMITTED state is overwritten only after a fresh claim marker.
+  # A separate O_EXCL marker blocks two processes racing to submit the same treatment.
+  guard=p/'submit_guard.lock'
+  try:exclusive_json({'attempt_id':attempt,'created_utc':stamp()},guard)
+  except FileExistsError:raise RuntimeError(f'Existing submission lock for {name}: {guard}; stop and inspect')
+  try:
+   if submitted.exists():raise RuntimeError(f'Concurrent submission already recorded for {name}')
+   if state.exists() and load(state).get('status')!='CONFIRMED_NOT_SUBMITTED':
+    raise RuntimeError(f'Unexpected state change for {name}')
+   atomic_json(claim,state)  # written BEFORE any network submission
+   opts=configuration(name,args.shots)
+   est=EstimatorV2(mode=backend,options=opts)
+   pubs=[(qc,obs)]*args.repeats
+   job=est.run(pubs)
+   jid=job.job_id()
+   info={'job_id':jid,'backend':'ibm_fez','treatment':name,'submitted_client_utc':stamp(),
+         'account_label':account_key(args),'instance':args.instance,'attempt_id':attempt,
+         'repeats':args.repeats,'shots_requested_per_pub':args.shots,
+         'base_ISA_sha256':lock['hashes']['circuit.qpy'],'theta_sha256':lock['hashes']['theta.csv'],
+         'observables_sha256':lock['hashes']['observables.json'],
+         'locked_input_path':'../../locked_inputs/circuit.qpy',
+         'mitigation_options_file':'mitigation_options_requested.json'}
+   # Persist ID before marking the submission complete.
+   exclusive_json(info,submitted)
+   atomic_json({**claim,'status':'SUBMITTED','job_id':jid,'updated_utc':stamp()},state)
+   print('SUBMITTED',name,jid,'account=',account_key(args),'instance=',args.instance,flush=True)
+   count+=1
+  except Exception:
+   # Intentionally DO NOT discard SUBMITTING. A failed network request may still have
+   # created a chargeable job. Refuse automatic retries until explicit reconciliation.
+   raise
+  finally:
+   # Only remove lock if it belongs to this attempt. Keep state ledger permanent.
+   if guard.exists() and load(guard).get('attempt_id')==attempt:guard.unlink()
+ print(f'New jobs: {count}. Other treatments with saved IDs were not resubmitted.')
+
+def reconcile(args):
+ """Resolve a network-ambiguous submission; never assume a missing ID means no IBM job."""
+ if not args.treatment:raise RuntimeError('--treatment required, e.g. M2_TREX')
+ if args.treatment not in [x[0] for x in TREATMENTS]:raise RuntimeError('Unknown treatment')
+ root,base,source,out=paths(args);p=ibm_round_dir(base,args.round)/args.treatment
+ state=p/'submission_state.json'; submitted=p/'job_submitted.json'
+ if submitted.exists():raise RuntimeError('Already has saved job ID. No reconciliation needed.')
+ if not state.exists():raise RuntimeError('No ambiguous SUBMITTING state to reconcile')
+ old=load(state)
+ if old.get('status')!='SUBMITTING':raise RuntimeError('State is not ambiguous SUBMITTING')
+ if args.job_id and args.confirm_not_submitted:raise RuntimeError('Select only one reconciliation action')
+ if args.job_id:
+  if not identity_matches(old,args):raise RuntimeError('Use original --account-label and --instance to verify the job')
+  svc=service_obj(args);job=svc.job(args.job_id)
+  if str(job.backend().name)!='ibm_fez':raise RuntimeError('Job backend is not ibm_fez')
+  # IBM cannot always attest which PUB configuration was submitted. User must compare
+  # IBM job detail with the local treatment plan, then explicitly acknowledge it.
+  if not args.confirm_job_matches:raise RuntimeError('Review IBM job details; add --confirm-job-matches to adopt')
+  _,lock=check_lock(base)
+  info={'job_id':args.job_id,'backend':'ibm_fez','treatment':args.treatment,
+        'account_label':account_key(args),'instance':args.instance,
+        'attempt_id':old['attempt_id'],'repeats':old['repeats'],
+        'shots_requested_per_pub':old['shots'],
+        'base_ISA_sha256':lock['hashes']['circuit.qpy'],'theta_sha256':lock['hashes']['theta.csv'],
+        'observables_sha256':lock['hashes']['observables.json'],
+        'reconciled_utc':stamp(),'reconciliation_note':'IBM job verified accessible; user confirmed treatment correspondence'}
+  exclusive_json(info,submitted)
+  atomic_json({**old,'status':'SUBMITTED','job_id':args.job_id,'reconciled_utc':stamp()},state)
+  print('RECONCILED saved job ID',args.job_id)
+ elif args.confirm_not_submitted:
+  if not args.checked_ibm_jobs:raise RuntimeError('Check IBM Jobs under original account, then add --checked-ibm-jobs')
+  atomic_json({**old,'status':'CONFIRMED_NOT_SUBMITTED','reconciled_utc':stamp(),
+               'manual_confirmation':'Operator checked IBM Jobs; no accepted job exists'},state)
+  print('MANUALLY marked as not submitted; a future --resume can retry this treatment')
+ else:raise RuntimeError('Supply --job-id ID --confirm-job-matches OR --confirm-not-submitted --checked-ibm-jobs')
+
+def csvout(path,rows):
+ import pandas as pd
+ path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
+ if rows:pd.DataFrame(rows).to_csv(path,index=False)
+
+def _runtime_serializable(obj):
+ """Serialize Runtime DataBin or nested metadata without inventing unavailable fields."""
+ from qiskit_ibm_runtime import RuntimeEncoder
+ try:
+  return json.loads(json.dumps(obj,cls=RuntimeEncoder,default=str))
+ except Exception:
+  if hasattr(obj,'items'):
+   return {str(k):_runtime_serializable(v) for k,v in obj.items()}
+  if hasattr(obj,'__dict__'):
+   return {str(k):_runtime_serializable(v) for k,v in vars(obj).items() if not k.startswith('_')}
+  return str(obj)
+
+def _pub_data_fields(pub):
+ data=pub.data
+ keys=[]
+ if hasattr(data,'keys'):
+  try:keys=list(data.keys())
+  except Exception:pass
+ if not keys:
+  try:keys=[k for k in vars(data) if not k.startswith('_')]
+  except Exception:pass
+ return {str(k):_runtime_serializable(getattr(data,k)) for k in keys}
+
+def _extract_zne_intermediates(result, treatment, dest):
+ """Archive unmodified ZNE-related Estimator data by PUB, only if IBM supplied it."""
+ all_pubs=[]; factor_rows=[]
+ for idx,pub in enumerate(result,1):
+  fields=_pub_data_fields(pub)
+  zfields={k:v for k,v in fields.items() if any(w in k.lower() for w in
+     ('noise_factor','extrapolat','zne','stds_noise','evs_noise','ensemble'))}
+  meta=_runtime_serializable(getattr(pub,'metadata',{}))
+  if any(w in str(meta).lower() for w in ('zne','noise_factor','extrapolat')):
+   zfields['pub_metadata']=meta
+  if not zfields:continue
+  all_pubs.append({'pub':idx,'data_fields':zfields})
+  # Preserve full arrays (including multidimensional raw factor data) in JSON.
+  factors=zfields.get('noise_factors')
+  evs=zfields.get('evs_noise_factors')
+  stds=zfields.get('stds_noise_factors')
+  if factors is not None and evs is not None:
+   import numpy as np
+   f=np.asarray(factors).ravel();v=np.asarray(evs)
+   # Only produce long-form rows when the last axis matches factor count.
+   if v.ndim>=1 and v.shape[-1]==len(f):
+    u=np.asarray(stds) if stds is not None else None
+    for obs_i in np.ndindex(v.shape[:-1]):
+     for j,fac in enumerate(f):
+      val=v[obs_i+(j,)];sd=(u[obs_i+(j,)] if u is not None and u.shape==v.shape else None)
+      factor_rows.append({'pub':idx,'observable_index':','.join(map(str,obs_i)),
+                         'noise_factor':float(fac),'expectation':float(val),
+                         'std_error':float(sd) if sd is not None else None})
+ if all_pubs:
+  js({'treatment':treatment,'pubs':all_pubs,
+      'note':'IBM Runtime-supplied intermediate ZNE values; original result.json remains authoritative.'},
+      dest/'zne_intermediate.json')
+  if factor_rows:csvout(dest/'zne_noise_factors.csv',factor_rows)
+ else:
+  # Presence/absence is explicit; avoid claiming intermediate circuits are available.
+  js({'treatment':treatment,'available':False,
+      'reason':'No ZNE intermediate arrays exposed in Runtime PUB results.'},dest/'zne_intermediate_status.json')
+
+def _qpu_seconds(raw):
+ """Extract IBM QPU billed seconds from recorded job metrics; never infer from wall time."""
+ if not isinstance(raw,dict):return None
+ candidates=[raw.get('qpu_usage_s'),raw.get('quantum_seconds'),raw.get('qpu_seconds'),
+             raw.get('usage'),raw.get('usage_estimation'),raw.get('metrics_raw')]
+ for candidate in candidates:
+  if isinstance(candidate,dict):
+   for key in ('quantum_seconds','qpu_seconds','qpu_usage_s','usage_seconds'):
+    val=candidate.get(key)
+    if isinstance(val,(int,float)) and np.isfinite(val) and val>=0:return float(val)
+  elif isinstance(candidate,(float,int)) and np.isfinite(candidate) and candidate>=0:return float(candidate)
+ return None
+
+def _saved_job_qpu_usage(record_dir):
+ for filename in ('job_retrieved_metadata.json','job_metrics_raw.json','job_usage_raw.json'):
+  p=record_dir/filename
+  if p.exists():
+   value=_qpu_seconds(load(p))
+   if value is not None:return value,filename
+ return None,'missing'
+
+def refresh_usage(args):
+ """Read usage for already submitted jobs. No submit, no re-run, no change of result.json."""
+ root,base,_,_=paths(args)
+ service=None;reports=[]
+ for name,*_ in TREATMENTS:
+  folder=ibm_round_dir(base,args.round)/name
+  submission=folder/'job_submitted.json'
+  if not submission.exists():continue
+  info=load(submission)
+  duration,src=_saved_job_qpu_usage(folder)
+  if duration is not None:
+   reports.append({'treatment':name,'job_id':info['job_id'],'qpu_usage_s':duration,'source':src,'status':'CACHED'});continue
+  if not identity_matches(info,args):
+   reports.append({'treatment':name,'job_id':info['job_id'],'qpu_usage_s':None,'source':'','status':'OTHER_ACCOUNT'});continue
+  try:
+   if service is None:service=service_obj(args)
+   job=service.job(info['job_id'])
+   metrics=job.metrics() if hasattr(job,'metrics') else {}
+   from_metrics=_qpu_seconds(metrics)
+   raw_usage=None
+   if from_metrics is None and hasattr(job,'usage'):
+    try:raw_usage=job.usage(partial=False)
+    except TypeError:raw_usage=job.usage()
+   estimation=None
+   if from_metrics is None and raw_usage is None:
+    try:estimation=job.usage_estimation
+    except Exception:pass
+   value=from_metrics if from_metrics is not None else _qpu_seconds({'usage':raw_usage,'usage_estimation':estimation})
+   js({'job_id':info['job_id'],'job_status':str(job.status()),'metrics':_runtime_serializable(metrics),
+       'usage_api_seconds':raw_usage,'usage_estimation':_runtime_serializable(estimation),
+       'qpu_usage_s':value,'collected_utc':stamp()},folder/'job_usage_raw.json')
+   # Update the separate local metadata, never modify original raw quantum results.
+   metadata_path=folder/'job_retrieved_metadata.json'
+   if metadata_path.exists() and value is not None:
+    meta=load(metadata_path);meta['qpu_usage_s']=value
+    js(meta,folder/('usage_refresh_'+uuid.uuid4().hex+'.json'))
+   reports.append({'treatment':name,'job_id':info['job_id'],'qpu_usage_s':value,
+                   'source':'IBM metrics/usage API','status':'DONE' if value is not None else 'UNAVAILABLE'})
+  except Exception as exc:
+   reports.append({'treatment':name,'job_id':info['job_id'],'qpu_usage_s':None,
+                   'source':'','status':'ERROR: '+str(exc)})
+ csvout(ibm_round_dir(base,args.round)/'qpu_usage_status.csv',reports)
+ for row in reports:print(row['treatment'],row['status'],row['qpu_usage_s'])
+ print('No IBM jobs were submitted.')
+
+def _validated_rows(rows, expected_n, label):
+ """Reject partial, non-finite or mislabeled QPU results before publishing."""
+ import math
+ cols=[f'Z{i}' for i in range(7)]+[f'std_Z{i}' for i in range(7)]
+ if len(rows)!=expected_n:raise ValueError(f'{label}: expected {expected_n} PUBs, got {len(rows)}')
+ pubs=[]
+ for r in rows:
+  pub=int(r['pub']);pubs.append(pub)
+  for c in cols:
+   x=float(r[c])
+   if not math.isfinite(x) or (c.startswith('std_') and x<0):
+    raise ValueError(f'{label}: PUB {pub} invalid {c}={x!r}')
+ if sorted(pubs)!=list(range(1,expected_n+1)):
+  raise ValueError(f'{label}: invalid PUB indices {pubs}')
+ return rows
+
+def _recovery_overlay(base,round_name,treatment,rows,original_job_id):
+ """Overlay validated 1-PUB recovery with immutable source attribution."""
+ import math
+ import csv as _csv
+ from pathlib import Path as _Path
+ folder=base/'output'/'03_IBM_execution_records'/'pub_recovery'
+ result=[dict(r) for r in rows]
+ source={int(r['pub']):original_job_id for r in result}
+ changes=[]
+ try:n=int(round_name.split('=',1)[1])
+ except (IndexError,ValueError):return result,source,changes
+ for d in sorted(folder.glob(f'n{n}_{treatment}_PUB*')) if folder.exists() else []:
+  provenance=d/'recovery_provenance.json'; csvfile=d/'recovery_expectations.csv'
+  if not provenance.exists() or not csvfile.exists():continue
+  info=load(provenance)
+  pub=int(info['pub'])
+  if (int(info['n'])!=n or info['treatment']!=treatment or
+      info['original_job_id']!=original_job_id or pub not in source or
+      not info.get('replacement_job_id')):
+   raise ValueError(f'Invalid recovery provenance: {d}')
+  with csvfile.open(encoding='utf-8-sig',newline='') as f: replacement=list(_csv.DictReader(f))
+  if len(replacement)!=1 or int(replacement[0]['pub'])!=pub:
+   raise ValueError(f'Recovery PUB index mismatch: {d}')
+  _validated_rows([dict(replacement[0],pub=1)],1,str(csvfile))
+  idx=next(i for i,r in enumerate(result) if int(r['pub'])==pub)
+  for col in [f'Z{i}' for i in range(7)]+[f'std_Z{i}' for i in range(7)]:
+   result[idx][col]=float(replacement[0][col])
+  source[pub]=info['replacement_job_id']
+  changes.append({'pub':pub,'original_job_id':original_job_id,'recovery_job_id':info['replacement_job_id'],'recovery_account':info.get('account')})
+ return result,source,changes
+
+def collect(args, *, assistant_safe=False, service_override=None, pub_observer=None):
+ root,base,source,out=paths(args);bundle,lock=check_lock(base)
+ from qiskit_ibm_runtime import RuntimeEncoder
+ svc=service_override;statuses=[]
+ for name,*_ in TREATMENTS:
+  p=ibm_round_dir(base,args.round)/name; submitted=p/'job_submitted.json'
+  if not submitted.exists():statuses.append({'treatment':name,'status':'not_submitted'});continue
+  info=load(submitted);jid=info['job_id']; statusrow={'treatment':name,'job_id':jid,
+     'submitted_account_label':info.get('account_label'),'submitted_instance':info.get('instance')}
+  if (p/'result.json').exists() and (p/'expectations.csv').exists():
+   try:
+    with (p/'expectations.csv').open(encoding='utf-8-sig',newline='') as f:existing=list(csv.DictReader(f))
+    _validated_rows(existing,args.repeats,str(p/'expectations.csv'))
+    statuses.append({**statusrow,'status':'ALREADY_COLLECTED_VALIDATED'});continue
+   except Exception as exc:
+    # Never overwrite an existing, possibly merged dataset on an automatic collect.
+    statuses.append({**statusrow,'status':'EXISTING_CSV_INVALID_NO_OVERWRITE','error':str(exc)});continue
+  if not identity_matches(info,args):
+   statuses.append({**statusrow,'status':'OTHER_ACCOUNT_OR_INSTANCE',
+      'note':'Run collect with the original --account-label and --instance'});continue
+  try:
+   if svc is None:svc=service_obj(args)
+   job=svc.job(jid); statusrow['status']=str(job.status())
+   if str(job.status()).upper() not in ('DONE','COMPLETED','JOBSTATUS.DONE'):
+    statuses.append(statusrow);continue
+   result=job.result()
+   # Preserve each IBM response before validating or publishing CSV outputs.
+   # Content-addressed, create-only archives make repeated retrieval idempotent
+   # and keep partial/corrupt responses available for recovery diagnosis.
+   raw_value=_runtime_serializable(result)
+   raw_bytes=json.dumps(raw_value,ensure_ascii=False,sort_keys=True,indent=2,default=str).encode('utf-8')
+   raw_key=hashlib.sha256(raw_bytes).hexdigest()
+   raw_dir=p/'raw_retrievals';raw_dir.mkdir(parents=True,exist_ok=True)
+   raw_path=raw_dir/f'job_result_{raw_key}.json'
+   if raw_path.exists():
+    if json.loads(raw_path.read_text(encoding='utf-8'))!=raw_value:
+     raise RuntimeError('Content-addressed raw result archive conflicts; refusing overwrite')
+   else:
+    with raw_path.open('xb') as raw_handle:
+     raw_handle.write(raw_bytes);raw_handle.flush();os.fsync(raw_handle.fileno())
+   # Hash the exact immutable bytes used by per-PUB provenance records.
+   raw_hash=hashlib.sha256(raw_path.read_bytes()).hexdigest()
+   statusrow.update({'raw_result_path':str(raw_path),'raw_result_sha256':raw_hash})
+   # Persist provider-side metadata immediately after the immutable result
+   # archive and before PUB decoding, validation, CSV creation, or analysis.
+   # Metadata API failures remain explicit and do not discard the result.
+   provider_metadata_errors=[]
+   try:metrics=job.metrics() if callable(getattr(job,'metrics',None)) else {}
+   except Exception as meta_exc:
+    metrics={};provider_metadata_errors.append({'field':'metrics','error_type':type(meta_exc).__name__})
+   provider_timestamps={}
+   for attr in ('creation_date','start_time','end_time','done'):
+    try:value=getattr(job,attr,None)
+    except Exception as meta_exc:
+     provider_metadata_errors.append({'field':attr,'error_type':type(meta_exc).__name__});value=None
+    if callable(value):
+     try:value=value()
+     except Exception as meta_exc:
+      provider_metadata_errors.append({'field':attr,'error_type':type(meta_exc).__name__});value=None
+    if value is not None:provider_timestamps[attr]=str(value)
+   provider_pubs=[]
+   for pub_index,pub in enumerate(result,1):
+    try:pub_metadata=_runtime_serializable(getattr(pub,'metadata',{}))
+    except Exception as meta_exc:
+     pub_metadata={};provider_metadata_errors.append({'field':f'pub_{pub_index}_metadata','error_type':type(meta_exc).__name__})
+    try:data_fields=_pub_data_fields(pub)
+    except Exception as meta_exc:
+     data_fields={};provider_metadata_errors.append({'field':f'pub_{pub_index}_data_fields','error_type':type(meta_exc).__name__})
+    provider_pubs.append({'pub':pub_index,'metadata':pub_metadata,'data_fields':data_fields})
+   provider_envelope={'schema_version':1,'job_id':jid,'job_status':statusrow.get('status'),
+    'raw_result_sha256':raw_hash,'metrics':_runtime_serializable(metrics),
+    'timestamps':provider_timestamps,'pubs':provider_pubs,
+    'metadata_errors':provider_metadata_errors}
+   metadata_bytes=json.dumps(provider_envelope,ensure_ascii=False,sort_keys=True,indent=2,default=str).encode('utf-8')
+   metadata_hash=hashlib.sha256(metadata_bytes).hexdigest()
+   metadata_path=raw_dir/f'provider_metadata_{metadata_hash}.json'
+   if not metadata_path.exists():
+    try:
+     with metadata_path.open('xb') as metadata_handle:
+      metadata_handle.write(metadata_bytes);metadata_handle.flush();os.fsync(metadata_handle.fileno())
+    except FileExistsError:pass
+   elif hashlib.sha256(metadata_path.read_bytes()).hexdigest()!=metadata_hash:
+    raise RuntimeError('Content-addressed provider metadata archive conflicts; refusing overwrite')
+   statusrow.update({'provider_metadata_path':str(metadata_path),'provider_metadata_sha256':metadata_hash,
+    'provider_metadata_errors':provider_metadata_errors})
+   # Optional integration hook: observers see the already-archived provider
+   # result before the strict all-PUB publication validator runs. The default
+   # CLI path remains unchanged; observers must not alter result objects.
+   if pub_observer is not None:
+    pub_observer(name,jid,result,str(raw_path),raw_hash,job)
+   # Preserve raw IBM result as-is. Publish CSV only after validation/overlay.
+   rows=[];zs=[]
+   for i,pr in enumerate(result):
+    ev=flat(pr.data.evs);std=flat(pr.data.stds)
+    if len(ev)!=7:raise ValueError(f'PUB {i}: expected 7 expectations, got {len(ev)}')
+    zs.append(ev)
+    rows.append({'pub':i+1,**{f'Z{j}':float(ev[j]) for j in range(7)},
+                 **{f'std_Z{j}':float(std[j]) if j<len(std) else float('nan') for j in range(7)}})
+   if len(rows)!=args.repeats:
+    raise ValueError(f'{name}: IBM returned {len(rows)} PUBs, expected {args.repeats}')
+   rows,source_map,changes=_recovery_overlay(base,args.round,name,rows,jid)
+   _validated_rows(rows,args.repeats,name)
+   # Never overwrite collected files; atomic publication of validated CSV.
+   if (p/'expectations.csv').exists() or (p/'result.json').exists():
+    raise RuntimeError('Existing collection files; refusing overwrite')
+   exclusive_json({'original_job_id':jid,'per_pub_job_id':source_map,'replacements':changes},p/'pub_source_manifest.json')
+   (p/'result.json').write_text(json.dumps(result,cls=RuntimeEncoder,indent=2),encoding='utf-8')
+   csvout(p/'expectations.csv',rows)
+   js(_runtime_serializable(metrics),p/'job_metrics_raw.json')
+   if next(t[3] for t in TREATMENTS if t[0]==name):_extract_zne_intermediates(result,name,p)
+   # Capture PUB metadata in addition to expectation values and their standard errors.
+   js([{'pub':i+1,'metadata':_runtime_serializable(getattr(pr,'metadata',{})),
+        'available_data_fields':list(_pub_data_fields(pr))} for i,pr in enumerate(result)],
+      p/'pub_result_metadata.json')
+   try:
+    job_inputs=job.inputs
+    # IBM may expose source PUB structure; avoid unsafe serialization of large/cyclic objects.
+    js({'available_keys':list(job_inputs.keys()) if isinstance(job_inputs,dict) else [],
+        'note':'Submitted base ISA is archived separately. Runtime-transformed circuits may not be returned by IBM.'},p/'job_inputs_inventory.json')
+   except Exception as exc:js({'unavailable':str(exc)},p/'job_inputs_inventory.json')
+   def metric(key):return metrics.get(key) if isinstance(metrics,dict) else None
+   meta={**info,'collected_utc':stamp(),'status':str(job.status()),'metrics_raw':metrics,
+         'raw_result_path':str(raw_path),'raw_result_sha256':raw_hash,
+         'qpu_usage_s':metric('usage',),
+         'timestamps':metric('timestamps'), 'execution_time_s':metric('execution_time'), 'runtime_options_requested':load(p/'mitigation_options_requested.json') if (p/'mitigation_options_requested.json').exists() else None,
+         'pub_results':len(rows)}
+   # Quantities are read from the original IBM metadata, not estimated.
+   if isinstance(metrics,dict):
+    usage=metrics.get('usage',{})
+    meta['qpu_usage_s']=usage.get('quantum_seconds',usage.get('qpu_seconds')) if isinstance(usage,dict) else (usage if isinstance(usage,(float,int)) else None)
+   try:
+    meta['job_creation_date_utc']=str(job.creation_date) if not callable(getattr(job,'creation_date',None)) else str(job.creation_date())
+   except Exception:pass
+   js(_runtime_serializable(meta),p/'job_retrieved_metadata.json')
+   js({'base_ISA_sha256':info.get('base_ISA_sha256'),
+       'locked_archive_sha256':sha(bundle/'circuit.qpy'),
+       'theta_sha256':info.get('theta_sha256'),
+       'observables_sha256':info.get('observables_sha256'),
+       'job_id':jid,'mitigation_options_requested_path':'mitigation_options_requested.json',
+       'note':'Verifies the shared input only. Runtime-internal modified circuits are not claimed.'},
+      p/'submitted_circuit_verification.json')
+   statusrow.update({'saved_pubs':len(rows),'qpu_usage_s':meta['qpu_usage_s']})
+  except Exception as exc:
+   statusrow['error']=str(exc)
+  statuses.append(statusrow)
+ status_path=ibm_round_dir(base,args.round)/'collection_status.csv'
+ if assistant_safe:
+  status_path=ibm_round_dir(base,args.round)/('collection_status_'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'.csv')
+ csvout(status_path,statuses)
+ print('Collected/checked:',len(statuses),'entries. No new IBM jobs submitted.')
+
+
+
+def calculate_pub_eis(evs, frequency, zexp):
+ """Canonical EIS parameter mapping and per-PUB SSE/RMSE calculation.
+
+ This helper is shared by complete and explicitly partial analysis. Keep the
+ scientific operations byte-for-byte equivalent to the original analyze calc.
+ """
+ import numpy as np
+ from parameter_mapping import expectations_to_parameters
+ from impedance_model import impedance_model
+ vec=np.clip(np.asarray(evs,dtype=float),-1,1)
+ if vec.shape!=(7,) or not np.all(np.isfinite(vec)):
+  raise ValueError('Each PUB must contain seven finite expectation values')
+ params,_=expectations_to_parameters(vec)
+ zfit=np.asarray(impedance_model(frequency,**params),dtype=complex)
+ if zfit.shape!=np.asarray(zexp).shape or not np.all(np.isfinite(zfit)):
+  raise ValueError('Invalid impedance_model output')
+ residual=zfit-zexp
+ sse=float(np.sum(np.abs(residual)**2))
+ rmse=float(np.sqrt(sse/(2*len(frequency))))
+ return params,zfit,sse,rmse
+
+
+def publication_mitigation_figures(out, freq, zexp, curves, df, labels, summaries, names=NAMES,
+                                   partial_title: str | None = None):
+    """Seven independent, consistent square 600-DPI journal figures.
+
+    Visualization-only: original measured and calculated arrays are unchanged.
+    Legends are inside the plotting axes in a reserved upper region.
+    """
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    from matplotlib.ticker import MaxNLocator
+    out = Path(out)
+    freq = np.asarray(freq, dtype=float)
+    zexp = np.asarray(zexp, dtype=complex)
+    order = np.argsort(freq)
+    f = freq[order]
+    eps = np.finfo(float).eps
+    palette = plt.get_cmap('tab10').colors
+    series = ({'Ideal': np.asarray(curves['Ideal'], dtype=complex)}
+              if 'Ideal' in curves else {})
+    series.update({treatment_display(name): np.asarray(curves[name], dtype=complex)
+                   for name in labels})
+    colors = {'Ideal': '#2671a5', **{treatment_display(name): palette[i % len(palette)]
+                                    for i, name in enumerate(labels)}}
+    created = []
+    # 8-inch source, designed for reduction to a journal column.
+    # At 89 mm published width scale factor is ~0.438.
+    # Source 18pt axis labels become ~7.9pt; 14pt legend becomes ~6.1pt.
+    with plt.rc_context({'font.family': 'DejaVu Sans', 'font.size': 14,
+                         'axes.labelsize': 18, 'axes.titlesize': 18,
+                         'axes.linewidth': 2.0, 'xtick.labelsize': 14,
+                         'ytick.labelsize': 14, 'xtick.direction': 'in',
+                         'ytick.direction': 'in', 'xtick.top': True,
+                         'ytick.right': True, 'xtick.major.width': 1.2,
+                         'ytick.major.width': 1.2,
+                         'savefig.facecolor': 'white'}):
+        def render(key, xlabel, ylabel, draw, *, zero=False, xlim=None, ylim=None):
+            target = out / ('publication_' + key + '.png')
+            if target.exists():
+                raise FileExistsError('Refusing to overwrite publication figure: ' + str(target))
+            fig = plt.figure(figsize=(8, 8), facecolor='white')
+            # Dedicated top band for the legend: no overlap with data or title.
+            ax = fig.add_axes([0.19, 0.155, 0.775, 0.80])
+            try:
+                if zero:
+                    ax.axhline(0, color='#666666', linewidth=0.9, alpha=0.75)
+                draw(ax)
+                ax.set_xlabel(xlabel, labelpad=11)
+                ax.set_ylabel(ylabel, labelpad=13)
+                ax.tick_params(axis='both', which='major', pad=7, length=6)
+                ax.tick_params(axis='both', which='minor', length=3)
+                ax.yaxis.set_major_locator(MaxNLocator(nbins=5))
+                if xlim is not None:
+                    ax.set_xlim(*xlim)
+                if ylim is not None:
+                    ax.set_ylim(*ylim)
+                for spine in ax.spines.values():
+                    spine.set_linewidth(2.0)
+                handles, names_ = ax.get_legend_handles_labels()
+                if handles:
+                    # Legend INSIDE the axes, in an intentionally reserved upper region.
+                    # Expand vertical limits without changing plotted observations.
+                    lo, hi = ax.get_ylim()
+                    span = max(hi-lo, 1e-12)
+                    if key == 'nyquist':
+                        ax.set_ylim(lo, max(hi, 300.0) + 0.70*span)
+                    else:
+                        ax.set_ylim(lo, hi + 0.75*span)
+                    ax.legend(handles, names_, loc='upper right', ncol=2,
+                              fontsize=14, frameon=False, handlelength=1.6,
+                              columnspacing=0.7, labelspacing=0.25,
+                              borderaxespad=0.5)
+                fig.savefig(target, dpi=600, facecolor='white')
+                created.append(target.name)
+            finally:
+                plt.close(fig)
+        def nyquist(ax):
+            ax.plot(zexp.real, -zexp.imag, 'o', ms=5.0,
+                    color='#1d70b2', label='Experimental', zorder=10)
+            for name, z in series.items():
+                ax.plot(z.real, -z.imag, linewidth=2.2,
+                        color=colors[name], label=name)
+        render('nyquist', r"$Z^{\prime}$ ($\Omega$)",
+               r"$-Z^{\prime\prime}$ ($\Omega$)", nyquist,
+               xlim=(0, 60), ylim=(0, 300))
+        for key, transform, ylabel in [
+            ('bode_magnitude', np.abs, r'$|Z|$ ($\Omega$)'),
+            ('bode_phase', lambda z: np.angle(z, deg=True), 'Phase (deg)')]:
+            def draw(ax, transform=transform):
+                ax.semilogx(f, transform(zexp)[order], 'o', ms=5.0,
+                            color='#1d70b2', label='Experimental', zorder=10)
+                for name, z in series.items():
+                    ax.semilogx(f, transform(z)[order], linewidth=2.2,
+                                color=colors[name], label=name)
+            render(key, 'Frequency (Hz)', ylabel, draw)
+        for key, transform, ylabel in [
+            ('residual_real', lambda d: d.real,
+             r'Re[$Z_{fit}-Z_{exp}$] ($\Omega$)'),
+            ('residual_imag', lambda d: d.imag,
+             r'Im[$Z_{fit}-Z_{exp}$] ($\Omega$)'),
+            ('residual_real_normalized',
+             lambda d: d.real / np.maximum(np.abs(zexp), eps),
+             r'$\mathrm{Re}(\Delta Z)/|Z_{data}|$'),
+            ('residual_imag_normalized',
+             lambda d: d.imag / np.maximum(np.abs(zexp), eps),
+             r'$\mathrm{Im}(\Delta Z)/|Z_{data}|$')]:
+            def draw(ax, transform=transform):
+                for name, z in series.items():
+                    ax.semilogx(f, transform(z - zexp)[order],
+                                linewidth=2.0, marker='o', markersize=2.4,
+                                color=colors[name], label=name)
+            render(key, 'Frequency (Hz)', ylabel, draw, zero=True)
+    return created
+
+def analyze(args):
+ """Offline full-treatment EIS analysis from already-collected IBM expectations.
+
+ The project's impedance_model(frequency, **parameters) accepts HERTZ and
+ converts to angular frequency internally. Never multiply frequency by 2*pi here.
+ No IBM jobs are submitted or fetched by this function.
+ """
+ import pandas as pd
+ import matplotlib
+ matplotlib.use('Agg')
+ import matplotlib.pyplot as plt
+ root,base,source,out=paths(args)
+ assistant_override=getattr(args,'_analysis_override',None)
+ if assistant_override:
+  # Internal adapter hook for cumulative validated-block analysis. It redirects
+  # only input/output roots; the canonical EIS calculation and plotting body is
+  # unchanged and its frozen lock is still checked at the repository base.
+  out=Path(assistant_override['out_dir'])
+  records_root=Path(assistant_override['records_root'])
+  charts_root=Path(assistant_override['charts_dir'])
+ else:
+  records_root=ibm_round_dir(base,args.round)
+  charts_root=base/'output'/'01_results_and_figures'
+ if out.exists() and any(out.iterdir()):
+  raise FileExistsError('Analysis output already exists; refusing overwrite: '+str(out))
+ bundle,lock=check_lock(base)
+ lock_overrides=assistant_override.get('lock_overrides',{}) if assistant_override else {}
+ if lock_overrides:
+  # Internal staging metadata may restore a derived ideal reference absent
+  # from a legacy lock. Locked scientific inputs and their hashes are still
+  # checked above and are never rewritten.
+  if set(lock_overrides)-{'ideal_expectations'}:
+   raise ValueError('Unsupported internal analysis lock override')
+  lock={**lock,**lock_overrides}
+ register_science(root)
+ from impedance_model import read_eis_file
+ from matplotlib.ticker import LogLocator
+
+ # Fail before creating misleading final charts if any treatment is incomplete.
+ paths_by_name={name:records_root/name/'expectations.csv' for name,*_ in TREATMENTS}
+ missing=[name for name,path in paths_by_name.items() if not path.exists()]
+ if missing:
+  raise RuntimeError('Analysis requires collected expectations for all 8 treatments. Missing: '+', '.join(missing))
+
+ freq,zexp=read_eis_file(str(Path(args.data) if args.data else root/'data/EIS14.csv'))
+ freq=np.asarray(freq,dtype=float)
+ zexp=np.asarray(zexp,dtype=complex)
+ if len(freq)!=len(zexp) or not np.all(np.isfinite(freq)) or np.any(freq<=0) or not np.all(np.isfinite(zexp)):
+  raise ValueError('Invalid EIS frequency/complex impedance arrays')
+ ideal=np.asarray(lock['ideal_expectations'],dtype=float).reshape(-1)
+ if ideal.size!=7:raise ValueError('Locked Ideal expectations must contain exactly 7 numbers')
+
+ def calc(evs):
+  # FIX: the source impedance_model.py accepts frequency in Hz, NOT omega.
+  return calculate_pub_eis(evs,freq,zexp)
+
+ pideal,zideal,sideal,rmse_ideal=calc(ideal)
+ records=[];all_curves={};chosen={};frames={}
+ for name,*_ in TREATMENTS:
+  path=paths_by_name[name]
+  frame=pd.read_csv(path)
+  expected={'pub',*(f'Z{i}' for i in range(7))}
+  if not expected.issubset(frame.columns):raise ValueError(f'{path}: missing PUB/Z0..Z6 columns')
+  _validated_rows(frame.to_dict('records'),args.repeats,name)
+  frames[name]=frame
+  metadata_path=records_root/name/'job_retrieved_metadata.json'
+  metadata=load(metadata_path) if metadata_path.exists() else {}
+  manifest_path=metadata_path.parent/'pub_source_manifest.json'
+  if manifest_path.exists():
+   source_map=load(manifest_path).get('per_pub_job_id',{})
+  else:
+   source_map={}
+   recovery_dir=(Path(assistant_override['recovery_dir']) if assistant_override else
+                 base/'output'/'03_IBM_execution_records'/'pub_recovery')
+   for d in recovery_dir.glob(f'n{args.repeats}_{name}_PUB*') if recovery_dir.exists() else []:
+    pp=d/'recovery_provenance.json'
+    if pp.exists():
+     ri=load(pp)
+     if ri.get('original_job_id')==metadata.get('job_id'):
+      source_map[str(ri['pub'])]=ri['replacement_job_id']
+  for _,r in frame.iterrows():
+   vec=np.array([float(r[f'Z{i}']) for i in range(7)])
+   params,zfit,sse,rmse=calc(vec)
+   entry={'treatment':name,'pub':int(r.pub),'SSE':sse,'RMSE':rmse,
+      'delta_SSE_vs_ideal':sse-sideal,
+      'expectation_MAE_vs_ideal':float(np.mean(np.abs(vec-ideal))),
+      'job_id':source_map.get(str(int(r.pub)),metadata.get('job_id')), 'qpu_usage_s_job':_saved_job_qpu_usage(metadata_path.parent)[0]}
+   entry.update({n:params[n] for n in NAMES})
+   entry.update({f'Z{i}':float(vec[i]) for i in range(7)})
+   records.append(entry);all_curves[(name,int(r.pub))]=zfit
+ df=pd.DataFrame(records)
+ summaries=[];tail=[]
+ for name,*_ in TREATMENTS:
+  group=df[df.treatment==name]
+  s=group.SSE.to_numpy(dtype=float)
+  summaries.append({'treatment':name,'n':len(s),'median_SSE':float(np.median(s)),
+      'mean_SSE':float(np.mean(s)),
+      'std_SSE':float(np.std(s,ddof=1)) if len(s)>1 else np.nan,
+      'IQR_SSE':float(np.percentile(s,75)-np.percentile(s,25)),
+      'median_RMSE':float(group.RMSE.median()),
+      'median_expectation_MAE':float(group.expectation_MAE_vs_ideal.median()),
+      'qpu_usage_s_job':group.qpu_usage_s_job.iloc[0]})
+  tail.append({'treatment':name,'min':float(np.min(s)),
+      'q25':float(np.percentile(s,25)),'median':float(np.median(s)),
+      'q75':float(np.percentile(s,75)),'max':float(np.max(s)),
+      'p90':float(np.percentile(s,90))})
+  ix=group.SSE.idxmin()  # Best measured PUB (minimum EIS SSE) for each treatment
+  chosen[name]=int(group.loc[ix,'pub'])
+
+ out.mkdir(parents=True,exist_ok=True)
+ csvout(out/'per_repeat.csv',records)
+ csvout(out/'summary_mean_std.csv',summaries)
+ csvout(out/'params_table.csv',df[['treatment','pub',*NAMES]].to_dict('records'))
+ csvout(out/'tail_stats.csv',tail)
+
+ labels=[t[0] for t in TREATMENTS]
+ colors=plt.get_cmap('tab10').colors
+ curves={'Experimental':zexp,'Ideal':zideal}
+ for name in labels:curves[name]=all_curves[(name,chosen[name])]
+ color_map={'Experimental':'black','Ideal':'#2563a6'}
+ color_map.update({name:colors[i%len(colors)] for i,name in enumerate(labels)})
+ # Full numerical data: same 132 frequencies and 10 series for all three plots.
+ nyquist=[];bode=[];residual_rows=[]
+ for k,f in enumerate(freq):
+  nrow={'frequency_Hz':float(f)}
+  brow={'frequency_Hz':float(f),'log10_frequency_Hz':float(np.log10(f))}
+  rrow={'frequency_Hz':float(f),'log10_frequency_Hz':float(np.log10(f)),
+        'Experimental_Z_real_ohm':float(zexp[k].real),
+        'Experimental_Z_imag_ohm':float(zexp[k].imag),
+        'Experimental_abs_Z_ohm':float(abs(zexp[k])),
+        'Experimental_delta_Z_real_ohm':0.0,
+        'Experimental_delta_Z_imag_ohm':0.0,
+        'Experimental_abs_residual_ohm':0.0}
+  for name,zcurve in curves.items():
+   z=zcurve[k]
+   nrow[f'{name}_Z_real']=float(z.real)
+   nrow[f'{name}_Z_imag']=float(z.imag)
+   nrow[f'{name}_minus_Z_imag']=float(-z.imag)
+   brow[f'{name}_abs_Z_ohm']=float(abs(z))
+   brow[f'{name}_phase_deg']=float(np.degrees(np.angle(z)))
+   if name!='Experimental':
+    diff=z-zexp[k]
+    rrow[f'{name}_delta_Z_real_ohm']=float(diff.real)
+    rrow[f'{name}_delta_Z_imag_ohm']=float(diff.imag)
+    rrow[f'{name}_abs_residual_ohm']=float(abs(diff))
+  nyquist.append(nrow);bode.append(brow);residual_rows.append(rrow)
+ csvout(out/'nyquist_curves.csv',nyquist)
+ csvout(out/'bode_curves.csv',bode)
+ csvout(out/'residual_curves.csv',residual_rows)
+
+ classical_sse=_classical_sse_reference(root)
+ supplied=getattr(args,'classical_sse',None)
+ if supplied is not None and not np.isclose(float(supplied),classical_sse,rtol=1e-10,atol=1e-9):
+  raise ValueError('Supplied Classical SSE differs from the read-only Study A reference')
+ plot_sse_treatment_figures(df,out,classical_sse,args.round)
+ # Export the canonical three-tier positioning figure for every successful
+ # run. Its median/bootstrap calculations remain in this single plotter.
+ create_mos2_style_figures(df,sse_plot_statistics(df),out,out,args.round,sideal,
+     classical_sse=classical_sse,seed=1013,bootstrap=3000)
+ # Normal VQE runs also publish the requested n-level copies. Internal
+ # cumulative-analysis adapters retain their established staging contract.
+ if not assistant_override:
+  n_figure_dir=charts_root/f'n={args.repeats}'
+  if args.round!=f'n={args.repeats}':n_figure_dir=n_figure_dir/round_name(args.round)
+  n_figure_dir.mkdir(parents=True,exist_ok=True)
+  for name in ('distribution_pilot.png','05_mitigation_median_CI_convergence.png',
+               '06_mitigation_three_tier_positioning.png'):
+   destination=n_figure_dir/name
+   if destination.exists():raise FileExistsError('Refusing to overwrite historical figure: '+str(destination))
+   shutil.copy2(out/name,destination)
+
+ # Raw data for publication figure reproduction.
+ csvout(out/'sse_plot_data.csv',df[['treatment','pub','job_id','SSE','RMSE','qpu_usage_s_job']].to_dict('records'))
+ fig,ax=plt.subplots(figsize=(10,8))
+ ax.scatter(zexp.real,-zexp.imag,s=16,c='black',label='Experimental',zorder=15)
+ for name,zcurve in curves.items():
+  if name=='Experimental':continue
+  ax.plot(zcurve.real,-zcurve.imag,lw=2.3 if name=='Ideal' else 1.5,
+          label=treatment_display(name),color=color_map[name],alpha=.9)
+ ax.set(xlabel="Z' (ohm)",ylabel="-Z'' (ohm)",title='Nyquist Plot')
+ # Nyquist X is real impedance Z' in ohms, not frequency in Hz.
+ # Zoom the displayed range only; do not alter source impedance arrays.
+ ax.set_xlim(0, 60)
+ ax.grid(alpha=.2);ax.legend(fontsize=8,ncol=2);fig.tight_layout();fig.savefig(out/'nyquist_pilot.png',dpi=240);_release_figure(plt,fig)
+
+ fig,(ax1,ax2)=plt.subplots(2,1,figsize=(11,9),sharex=True)
+ order=np.argsort(freq)
+ for name,zcurve in curves.items():
+  col=color_map[name]
+  if name=='Experimental':
+   ax1.scatter(freq,np.abs(zcurve),s=24,c='black',marker='o',
+               edgecolors='white',linewidths=.25,label='Experimental (measured)',zorder=20)
+   ax2.scatter(freq,np.degrees(np.angle(zcurve)),s=24,c='black',marker='o',
+               edgecolors='white',linewidths=.25,label='Experimental (measured)',zorder=20)
+  else:
+   ax1.plot(freq[order],np.abs(zcurve)[order],lw=2.2 if name=='Ideal' else 1.5,label=treatment_display(name),color=col)
+   ax2.plot(freq[order],np.degrees(np.angle(zcurve))[order],lw=2.2 if name=='Ideal' else 1.5,color=col)
+ ax1.set_xscale('log');ax1.set_yscale('log');ax2.set_xscale('log')
+ ax1.set_ylabel('|Z| (ohm)');ax2.set_ylabel('Phase (degrees)');ax2.set_xlabel('Frequency (Hz)')
+ ax1.set_title('Bode Plot')
+ for ax in (ax1,ax2):ax.grid(alpha=.22,which='both')
+ ax1.legend(ncol=3,fontsize=8);fig.tight_layout();fig.savefig(out/'bode_pilot.png',dpi=240);_release_figure(plt,fig)
+
+ fig,(ax1,ax2)=plt.subplots(2,1,figsize=(11,8),sharex=True)
+ # Residuals are defined relative to the measured experimental impedance.
+ # Therefore the experimental reference is identically zero in both panels.
+ for ax in (ax1,ax2):
+  ax.scatter(freq,np.zeros_like(freq,dtype=float),s=16,c='black',marker='o',
+             edgecolors='white',linewidths=.20,
+             label='Experimental reference (zero residual)',zorder=20)
+ for name,zcurve in curves.items():
+  if name=='Experimental':continue
+  diff=zcurve-zexp
+  col=color_map[name]
+  ax1.plot(freq[order],np.asarray(diff.real,dtype=float)[order],color=col,
+           lw=2.2 if name=='Ideal' else 1.5,label=treatment_display(name))
+  ax2.plot(freq[order],np.asarray(diff.imag,dtype=float)[order],color=col,
+           lw=2.2 if name=='Ideal' else 1.5,label=treatment_display(name))
+ ax1.axhline(0,color='black',ls=':',lw=.8);ax2.axhline(0,color='black',ls=':',lw=.8)
+ ax1.set_ylabel("Re(Zfit - Zexp) (ohm)");ax2.set_ylabel("Im(Zfit - Zexp) (ohm)")
+ ax2.set_xlabel('Frequency (Hz)')
+ ax1.set_title('Residual Plot')
+ for ax in (ax1,ax2):ax.set_xscale('log');ax.grid(alpha=.2,which='both')
+ ax1.legend(ncol=3,fontsize=8);fig.tight_layout();fig.savefig(out/'residual_pilot.png',dpi=240);_release_figure(plt,fig)
+
+ csvout(out/'accuracy_cost_data.csv',[{'treatment':r['treatment'],'qpu_usage_s_job':r['qpu_usage_s_job'],
+   'median_SSE':r['median_SSE'],'improvement_vs_baseline_pct':100*(summaries[0]['median_SSE']-r['median_SSE'])/summaries[0]['median_SSE']}
+   for r in summaries])
+ baseline=next(r for r in summaries if r['treatment']=='M0_Baseline')
+ b=baseline['median_SSE']
+ fig,ax=plt.subplots(figsize=(11,5.5));npoints=0
+ for r in summaries:
+  cost=r['qpu_usage_s_job']
+  if cost is None or pd.isna(cost):continue
+  improvement=100*(b-r['median_SSE'])/b
+  ax.scatter(float(cost),improvement,s=75)
+  ax.annotate(treatment_display(r['treatment']),(float(cost),improvement),fontsize=8)
+  npoints+=1
+ ax.axhline(0,ls='--',lw=1,color='gray')
+ if not npoints:
+  ax.text(.5,.5,'QPU usage missing locally. Run: refresh-usage --account-label <label>\nThen rerun analyze (no jobs submitted).',
+          ha='center',va='center',transform=ax.transAxes,fontsize=11)
+  print('WARNING: Missing QPU usage. Run refresh-usage --account-label labA, then analyze.')
+ ax.set_xlabel('Measured QPU usage per job (s)');ax.set_ylabel('Median SSE improvement vs M0 (%)')
+ ax.set_title('Mitigation accuracy–cost trade-off')
+ fig.tight_layout();fig.savefig(out/'04_mitigation_accuracy_cost.png',dpi=220);_release_figure(plt,fig)
+
+ js({'round':args.round,'n_observed_results':len(df),'best_pub_selection':chosen,
+     'best_selection_rule':'PUB with minimum measured EIS SSE per treatment',
+     'per_treatment_counts':df.groupby('treatment').size().to_dict(),
+     'ideal_SSE':sideal,'ideal_RMSE':rmse_ideal,'classical_SSE_supplied':args.classical_sse,
+     'model_frequency_input':'Hz; impedance_model internally computes omega = 2*pi*f',
+     'sse_definition':'sum(abs(Z_fit-Z_exp)**2) over all EIS frequencies',
+     'rmse_definition':'sqrt(SSE/(2*N)) over real and imaginary components',
+     'statistics':summaries,'created_utc':stamp(),
+     'warning':'One round of 5 PUBs per treatment is insufficient for robust between-job rankings.'},
+    out/'round_summary.json')
+ publication_files=publication_mitigation_figures(out,freq,zexp,curves,df,labels,summaries)
+ charts=charts_root;charts.mkdir(parents=True,exist_ok=True)
+ filenames=['per_repeat.csv','summary_mean_std.csv','params_table.csv','tail_stats.csv','round_summary.json',
+            'distribution_pilot.png','05_mitigation_median_CI_convergence.png',
+            '06_mitigation_three_tier_positioning.png','nyquist_pilot.png','nyquist_curves.csv',
+            'bode_pilot.png','bode_curves.csv','residual_pilot.png','residual_curves.csv',
+            '04_mitigation_accuracy_cost.png','sse_plot_data.csv','accuracy_cost_data.csv']
+ filenames.extend(publication_files)
+ for filename in filenames:
+  destination=charts/f'{args.round}_{filename}'
+  if destination.exists():raise FileExistsError('Refusing to overwrite: '+str(destination))
+  shutil.copy2(out/filename,destination)
+ print(f'ANALYZED {len(df)} measured PUBs from {len(labels)} treatments, {len(freq)} frequencies. Ideal SSE = {sideal:.8g}')
+ print('Scientific results:',out)
+ print('No IBM QPU jobs were submitted. Figure C/D still deferred until multiple rounds.')
+
+
+def create_mos2_style_figures(df, tables, output_dir, figure_dir, round_name, ideal_sse,
+                               classical_sse=None, random_sse=None, seed=1013, bootstrap=3000):
+    """Plot genuine measured sample-size bootstrap convergence and benchmark positioning.
+
+    Unlike the MoS2 n=105 study, n=5 only supports sample sizes 2..5.
+    Never fabricate additional experimental replicates or classical baselines.
+    """
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    from matplotlib.ticker import MaxNLocator
+    import pandas as pd
+    out=Path(output_dir); figure_dir=Path(figure_dir)
+    out.mkdir(parents=True,exist_ok=True);figure_dir.mkdir(parents=True,exist_ok=True)
+    expected=('05_mitigation_median_CI_convergence.png','06_mitigation_three_tier_positioning.png',
+              'median_bootstrap_convergence.csv','mitigation_positioning_data.csv')
+    prefixed=tuple(f'{round_name}_{name}' for name in expected)
+    if any((directory/name).exists() for directory,names in ((out,expected),(figure_dir,prefixed)) for name in names):
+        raise FileExistsError('Refusing to overwrite existing MoS2-style mitigation comparison outputs')
+    cols=['#277DA1','#F28E2B']
+    rng=np.random.default_rng(seed)
+    ordered=[item[0] for item in TREATMENTS]
+    fig, axes=plt.subplots(2,4,figsize=(15,8),sharex=False)
+    fig.suptitle('Median SSE Convergence and Bootstrap Uncertainty',fontsize=17,fontweight='bold')
+    details=[]
+    for idx,name in enumerate(ordered):
+        ax=axes.flat[idx]
+        series=df.loc[df.treatment==name].sort_values('pub').SSE.to_numpy(dtype=float)
+        ns=np.arange(2,len(series)+1)
+        medians=[]; lo=[]; hi=[]
+        for n in ns:
+            chunk=series[:n]; repl=rng.choice(chunk,size=(bootstrap,n),replace=True)
+            meds=np.median(repl,axis=1)
+            medians.append(float(np.median(chunk)))
+            low,high=np.quantile(meds,[.025,.975]);lo.append(float(low));hi.append(float(high))
+            details.append({'treatment':name,'sample_size':int(n),'median_SSE':float(medians[-1]),
+                            'bootstrap_CI_2.5':float(low),'bootstrap_CI_97.5':float(high),
+                            'CI_upper_over_lower':float(high/low) if low>0 else np.nan,
+                            'bootstrap_draws':bootstrap,'round':round_name})
+        color=cols[0] if name!='M0_Baseline' else cols[1]
+        if len(ns):
+            ax.plot(ns,medians,'-o',color=color,linewidth=1.7,markersize=4)
+            ax.fill_between(ns,lo,hi,color=color,alpha=.19)
+            ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+            if len(ns)>1:ax.set_xlim(max(1,ns[0]-.3),ns[-1]+.3)
+            if np.all(np.array(lo)>0):ax.set_yscale('log')
+            label=f'n={len(series)}: 95% CI [{lo[-1]:.3g}, {hi[-1]:.3g}]'
+            ax.text(.04,.05,label,transform=ax.transAxes,fontsize=8,
+                    bbox={'boxstyle':'round','facecolor':'white','alpha':.85,'edgecolor':'#d1d5db'})
+        else:
+            ax.text(.5,.5,'At least two PUB results required',ha='center',va='center',transform=ax.transAxes,fontsize=9)
+        ax.set_title(treatment_display(name),fontsize=11)
+        ax.set_xlabel('Cumulative repeated PUB count n',fontsize=9)
+        ax.set_ylabel('Median SSE (Ω²)',fontsize=9)
+        ax.grid(alpha=.18)
+    fig.text(.5,.005,'Pilot estimates only. A five-PUB job does not establish between-job or between-day reproducibility.',
+             ha='center',va='bottom',fontsize=10,color='#8b3a3a')
+    fig.tight_layout(rect=(0,.035,1,.945))
+    outfile='05_mitigation_median_CI_convergence.png'
+    fig.savefig(out/outfile,dpi=600,bbox_inches='tight');plt.close(fig)
+    pd.DataFrame(details).to_csv(out/'median_bootstrap_convergence.csv',index=False)
+    # Figure D: real baselines only. Use explicit classical SSE when supplied, otherwise
+    # normalize to newly measured QPU M0 baseline, and state this explicitly.
+    stats={x['treatment']:x for x in tables}
+    baseline=stats.get('M0_Baseline',{}).get('median_SSE',np.nan)
+    reference=float(classical_sse) if classical_sse is not None else float(baseline)
+    ref_label='Classical SSE = 1×' if classical_sse is not None else 'Measured QPU Baseline = 1×'
+    if not np.isfinite(reference) or reference<=0:raise ValueError('Positive baseline/classical SSE required for positioning')
+    fig,ax=plt.subplots(figsize=(12,6));records=[]
+    for j,name in enumerate(ordered):
+        sub=df.loc[df.treatment==name].SSE.to_numpy(dtype=float)
+        if len(sub)==0:continue
+        med=float(np.median(sub));lo_ci=hi_ci=np.nan
+        if len(sub)>1:
+            repl=rng.choice(sub,size=(bootstrap,len(sub)),replace=True)
+            lo_ci,hi_ci=map(float,np.quantile(np.median(repl,axis=1),[.025,.975]))
+        ratio=med/reference
+        lowerr=max(0,med-lo_ci)/reference if np.isfinite(lo_ci) else 0
+        upperr=max(0,hi_ci-med)/reference if np.isfinite(hi_ci) else 0
+        color='#277DA1' if med<float(baseline) else '#E07636'
+        ax.errorbar(j,ratio,yerr=np.array([[lowerr],[upperr]]),fmt='o',markersize=9,
+                    capsize=5,color=color,ecolor=color,linewidth=1.7)
+        records.append({'treatment':name,'median_SSE':med,'median_SSE_over_reference':ratio,
+                        'bootstrap_CI_low_over_reference':lo_ci/reference if np.isfinite(lo_ci) else np.nan,
+                        'bootstrap_CI_high_over_reference':hi_ci/reference if np.isfinite(hi_ci) else np.nan,
+                        'reference_type':'classical' if classical_sse is not None else 'new_qpu_baseline',
+                        'reference_SSE':reference})
+    ax.axhline(1.0,color='black',ls='--',lw=1.4,label=ref_label)
+    if ideal_sse is not None and np.isfinite(ideal_sse) and ideal_sse>0:
+        ax.axhline(ideal_sse/reference,color='#2d8a52',ls=':',lw=1.8,label='Noiseless ideal reference')
+    if random_sse is not None and random_sse>0:
+        ax.axhline(random_sse/reference,color='#ad4343',ls='-.',lw=1.2,label='Provided random-control reference')
+    ax.set_xticks(range(8),[treatment_display(n) for n in ordered],rotation=20,ha='right')
+    ax.set_ylabel('Median SSE / reference SSE (log scale)')
+    ax.set_title('Mitigation Performance Relative to Measured References',fontweight='bold',fontsize=15)
+    ax.set_yscale('log');ax.grid(axis='y',alpha=.22,which='both');ax.legend(loc='best',fontsize=9)
+    ax.text(.01,.025,'Error bars: bootstrap 95% CI of median; pilot PUB replicates only.\n'
+            'Colors: lower vs higher SSE than measured QPU baseline, not statistically established tiers.',
+            transform=ax.transAxes,fontsize=9,color='#444')
+    fig.tight_layout();outfile2='06_mitigation_three_tier_positioning.png'
+    fig.savefig(out/outfile2,dpi=600,bbox_inches='tight');plt.close(fig)
+    pd.DataFrame(records).to_csv(out/'mitigation_positioning_data.csv',index=False)
+    for fn in ['05_mitigation_median_CI_convergence.png','06_mitigation_three_tier_positioning.png',
+               'median_bootstrap_convergence.csv','mitigation_positioning_data.csv']:
+        shutil.copy2(out/fn,figure_dir/f'{round_name}_{fn}')
+
+def final_figures(args):
+ """Pool all *completed* rounds; never manufacture data at unmeasured sample sizes.
+
+ Requires two or more separately submitted rounds and >=20 PUB observations
+ for every treatment. More data may be necessary for stable confidence intervals.
+ """
+ import pandas as pd
+ root,base,source,_=paths(args)
+ rounds=base/'output'/'02_run_level_data'
+ pieces=[];included=[]
+ for r in sorted(rounds.iterdir() if rounds.is_dir() else []):
+  f=r/'per_repeat.csv'
+  if not r.is_dir() or not f.exists():continue
+  frame=pd.read_csv(f)
+  if frame.empty or not {'treatment','pub','SSE'}.issubset(frame.columns):continue
+  frame=frame.copy();frame['source_round']=r.name
+  pieces.append(frame);included.append(r.name)
+ if len(pieces)<2:
+  raise RuntimeError('Figure C/D deferred: collect and analyze at least 2 independent rounds, e.g. n=5 and n=10.')
+ all_data=pd.concat(pieces,ignore_index=True)
+ counts=all_data.groupby('treatment').size()
+ missing=[name for name,*_ in TREATMENTS if counts.get(name,0)<20]
+ if missing:raise RuntimeError('Figure C/D deferred: require >=20 measured PUB results for EACH treatment. Missing: '+str(missing))
+ pool=base/'output'/'01_results_and_figures'/'pooled'
+ if pool.exists() and any(pool.iterdir()):
+  raise FileExistsError('Pooled scientific output already exists: '+str(pool))
+ pool.mkdir(parents=True,exist_ok=True)
+ csvout(pool/'pooled_per_repeat.csv',all_data.to_dict('records'))
+ summary=[]
+ for name,*_ in TREATMENTS:
+  a=all_data.loc[all_data.treatment==name,'SSE'].astype(float).to_numpy()
+  summary.append({'treatment':name,'n':len(a),'median_SSE':float(np.median(a)),
+                  'mean_SSE':float(np.mean(a)),'std_SSE':float(np.std(a,ddof=1)),
+                  'IQR_SSE':float(np.percentile(a,75)-np.percentile(a,25))})
+ bundle,lock=check_lock(base)
+ register_science(root)
+ from parameter_mapping import expectations_to_parameters
+ from impedance_model import impedance_model,read_eis_file
+ freq,zexp=read_eis_file(str(Path(args.data) if args.data else root/'data/EIS14.csv'))
+ freq=np.asarray(freq,float);zexp=np.asarray(zexp,complex)
+ p,_=expectations_to_parameters(np.clip(np.asarray(lock['ideal_expectations'],float),-1,1))
+ import inspect
+ if set(NAMES).issubset(inspect.signature(impedance_model).parameters):zideal=np.asarray(impedance_model(freq,**p),complex)
+ else:zideal=np.asarray(impedance_model(freq,p),complex)
+ ideal=float(np.sum(np.abs(zideal-zexp)**2))
+ create_mos2_style_figures(all_data,summary,pool,pool,'pooled',ideal,
+                           classical_sse=args.classical_sse,random_sse=args.random_sse,
+                           seed=args.bootstrap_seed,bootstrap=args.bootstrap_draws)
+ js({'source_rounds':included,'counts_by_treatment':counts.to_dict(),
+     'note':'Grouped PUB observations; job/batch effects are not fully captured by ordinary bootstrap.'},pool/'pooled_manifest.json')
+ print('POOLED Figures C/D created using measured rounds:',included,'folder:',pool)
+
+def main():
+ ap=argparse.ArgumentParser(description=__doc__)
+ ap.add_argument('command',choices=['prepare','preflight','submit','collect','refresh-usage','analyze','final-figures','reconcile'])
+ ap.add_argument('--project');ap.add_argument('--source',help='Fixed ISA run directory containing circuit.qpy, theta.csv, observables.json')
+ ap.add_argument('--round',default=None,help='Round directory; defaults to n=<repeats>');ap.add_argument('--repeats',type=int,default=5);ap.add_argument('--shots',type=int,default=4096)
+ ap.add_argument('--data',help='EIS14.csv when analyzing')
+ ap.add_argument('--classical-sse',type=float,help='Optional independently verified classical-fit SSE for Figure D')
+ ap.add_argument('--random-sse',type=float,help='Optional independently verified random-control SSE for Figure D')
+ ap.add_argument('--bootstrap-draws',type=int,default=3000)
+ ap.add_argument('--bootstrap-seed',type=int,default=1013)
+ ap.add_argument('--ibm-account',help='Name of locally saved Qiskit IBM Runtime account; omitted = legacy default credentials')
+ ap.add_argument('--instance',help='IBM Quantum Platform instance CRN')
+ ap.add_argument('--account-label',help='Non-secret label identifying current IBM account; repeat consistently, e.g. labA')
+ ap.add_argument('--treatment',help='Treatment to reconcile, e.g. M2_TREX')
+ ap.add_argument('--job-id',help='IBM Job ID verified in originating account')
+ ap.add_argument('--confirm-job-matches',action='store_true',help='Acknowledge verified IBM job corresponds to treatment')
+ ap.add_argument('--confirm-not-submitted',action='store_true',help='Manual declaration that uncertain job was NOT accepted')
+ ap.add_argument('--checked-ibm-jobs',action='store_true',help='Acknowledge inspection of IBM Jobs in original account')
+ ap.add_argument('--online',action='store_true',help='Read backend Target on preflight; never submit')
+ ap.add_argument('--submit',action='store_true',help='Explicitly authorize sending IBM QPU jobs')
+ ap.add_argument('--resume',action='store_true',help='Skip existing submitted Job IDs')
+ ap.add_argument('--max-jobs',type=int,default=1,help='Submit maximum new jobs per invocation (default 1)')
+ ap.add_argument('--shuffle',action='store_true');ap.add_argument('--shuffle-seed',type=int,default=1013)
+ args=ap.parse_args()
+ if args.ibm_account and args.account_label and args.ibm_account!=args.account_label:
+  ap.error('--ibm-account and --account-label must match to avoid ambiguous job provenance')
+ if args.ibm_account and not args.account_label:
+  args.account_label=args.ibm_account
+ if args.round is None:args.round=f'n={args.repeats}'
+ if args.repeats<1 or args.shots<1:ap.error('repeats/shots must be positive')
+ {'prepare':prepare,'preflight':preflight,'submit':submit,'collect':collect,'refresh-usage':refresh_usage,'analyze':analyze,'final-figures':final_figures,'reconcile':reconcile}[args.command](args)
+if __name__=='__main__':main()

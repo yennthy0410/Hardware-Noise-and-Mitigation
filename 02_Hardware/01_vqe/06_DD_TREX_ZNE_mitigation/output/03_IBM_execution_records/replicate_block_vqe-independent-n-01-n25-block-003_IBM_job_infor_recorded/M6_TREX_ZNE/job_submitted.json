@@ -1,0 +1,27 @@
+{
+  "job_id": "dbn4ergou4as73b3rlu0",
+  "batch_context_entered_utc": "2026-11-06T21:32:18.387888+00:00",
+  "batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+  "instance": "crn:v1:bluemix:public:quantum-computing:us-east:a/adbc1a6566984416ad52fb0ff815619e:83cb31df-818d-47a4-8136-b721bbd23fe9::",
+  "reconciliation_evidence": {
+    "batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+    "frozen_inputs_verified": true,
+    "identity_basis": "submission_intent_and_scientific_inputs",
+    "job_creation_date": "2026-11-06T21:32:31.028014+00:00",
+    "pub_count": 5,
+    "reconciled_utc": "2026-11-06T22:35:39.169173+00:00",
+    "submit_started_utc": "2026-11-06T21:32:28.782101+00:00",
+    "treatment_verified": "M6_TREX_ZNE"
+  },
+  "submission_order": 6,
+  "submit_started_utc": "2026-11-06T21:32:28.782101+00:00",
+  "logical_block_id": "vqe-independent-n-01-n25-block-003",
+  "treatment": "M6_TREX_ZNE",
+  "backend": "ibm_fez",
+  "account_label": "labK",
+  "input_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff"
+  }
+}

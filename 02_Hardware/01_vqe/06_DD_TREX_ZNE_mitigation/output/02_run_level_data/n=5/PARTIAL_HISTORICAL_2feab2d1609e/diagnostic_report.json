@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "campaign_id": "vqe-independent-n-01",
+  "experiment_id": "vqe-independent-n-01-n5",
+  "target_id": "vqe-independent-n-01-n5-target-n5-chunk-5",
+  "target_n": 5,
+  "source_run": "run_02",
+  "backend": "ibm_fez",
+  "shots_per_pub": 4096,
+  "input_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff"
+  },
+  "snapshot_sha256": "2feab2d1609e288766af863b2157241fa27a5b364c435a2fbb390b816190efff",
+  "raw_archives_verified": true,
+  "provenance_verified": true,
+  "analysis_state": "PARTIAL_DIAGNOSTIC_ONLY",
+  "completed_n_level": false,
+  "production_comparison": false,
+  "blocks": [
+    {
+      "logical_block_id": "historical-vqe-calibration-pilot-02-seq-1",
+      "batch_id": "60a3ae20-ba8b-4909-a4d1-62fffc1d64e9",
+      "status": "INCOMPLETE"
+    }
+  ],
+  "treatment_sample_counts": [
+    {
+      "treatment": "M0_Baseline",
+      "treatment_label": "None",
+      "expected_target_pubs": 5,
+      "validated_pub_count": 5,
+      "missing_or_invalid_pub_count": 0,
+      "median_SSE": 479.82750438406254,
+      "mean_SSE": 529.5674193919003,
+      "std_SSE": 144.77004959293086,
+      "SSE_min": 428.987729390809,
+      "SSE_q25": 461.32007671665326,
+      "SSE_q75": 492.7350474837162,
+      "SSE_p90": 668.074062384043,
+      "SSE_max": 784.9667389842608,
+      "median_RMSE": 1.3481574187375918,
+      "mean_RMSE": 1.4070618023087043,
+      "RMSE_std": 0.1806733210454353,
+      "RMSE_q25": 1.321901862097798,
+      "RMSE_q75": 1.3661700605737253,
+      "RMSE_p90": 1.58107383782421
+    },
+    {
+      "treatment": "M1_DD",
+      "treatment_label": "DD",
+      "expected_target_pubs": 5,
+      "validated_pub_count": 5,
+      "missing_or_invalid_pub_count": 0,
+      "median_SSE": 462.193945233821,
+      "mean_SSE": 543.9915135165252,
+      "std_SSE": 399.80386139609595,
+      "SSE_min": 215.85315193896318,
+      "SSE_q25": 300.0784843748037,
+      "SSE_q75": 516.1244433337204,
+      "SSE_p90": 941.8743029542788,
+      "SSE_max": 1225.7075427013176,
+      "median_RMSE": 1.3231532946099636,
+      "mean_RMSE": 1.3692930141351485,
+      "RMSE_std": 0.48167748062889904,
+      "RMSE_q25": 1.0661430137003831,
+      "RMSE_q75": 1.3982191640832087,
+      "RMSE_p90": 1.8521215205469332
+    },
+    {
+      "treatment": "M2_TREX",
+      "treatment_label": "TREX",
+      "expected_target_pubs": 5,
+      "validated_pub_count": 5,
+      "missing_or_invalid_pub_count": 0,
+      "median_SSE": 847.0435918592401,
+      "mean_SSE": 738.4721006323658,
+      "std_SSE": 421.00628496833946,
+      "SSE_min": 171.05887559709285,
+      "SSE_q25": 518.4421764246896,
+      "SSE_q75": 858.3708032771943,
+      "SSE_p90": 1121.815354913045,
+      "SSE_max": 1297.445056003612,
+      "median_RMSE": 1.7912281970793875,
+      "mean_RMSE": 1.6035167544556572,
+      "RMSE_std": 0.5314800367906855,
+      "RMSE_q25": 1.4013551023280266,
+      "RMSE_q75": 1.8031651499150487,
+      "RMSE_p90": 2.0513950981374083
+    },
+    {
+      "treatment": "M3_ZNE",
+      "treatment_label": "ZNE",
+      "expected_target_pubs": 5,
+      "validated_pub_count": 5,
+      "missing_or_invalid_pub_count": 0,
+      "median_SSE": 463.10298455791036,
+      "mean_SSE": 606.2817896538155,
+      "std_SSE": 449.33965931681905,
+      "SSE_min": 206.1481334027664,
+      "SSE_q25": 277.60341384971656,
+      "SSE_q75": 778.8346908869643,
+      "SSE_p90": 1094.9657116978178,
+      "SSE_max": 1305.7197255717201,
+      "median_RMSE": 1.3244538390635843,
+      "mean_RMSE": 1.4350187726797443,
+      "RMSE_std": 0.5445675492576622,
+      "RMSE_q25": 1.0254404335523726,
+      "RMSE_q75": 1.7175946567438036,
+      "RMSE_p90": 2.0214017180634
+    },
+    {
+      "treatment": "M4_DD_TREX",
+      "treatment_label": "DD+TREX",
+      "expected_target_pubs": 5,
+      "validated_pub_count": 5,
+      "missing_or_invalid_pub_count": 0,
+      "median_SSE": 475.77298335361866,
+      "mean_SSE": 444.3338474248162,
+      "std_SSE": 191.01301978251976,
+      "SSE_min": 156.17376951048035,
+      "SSE_q25": 368.4687729845439,
+      "SSE_q75": 589.926536154893,
+      "SSE_p90": 614.7669195342843,
+      "SSE_max": 631.3271751205451,
+      "median_RMSE": 1.3424493999741591,
+      "mean_RMSE": 1.2668495010192482,
+      "RMSE_std": 0.31260017827152825,
+      "RMSE_q25": 1.181403846778856,
+      "RMSE_q75": 1.4948478894884016,
+      "RMSE_p90": 1.5257864995681376
+    },
+    {
+      "treatment": "M5_DD_ZNE",
+      "treatment_label": "DD+ZNE",
+      "expected_target_pubs": 5,
+      "validated_pub_count": 4,
+      "missing_or_invalid_pub_count": 1,
+      "median_SSE": 657.2735275805998,
+      "mean_SSE": 719.2251896956504,
+      "std_SSE": 315.92025201444716,
+      "SSE_min": 417.24474408681556,
+      "SSE_q25": 523.8359595620439,
+      "SSE_q75": 852.6627577142062,
+      "SSE_p90": 1028.1304788064344,
+      "SSE_max": 1145.1089595345863,
+      "median_RMSE": 1.573462480671921,
+      "mean_RMSE": 1.6216920301115416,
+      "RMSE_std": 0.35487612717483513,
+      "RMSE_q25": 1.4060025795371058,
+      "RMSE_q75": 1.7891519312463573,
+      "RMSE_p90": 1.9652655970519548
+    },
+    {
+      "treatment": "M6_TREX_ZNE",
+      "treatment_label": "TREX+ZNE",
+      "expected_target_pubs": 5,
+      "validated_pub_count": 5,
+      "missing_or_invalid_pub_count": 0,
+      "median_SSE": 578.0033316661985,
+      "mean_SSE": 551.7487726627744,
+      "std_SSE": 303.7651762771065,
+      "SSE_min": 186.05412866821393,
+      "SSE_q25": 316.4667942907997,
+      "SSE_q75": 754.964334011496,
+      "SSE_p90": 855.9388984108966,
+      "SSE_max": 923.2552746771636,
+      "median_RMSE": 1.479664340092597,
+      "mean_RMSE": 1.3950341459809033,
+      "RMSE_std": 0.42402417937366843,
+      "RMSE_q25": 1.094868876698082,
+      "RMSE_q75": 1.6910687113205016,
+      "RMSE_p90": 1.7984722543430505
+    },
+    {
+      "treatment": "M7_ALL",
+      "treatment_label": "DD+TREX+ZNE",
+      "expected_target_pubs": 5,
+      "validated_pub_count": 5,
+      "missing_or_invalid_pub_count": 0,
+      "median_SSE": 211.36302616676994,
+      "mean_SSE": 415.29505101368557,
+      "std_SSE": 397.3668759906073,
+      "SSE_min": 125.97615859661035,
+      "SSE_q25": 179.04216300290335,
+      "SSE_q75": 476.39854164969967,
+      "SSE_p90": 840.7766360513466,
+      "SSE_max": 1083.6953656524445,
+      "median_RMSE": 0.8947723304612056,
+      "mean_RMSE": 1.1556935516097142,
+      "RMSE_std": 0.5448161722240623,
+      "RMSE_q25": 0.8235229270485637,
+      "RMSE_q75": 1.3433316532008344,
+      "RMSE_p90": 1.7529668199431605
+    }
+  ],
+  "missing_or_invalid_pubs_by_treatment": {
+    "M0_Baseline": 0,
+    "M1_DD": 0,
+    "M2_TREX": 0,
+    "M3_ZNE": 0,
+    "M4_DD_TREX": 0,
+    "M5_DD_ZNE": 1,
+    "M6_TREX_ZNE": 0,
+    "M7_ALL": 0
+  },
+  "unequal_sample_sizes": true,
+  "warning": "PARTIAL DIAGNOSTIC ONLY: this is not a completed n-level or production M0-M7 comparison. Treatment sample sizes may differ, creating unequal precision and potential selection bias. No missing PUBs or values were imputed.",
+  "per_pub_eis_count": 39,
+  "per_pub_validation_count": 40,
+  "figures": {
+    "publication_nyquist.png": {
+      "width": 2100,
+      "height": 2100,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "valid": true
+    },
+    "publication_bode_magnitude.png": {
+      "width": 2100,
+      "height": 2100,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "valid": true
+    },
+    "publication_bode_phase.png": {
+      "width": 2100,
+      "height": 2100,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "valid": true
+    },
+    "publication_residual_real.png": {
+      "width": 2100,
+      "height": 2100,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "valid": true
+    },
+    "publication_residual_imag.png": {
+      "width": 2100,
+      "height": 2100,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "valid": true
+    },
+    "publication_residual_real_normalized.png": {
+      "width": 2100,
+      "height": 2100,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "valid": true
+    },
+    "publication_residual_imag_normalized.png": {
+      "width": 2100,
+      "height": 2100,
+      "dpi": [
+        599.9988,
+        599.9988
+      ],
+      "valid": true
+    },
+    "05_mitigation_median_CI_convergence.png": {
+      "width": 4349,
+      "height": 2064,
+      "dpi": [
+        229.99699999999999,
+        229.99699999999999
+      ],
+      "valid": true
+    },
+    "06_mitigation_three_tier_positioning.png": {
+      "width": 3431,
+      "height": 1475,
+      "dpi": [
+        229.99699999999999,
+        229.99699999999999
+      ],
+      "valid": true
+    },
+    "partial_pub_coverage_by_treatment.png": {
+      "width": 3450,
+      "height": 1495,
+      "dpi": [
+        229.99699999999999,
+        229.99699999999999
+      ],
+      "valid": true
+    }
+  },
+  "analysis_verified": true,
+  "figures_verified": true,
+  "artifacts": [
+    "publication_nyquist.png",
+    "publication_bode_magnitude.png",
+    "publication_bode_phase.png",
+    "publication_residual_real.png",
+    "publication_residual_imag.png",
+    "publication_residual_real_normalized.png",
+    "publication_residual_imag_normalized.png",
+    "05_mitigation_median_CI_convergence.png",
+    "06_mitigation_three_tier_positioning.png",
+    "partial_pub_coverage_by_treatment.png"
+  ],
+  "artifact_sha256": {
+    "publication_nyquist.png": "b4fad224592f7b46986477e1388a7e77c9b5e32b7fe4df5f2f592623061de5c6",
+    "publication_bode_magnitude.png": "afa137d63f3aa30d5ea94eea33b026f25192358cc396f800640a1f183f544ff9",
+    "publication_bode_phase.png": "c677cbd79cd45e0e166a2083a7c7328893cdfd4bf189f1bf90b355e65eb9068d",
+    "publication_residual_real.png": "ec08e5e54541d34cb3f055913943690b35b57a52717362ae355060a6ab4f6dbf",
+    "publication_residual_imag.png": "61ab0b52f78cdb2aa9e3c020205fe9c44762020ef568b191462bd6e491fca69f",
+    "publication_residual_real_normalized.png": "84e1ed5d15d8030692aaf6df3b96579eb907fe90b274e6258b1c27f795923ff8",
+    "publication_residual_imag_normalized.png": "c9610d876df479bdf9226009f6f77e43bb7cc5117432de6175d092266f51e8c9",
+    "05_mitigation_median_CI_convergence.png": "8bce2256c33c61c1adc2588701f4647cb74d4950c0bad78165eb3e8fcd8d7d3b",
+    "06_mitigation_three_tier_positioning.png": "3088073223fb3cba6b40b220f363fecc5bfbf37923343a0611d2c4311186eb82",
+    "partial_pub_coverage_by_treatment.png": "4eda3f25f9e9f75f86838b286e0be58e7b67dfe452126c583baac76841d5d4e6",
+    "per_pub_eis.csv": "b5132d5e831818889b0596cf7da474a08423ad9e992c676accfbf7f78734b4d6",
+    "pub_validation.csv": "0ac04950ffc421019dfceb8912d7cf3897fa17007dd9473ed0304b1c8b1ff807",
+    "treatment_sample_counts.csv": "95aa697cd35977b8826f57a9eb8c4b3738f34724c295005fd730634c3719ced5",
+    "validated_pub_provenance.csv": "7cf2d6ea42d8d0f65a07bbfbda96b09f3c31fd815b74c72d136e751cd8010d34"
+  },
+  "artifacts_verified": true,
+  "scientific_formulas": "mitigation_pilot.calculate_pub_eis; unchanged",
+  "created_utc": "2026-11-03T17:48:15.353066+00:00"
+}

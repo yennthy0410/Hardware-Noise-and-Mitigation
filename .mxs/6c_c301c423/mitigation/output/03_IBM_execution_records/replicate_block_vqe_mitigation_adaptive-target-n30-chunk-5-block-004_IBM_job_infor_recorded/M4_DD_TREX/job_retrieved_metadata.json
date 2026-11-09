@@ -1,0 +1,36 @@
+{
+  "job_id": "fake-0029",
+  "treatment": "M4_DD_TREX",
+  "account_label": "labA",
+  "instance": "offline-instance",
+  "backend": "ibm_fez",
+  "shots_requested_per_pub": 4096,
+  "repeats": 5,
+  "base_ISA_sha256": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+  "theta_sha256": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff",
+  "observables_sha256": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d",
+  "collected_utc": "2026-11-03T16:14:06.879568+00:00",
+  "status": "DONE",
+  "metrics_raw": {
+    "usage": {
+      "quantum_seconds": 0.5
+    },
+    "timestamps": {
+      "running": "offline-mock",
+      "finished": "offline-mock"
+    }
+  },
+  "raw_result_path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\.mxs\\6c_c301c423\\mitigation\\output\\03_IBM_execution_records\\replicate_block_vqe_mitigation_adaptive-target-n30-chunk-5-block-004_IBM_job_infor_recorded\\M4_DD_TREX\\raw_retrievals\\job_result_93759fc8f4a684a7db42e04a170b8e486682133d18f10e126c4411601d8e4d40.json",
+  "raw_result_sha256": "93759fc8f4a684a7db42e04a170b8e486682133d18f10e126c4411601d8e4d40",
+  "qpu_usage_s": 0.5,
+  "timestamps": {
+    "running": "offline-mock",
+    "finished": "offline-mock"
+  },
+  "execution_time_s": null,
+  "runtime_options_requested": {
+    "repr": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=True, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=True, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=False, zne=ZneOptions(amplifier=Unset, noise_factors=Unset, extrapolator=Unset, extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+  },
+  "pub_results": 5,
+  "job_creation_date_utc": "2026-11-03 16:14:06.162857+00:00"
+}

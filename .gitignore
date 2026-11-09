@@ -1,0 +1,16 @@
+manager_audit_backups/
+*.stdout.log
+*.stderr.log
+*.log
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.pyc
+account_config.py
+*.sqlite
+*.sqlite3
+*.db
+codex.tmp/

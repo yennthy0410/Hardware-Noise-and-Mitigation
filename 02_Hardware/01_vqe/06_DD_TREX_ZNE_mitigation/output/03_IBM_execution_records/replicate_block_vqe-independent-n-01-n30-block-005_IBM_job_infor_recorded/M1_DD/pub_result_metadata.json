@@ -1,0 +1,72 @@
+[
+  {
+    "pub": 1,
+    "metadata": {
+      "shots": 4096,
+      "target_precision": 0.015625,
+      "circuit_metadata": {},
+      "num_randomizations": 1
+    },
+    "available_data_fields": [
+      "evs",
+      "stds",
+      "ensemble_standard_error"
+    ]
+  },
+  {
+    "pub": 2,
+    "metadata": {
+      "shots": 4096,
+      "target_precision": 0.015625,
+      "circuit_metadata": {},
+      "num_randomizations": 1
+    },
+    "available_data_fields": [
+      "evs",
+      "stds",
+      "ensemble_standard_error"
+    ]
+  },
+  {
+    "pub": 3,
+    "metadata": {
+      "shots": 4096,
+      "target_precision": 0.015625,
+      "circuit_metadata": {},
+      "num_randomizations": 1
+    },
+    "available_data_fields": [
+      "evs",
+      "stds",
+      "ensemble_standard_error"
+    ]
+  },
+  {
+    "pub": 4,
+    "metadata": {
+      "shots": 4096,
+      "target_precision": 0.015625,
+      "circuit_metadata": {},
+      "num_randomizations": 1
+    },
+    "available_data_fields": [
+      "evs",
+      "stds",
+      "ensemble_standard_error"
+    ]
+  },
+  {
+    "pub": 5,
+    "metadata": {
+      "shots": 4096,
+      "target_precision": 0.015625,
+      "circuit_metadata": {},
+      "num_randomizations": 1
+    },
+    "available_data_fields": [
+      "evs",
+      "stds",
+      "ensemble_standard_error"
+    ]
+  }
+]

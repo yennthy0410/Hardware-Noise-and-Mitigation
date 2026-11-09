@@ -1,0 +1,743 @@
+{
+  "schema_version": 1,
+  "account_label": "labA",
+  "authentication_mode": "saved-profile",
+  "backend": "ibm_fez",
+  "nominal_account_budget_seconds": 600.0,
+  "submission": false,
+  "checked_utc": "2026-11-02T14:35:02.251466Z",
+  "configured_instance_ref": "deeb2483ae3b",
+  "frozen_input_validation": {
+    "source_run": "run_02",
+    "backend": "ibm_fez",
+    "input_sha256": {
+      "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+      "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff",
+      "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d"
+    },
+    "physical_qubits": [
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146
+    ],
+    "theta_count": 21,
+    "observable_count": 7,
+    "unbound_parameter_count": 0,
+    "transpilation_performed": false,
+    "isa_instructions": [
+      {
+        "operation": "rz",
+        "qubits": [
+          140
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          140
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          140
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          140
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "cz",
+        "qubits": [
+          140,
+          141
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "cz",
+        "qubits": [
+          142,
+          143
+        ]
+      },
+      {
+        "operation": "x",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "cz",
+        "qubits": [
+          144,
+          145
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "barrier",
+        "qubits": [
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          140
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          140
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          140
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          140
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "cz",
+        "qubits": [
+          141,
+          142
+        ]
+      },
+      {
+        "operation": "x",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "cz",
+        "qubits": [
+          143,
+          144
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "cz",
+        "qubits": [
+          145,
+          146
+        ]
+      },
+      {
+        "operation": "x",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "barrier",
+        "qubits": [
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          140
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          140
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          140
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          140
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          141
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          142
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          143
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          144
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          145
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "sx",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "rz",
+        "qubits": [
+          146
+        ]
+      },
+      {
+        "operation": "barrier",
+        "qubits": [
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146
+        ]
+      }
+    ]
+  },
+  "instances": [
+    {
+      "instance_ref": "deeb2483ae3b",
+      "plan": "open",
+      "usage": {
+        "consumed_seconds": 711.0,
+        "limit_seconds": 600.0,
+        "allocation_seconds": null,
+        "remaining_seconds": 0.0,
+        "limit_reached": true
+      },
+      "backend_status": {
+        "operational": true,
+        "status_message": "active",
+        "pending_jobs": 3
+      },
+      "isa_compatible": true,
+      "pending_jobs_count": 0
+    }
+  ],
+  "accessible_instance_count": 1,
+  "pending_jobs_count": 0,
+  "pending_jobs_per_instance_limit": 100,
+  "checks": {
+    "authentication": "PASS",
+    "configured_instance": "PASS",
+    "frozen_run_02_inputs": "PASS",
+    "accessible_instances": "PASS",
+    "usage": "PASS",
+    "provider_quota": "PASS",
+    "isa_compatibility": "PASS",
+    "backend_ibm_fez": "PASS",
+    "backend_operational": "PASS",
+    "pending_jobs": "PASS",
+    "sdk_batch_compatibility": "PASS"
+  },
+  "sdk_batch_compatibility": {
+    "available": true,
+    "batch_backend_parameter": true,
+    "estimator_mode_parameter": true,
+    "runtime_version": "0.51.0",
+    "estimator_v2_deprecated": true,
+    "batch_created": false
+  },
+  "usage_scope": "single_accessible_instance (service usage is instance-scoped)",
+  "account_wide_usage_verified": true,
+  "status": "PASS",
+  "submission_eligible": true,
+  "reasons": []
+}

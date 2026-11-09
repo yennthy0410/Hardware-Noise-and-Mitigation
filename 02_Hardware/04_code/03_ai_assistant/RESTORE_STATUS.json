@@ -1,0 +1,29 @@
+{
+  "restored_files": [
+    "mxene",
+    "research_pipeline",
+    "independent_n_campaign",
+    "batch_scheduler",
+    "batch_monitor",
+    "targeted_recovery",
+    "job_registry",
+    "vqe_adapter",
+    "adaptive_targets",
+    "scientific_exports",
+    "account_config",
+    "quota",
+    "runtime_estimator",
+    "final_configuration",
+    "experiment_manifest",
+    "read_only_preflight",
+    "ai_assistance",
+    "calibration"
+  ],
+  "unresolved_dependencies": [
+    "assistant_cli",
+    "calibration_worker",
+    "repository_paths"
+  ],
+  "live_ready": false,
+  "tests_run": "syntax and archive integrity only"
+}

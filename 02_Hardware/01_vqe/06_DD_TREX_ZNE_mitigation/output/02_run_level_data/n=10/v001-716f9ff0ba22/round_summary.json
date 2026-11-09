@@ -1,0 +1,129 @@
+{
+  "round": "replicate_block_repaired_vqe-independent-n-01-n10-target-n10-chunk-5",
+  "n_observed_results": 80,
+  "best_pub_selection": {
+    "M0_Baseline": 1,
+    "M1_DD": 8,
+    "M2_TREX": 10,
+    "M3_ZNE": 5,
+    "M4_DD_TREX": 5,
+    "M5_DD_ZNE": 3,
+    "M6_TREX_ZNE": 8,
+    "M7_ALL": 8
+  },
+  "best_selection_rule": "PUB with minimum measured EIS SSE per treatment",
+  "per_treatment_counts": {
+    "M0_Baseline": 10,
+    "M1_DD": 10,
+    "M2_TREX": 10,
+    "M3_ZNE": 10,
+    "M4_DD_TREX": 10,
+    "M5_DD_ZNE": 10,
+    "M6_TREX_ZNE": 10,
+    "M7_ALL": 10
+  },
+  "ideal_SSE": 258.05897604193257,
+  "ideal_RMSE": 0.988684035155295,
+  "classical_SSE_supplied": null,
+  "model_frequency_input": "Hz; impedance_model internally computes omega = 2*pi*f",
+  "sse_definition": "sum(abs(Z_fit-Z_exp)**2) over all EIS frequencies",
+  "rmse_definition": "sqrt(SSE/(2*N)) over real and imaginary components",
+  "statistics": [
+    {
+      "treatment": "M0_Baseline",
+      "n": 10,
+      "median_SSE": 461.1253758835438,
+      "mean_SSE": 520.3175005096596,
+      "std_SSE": 299.1903482473976,
+      "IQR_SSE": 284.8756245963663,
+      "median_RMSE": 1.3160862228474648,
+      "median_expectation_MAE": 0.01620737927432557,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M1_DD",
+      "n": 10,
+      "median_SSE": 521.2991325806072,
+      "mean_SSE": 498.7054509575608,
+      "std_SSE": 239.43089312957824,
+      "IQR_SSE": 333.2396431834743,
+      "median_RMSE": 1.40514453911569,
+      "median_expectation_MAE": 0.020118153741573472,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M2_TREX",
+      "n": 10,
+      "median_SSE": 271.31462374817767,
+      "mean_SSE": 325.28413274117884,
+      "std_SSE": 160.85285696656697,
+      "IQR_SSE": 106.46560280336175,
+      "median_RMSE": 1.0137553941061177,
+      "median_expectation_MAE": 0.01723030248110361,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M3_ZNE",
+      "n": 10,
+      "median_SSE": 603.6574870599791,
+      "mean_SSE": 734.7920140318258,
+      "std_SSE": 490.7521008576874,
+      "IQR_SSE": 542.3146693307925,
+      "median_RMSE": 1.5121285627423147,
+      "median_expectation_MAE": 0.02098033595820891,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M4_DD_TREX",
+      "n": 10,
+      "median_SSE": 206.742798826609,
+      "mean_SSE": 303.1120681437619,
+      "std_SSE": 180.54598307324943,
+      "IQR_SSE": 319.81328956479,
+      "median_RMSE": 0.883300265866785,
+      "median_expectation_MAE": 0.015655643515290286,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M5_DD_ZNE",
+      "n": 10,
+      "median_SSE": 360.6808229145337,
+      "mean_SSE": 425.89552374984333,
+      "std_SSE": 223.41884835198383,
+      "IQR_SSE": 338.7287461699567,
+      "median_RMSE": 1.1683061493985294,
+      "median_expectation_MAE": 0.02048183764468381,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M6_TREX_ZNE",
+      "n": 10,
+      "median_SSE": 430.59585439282466,
+      "mean_SSE": 463.0287974171523,
+      "std_SSE": 263.7302998121605,
+      "IQR_SSE": 335.5210436109178,
+      "median_RMSE": 1.2705270423011013,
+      "median_expectation_MAE": 0.021864561015703183,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M7_ALL",
+      "n": 10,
+      "median_SSE": 407.55735608804923,
+      "mean_SSE": 486.9709299044922,
+      "std_SSE": 415.1879817093921,
+      "IQR_SSE": 144.0502643101924,
+      "median_RMSE": 1.2419662526266797,
+      "median_expectation_MAE": 0.01880867982810253,
+      "qpu_usage_s_job": null
+    }
+  ],
+  "created_utc": "2026-11-09T12:43:57.457914+00:00",
+  "warning": "One round of 5 PUBs per treatment is insufficient for robust between-job rankings.",
+  "experiment_id": "vqe-independent-n-01-n10",
+  "n": 10,
+  "target_id": "vqe-independent-n-01-n10-target-n10-chunk-5",
+  "source_run": "run_02",
+  "analysis_state": "REPAIRED_COMPLETE",
+  "incomplete_batches_preserved": true
+}

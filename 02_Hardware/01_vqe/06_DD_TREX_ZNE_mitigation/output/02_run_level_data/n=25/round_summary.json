@@ -1,0 +1,129 @@
+{
+  "round": "replicate_block_repaired_vqe-independent-n-01-n25-target-n25-chunk-5",
+  "n_observed_results": 200,
+  "best_pub_selection": {
+    "M0_Baseline": 23,
+    "M1_DD": 1,
+    "M2_TREX": 2,
+    "M3_ZNE": 9,
+    "M4_DD_TREX": 2,
+    "M5_DD_ZNE": 25,
+    "M6_TREX_ZNE": 12,
+    "M7_ALL": 12
+  },
+  "best_selection_rule": "PUB with minimum measured EIS SSE per treatment",
+  "per_treatment_counts": {
+    "M0_Baseline": 25,
+    "M1_DD": 25,
+    "M2_TREX": 25,
+    "M3_ZNE": 25,
+    "M4_DD_TREX": 25,
+    "M5_DD_ZNE": 25,
+    "M6_TREX_ZNE": 25,
+    "M7_ALL": 25
+  },
+  "ideal_SSE": 258.05897604193257,
+  "ideal_RMSE": 0.988684035155295,
+  "classical_SSE_supplied": null,
+  "model_frequency_input": "Hz; impedance_model internally computes omega = 2*pi*f",
+  "sse_definition": "sum(abs(Z_fit-Z_exp)**2) over all EIS frequencies",
+  "rmse_definition": "sqrt(SSE/(2*N)) over real and imaginary components",
+  "statistics": [
+    {
+      "treatment": "M0_Baseline",
+      "n": 25,
+      "median_SSE": 469.13706010627095,
+      "mean_SSE": 535.412791347569,
+      "std_SSE": 308.841636476428,
+      "IQR_SSE": 216.8361258441247,
+      "median_RMSE": 1.3330545069817512,
+      "median_expectation_MAE": 0.032742710234615856,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M1_DD",
+      "n": 25,
+      "median_SSE": 430.8508510646867,
+      "mean_SSE": 485.9550184062622,
+      "std_SSE": 263.60985912835014,
+      "IQR_SSE": 326.72341433092697,
+      "median_RMSE": 1.2775017806200701,
+      "median_expectation_MAE": 0.040500238148208,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M2_TREX",
+      "n": 25,
+      "median_SSE": 462.8972155902651,
+      "mean_SSE": 505.29562470430966,
+      "std_SSE": 224.62295212751317,
+      "IQR_SSE": 356.8648721218272,
+      "median_RMSE": 1.3241595613454291,
+      "median_expectation_MAE": 0.028807613931154784,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M3_ZNE",
+      "n": 25,
+      "median_SSE": 533.8355125736123,
+      "mean_SSE": 642.6905881273644,
+      "std_SSE": 416.247737713817,
+      "IQR_SSE": 434.76770216163845,
+      "median_RMSE": 1.4220071076805438,
+      "median_expectation_MAE": 0.05611708480040662,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M4_DD_TREX",
+      "n": 25,
+      "median_SSE": 424.3938152167502,
+      "mean_SSE": 520.4826113308914,
+      "std_SSE": 318.3092090826189,
+      "IQR_SSE": 323.75373904110234,
+      "median_RMSE": 1.2678928702246408,
+      "median_expectation_MAE": 0.026487966218231202,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M5_DD_ZNE",
+      "n": 25,
+      "median_SSE": 557.4681369267879,
+      "mean_SSE": 491.2642135682388,
+      "std_SSE": 279.7314715906428,
+      "IQR_SSE": 400.9728606014334,
+      "median_RMSE": 1.4531420201698413,
+      "median_expectation_MAE": 0.036893866545949824,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M6_TREX_ZNE",
+      "n": 25,
+      "median_SSE": 539.0560844759539,
+      "mean_SSE": 585.3068194457338,
+      "std_SSE": 300.61230007674686,
+      "IQR_SSE": 341.6448014241877,
+      "median_RMSE": 1.4289433536230405,
+      "median_expectation_MAE": 0.030076628384192505,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M7_ALL",
+      "n": 25,
+      "median_SSE": 609.9988228801466,
+      "mean_SSE": 1415.369739901968,
+      "std_SSE": 3652.862881638442,
+      "IQR_SSE": 724.2791570617089,
+      "median_RMSE": 1.52006631494114,
+      "median_expectation_MAE": 0.028725380728016673,
+      "qpu_usage_s_job": null
+    }
+  ],
+  "created_utc": "2026-11-08T09:39:36.747822+00:00",
+  "warning": "One round of 5 PUBs per treatment is insufficient for robust between-job rankings.",
+  "experiment_id": "vqe-independent-n-01-n25",
+  "n": 25,
+  "target_id": "vqe-independent-n-01-n25-target-n25-chunk-5",
+  "source_run": "run_02",
+  "analysis_state": "REPAIRED_COMPLETE",
+  "incomplete_batches_preserved": true
+}

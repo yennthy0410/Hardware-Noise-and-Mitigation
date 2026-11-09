@@ -1,0 +1,629 @@
+{
+  "style": {
+    "schema_version": 1,
+    "palette": {
+      "M0_Baseline": "#666666",
+      "M1_DD": "#0072B2",
+      "M2_TREX": "#009E73",
+      "M3_ZNE": "#E69F00",
+      "M4_DD_TREX": "#CC79A7",
+      "M5_DD_ZNE": "#D55E00",
+      "M6_TREX_ZNE": "#56B4E9",
+      "M7_ALL": "#7B3FB5"
+    },
+    "standalone_inches": [
+      12.5,
+      8
+    ],
+    "standalone_axes": [
+      0.13,
+      0.24,
+      0.84,
+      0.59
+    ],
+    "title_size": 17,
+    "subtitle_size": 11,
+    "axis_label_size": 11,
+    "tick_size": 10,
+    "annotation_size": 10,
+    "footer_size": 9,
+    "marker_size": 7.5,
+    "error_width": 1.8,
+    "cap_size": 5,
+    "title_y": 0.955,
+    "subtitle_y": 0.895,
+    "footer_y": [
+      0.13,
+      0.085,
+      0.04
+    ],
+    "dpi": 600,
+    "background": "white",
+    "grid": false,
+    "border_color": "black",
+    "border_width": 1.6
+  },
+  "layouts": {
+    "C": {
+      "inches": [
+        16.0,
+        9.0
+      ],
+      "axes_positions": [
+        [
+          0.07,
+          0.5920661157024794,
+          0.18571428571428567,
+          0.2479338842975206
+        ],
+        [
+          0.3114285714285714,
+          0.5920661157024794,
+          0.18571428571428572,
+          0.2479338842975206
+        ],
+        [
+          0.5528571428571428,
+          0.5920661157024794,
+          0.1857142857142856,
+          0.2479338842975206
+        ],
+        [
+          0.7942857142857143,
+          0.5920661157024794,
+          0.18571428571428572,
+          0.2479338842975206
+        ],
+        [
+          0.07,
+          0.23999999999999988,
+          0.18571428571428567,
+          0.24793388429752072
+        ],
+        [
+          0.3114285714285714,
+          0.23999999999999988,
+          0.18571428571428572,
+          0.24793388429752072
+        ],
+        [
+          0.5528571428571428,
+          0.23999999999999988,
+          0.1857142857142856,
+          0.24793388429752072
+        ],
+        [
+          0.7942857142857143,
+          0.23999999999999988,
+          0.18571428571428572,
+          0.24793388429752072
+        ]
+      ],
+      "x_labels": [
+        [
+          "5",
+          "15",
+          "30",
+          "50",
+          "75",
+          "105"
+        ],
+        [
+          "5",
+          "15",
+          "30",
+          "50",
+          "75",
+          "105"
+        ],
+        [
+          "5",
+          "15",
+          "30",
+          "50",
+          "75",
+          "105"
+        ],
+        [
+          "5",
+          "15",
+          "30",
+          "50",
+          "75",
+          "105"
+        ],
+        [
+          "5",
+          "15",
+          "30",
+          "50",
+          "75",
+          "105"
+        ],
+        [
+          "5",
+          "15",
+          "30",
+          "50",
+          "75",
+          "105"
+        ],
+        [
+          "5",
+          "15",
+          "30",
+          "50",
+          "75",
+          "105"
+        ],
+        [
+          "5",
+          "15",
+          "30",
+          "50",
+          "75",
+          "105"
+        ]
+      ],
+      "treatment_colors": {
+        "M0_Baseline": "#666666",
+        "M1_DD": "#0072B2",
+        "M2_TREX": "#009E73",
+        "M3_ZNE": "#E69F00",
+        "M4_DD_TREX": "#CC79A7",
+        "M5_DD_ZNE": "#D55E00",
+        "M6_TREX_ZNE": "#56B4E9",
+        "M7_ALL": "#7B3FB5"
+      },
+      "content_bounds_inches": [
+        0.2927419704861112,
+        0.329970703125,
+        15.493126376852825,
+        8.445029296875001
+      ],
+      "no_clipping": true,
+      "y_labels": [
+        "Median SSE ($\\Omega^2$)",
+        "",
+        "",
+        "",
+        "Median SSE ($\\Omega^2$)",
+        "",
+        "",
+        ""
+      ],
+      "figure_text": [
+        "C | Pooled PUB Prefix Median SSE",
+        "Ordinary pooled-prefix bootstrap, 3,000 replicates | seed 1013",
+        "Shading: 2.5th-97.5th percentile sensitivity ranges; not inferential confidence intervals.",
+        "Pooled prefixes are order-dependent and are not optimizer convergence.",
+        "Ordinary bootstrap does not account for within-job or between-job dependence; recovery and calibration effects remain."
+      ],
+      "style": {
+        "schema_version": 1,
+        "palette": {
+          "M0_Baseline": "#666666",
+          "M1_DD": "#0072B2",
+          "M2_TREX": "#009E73",
+          "M3_ZNE": "#E69F00",
+          "M4_DD_TREX": "#CC79A7",
+          "M5_DD_ZNE": "#D55E00",
+          "M6_TREX_ZNE": "#56B4E9",
+          "M7_ALL": "#7B3FB5"
+        },
+        "standalone_inches": [
+          12.5,
+          8
+        ],
+        "standalone_axes": [
+          0.13,
+          0.24,
+          0.84,
+          0.59
+        ],
+        "title_size": 17,
+        "subtitle_size": 11,
+        "axis_label_size": 11,
+        "tick_size": 10,
+        "annotation_size": 10,
+        "footer_size": 9,
+        "marker_size": 7.5,
+        "error_width": 1.8,
+        "cap_size": 5,
+        "title_y": 0.955,
+        "subtitle_y": 0.895,
+        "footer_y": [
+          0.13,
+          0.085,
+          0.04
+        ],
+        "dpi": 600,
+        "background": "white",
+        "grid": false,
+        "border_color": "black",
+        "border_width": 1.6
+      },
+      "png": {
+        "width": 9600,
+        "height": 5400,
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "layout": "landscape",
+        "valid": true
+      }
+    },
+    "D": {
+      "inches": [
+        12.5,
+        8.0
+      ],
+      "axes_positions": [
+        [
+          0.13,
+          0.24,
+          0.84,
+          0.59
+        ]
+      ],
+      "x_labels": [
+        [
+          "DD+TREX",
+          "TREX",
+          "DD",
+          "ALL",
+          "TREX+ZNE",
+          "None",
+          "DD+ZNE",
+          "ZNE"
+        ]
+      ],
+      "treatment_colors": {
+        "M4_DD_TREX": "#CC79A7",
+        "M2_TREX": "#009E73",
+        "M1_DD": "#0072B2",
+        "M7_ALL": "#7B3FB5",
+        "M6_TREX_ZNE": "#56B4E9",
+        "M0_Baseline": "#666666",
+        "M5_DD_ZNE": "#D55E00",
+        "M3_ZNE": "#E69F00"
+      },
+      "content_bounds_inches": [
+        0.8316666666666666,
+        0.289970703125,
+        11.293333333333333,
+        7.530029296875
+      ],
+      "no_clipping": true,
+      "y_labels": [
+        "Median SSE / classical SSE"
+      ],
+      "figure_text": [
+        "D | Mitigation Performance Positioning",
+        "Ordinary PUB-level bootstrap, 3,000 replicates | seed 1013",
+        "Points: pooled median SSE / verified reference; treatment ranking is descriptive.",
+        "Bars: 2.5th-97.5th percentile IID sensitivity ranges; not inferential confidence intervals.",
+        "Ordinary bootstrap ignores within-job and between-job dependence; recovery and calibration effects remain."
+      ],
+      "style": {
+        "schema_version": 1,
+        "palette": {
+          "M0_Baseline": "#666666",
+          "M1_DD": "#0072B2",
+          "M2_TREX": "#009E73",
+          "M3_ZNE": "#E69F00",
+          "M4_DD_TREX": "#CC79A7",
+          "M5_DD_ZNE": "#D55E00",
+          "M6_TREX_ZNE": "#56B4E9",
+          "M7_ALL": "#7B3FB5"
+        },
+        "standalone_inches": [
+          12.5,
+          8
+        ],
+        "standalone_axes": [
+          0.13,
+          0.24,
+          0.84,
+          0.59
+        ],
+        "title_size": 17,
+        "subtitle_size": 11,
+        "axis_label_size": 11,
+        "tick_size": 10,
+        "annotation_size": 10,
+        "footer_size": 9,
+        "marker_size": 7.5,
+        "error_width": 1.8,
+        "cap_size": 5,
+        "title_y": 0.955,
+        "subtitle_y": 0.895,
+        "footer_y": [
+          0.13,
+          0.085,
+          0.04
+        ],
+        "dpi": 600,
+        "background": "white",
+        "grid": false,
+        "border_color": "black",
+        "border_width": 1.6
+      },
+      "png": {
+        "width": 7500,
+        "height": 4800,
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "layout": "landscape",
+        "valid": true
+      }
+    },
+    "E": {
+      "inches": [
+        12.5,
+        8.0
+      ],
+      "axes_positions": [
+        [
+          0.13,
+          0.24,
+          0.84,
+          0.59
+        ]
+      ],
+      "x_labels": [
+        [
+          "DD",
+          "TREX",
+          "ZNE",
+          "DD+TREX",
+          "DD+ZNE",
+          "TREX+ZNE",
+          "ALL"
+        ]
+      ],
+      "treatment_colors": {
+        "M1_DD": "#0072B2",
+        "M2_TREX": "#009E73",
+        "M3_ZNE": "#E69F00",
+        "M4_DD_TREX": "#CC79A7",
+        "M5_DD_ZNE": "#D55E00",
+        "M6_TREX_ZNE": "#56B4E9",
+        "M7_ALL": "#7B3FB5"
+      },
+      "content_bounds_inches": [
+        0.892222222222222,
+        0.289970703125,
+        11.232777777777779,
+        7.530029296875
+      ],
+      "no_clipping": true,
+      "y_labels": [
+        "Difference in pooled median SSE ($\\Omega^2$)"
+      ],
+      "figure_text": [
+        "E | M0-Referenced SSE Difference",
+        "Matched n-level cluster bootstrap, 10,000 replicates | seed 1013",
+        "Delta = median SSE(treatment) - median SSE(M0).",
+        "Negative difference indicates improvement. Bars: conditional 95% sensitivity intervals; no automatic significance.",
+        "Conditional on n-level resampling assumptions; recovery-job dependence and calibration drift may remain."
+      ],
+      "style": {
+        "schema_version": 1,
+        "palette": {
+          "M0_Baseline": "#666666",
+          "M1_DD": "#0072B2",
+          "M2_TREX": "#009E73",
+          "M3_ZNE": "#E69F00",
+          "M4_DD_TREX": "#CC79A7",
+          "M5_DD_ZNE": "#D55E00",
+          "M6_TREX_ZNE": "#56B4E9",
+          "M7_ALL": "#7B3FB5"
+        },
+        "standalone_inches": [
+          12.5,
+          8
+        ],
+        "standalone_axes": [
+          0.13,
+          0.24,
+          0.84,
+          0.59
+        ],
+        "title_size": 17,
+        "subtitle_size": 11,
+        "axis_label_size": 11,
+        "tick_size": 10,
+        "annotation_size": 10,
+        "footer_size": 9,
+        "marker_size": 7.5,
+        "error_width": 1.8,
+        "cap_size": 5,
+        "title_y": 0.955,
+        "subtitle_y": 0.895,
+        "footer_y": [
+          0.13,
+          0.085,
+          0.04
+        ],
+        "dpi": 600,
+        "background": "white",
+        "grid": false,
+        "border_color": "black",
+        "border_width": 1.6
+      },
+      "png": {
+        "width": 7500,
+        "height": 4800,
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "layout": "landscape",
+        "valid": true
+      }
+    },
+    "F": {
+      "inches": [
+        12.5,
+        8.0
+      ],
+      "axes_positions": [
+        [
+          0.13,
+          0.24,
+          0.84,
+          0.59
+        ]
+      ],
+      "x_labels": [
+        [
+          "DD",
+          "TREX",
+          "ZNE",
+          "DD+TREX",
+          "DD+ZNE",
+          "TREX+ZNE",
+          "ALL"
+        ]
+      ],
+      "treatment_colors": {
+        "M1_DD": "#0072B2",
+        "M2_TREX": "#009E73",
+        "M3_ZNE": "#E69F00",
+        "M4_DD_TREX": "#CC79A7",
+        "M5_DD_ZNE": "#D55E00",
+        "M6_TREX_ZNE": "#56B4E9",
+        "M7_ALL": "#7B3FB5"
+      },
+      "content_bounds_inches": [
+        1.0194444444444444,
+        0.289970703125,
+        11.105555555555556,
+        7.530029296875
+      ],
+      "no_clipping": true,
+      "y_labels": [
+        "Relative reduction in pooled median SSE (%)"
+      ],
+      "figure_text": [
+        "F | Relative SSE Reduction",
+        "Matched n-level cluster bootstrap, 10,000 replicates | seed 1013",
+        "Reduction = 100 x [1 - median SSE(treatment) / median SSE(M0)].",
+        "Positive reduction indicates improvement. Bars: conditional 95% sensitivity intervals; no automatic significance.",
+        "Conditional on n-level resampling assumptions; recovery-job dependence and calibration drift may remain."
+      ],
+      "style": {
+        "schema_version": 1,
+        "palette": {
+          "M0_Baseline": "#666666",
+          "M1_DD": "#0072B2",
+          "M2_TREX": "#009E73",
+          "M3_ZNE": "#E69F00",
+          "M4_DD_TREX": "#CC79A7",
+          "M5_DD_ZNE": "#D55E00",
+          "M6_TREX_ZNE": "#56B4E9",
+          "M7_ALL": "#7B3FB5"
+        },
+        "standalone_inches": [
+          12.5,
+          8
+        ],
+        "standalone_axes": [
+          0.13,
+          0.24,
+          0.84,
+          0.59
+        ],
+        "title_size": 17,
+        "subtitle_size": 11,
+        "axis_label_size": 11,
+        "tick_size": 10,
+        "annotation_size": 10,
+        "footer_size": 9,
+        "marker_size": 7.5,
+        "error_width": 1.8,
+        "cap_size": 5,
+        "title_y": 0.955,
+        "subtitle_y": 0.895,
+        "footer_y": [
+          0.13,
+          0.085,
+          0.04
+        ],
+        "dpi": 600,
+        "background": "white",
+        "grid": false,
+        "border_color": "black",
+        "border_width": 1.6
+      },
+      "png": {
+        "width": 7500,
+        "height": 4800,
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "layout": "landscape",
+        "valid": true
+      }
+    }
+  },
+  "prior_numerical_CSV_sha256": {
+    "convergence_105_statistics.csv": "e1dde662b19d9f40c1d1c2794f7324738c4ca3c7ab035a1ea7e9a07c34b0b6aa",
+    "triple_positioning_105.csv": "c7b3dbdab285df546693c9fa24fd81af301f14d24431fea8f857b8a8651ad959",
+    "M0_matched_n_sensitivity_statistics.csv": "e68a85269043a0daae206ec6bc6b8004bb4774cc13b69edf06206f0795ba8c72",
+    "comparison_summary.csv": "395f472e7fd35ce0ed22cd1f2e95dd161c647395989359ab7f401530d2516327",
+    "source_105_pubs.csv": "12153867aa8dcb8c0ed69253dbb53ceb73169f91fc2f51ae37ba76f43260d4ae",
+    "verified_job_usage.csv": "2b9693d0a7e3d0dd07c13bbe3272e85403e428f37b492a6260c0f239f48ac2e3",
+    "cluster_bootstrap_n_level_sensitivity.csv": "c8935d0e068e8cf03e9ee7680bcaba64861bc528ab0db07dc4721e8423589348",
+    "cluster_bootstrap_shared_job_sensitivity.csv": "235cbb005d735cf3e25e585567ffc64e5b6c3f5c298ede815d03f64bdb6764a8"
+  },
+  "primary_statistics_recomputed": true,
+  "ordinary_C_D_verified_unchanged": true,
+  "prior_manifest": {
+    "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\compare\\comparison_manifest__v005.json",
+    "sha256": "2add5beb0d59d13a513dbe138929834aeef9a54a1347ce45581f1114bd10191c"
+  },
+  "operator_deleted_artifacts": {
+    "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\compare\\Figure_D_105_PUB_triple_positioning__v003.png": {
+      "expected_sha256": "edf100a680f5ac912414f3050dcec4466cbc003420e1e38c452c55523131cacc",
+      "status": "operator-deleted; not restored"
+    },
+    "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\compare\\Figure_E_M0_cluster_bootstrap_delta_SSE__v003.png": {
+      "expected_sha256": "d293f82d3c5c42ccf65fc61ae3b5c660ab21abcc69ba8c9ee969b89c2cf4d3fd",
+      "status": "operator-deleted; not restored"
+    },
+    "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\compare\\Figure_F_M0_cluster_bootstrap_reduction__v003.png": {
+      "expected_sha256": "33f91a676bec6845852bbb2230f89c9986ee1d02bf7041e70cad29ae84c99511",
+      "status": "operator-deleted; not restored"
+    },
+    "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\compare\\Figure_D_105_PUB_triple_positioning__v004.png": {
+      "expected_sha256": "edf100a680f5ac912414f3050dcec4466cbc003420e1e38c452c55523131cacc",
+      "status": "operator-deleted; not restored"
+    },
+    "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\compare\\Figure_E_M0_cluster_bootstrap_delta_SSE__v004.png": {
+      "expected_sha256": "8b73d3f89b4ea4dc7d02c6105ce1c150fa2a4bda4f7e338a5da0127beb88d475",
+      "status": "operator-deleted; not restored"
+    },
+    "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\compare\\Figure_F_M0_cluster_bootstrap_reduction__v004.png": {
+      "expected_sha256": "b734c1d5b8bfd20bcf3f05178279ee9075539b871549daa6ca224de885e5b4f4",
+      "status": "operator-deleted; not restored"
+    },
+    "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\compare\\Figure_E_M0_cluster_bootstrap_delta_SSE__v002.png": {
+      "expected_sha256": "ce6df953313a030a16a97e7e67cbf04cef28d2216d2daf1340442bbd69a2e68b",
+      "status": "prior comparison PNG missing; absence acknowledged; historical path not restored"
+    },
+    "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\compare\\Figure_F_M0_cluster_bootstrap_reduction__v002.png": {
+      "expected_sha256": "2758579cc5e8daa1f141b5af9adf31cfbafe61c9307facd2926fad2064b58c24",
+      "status": "prior comparison PNG missing; absence acknowledged; historical path not restored"
+    },
+    "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\compare\\Figure_C_105_PUB_convergence__v005.png": {
+      "expected_sha256": "ac589dd988b0507db7f1aeb0e84fb6feea161ebe505dc233475dd33e20953e83",
+      "status": "prior comparison PNG missing; absence acknowledged; historical path not restored"
+    }
+  }
+}

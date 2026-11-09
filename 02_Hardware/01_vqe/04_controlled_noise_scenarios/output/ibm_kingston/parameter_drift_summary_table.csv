@@ -1,0 +1,6 @@
+scenario,mean_absolute_parameter_drift_pct,max_absolute_parameter_drift_pct,most_affected_parameter
+ideal,0.0,0.0,Rs
+measurement,1.4966121294094878,4.203122444739095,Rs
+decoherence,1.5401921780690855,6.851438548568992,Q1
+gate,0.18336492619098074,0.5409767231347727,Q1
+combined_calibrated,2.4964281944438977,8.059262038514186,Q1

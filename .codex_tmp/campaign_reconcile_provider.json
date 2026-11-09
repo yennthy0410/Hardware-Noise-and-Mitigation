@@ -1,0 +1,14 @@
+{
+  "read_only": true,
+  "submission_performed": false,
+  "jobs": [],
+  "provider_verified": false,
+  "error_types": [
+    "InvalidAccountError",
+    "ProxyError",
+    "MaxRetryError",
+    "ProxyError",
+    "NewConnectionError",
+    "ConnectionRefusedError"
+  ]
+}

@@ -1,0 +1,40 @@
+MXene Auto Manager quota policy: verified-unreserved-fixed-threshold-v1
+
+Single source of truth: final_configuration.quota_eligibility.
+Original 8-job/40-PUB Runtime Batch: at least 150.0 verified available seconds.
+Targeted PUB / missing-treatment / grouped recovery Batch: at least 40.0 seconds.
+Thresholds are inclusive. 155 seconds qualifies for an original Batch and 45
+seconds qualifies for a replacement even when estimate plus margin is larger.
+
+Available = provider remaining minus uncharged local reservations, capped by
+explicit authorized per-account headroom. Provider usage must be fresh, complete,
+consistent and scoped to the authorized instance. Never subtract already charged
+completed usage a second time. Pending/UNKNOWN jobs require reconciliation; they
+are not silently treated as free capacity. Provider exhaustion is authoritative.
+
+New quota reservations use the admission threshold, not a runtime prediction:
+150 total split across original Batch jobs, 40 for one PUB replacement, or one
+40-second reservation shared across an explicitly grouped recovery. Existing
+reservations are immutable historical accounting until settled/released through
+the normal lifecycle; no migration or retrospective resizing is performed.
+Atomic SQLite reservation checks and WorkerLock prevent concurrent over-allocation.
+These tokens are admission accounting, not a promise of actual runtime: the IBM
+provider enforces its own quota and actual usage is reconciled normally.
+
+Runtime estimates, evidence confidence, and safety_margin_seconds remain recorded
+for diagnostics, warnings and provenance. The runtime-plus-margin value is not
+compared against quota for admission. required_quota_seconds is authoritative;
+required_runtime_with_margin_seconds is telemetry. The legacy output key
+required_seconds_including_margin aliases required_quota_seconds for compatibility.
+
+No change to account authorization/priorities, frozen inputs, backend/instance
+identity, PUB scope, UNKNOWN safeguards, duplicate prevention or accepted results.
+Explicit per-account authorization limits still apply. When provider quota or
+unreserved headroom is below threshold, select another authorized eligible account
+or wait with bounded backoff; do not repeatedly call submission on an ambiguous ID.
+Targeted replacement attempts remain unlimited and only missing/invalid slots qualify.
+
+final_config.json retains safety_margin_seconds as diagnostic metadata. Its schema
+and scientific settings are unchanged. Normalized configuration exposes quota_policy,
+runtime_estimate_and_margin_mode and the two centralized minimum thresholds.
+No live IBM jobs may be submitted by offline tests.

@@ -1,0 +1,1 @@
+Original QAOA quadratic surrogate; 3-bit blocks 6..8 and 9..11. Other 15 bits held at lowest-training-loss state. This is NOT a VQE trajectory. Confirm bit-to-parameter mapping in source code before publication.

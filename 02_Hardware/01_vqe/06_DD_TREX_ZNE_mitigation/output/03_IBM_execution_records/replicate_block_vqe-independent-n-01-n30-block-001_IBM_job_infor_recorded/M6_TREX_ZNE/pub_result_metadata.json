@@ -1,0 +1,117 @@
+[
+  {
+    "pub": 1,
+    "metadata": {
+      "shots": 4096,
+      "target_precision": 0.015625,
+      "circuit_metadata": {},
+      "resilience": {
+        "zne": {
+          "extrapolator": "['exponential' 'exponential' 'exponential' 'exponential' 'exponential'\n 'exponential' 'exponential']"
+        }
+      },
+      "num_randomizations": 32
+    },
+    "available_data_fields": [
+      "evs",
+      "stds",
+      "evs_noise_factors",
+      "stds_noise_factors",
+      "ensemble_stds_noise_factors",
+      "evs_extrapolated",
+      "stds_extrapolated"
+    ]
+  },
+  {
+    "pub": 2,
+    "metadata": {
+      "shots": 4096,
+      "target_precision": 0.015625,
+      "circuit_metadata": {},
+      "resilience": {
+        "zne": {
+          "extrapolator": "['exponential' 'exponential' 'exponential' 'exponential' 'exponential'\n 'exponential' 'exponential']"
+        }
+      },
+      "num_randomizations": 32
+    },
+    "available_data_fields": [
+      "evs",
+      "stds",
+      "evs_noise_factors",
+      "stds_noise_factors",
+      "ensemble_stds_noise_factors",
+      "evs_extrapolated",
+      "stds_extrapolated"
+    ]
+  },
+  {
+    "pub": 3,
+    "metadata": {
+      "shots": 4096,
+      "target_precision": 0.015625,
+      "circuit_metadata": {},
+      "resilience": {
+        "zne": {
+          "extrapolator": "['exponential' 'exponential' 'exponential' 'exponential' 'exponential'\n 'exponential' 'exponential']"
+        }
+      },
+      "num_randomizations": 32
+    },
+    "available_data_fields": [
+      "evs",
+      "stds",
+      "evs_noise_factors",
+      "stds_noise_factors",
+      "ensemble_stds_noise_factors",
+      "evs_extrapolated",
+      "stds_extrapolated"
+    ]
+  },
+  {
+    "pub": 4,
+    "metadata": {
+      "shots": 4096,
+      "target_precision": 0.015625,
+      "circuit_metadata": {},
+      "resilience": {
+        "zne": {
+          "extrapolator": "['exponential' 'exponential' 'exponential' 'exponential' 'exponential'\n 'exponential' 'exponential']"
+        }
+      },
+      "num_randomizations": 32
+    },
+    "available_data_fields": [
+      "evs",
+      "stds",
+      "evs_noise_factors",
+      "stds_noise_factors",
+      "ensemble_stds_noise_factors",
+      "evs_extrapolated",
+      "stds_extrapolated"
+    ]
+  },
+  {
+    "pub": 5,
+    "metadata": {
+      "shots": 4096,
+      "target_precision": 0.015625,
+      "circuit_metadata": {},
+      "resilience": {
+        "zne": {
+          "extrapolator": "['exponential' 'exponential' 'exponential' 'exponential' 'exponential'\n 'exponential' 'exponential']"
+        }
+      },
+      "num_randomizations": 32
+    },
+    "available_data_fields": [
+      "evs",
+      "stds",
+      "evs_noise_factors",
+      "stds_noise_factors",
+      "ensemble_stds_noise_factors",
+      "evs_extrapolated",
+      "stds_extrapolated"
+    ]
+  }
+]

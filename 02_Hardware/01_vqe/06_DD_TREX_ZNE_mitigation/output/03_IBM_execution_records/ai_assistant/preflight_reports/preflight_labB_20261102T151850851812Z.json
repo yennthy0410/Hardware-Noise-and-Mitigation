@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "account_label": "labB",
+  "status": "FAIL",
+  "submission": false,
+  "submission_eligible": false,
+  "checks": {
+    "credentials": "FAIL"
+  },
+  "reasons": [
+    "Local account configuration failed (AccountConfigurationError)"
+  ],
+  "checked_utc": "2026-11-02T15:18:50.851741Z"
+}

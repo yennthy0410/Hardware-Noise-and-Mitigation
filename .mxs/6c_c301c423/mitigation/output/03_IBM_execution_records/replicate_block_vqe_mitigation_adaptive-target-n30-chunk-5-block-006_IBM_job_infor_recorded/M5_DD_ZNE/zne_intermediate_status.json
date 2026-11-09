@@ -1,0 +1,5 @@
+{
+  "treatment": "M5_DD_ZNE",
+  "available": false,
+  "reason": "No ZNE intermediate arrays exposed in Runtime PUB results."
+}

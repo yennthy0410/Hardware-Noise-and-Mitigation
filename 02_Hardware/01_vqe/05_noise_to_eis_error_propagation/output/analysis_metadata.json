@@ -1,0 +1,27 @@
+{
+  "part": "1.3 Quantum-to-EIS Error Propagation",
+  "source_simulation": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\experiments\\HEA_VQE\\01_simulator_to_qpu_hardware\\results\\EIS14\\05_controlled_noise_scenarios",
+  "data_source": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\data\\EIS14.csv",
+  "backends": [
+    "ibm_fez",
+    "ibm_kingston",
+    "ibm_marrakesh"
+  ],
+  "scenarios": [
+    "measurement",
+    "gate",
+    "decoherence",
+    "combined_calibrated"
+  ],
+  "data_points": 132,
+  "mapper": "repository src/HEA_VQE/parameter_mapping.py",
+  "impedance": "repository impedance_model.py",
+  "jacobians": "finite-difference at ideal expectations / parameters",
+  "shapley": "exact over seven EIS parameter substitutions; signed \u0394SSE contributions; nonlinear interaction effects shared",
+  "limitations": [
+    "The Shapley decomposition attributes fit-error changes to EIS parameters, not causally to physical noise sources.",
+    "First-order Jacobian is local and can be inaccurate for large perturbations.",
+    "Normalizations of different physical parameters are not equivalent to uncertainties.",
+    "Results inherit Part 1.2 model assumptions and calibration limitations."
+  ]
+}

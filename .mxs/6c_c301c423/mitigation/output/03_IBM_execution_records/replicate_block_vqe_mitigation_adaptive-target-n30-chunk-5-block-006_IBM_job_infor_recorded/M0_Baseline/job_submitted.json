@@ -1,0 +1,12 @@
+{
+  "job_id": "fake-0041",
+  "treatment": "M0_Baseline",
+  "account_label": "labA",
+  "instance": "offline-instance",
+  "backend": "ibm_fez",
+  "shots_requested_per_pub": 4096,
+  "repeats": 5,
+  "base_ISA_sha256": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+  "theta_sha256": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff",
+  "observables_sha256": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d"
+}

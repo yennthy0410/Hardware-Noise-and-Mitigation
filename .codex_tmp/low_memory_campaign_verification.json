@@ -1,0 +1,54 @@
+{
+  "state": "PAUSED",
+  "coverage": [
+    {
+      "n": 5,
+      "valid": 40,
+      "expected": 40,
+      "complete": true,
+      "replacement_pubs": 1
+    },
+    {
+      "n": 10,
+      "valid": 80,
+      "expected": 80,
+      "complete": true,
+      "replacement_pubs": 3
+    },
+    {
+      "n": 15,
+      "valid": 120,
+      "expected": 120,
+      "complete": true,
+      "replacement_pubs": 2
+    },
+    {
+      "n": 20,
+      "valid": 160,
+      "expected": 160,
+      "complete": true,
+      "replacement_pubs": 1
+    },
+    {
+      "n": 25,
+      "valid": 200,
+      "expected": 200,
+      "complete": true,
+      "replacement_pubs": 2
+    },
+    {
+      "n": 30,
+      "valid": 29,
+      "expected": 240,
+      "complete": false,
+      "replacement_pubs": 0
+    }
+  ],
+  "accepted_pubs": 629,
+  "sqlite_integrity": "ok",
+  "verification_passed": true,
+  "failures": [],
+  "unresolved_identities": [],
+  "provider_checked": false,
+  "submission_performed": false
+}

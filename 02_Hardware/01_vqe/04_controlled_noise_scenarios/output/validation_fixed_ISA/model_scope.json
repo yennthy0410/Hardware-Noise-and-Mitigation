@@ -1,0 +1,8 @@
+{
+  "real_qpu_runs": 15,
+  "noise_model": "logical homogeneous surrogate",
+  "comparison_level": "screening, not native ISA/layout-matched hardware reproduction",
+  "shots": "exact density matrix simulation compared to finite-shot hardware",
+  "calibration_limitations": "median calibration model; does not prove contributions of individual mechanisms",
+  "missing_runs_report": null
+}

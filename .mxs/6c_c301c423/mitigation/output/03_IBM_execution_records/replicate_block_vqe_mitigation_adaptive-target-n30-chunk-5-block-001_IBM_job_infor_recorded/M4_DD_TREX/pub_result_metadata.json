@@ -1,0 +1,62 @@
+[
+  {
+    "pub": 1,
+    "metadata": {
+      "mock": true,
+      "pub_index": 1,
+      "shots": 4096
+    },
+    "available_data_fields": [
+      "evs",
+      "stds"
+    ]
+  },
+  {
+    "pub": 2,
+    "metadata": {
+      "mock": true,
+      "pub_index": 2,
+      "shots": 4096
+    },
+    "available_data_fields": [
+      "evs",
+      "stds"
+    ]
+  },
+  {
+    "pub": 3,
+    "metadata": {
+      "mock": true,
+      "pub_index": 3,
+      "shots": 4096
+    },
+    "available_data_fields": [
+      "evs",
+      "stds"
+    ]
+  },
+  {
+    "pub": 4,
+    "metadata": {
+      "mock": true,
+      "pub_index": 4,
+      "shots": 4096
+    },
+    "available_data_fields": [
+      "evs",
+      "stds"
+    ]
+  },
+  {
+    "pub": 5,
+    "metadata": {
+      "mock": true,
+      "pub_index": 5,
+      "shots": 4096
+    },
+    "available_data_fields": [
+      "evs",
+      "stds"
+    ]
+  }
+]

@@ -1,0 +1,365 @@
+{
+  "instance": "crn:v1:bluemix:public:quantum-computing:us-east:a/adbc1a6566984416ad52fb0ff815619e:83cb31df-818d-47a4-8136-b721bbd23fe9::",
+  "m7_absence_evidence": {
+    "checked_utc": "2026-11-07T06:20:38.465485+00:00",
+    "closed_at": "2026-11-06T21:45:55.533000+00:00",
+    "closure_evidence": {
+      "accepting_jobs": true,
+      "accepting_jobs_evidence": {
+        "default_applied": false,
+        "field_present": true,
+        "freshness": "read_during_this_inspection",
+        "inferred": false,
+        "source": "Batch.details -> Session.details -> GET /sessions/{id}",
+        "stale_proven": false
+      },
+      "batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+      "classification": "CONTRADICTORY",
+      "closed_at": "2026-11-06T21:45:55.533000+00:00",
+      "closure_recheck_details": {
+        "accepting_jobs": true,
+        "activated_at": "2026-11-06T21:35:14.309Z",
+        "active_timeout": 600,
+        "backend_name": "ibm_fez",
+        "closed_at": "2026-11-06T21:45:55.533Z",
+        "id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+        "interactive_timeout": 1,
+        "last_job_completed": "2026-11-06T21:46:14.884Z",
+        "last_job_started": "2026-11-06T21:42:39.928Z",
+        "max_time": 600,
+        "mode": "batch",
+        "started_at": "2026-11-06T21:35:14.309Z",
+        "state": "closed",
+        "timestamps": [
+          {
+            "status": "open",
+            "timestamp": "2026-11-06T21:32:19.616Z"
+          },
+          {
+            "status": "active",
+            "timestamp": "2026-11-06T21:35:14.309Z"
+          },
+          {
+            "status": "closed",
+            "timestamp": "2026-11-06T21:45:55.533Z"
+          }
+        ],
+        "usage_time": 112
+      },
+      "closure_time_source": "closed_at",
+      "conflicts": [
+        "Provider closure and accepting-new-jobs fields disagree"
+      ],
+      "execution_terminal": true,
+      "handle_backend": "ibm_fez",
+      "handle_session_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+      "history_end_utc": "2026-11-06T21:45:55.533000+00:00",
+      "instance": "crn:v1:bluemix:public:quantum-computing:us-east:a/adbc1a6566984416ad52fb0ff815619e:83cb31df-818d-47a4-8136-b721bbd23fe9::",
+      "local_intent_evidence": {
+        "blockers": [],
+        "job_id": null,
+        "local_no_start_evidence": true,
+        "original_batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+        "original_job_row_id": 104,
+        "provider_absence_verified": false,
+        "quota_reserved_seconds": 35.0,
+        "reservation_events": [
+          {
+            "created_at": "2026-11-06T21:32:18.458061+00:00",
+            "event_type": "RUNTIME_BATCH_CONTEXT_ENTERED"
+          },
+          {
+            "created_at": "2026-11-06T23:55:21.216031+00:00",
+            "event_type": "M7_BATCH_CLOSURE_OBSERVED"
+          },
+          {
+            "created_at": "2026-11-07T00:02:34.356153+00:00",
+            "event_type": "M7_BATCH_CLOSURE_OBSERVED"
+          },
+          {
+            "created_at": "2026-11-07T05:54:27.109574+00:00",
+            "event_type": "M7_BATCH_CLOSURE_OBSERVED"
+          },
+          {
+            "created_at": "2026-11-07T06:03:23.587769+00:00",
+            "event_type": "M7_BATCH_CLOSURE_OBSERVED"
+          },
+          {
+            "created_at": "2026-11-07T06:16:36.291760+00:00",
+            "event_type": "M7_BATCH_CLOSURE_OBSERVED"
+          }
+        ],
+        "submission_state": "RESERVED",
+        "unknown_jobs": [],
+        "unknown_replacements": [],
+        "validated_original_pubs": 34
+      },
+      "missing_evidence": [
+        "Provider state/status Closed or explicit non-acceptance of new jobs"
+      ],
+      "normalized_state": "closed",
+      "observed_utc": "2026-11-07T06:20:23.745905+00:00",
+      "provider_details": {
+        "accepting_jobs": true,
+        "activated_at": "2026-11-06T21:35:14.309Z",
+        "active_timeout": 600,
+        "backend_name": "ibm_fez",
+        "closed_at": "2026-11-06T21:45:55.533Z",
+        "id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+        "interactive_timeout": 1,
+        "last_job_completed": "2026-11-06T21:46:14.884Z",
+        "last_job_started": "2026-11-06T21:42:39.928Z",
+        "max_time": 600,
+        "mode": "batch",
+        "started_at": "2026-11-06T21:35:14.309Z",
+        "state": "closed",
+        "timestamps": [
+          {
+            "status": "open",
+            "timestamp": "2026-11-06T21:32:19.616Z"
+          },
+          {
+            "status": "active",
+            "timestamp": "2026-11-06T21:35:14.309Z"
+          },
+          {
+            "status": "closed",
+            "timestamp": "2026-11-06T21:45:55.533Z"
+          }
+        ],
+        "usage_time": 112
+      },
+      "provider_status": "Closed",
+      "queried_api": "Batch.from_id / Batch.details / Batch.status",
+      "resolution_required": "Fresh consistent provider closure/nonacceptance evidence; Closed status alone does not prove accepting_jobs stale",
+      "settled": false,
+      "submission_closed": false
+    },
+    "history_scope": "all jobs in original instance since reservation; no upper bound",
+    "history_start_utc": "2026-11-06T21:32:17+00:00",
+    "local_intent_evidence": {
+      "blockers": [],
+      "job_id": null,
+      "local_no_start_evidence": true,
+      "original_batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+      "original_job_row_id": 104,
+      "provider_absence_verified": false,
+      "quota_reserved_seconds": 35.0,
+      "reservation_events": [
+        {
+          "created_at": "2026-11-06T21:32:18.458061+00:00",
+          "event_type": "RUNTIME_BATCH_CONTEXT_ENTERED"
+        },
+        {
+          "created_at": "2026-11-06T23:55:21.216031+00:00",
+          "event_type": "M7_BATCH_CLOSURE_OBSERVED"
+        },
+        {
+          "created_at": "2026-11-07T00:02:34.356153+00:00",
+          "event_type": "M7_BATCH_CLOSURE_OBSERVED"
+        },
+        {
+          "created_at": "2026-11-07T05:54:27.109574+00:00",
+          "event_type": "M7_BATCH_CLOSURE_OBSERVED"
+        },
+        {
+          "created_at": "2026-11-07T06:03:23.587769+00:00",
+          "event_type": "M7_BATCH_CLOSURE_OBSERVED"
+        },
+        {
+          "created_at": "2026-11-07T06:16:36.291760+00:00",
+          "event_type": "M7_BATCH_CLOSURE_OBSERVED"
+        }
+      ],
+      "submission_state": "RESERVED",
+      "unknown_jobs": [],
+      "unknown_replacements": [],
+      "validated_original_pubs": 34
+    },
+    "m7_submit_started_absent": true,
+    "new_batch_required": true,
+    "original_account": "labK",
+    "original_batch_closure_verified": false,
+    "original_batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+    "provider_history_complete": true,
+    "provider_identity_proofs": {
+      "dbn4epgou4as73b3rlqg": {
+        "batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+        "frozen_inputs_verified": true,
+        "identity_basis": "recorded_job_id",
+        "job_creation_date": "2026-11-06T21:32:22.168708+00:00",
+        "pub_count": 5,
+        "submit_started_utc": "2026-11-06T21:32:18.478859+00:00",
+        "treatment_verified": "M0_Baseline"
+      },
+      "dbn4eps4148s73909vn0": {
+        "batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+        "frozen_inputs_verified": true,
+        "identity_basis": "recorded_job_id",
+        "job_creation_date": "2026-11-06T21:32:23.594882+00:00",
+        "pub_count": 5,
+        "submit_started_utc": "2026-11-06T21:32:21.346647+00:00",
+        "treatment_verified": "M1_DD"
+      },
+      "dbn4eq8qtr0c73acbf80": {
+        "batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+        "frozen_inputs_verified": true,
+        "identity_basis": "recorded_job_id",
+        "job_creation_date": "2026-11-06T21:32:25.232300+00:00",
+        "pub_count": 5,
+        "submit_started_utc": "2026-11-06T21:32:22.742180+00:00",
+        "treatment_verified": "M2_TREX"
+      },
+      "dbn4eqk4148s73909vog": {
+        "batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+        "frozen_inputs_verified": true,
+        "identity_basis": "recorded_job_id",
+        "job_creation_date": "2026-11-06T21:32:26.624770+00:00",
+        "pub_count": 5,
+        "submit_started_utc": "2026-11-06T21:32:24.375369+00:00",
+        "treatment_verified": "M3_ZNE"
+      },
+      "dbn4er0ou4as73b3rlsg": {
+        "batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+        "frozen_inputs_verified": true,
+        "identity_basis": "recorded_job_id",
+        "job_creation_date": "2026-11-06T21:32:28.228176+00:00",
+        "pub_count": 5,
+        "submit_started_utc": "2026-11-06T21:32:25.755507+00:00",
+        "treatment_verified": "M4_DD_TREX"
+      },
+      "dbn4er8ou4as73b3rltg": {
+        "batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+        "frozen_inputs_verified": true,
+        "identity_basis": "recorded_job_id",
+        "job_creation_date": "2026-11-06T21:32:29.625004+00:00",
+        "pub_count": 5,
+        "submit_started_utc": "2026-11-06T21:32:27.363362+00:00",
+        "treatment_verified": "M5_DD_ZNE"
+      },
+      "dbn4ergou4as73b3rlu0": {
+        "batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+        "frozen_inputs_verified": true,
+        "identity_basis": "recorded_job_id",
+        "job_creation_date": "2026-11-06T21:32:31.028014+00:00",
+        "pub_count": 5,
+        "submit_started_utc": "2026-11-06T21:32:28.782101+00:00",
+        "treatment_verified": "M6_TREX_ZNE"
+      }
+    },
+    "provider_inventory_snapshots": [
+      {
+        "job_ids": [
+          "dbn4epgou4as73b3rlqg",
+          "dbn4eps4148s73909vn0",
+          "dbn4eq8qtr0c73acbf80",
+          "dbn4eqk4148s73909vog",
+          "dbn4er0ou4as73b3rlsg",
+          "dbn4er8ou4as73b3rltg",
+          "dbn4ergou4as73b3rlu0"
+        ],
+        "query": "Batch inventory"
+      },
+      {
+        "job_ids": [
+          "dbn4epgou4as73b3rlqg",
+          "dbn4eps4148s73909vn0",
+          "dbn4eq8qtr0c73acbf80",
+          "dbn4eqk4148s73909vog",
+          "dbn4er0ou4as73b3rlsg",
+          "dbn4er8ou4as73b3rltg",
+          "dbn4ergou4as73b3rlu0"
+        ],
+        "query": "cross-Batch instance history"
+      },
+      {
+        "job_ids": [
+          "dbn4epgou4as73b3rlqg",
+          "dbn4eps4148s73909vn0",
+          "dbn4eq8qtr0c73acbf80",
+          "dbn4eqk4148s73909vog",
+          "dbn4er0ou4as73b3rlsg",
+          "dbn4er8ou4as73b3rltg",
+          "dbn4ergou4as73b3rlu0"
+        ],
+        "query": "Batch inventory"
+      },
+      {
+        "job_ids": [
+          "dbn4epgou4as73b3rlqg",
+          "dbn4eps4148s73909vn0",
+          "dbn4eq8qtr0c73acbf80",
+          "dbn4eqk4148s73909vog",
+          "dbn4er0ou4as73b3rlsg",
+          "dbn4er8ou4as73b3rltg",
+          "dbn4ergou4as73b3rlu0"
+        ],
+        "query": "cross-Batch instance history"
+      }
+    ],
+    "verification_basis": "never_started_intent_and_complete_cross_batch_history",
+    "verified": true,
+    "verified_job_ids": [
+      "dbn4epgou4as73b3rlqg",
+      "dbn4eps4148s73909vn0",
+      "dbn4eq8qtr0c73acbf80",
+      "dbn4eqk4148s73909vog",
+      "dbn4er0ou4as73b3rlsg",
+      "dbn4er8ou4as73b3rltg",
+      "dbn4ergou4as73b3rlu0"
+    ]
+  },
+  "m7_first_submission": true,
+  "m7_treatment_recovery": true,
+  "operator_authorized_m7_first_submission": true,
+  "original_reservation_snapshot": {
+    "account_label": "labK",
+    "attempt": 1,
+    "backend": "ibm_fez",
+    "batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+    "chunk_n": 5,
+    "collected_at": null,
+    "collected_pub_count": 0,
+    "completed_at": null,
+    "completed_pub_count": 0,
+    "created_at": "2026-11-06T21:32:17.870789+00:00",
+    "id": 104,
+    "input_hashes_json": "{\"circuit.qpy\": \"2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c\", \"observables.json\": \"4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d\", \"theta.csv\": \"4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff\"}",
+    "invalid_pub_count": 0,
+    "job_id": null,
+    "logical_block_id": "vqe-independent-n-01-n25-block-003",
+    "metadata_json": "{\"batch_context_entered_utc\": \"2026-11-06T21:32:18.387888+00:00\", \"batch_id\": \"d9e6cd69-775b-4597-9267-7e27a864879d\"}",
+    "n": 5,
+    "qpu_usage_seconds": null,
+    "quota_reserved_seconds": 35.0,
+    "replicate_blocks": 1,
+    "submission_state": "RESERVED",
+    "submitted_pub_count": 0,
+    "target_id": "vqe-independent-n-01-n25-target-n25-chunk-5",
+    "target_n": 25,
+    "treatment_id": "M7_ALL",
+    "treatment_validation_state": "NOT_VALIDATED",
+    "updated_at": "2026-11-06T21:32:18.458061+00:00",
+    "validated_at": null,
+    "validated_pub_count": 0
+  },
+  "preflight_checked_at": "2026-11-07T06:18:58.017815Z",
+  "runtime_options_requested": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=True, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=True, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=True, zne=ZneOptions(amplifier='gate_folding', noise_factors=(1.0, 3.0, 5.0), extrapolator='exponential', extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)",
+  "runtime_upper_bound_seconds": 35.0,
+  "source_account_label": "labK",
+  "source_batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+  "source_job_row_id": 104,
+  "source_run": "run_02",
+  "submit_started_utc": "2026-11-07T06:20:38.493928+00:00",
+  "job_id": "dbnc6e8ou4as73b493sg",
+  "account_label": "labK",
+  "backend": "ibm_fez",
+  "batch_id": "ab167a0b-ce82-4f59-8dcd-8ca725c01aea",
+  "input_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d"
+  },
+  "logical_block_id": "vqe-independent-n-01-n25-block-003",
+  "treatment": "M7_ALL"
+}

@@ -1,0 +1,277 @@
+{
+  "read_only": true,
+  "integrity_check": "ok",
+  "foreign_key_violations": 0,
+  "campaigns": [
+    {
+      "campaign_id": "vqe-independent-n-01",
+      "stored_state": "BLOCKED",
+      "current_level_index": 4,
+      "checkpoint": {
+        "automatic_new_qpu_submission": false,
+        "error_type": "RuntimeError",
+        "failure_category": "TRANSIENT_OR_UNCLASSIFIED",
+        "note": "A later cycle must pass fresh preflight, quota, scope, runtime and duplicate gates.",
+        "retry_after_seconds": 240,
+        "retry_cycle": 3
+      },
+      "levels": [
+        {
+          "n": 5,
+          "manifest_verified": true,
+          "planned_batches": 1,
+          "selected_slots": 40,
+          "expected_slots": 40,
+          "selected_replacements": 1,
+          "blocks": [
+            {
+              "sequence": 1,
+              "logical_block_id": "historical-vqe-calibration-pilot-02-seq-1",
+              "original_status": "INCOMPLETE",
+              "batch_execution_status": "INCOMPLETE",
+              "eligible": true,
+              "dataset_status": "REPAIRED_COMPLETE",
+              "expected_slots": 40,
+              "validated_slots": 40,
+              "missing_slots": [],
+              "frozen_inputs_verified": true,
+              "reason": "Complete validated logical PUB coverage with frozen inputs"
+            }
+          ],
+          "replacement_states": {
+            "VALIDATED": 1
+          },
+          "unresolved_originals": []
+        },
+        {
+          "n": 10,
+          "manifest_verified": true,
+          "planned_batches": 2,
+          "selected_slots": 80,
+          "expected_slots": 80,
+          "selected_replacements": 3,
+          "blocks": [
+            {
+              "sequence": 1,
+              "logical_block_id": "vqe-independent-n-01-n10-block-001",
+              "original_status": "INCOMPLETE",
+              "batch_execution_status": "INCOMPLETE",
+              "eligible": true,
+              "dataset_status": "REPAIRED_COMPLETE",
+              "expected_slots": 40,
+              "validated_slots": 40,
+              "missing_slots": [],
+              "frozen_inputs_verified": true,
+              "reason": "Complete validated logical PUB coverage with frozen inputs"
+            },
+            {
+              "sequence": 2,
+              "logical_block_id": "vqe-independent-n-01-n10-block-002",
+              "original_status": "INCOMPLETE",
+              "batch_execution_status": "INCOMPLETE",
+              "eligible": true,
+              "dataset_status": "REPAIRED_COMPLETE",
+              "expected_slots": 40,
+              "validated_slots": 40,
+              "missing_slots": [],
+              "frozen_inputs_verified": true,
+              "reason": "Complete validated logical PUB coverage with frozen inputs"
+            }
+          ],
+          "replacement_states": {
+            "VALIDATED": 3
+          },
+          "unresolved_originals": []
+        },
+        {
+          "n": 15,
+          "manifest_verified": true,
+          "planned_batches": 3,
+          "selected_slots": 120,
+          "expected_slots": 120,
+          "selected_replacements": 2,
+          "blocks": [
+            {
+              "sequence": 1,
+              "logical_block_id": "vqe-independent-n-01-n15-block-001",
+              "original_status": "VALIDATED",
+              "batch_execution_status": "COMPLETE",
+              "eligible": true,
+              "dataset_status": "COMPLETE",
+              "expected_slots": 40,
+              "validated_slots": 40,
+              "missing_slots": [],
+              "frozen_inputs_verified": true,
+              "reason": "Complete validated logical PUB coverage with frozen inputs"
+            },
+            {
+              "sequence": 2,
+              "logical_block_id": "vqe-independent-n-01-n15-block-002",
+              "original_status": "VALIDATED",
+              "batch_execution_status": "COMPLETE",
+              "eligible": true,
+              "dataset_status": "COMPLETE",
+              "expected_slots": 40,
+              "validated_slots": 40,
+              "missing_slots": [],
+              "frozen_inputs_verified": true,
+              "reason": "Complete validated logical PUB coverage with frozen inputs"
+            },
+            {
+              "sequence": 3,
+              "logical_block_id": "vqe-independent-n-01-n15-block-003",
+              "original_status": "INCOMPLETE",
+              "batch_execution_status": "INCOMPLETE",
+              "eligible": true,
+              "dataset_status": "REPAIRED_COMPLETE",
+              "expected_slots": 40,
+              "validated_slots": 40,
+              "missing_slots": [],
+              "frozen_inputs_verified": true,
+              "reason": "Complete validated logical PUB coverage with frozen inputs"
+            }
+          ],
+          "replacement_states": {
+            "VALIDATED": 2
+          },
+          "unresolved_originals": []
+        },
+        {
+          "n": 20,
+          "manifest_verified": true,
+          "planned_batches": 4,
+          "selected_slots": 160,
+          "expected_slots": 160,
+          "selected_replacements": 1,
+          "blocks": [
+            {
+              "sequence": 1,
+              "logical_block_id": "vqe-independent-n-01-n20-block-001",
+              "original_status": "INCOMPLETE",
+              "batch_execution_status": "INCOMPLETE",
+              "eligible": true,
+              "dataset_status": "REPAIRED_COMPLETE",
+              "expected_slots": 40,
+              "validated_slots": 40,
+              "missing_slots": [],
+              "frozen_inputs_verified": true,
+              "reason": "Complete validated logical PUB coverage with frozen inputs"
+            },
+            {
+              "sequence": 2,
+              "logical_block_id": "vqe-independent-n-01-n20-block-002",
+              "original_status": "VALIDATED",
+              "batch_execution_status": "COMPLETE",
+              "eligible": true,
+              "dataset_status": "COMPLETE",
+              "expected_slots": 40,
+              "validated_slots": 40,
+              "missing_slots": [],
+              "frozen_inputs_verified": true,
+              "reason": "Complete validated logical PUB coverage with frozen inputs"
+            },
+            {
+              "sequence": 3,
+              "logical_block_id": "vqe-independent-n-01-n20-block-003",
+              "original_status": "VALIDATED",
+              "batch_execution_status": "COMPLETE",
+              "eligible": true,
+              "dataset_status": "COMPLETE",
+              "expected_slots": 40,
+              "validated_slots": 40,
+              "missing_slots": [],
+              "frozen_inputs_verified": true,
+              "reason": "Complete validated logical PUB coverage with frozen inputs"
+            },
+            {
+              "sequence": 4,
+              "logical_block_id": "vqe-independent-n-01-n20-block-004",
+              "original_status": "VALIDATED",
+              "batch_execution_status": "COMPLETE",
+              "eligible": true,
+              "dataset_status": "COMPLETE",
+              "expected_slots": 40,
+              "validated_slots": 40,
+              "missing_slots": [],
+              "frozen_inputs_verified": true,
+              "reason": "Complete validated logical PUB coverage with frozen inputs"
+            }
+          ],
+          "replacement_states": {
+            "VALIDATED": 1
+          },
+          "unresolved_originals": []
+        },
+        {
+          "n": 25,
+          "manifest_verified": true,
+          "planned_batches": 5,
+          "selected_slots": 40,
+          "expected_slots": 200,
+          "selected_replacements": 1,
+          "blocks": [
+            {
+              "sequence": 1,
+              "logical_block_id": "vqe-independent-n-01-n25-block-001",
+              "original_status": "INCOMPLETE",
+              "batch_execution_status": "INCOMPLETE",
+              "eligible": true,
+              "dataset_status": "REPAIRED_COMPLETE",
+              "expected_slots": 40,
+              "validated_slots": 40,
+              "missing_slots": [],
+              "frozen_inputs_verified": true,
+              "reason": "Complete validated logical PUB coverage with frozen inputs"
+            }
+          ],
+          "replacement_states": {
+            "VALIDATED": 1
+          },
+          "unresolved_originals": []
+        },
+        {
+          "n": 30,
+          "manifest_verified": true,
+          "planned_batches": 6,
+          "selected_slots": 0,
+          "expected_slots": 240,
+          "selected_replacements": 0,
+          "blocks": [],
+          "replacement_states": {},
+          "unresolved_originals": []
+        }
+      ]
+    }
+  ],
+  "database_records_unchanged": true,
+  "protected_file_hashes_unchanged": true,
+  "records_sha256": "629f53e04bdb71d946fac5f8084e2229105dc1e8fcf606344a50bef366390500",
+  "resume_checks": {
+    "next_batch": "vqe-independent-n-01-n25-block-002",
+    "pause_marker": false,
+    "stop_marker": false,
+    "file_manifest_equals_registry": true,
+    "manifest_digest_matches": true,
+    "campaign_budget_seconds": 1800.0,
+    "campaign_consumed_seconds": 1580.0,
+    "campaign_reserved_seconds": 0.0,
+    "fresh_provider_preflight_performed": false,
+    "local_campaign_headroom_seconds": 220.0
+  },
+  "tests": {
+    "ai_assistant": {
+      "passed": 38,
+      "failed": 0
+    },
+    "progression_separate_rerun": {
+      "passed": 13,
+      "failed": 0
+    },
+    "broader_vqe": {
+      "passed": 21,
+      "failures": 4,
+      "errors": 2
+    },
+    "compileall": "PASS"
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "round": "replicate_block_repaired_vqe-independent-n-01-n20-target-n20-chunk-5",
+  "n_observed_results": 160,
+  "best_pub_selection": {
+    "M0_Baseline": 4,
+    "M1_DD": 16,
+    "M2_TREX": 3,
+    "M3_ZNE": 2,
+    "M4_DD_TREX": 4,
+    "M5_DD_ZNE": 17,
+    "M6_TREX_ZNE": 8,
+    "M7_ALL": 3
+  },
+  "best_selection_rule": "PUB with minimum measured EIS SSE per treatment",
+  "per_treatment_counts": {
+    "M0_Baseline": 20,
+    "M1_DD": 20,
+    "M2_TREX": 20,
+    "M3_ZNE": 20,
+    "M4_DD_TREX": 20,
+    "M5_DD_ZNE": 20,
+    "M6_TREX_ZNE": 20,
+    "M7_ALL": 20
+  },
+  "ideal_SSE": 258.05897604193257,
+  "ideal_RMSE": 0.988684035155295,
+  "classical_SSE_supplied": null,
+  "model_frequency_input": "Hz; impedance_model internally computes omega = 2*pi*f",
+  "sse_definition": "sum(abs(Z_fit-Z_exp)**2) over all EIS frequencies",
+  "rmse_definition": "sqrt(SSE/(2*N)) over real and imaginary components",
+  "statistics": [
+    {
+      "treatment": "M0_Baseline",
+      "n": 20,
+      "median_SSE": 696.3137958221664,
+      "mean_SSE": 660.7589284762621,
+      "std_SSE": 283.15527237621853,
+      "IQR_SSE": 367.11409344810556,
+      "median_RMSE": 1.623997717015449,
+      "median_expectation_MAE": 0.02361965779106514,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M1_DD",
+      "n": 20,
+      "median_SSE": 365.164025684113,
+      "mean_SSE": 520.1906702643333,
+      "std_SSE": 359.6239261472023,
+      "IQR_SSE": 290.6118526990296,
+      "median_RMSE": 1.176093615844907,
+      "median_expectation_MAE": 0.02514244181246774,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M2_TREX",
+      "n": 20,
+      "median_SSE": 351.29327269776354,
+      "mean_SSE": 441.3229042269386,
+      "std_SSE": 255.2132947778068,
+      "IQR_SSE": 260.69634767516504,
+      "median_RMSE": 1.1510149674712467,
+      "median_expectation_MAE": 0.020963895347733894,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M3_ZNE",
+      "n": 20,
+      "median_SSE": 710.9152053765029,
+      "mean_SSE": 682.5276699057447,
+      "std_SSE": 338.0579134135056,
+      "IQR_SSE": 528.7165152619923,
+      "median_RMSE": 1.640957205612069,
+      "median_expectation_MAE": 0.027771752396353835,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M4_DD_TREX",
+      "n": 20,
+      "median_SSE": 304.27604938480556,
+      "mean_SSE": 336.667679419821,
+      "std_SSE": 167.18345070821917,
+      "IQR_SSE": 97.68674719924013,
+      "median_RMSE": 1.073569796087783,
+      "median_expectation_MAE": 0.021565567718670985,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M5_DD_ZNE",
+      "n": 20,
+      "median_SSE": 597.6623672454493,
+      "mean_SSE": 778.2887834008706,
+      "std_SSE": 590.5992780996908,
+      "IQR_SSE": 517.6706631418715,
+      "median_RMSE": 1.504539405242031,
+      "median_expectation_MAE": 0.025973184622395375,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M6_TREX_ZNE",
+      "n": 20,
+      "median_SSE": 551.1932861181224,
+      "mean_SSE": 623.6743624510005,
+      "std_SSE": 352.4282460876752,
+      "IQR_SSE": 537.0442671939468,
+      "median_RMSE": 1.4440802755415176,
+      "median_expectation_MAE": 0.02519408432637917,
+      "qpu_usage_s_job": null
+    },
+    {
+      "treatment": "M7_ALL",
+      "n": 20,
+      "median_SSE": 443.82390280900745,
+      "mean_SSE": 505.7539750049583,
+      "std_SSE": 288.8969758553812,
+      "IQR_SSE": 391.58173138087574,
+      "median_RMSE": 1.296367998267246,
+      "median_expectation_MAE": 0.02541145504883043,
+      "qpu_usage_s_job": null
+    }
+  ],
+  "created_utc": "2026-11-09T12:47:17.240612+00:00",
+  "warning": "One round of 5 PUBs per treatment is insufficient for robust between-job rankings.",
+  "experiment_id": "vqe-independent-n-01-n20",
+  "n": 20,
+  "target_id": "vqe-independent-n-01-n20-target-n20-chunk-5",
+  "source_run": "run_02",
+  "analysis_state": "REPAIRED_COMPLETE",
+  "incomplete_batches_preserved": true
+}

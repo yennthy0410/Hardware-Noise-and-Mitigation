@@ -1,0 +1,1399 @@
+[
+  {
+    "n": 5,
+    "figures": [
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=5\\v001-97df19342311\\05_mitigation_median_CI_convergence.png",
+        "bytes": 1270071,
+        "dimensions": [
+          8927,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "0effb6bff4ce6c7fc98e24268656f7a3d8821ae443f4473dffae4eb5fb42368d",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=5\\v001-97df19342311\\06_mitigation_three_tier_positioning.png",
+        "bytes": 388885,
+        "dimensions": [
+          7134,
+          3531
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "a793f0b78b259c02a7509e2f1b42f086282a12bcc19f806d74070c384b55af9b",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=5\\v001-97df19342311\\bode_magnitude.png",
+        "bytes": 334532,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "61feb3ba55c0b32f645e4f5a3081e4bba8599e24aaa23fd126730ca75ebc561d",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=5\\v001-97df19342311\\bode_phase.png",
+        "bytes": 457843,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "8f45da20e631185e5641a14976a75cd6978711909e6c7382351825589f894406",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=5\\v001-97df19342311\\distribution_pilot.png",
+        "bytes": 466683,
+        "dimensions": [
+          7200,
+          3720
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "30666cd3c7784360bbbd153eb629bcccc0000b57144f60c8771cf497b603af54",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=5\\v001-97df19342311\\nyquist.png",
+        "bytes": 615674,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "460dc1f2120e63ecc35c04cbf50ab361f3028f120f3bb357140a924260483215",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=5\\v001-97df19342311\\residual_imag.png",
+        "bytes": 527912,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "0eef7244cf612c30d25b2c13499aa866ac7ccf5ea3c1572a4edc9428d3c7b488",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=5\\v001-97df19342311\\residual_imag_normalized.png",
+        "bytes": 654828,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "fd6970d501c7a39195fe2e980fe9e43131eec998f0759e3cf09f931d23c2dc3d",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=5\\v001-97df19342311\\residual_real.png",
+        "bytes": 633856,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "782a720280c9c2df4d94bbaefa1e73cd993280e34806ca72ef273f6a38e5e713",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=5\\v001-97df19342311\\residual_real_normalized.png",
+        "bytes": 991290,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "6f20ddc38002f4774caf9492dc9739351eafc9f6243109da59a591bbf8391e1f",
+        "dashboard_registered": true
+      }
+    ],
+    "manifests": [
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=5\\v001-97df19342311\\export_manifest.json",
+        "sha256": "b6badbc9a214753464275368545034482f73a1a5d47e2286193932e3ac7f578d",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png",
+          "04_mitigation_accuracy_cost.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=5\\v001-2c6de4d36d73\\export_manifest.json",
+        "sha256": "720a340c326afe9504b317fbbf086ddd7fe08a3a7891d8d0c8a347523e2a9a13",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png",
+          "04_mitigation_accuracy_cost.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=5\\v001-82d6586e6a2f\\export_manifest.json",
+        "sha256": "675956162e389d7ac6bb9ebc61b6b5acc8ddb4c1b252d4be4500b1d7b905f79d",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "bode_pilot.png",
+          "distribution_pilot.png",
+          "nyquist_pilot.png",
+          "residual_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png",
+          "04_mitigation_accuracy_cost.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=5\\v001-916ca837d879\\export_manifest.json",
+        "sha256": "449251a6c74ec1f2fd919e4ba299838698fb967bbc30ce46a9e7b3d666b4978c",
+        "schema": 2,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "04_mitigation_accuracy_cost.png",
+          "bode_pilot.png",
+          "distribution_pilot.png",
+          "nyquist_pilot.png",
+          "residual_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures"
+        ]
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=5\\v001-97df19342311\\export_manifest.json",
+        "sha256": "b6badbc9a214753464275368545034482f73a1a5d47e2286193932e3ac7f578d",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png",
+          "04_mitigation_accuracy_cost.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=5\\v002-2c6de4d36d73\\export_manifest.json",
+        "sha256": "5bcae5d7e6722fc207bb599eb202cb6ee832d3d0cb8383394ca26f0f9f5fced5",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png",
+          "04_mitigation_accuracy_cost.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      }
+    ]
+  },
+  {
+    "n": 10,
+    "figures": [
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=10\\v001-da7494553832\\05_mitigation_median_CI_convergence.png",
+        "bytes": 1510648,
+        "dimensions": [
+          8925,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "8eed9b1e55d5522a608ec643194640c71ce993f9234ad7c762147d1973e79d4e",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=10\\v001-da7494553832\\06_mitigation_three_tier_positioning.png",
+        "bytes": 414347,
+        "dimensions": [
+          7133,
+          3531
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "2bb9c83dc65644cfd320998ffaeaf9171a313b58887e73051094db90c4490ffc",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=10\\v001-da7494553832\\bode_magnitude.png",
+        "bytes": 328346,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "8cb90fbd44e02d567737b6c1c9cde4becfe47d34ffd7d0a990a5644c20c0ebf6",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=10\\v001-da7494553832\\bode_phase.png",
+        "bytes": 447437,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "fcb801e859da15d50bb5adbb14045c9435d8daf29bd1efec6b094aa4840441eb",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=10\\v001-da7494553832\\distribution_pilot.png",
+        "bytes": 558441,
+        "dimensions": [
+          7200,
+          3720
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "a1967e64d5b04ce93315a2f346a294a24ece4f91b3ecc3cc9cfec953814ca986",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=10\\v001-da7494553832\\nyquist.png",
+        "bytes": 599461,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "a5a6e9b85256f9cc9c0bd232086020a21079eb5c452fae2b72933cee8d01925c",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=10\\v001-da7494553832\\residual_imag.png",
+        "bytes": 526288,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "808c67f90e2aa81b908f2810a2107c0f4abc3ec9f6e495732f8c270505be3487",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=10\\v001-da7494553832\\residual_imag_normalized.png",
+        "bytes": 1038394,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "ffcc0d6a412beed386bd34ed051fb11cb24836a5b82d2a9398e09ee684a4ba40",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=10\\v001-da7494553832\\residual_real.png",
+        "bytes": 592427,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "5b0d9e9b80e2cd24918277bc33eb71ccb1c0aa031bc2bb94863b498f983cd2f5",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=10\\v001-da7494553832\\residual_real_normalized.png",
+        "bytes": 945089,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "2a284b64ae6233069fd8c9e3dcf6e7eddcb43ea7342d6fb722ca2f14c3c706ca",
+        "dashboard_registered": true
+      }
+    ],
+    "manifests": [
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=10\\v001-da7494553832\\export_manifest.json",
+        "sha256": "41e85cafc2e5374f737d5763ddbc28ea42b5a18faf16de435527e75d01b6e7d3",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=10\\export_manifest.json",
+        "sha256": "019fdda98293dc3886fe0f58428ad5b9bb80e9896133d8bb18134a46f82060f9",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=10\\v001-5714f6e70dbe\\export_manifest.json",
+        "sha256": "311a34436cce9f31ce39cbc44b00a7e9a0dd9e7a4f198ec7d2a9652c2e465183",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=10\\v001-da7494553832\\export_manifest.json",
+        "sha256": "41e85cafc2e5374f737d5763ddbc28ea42b5a18faf16de435527e75d01b6e7d3",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=10\\v002-5714f6e70dbe\\export_manifest.json",
+        "sha256": "20fe90c1c32efa1f49422bf806112d047587daa80a888776fc37669d7ca4ece0",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      }
+    ]
+  },
+  {
+    "n": 15,
+    "figures": [
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=15\\v001-228c935e76fc\\05_mitigation_median_CI_convergence.png",
+        "bytes": 1623390,
+        "dimensions": [
+          8927,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "4d6cca4d2af8d8fbbd1f074adc1a8ec36df52e46be8238e11c01905b6e42bd16",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=15\\v001-228c935e76fc\\06_mitigation_three_tier_positioning.png",
+        "bytes": 387849,
+        "dimensions": [
+          7134,
+          3531
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "0ed94b09911755ffdc8f5c23aa9013b060950e619e005c90e4648cc79c21b55b",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=15\\v001-228c935e76fc\\bode_magnitude.png",
+        "bytes": 341361,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "ad5d3c2e1a6923e362110b9af0113c5f048b35a75bbc89d4a903edafbb75a04d",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=15\\v001-228c935e76fc\\bode_phase.png",
+        "bytes": 496588,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "43f5ee95cd532a6cd30febe9e54c869ef46d914d73800ee4d30a0f1a85852406",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=15\\v001-228c935e76fc\\distribution_pilot.png",
+        "bytes": 633969,
+        "dimensions": [
+          7200,
+          3720
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "ee531ce371e7df29a2444e863613c877ec8def7b1e216d4ade50c83b14db1f01",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=15\\v001-228c935e76fc\\nyquist.png",
+        "bytes": 734597,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "85833289ba8c4b9b8863165333e03169631bc7fc91d131966bdcbe7403623e1c",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=15\\v001-228c935e76fc\\residual_imag.png",
+        "bytes": 591903,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "f43afe8a5a1ba3e87f4433e067f40a51381697f11ee22bd21b6734aa509421b0",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=15\\v001-228c935e76fc\\residual_imag_normalized.png",
+        "bytes": 570225,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "371dc9b0250378139916ccad4c8a55acc6ced5c3371c36ae667f9a182fdbca2b",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=15\\v001-228c935e76fc\\residual_real.png",
+        "bytes": 636265,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "bffe234612533c83ece4d275a46748df9895a7e1db90787c9747e2a922b5173b",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=15\\v001-228c935e76fc\\residual_real_normalized.png",
+        "bytes": 834373,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "7060711dbf5bb0bbe143f79f4dcee9731726fbb4913d31a8a7771d2b22b31cb5",
+        "dashboard_registered": true
+      }
+    ],
+    "manifests": [
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=15\\v001-228c935e76fc\\export_manifest.json",
+        "sha256": "b482a654ffb7bdfd59e921ff8567f0777deb887ab93fad94447b5d1f8feaf8c5",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=15\\export_manifest.json",
+        "sha256": "8622db97e0748fb9c16f0b90dbbe5e3cececa9c5bb1528c4c357071b8cacec14",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=15\\v001-228c935e76fc\\export_manifest.json",
+        "sha256": "b482a654ffb7bdfd59e921ff8567f0777deb887ab93fad94447b5d1f8feaf8c5",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      }
+    ]
+  },
+  {
+    "n": 20,
+    "figures": [
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=20\\05_mitigation_median_CI_convergence.png",
+        "bytes": 1657012,
+        "dimensions": [
+          8924,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "4947c08afcf9da14f0958ba215d3e71a1b57c104894c79974064c6559658f0e0",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=20\\06_mitigation_three_tier_positioning.png",
+        "bytes": 413942,
+        "dimensions": [
+          7133,
+          3531
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "9ec59d8788e5dc5f854ac8bafcd48c739d7cbf90ea820c5102043da6db2163ca",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=20\\bode_magnitude.png",
+        "bytes": 329200,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "08a08beef9763d586afb4c4291afdddaa5b86bd2779106916df9f2091ede6a4f",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=20\\bode_phase.png",
+        "bytes": 492192,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "2b2b237197dbc9dd689b848d8af1555a315e648aec5f006635a885739e1d29bf",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=20\\distribution_pilot.png",
+        "bytes": 756943,
+        "dimensions": [
+          7200,
+          3720
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "a83b1c083d7a3f5b6e131e79e307f7f8fb4aa0853e59dfa82345806d43ebcb3a",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=20\\nyquist.png",
+        "bytes": 580842,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "3f956313937bd4d46536b885b587b98c5101f8a504bdcf6cc06fbdddaf5c20da",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=20\\residual_imag.png",
+        "bytes": 552151,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "beb5a10d87153219b025209258c802953ee221c1e9f33c87ba11604e364f65ed",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=20\\residual_imag_normalized.png",
+        "bytes": 869121,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "1c2721a5762a87bfa885a8bed424a6b83d3fd94be13b3dddee45ad9ed8d366cf",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=20\\residual_real.png",
+        "bytes": 608830,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "5804a22087dad5a376b2c34140094195572ecb7084351dd7ed5bf52a99efffde",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=20\\residual_real_normalized.png",
+        "bytes": 862891,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "867b5b9ca7d67d0bdcb164e3472792e93d8f1f661338d5a93570d329f16ee36e",
+        "dashboard_registered": true
+      }
+    ],
+    "manifests": [
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=20\\export_manifest.json",
+        "sha256": "b4441a1d3929ee0118f2946f728e0a6ac0101788b56d0c85c970aeffabe4b8bb",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=20\\export_manifest.json",
+        "sha256": "b4441a1d3929ee0118f2946f728e0a6ac0101788b56d0c85c970aeffabe4b8bb",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      }
+    ]
+  },
+  {
+    "n": 25,
+    "figures": [
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=25\\05_mitigation_median_CI_convergence.png",
+        "bytes": 1720084,
+        "dimensions": [
+          8927,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "2390e3ab6447c2c27ed59a48853e362c85be8b559e4152731345f9ef9ad21630",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=25\\06_mitigation_three_tier_positioning.png",
+        "bytes": 413334,
+        "dimensions": [
+          7133,
+          3531
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "b46f5ac09ee59895b1c6ef23eca13284a1f0ece92f5787b585f84e86640eac62",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=25\\bode_magnitude.png",
+        "bytes": 333386,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "458f8a69fa4bb86aa5cf2ea9de9bea29b07d13591fd7c206f7bb98e3867e9b5f",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=25\\bode_phase.png",
+        "bytes": 525189,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "8dc9740088b474c30dce2ffbd62e45301aec2be7a549f08f7813f46fd3983f1b",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=25\\distribution_pilot.png",
+        "bytes": 790502,
+        "dimensions": [
+          7200,
+          3720
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "9e7129e82386ede2377cc37f03bb4a792ec51cfa40cff7e753421965607f3b07",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=25\\nyquist.png",
+        "bytes": 578995,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "eb004b1e7726c4dacf951db392ef7ee1cc70fbcda178f0dddfc44b7eb74a3d28",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=25\\residual_imag.png",
+        "bytes": 566391,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "30b1b65bdc8b8362b294705716b4dcc2010444e8a9891e11b0ba0a2bd258f812",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=25\\residual_imag_normalized.png",
+        "bytes": 578497,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "ae9a62afbf45cd76ad9a05fb0061ef897aedf8a4207b4ca399e3512f722d55cb",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=25\\residual_real.png",
+        "bytes": 621726,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "02668753b9e9338f8e04d2f14f4edc83ce2fb12e40c0ed2436613b7fe4679762",
+        "dashboard_registered": true
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=25\\residual_real_normalized.png",
+        "bytes": 869124,
+        "dimensions": [
+          4800,
+          4800
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ],
+        "sha256": "deb8ad9cff2154cc03a051b3763b9994f64242041583bfdc1542333db1f628a0",
+        "dashboard_registered": true
+      }
+    ],
+    "manifests": [
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=25\\export_manifest.json",
+        "sha256": "4d3509f58ebafcc24ba07947c0ec64c58388ee53e9d1e15e54d13e6257b4de21",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      },
+      {
+        "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=25\\export_manifest.json",
+        "sha256": "4d3509f58ebafcc24ba07947c0ec64c58388ee53e9d1e15e54d13e6257b4de21",
+        "schema": 3,
+        "figures": [
+          "nyquist.png",
+          "bode_magnitude.png",
+          "bode_phase.png",
+          "residual_real.png",
+          "residual_imag.png",
+          "residual_real_normalized.png",
+          "residual_imag_normalized.png",
+          "distribution_pilot.png",
+          "05_mitigation_median_CI_convergence.png",
+          "06_mitigation_three_tier_positioning.png"
+        ],
+        "keys": [
+          "schema_version",
+          "export_version",
+          "export_id",
+          "experiment_id",
+          "target_id",
+          "n",
+          "source_run",
+          "source_analysis_manifest_sha256",
+          "input_hashes",
+          "partial_diagnostic_only",
+          "figure_directory",
+          "data_directory",
+          "csv_sha256",
+          "figures",
+          "generated_figures",
+          "omitted_optional_figures",
+          "qpu_usage_coverage"
+        ]
+      }
+    ]
+  },
+  {
+    "n": 30,
+    "figures": [],
+    "manifests": []
+  }
+]

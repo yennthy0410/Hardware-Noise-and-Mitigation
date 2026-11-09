@@ -1,0 +1,16 @@
+{
+  "input_folder": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\experiments\\HEA_VQE\\01_simulator_to_qpu_hardware\\results\\EIS14\\01_run_qpu",
+  "output_folder": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\experiments\\HEA_VQE\\01_simulator_to_qpu_hardware\\results\\EIS14\\04_noise_characterization",
+  "runs_discovered": 15,
+  "qubit_calibration_rows": 56,
+  "gate_calibration_rows": 864,
+  "calibration_files_with_properties": 45,
+  "scheduled_circuit_durations_available": 15,
+  "limitations": [
+    "Calibration snapshots may differ from job-time conditions: inspect timestamps.",
+    "Median ratios are descriptive; no noise attribution to EIS is performed.",
+    "Crosstalk not measured without paired diagnostic circuits.",
+    "Circuit exposure uses saved Target-based circuit duration estimates if present; not guaranteed job-time scheduling.",
+    "For apples-to-apples comparison, compare common gate types and snapshot conditions."
+  ]
+}

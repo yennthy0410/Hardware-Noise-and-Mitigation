@@ -1,0 +1,265 @@
+{
+  "analysis_class": "PARTIAL_DIAGNOSTIC_ONLY",
+  "campaign_id": "vqe-calibration-pilot-02",
+  "sequence_no": 1,
+  "batch_id": "60a3ae20-ba8b-4909-a4d1-62fffc1d64e9",
+  "batch_execution_status": "INCOMPLETE",
+  "batch_status_modified": false,
+  "production_eligible": false,
+  "independent_n_progression_eligible": false,
+  "account_label": "labB",
+  "backend": "ibm_fez",
+  "source_run": "run_02",
+  "shots_per_pub": null,
+  "requested_pubs": 40,
+  "valid_pubs": 39,
+  "invalid_pubs": 1,
+  "treatment_counts": {
+    "M0_Baseline": {
+      "treatment": "M0_Baseline",
+      "treatment_label": "None",
+      "requested_pubs": 5,
+      "returned_pubs": 5,
+      "valid_pubs": 5,
+      "invalid_pubs": 0,
+      "failure_rate": 0.0,
+      "uncertainty_invalid_pubs": 0,
+      "provider_qpu_usage_seconds": 8.0,
+      "job_id": "dbkcdmd6p51s73cmc170",
+      "source_archive_sha256": "41df19f1d870c6b3b5f4a17949785b2224a7476e7663958201a3c004dcacfc27"
+    },
+    "M1_DD": {
+      "treatment": "M1_DD",
+      "treatment_label": "DD",
+      "requested_pubs": 5,
+      "returned_pubs": 5,
+      "valid_pubs": 5,
+      "invalid_pubs": 0,
+      "failure_rate": 0.0,
+      "uncertainty_invalid_pubs": 0,
+      "provider_qpu_usage_seconds": 8.0,
+      "job_id": "dbkcdmpffo6c73bb7thg",
+      "source_archive_sha256": "9f75e7eefd3b53082522795912a2e476abe5b700a5bd93e5cb775bcd979e36b5"
+    },
+    "M2_TREX": {
+      "treatment": "M2_TREX",
+      "treatment_label": "TREX",
+      "requested_pubs": 5,
+      "returned_pubs": 5,
+      "valid_pubs": 5,
+      "invalid_pubs": 0,
+      "failure_rate": 0.0,
+      "uncertainty_invalid_pubs": 0,
+      "provider_qpu_usage_seconds": 16.0,
+      "job_id": "dbkcdn56p51s73cmc180",
+      "source_archive_sha256": "ec8421fa3fa70053c763fd198d8484aa142d7e2ba04f128552cf76933b706ffb"
+    },
+    "M3_ZNE": {
+      "treatment": "M3_ZNE",
+      "treatment_label": "ZNE",
+      "requested_pubs": 5,
+      "returned_pubs": 5,
+      "valid_pubs": 5,
+      "invalid_pubs": 0,
+      "failure_rate": 0.0,
+      "uncertainty_invalid_pubs": 0,
+      "provider_qpu_usage_seconds": 18.0,
+      "job_id": "dbkcdnd6p51s73cmc19g",
+      "source_archive_sha256": "2589c996156c416abd70a4b6aa7e3936145ab6c524425c6b303df383997fdfc8"
+    },
+    "M4_DD_TREX": {
+      "treatment": "M4_DD_TREX",
+      "treatment_label": "DD+TREX",
+      "requested_pubs": 5,
+      "returned_pubs": 5,
+      "valid_pubs": 5,
+      "invalid_pubs": 0,
+      "failure_rate": 0.0,
+      "uncertainty_invalid_pubs": 0,
+      "provider_qpu_usage_seconds": 16.0,
+      "job_id": "dbkcdnhffo6c73bb7tig",
+      "source_archive_sha256": "3589e58cb73cae7690db89b25f722f36524b93e85025819f2ebcbb582c75bafd"
+    },
+    "M5_DD_ZNE": {
+      "treatment": "M5_DD_ZNE",
+      "treatment_label": "DD+ZNE",
+      "requested_pubs": 5,
+      "returned_pubs": 5,
+      "valid_pubs": 4,
+      "invalid_pubs": 1,
+      "failure_rate": 0.2,
+      "uncertainty_invalid_pubs": 1,
+      "provider_qpu_usage_seconds": 18.0,
+      "job_id": "dbkcdnt6p51s73cmc1c0",
+      "source_archive_sha256": "bb09d6689e18280c478b0202c258405656b7242191e8f94dffab366cd5fec8b7"
+    },
+    "M6_TREX_ZNE": {
+      "treatment": "M6_TREX_ZNE",
+      "treatment_label": "TREX+ZNE",
+      "requested_pubs": 5,
+      "returned_pubs": 5,
+      "valid_pubs": 5,
+      "invalid_pubs": 0,
+      "failure_rate": 0.0,
+      "uncertainty_invalid_pubs": 0,
+      "provider_qpu_usage_seconds": 28.0,
+      "job_id": "dbkcdo56p51s73cmc1d0",
+      "source_archive_sha256": "b1d6216007aa4162dfb20a7a065d91a6ada00483d6e090c342f6eaa40aa172b0"
+    },
+    "M7_ALL": {
+      "treatment": "M7_ALL",
+      "treatment_label": "DD+TREX+ZNE",
+      "requested_pubs": 5,
+      "returned_pubs": 5,
+      "valid_pubs": 5,
+      "invalid_pubs": 0,
+      "failure_rate": 0.0,
+      "uncertainty_invalid_pubs": 0,
+      "provider_qpu_usage_seconds": 28.0,
+      "job_id": "dbkcdo9kdqps739263h0",
+      "source_archive_sha256": "cfdb836076d7b783d6a1cdb51d46fccf5f55dbfa56e8d49e6c3fb63da573d2b5"
+    }
+  },
+  "provider_qpu_usage_seconds_total": 140.0,
+  "frozen_input_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff"
+  },
+  "locked_bundle_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d"
+  },
+  "warning": "Unequal per-treatment sample sizes (M5=4; others=5) can cause selection bias. Diagnostic summaries are not a completed M0-M7 comparison or production n-level result.",
+  "scientific_method": "mitigation_pilot.calculate_pub_eis; existing EIS mapping/model and SSE/RMSE definitions",
+  "ideal_reference": null,
+  "plot_reference_note": "No ideal expectation vector is recorded in the immutable run_02 lock; figures use experimental EIS data and validated calibration PUBs only.",
+  "outputs": [
+    "pub_validation.csv",
+    "square_figures\\publication_bode_magnitude.png",
+    "square_figures\\publication_bode_phase.png",
+    "square_figures\\publication_nyquist.png",
+    "square_figures\\publication_residual_imag_normalized.png",
+    "square_figures\\publication_residual_real_normalized.png",
+    "treatment_counts_and_usage.csv",
+    "valid_pub_eis_metrics.csv",
+    "valid_pub_residuals.csv",
+    "wide_comparisons\\05_mitigation_median_CI_convergence.png",
+    "wide_comparisons\\06_mitigation_three_tier_positioning.png",
+    "wide_comparisons\\PARTIAL_DIAGNOSTIC_ONLY_calibration_sequence_001_05_mitigation_median_CI_convergence.png",
+    "wide_comparisons\\PARTIAL_DIAGNOSTIC_ONLY_calibration_sequence_001_06_mitigation_three_tier_positioning.png",
+    "wide_comparisons\\PARTIAL_DIAGNOSTIC_ONLY_calibration_sequence_001_median_bootstrap_convergence.csv",
+    "wide_comparisons\\PARTIAL_DIAGNOSTIC_ONLY_calibration_sequence_001_mitigation_positioning_data.csv",
+    "wide_comparisons\\median_bootstrap_convergence.csv",
+    "wide_comparisons\\mitigation_positioning_data.csv"
+  ],
+  "archive_hashes": {
+    "M0_Baseline": "41df19f1d870c6b3b5f4a17949785b2224a7476e7663958201a3c004dcacfc27",
+    "M1_DD": "9f75e7eefd3b53082522795912a2e476abe5b700a5bd93e5cb775bcd979e36b5",
+    "M2_TREX": "ec8421fa3fa70053c763fd198d8484aa142d7e2ba04f128552cf76933b706ffb",
+    "M3_ZNE": "2589c996156c416abd70a4b6aa7e3936145ab6c524425c6b303df383997fdfc8",
+    "M4_DD_TREX": "3589e58cb73cae7690db89b25f722f36524b93e85025819f2ebcbb582c75bafd",
+    "M5_DD_ZNE": "bb09d6689e18280c478b0202c258405656b7242191e8f94dffab366cd5fec8b7",
+    "M6_TREX_ZNE": "b1d6216007aa4162dfb20a7a065d91a6ada00483d6e090c342f6eaa40aa172b0",
+    "M7_ALL": "cfdb836076d7b783d6a1cdb51d46fccf5f55dbfa56e8d49e6c3fb63da573d2b5"
+  },
+  "figure_validation": {
+    "square_600_dpi": [
+      {
+        "file": "publication_bode_magnitude.png",
+        "width_px": 3060,
+        "height_px": 3060,
+        "dpi": [
+          600.0,
+          600.0
+        ]
+      },
+      {
+        "file": "publication_bode_phase.png",
+        "width_px": 3060,
+        "height_px": 3060,
+        "dpi": [
+          600.0,
+          600.0
+        ]
+      },
+      {
+        "file": "publication_nyquist.png",
+        "width_px": 3060,
+        "height_px": 3060,
+        "dpi": [
+          600.0,
+          600.0
+        ]
+      },
+      {
+        "file": "publication_residual_imag_normalized.png",
+        "width_px": 3060,
+        "height_px": 3060,
+        "dpi": [
+          600.0,
+          600.0
+        ]
+      },
+      {
+        "file": "publication_residual_real_normalized.png",
+        "width_px": 3060,
+        "height_px": 3060,
+        "dpi": [
+          600.0,
+          600.0
+        ]
+      }
+    ],
+    "wide_comparisons": [
+      {
+        "file": "05_mitigation_median_CI_convergence.png",
+        "width_px": 4349,
+        "height_px": 2064,
+        "dpi": [
+          230.0,
+          230.0
+        ]
+      },
+      {
+        "file": "06_mitigation_three_tier_positioning.png",
+        "width_px": 3431,
+        "height_px": 1475,
+        "dpi": [
+          230.0,
+          230.0
+        ]
+      },
+      {
+        "file": "PARTIAL_DIAGNOSTIC_ONLY_calibration_sequence_001_05_mitigation_median_CI_convergence.png",
+        "width_px": 4349,
+        "height_px": 2064,
+        "dpi": [
+          230.0,
+          230.0
+        ]
+      },
+      {
+        "file": "PARTIAL_DIAGNOSTIC_ONLY_calibration_sequence_001_06_mitigation_three_tier_positioning.png",
+        "width_px": 3431,
+        "height_px": 1475,
+        "dpi": [
+          230.0,
+          230.0
+        ]
+      }
+    ],
+    "human_labels": [
+      "None",
+      "DD",
+      "TREX",
+      "ZNE",
+      "DD+TREX",
+      "DD+ZNE",
+      "TREX+ZNE",
+      "DD+TREX+ZNE"
+    ],
+    "partial_banner": "PARTIAL_DIAGNOSTIC_ONLY"
+  }
+}

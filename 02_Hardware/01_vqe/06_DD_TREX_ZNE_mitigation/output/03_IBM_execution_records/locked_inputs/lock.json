@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "source_run": "run_02",
+  "source_directory": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\experiments\\HEA_VQE\\01_simulator_to_qpu_hardware\\results\\EIS14\\01_run_qpu\\ibm_fez\\EIS14\\fixed\\run_02",
+  "source_paths": {
+    "circuit.qpy": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\experiments\\HEA_VQE\\01_simulator_to_qpu_hardware\\results\\EIS14\\01_run_qpu\\ibm_fez\\EIS14\\fixed\\run_02\\circuit.qpy",
+    "theta.csv": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\experiments\\HEA_VQE\\01_simulator_to_qpu_hardware\\results\\EIS14\\01_run_qpu\\ibm_fez\\EIS14\\fixed\\run_02\\theta.csv",
+    "observables.json": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\experiments\\HEA_VQE\\01_simulator_to_qpu_hardware\\results\\EIS14\\01_run_qpu\\ibm_fez\\EIS14\\fixed\\run_02\\observables.json"
+  },
+  "hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d"
+  },
+  "backend": "ibm_fez",
+  "dataset": "EIS14",
+  "optimized_seed": 1013,
+  "theta_angles": 21,
+  "theta_vector_sha256": "c24a3d23093b4a99b508398efa58a25c7ed214b8cc1064396bcd4ee664c917f9",
+  "physical_layout_logical_order": [
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146
+  ],
+  "observable_physical_qubits": [
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146
+  ],
+  "circuit_qubits": 156,
+  "unbound_parameter_count": 0,
+  "isa_depth": 20,
+  "isa_size": 103,
+  "shots_requested": 4096,
+  "run_01_comparison": {
+    "circuit_hash": {
+      "run_01": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+      "run_02": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+      "equal": true
+    },
+    "theta_vector_hash": {
+      "run_01": "c24a3d23093b4a99b508398efa58a25c7ed214b8cc1064396bcd4ee664c917f9",
+      "run_02": "c24a3d23093b4a99b508398efa58a25c7ed214b8cc1064396bcd4ee664c917f9",
+      "equal": true
+    },
+    "observable_hash": {
+      "run_01": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d",
+      "run_02": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d",
+      "equal": true
+    },
+    "optimizer_seed": {
+      "run_01": 1013,
+      "run_02": 1013,
+      "equal": true
+    },
+    "layout": {
+      "run_01": [
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146
+      ],
+      "run_02": [
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146
+      ],
+      "equal": true
+    },
+    "backend": {
+      "run_01": "ibm_fez",
+      "run_02": "ibm_fez",
+      "equal": true
+    }
+  },
+  "Study_A_theta_comparison": {
+    "path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\experiments\\experiments\\HEA_VQE\\02_optimizer_seed_sensitivity\\results\\seed_sensitivity_real\\EIS14\\seed_1013\\optimal_angles.csv",
+    "exists": false,
+    "raw_sha256": null,
+    "equal_to_selected_run02": null,
+    "note": "run_02/theta.csv is authoritative per user decision"
+  },
+  "software_versions": {
+    "python": "3.15.2",
+    "qiskit": "2.6.1",
+    "qiskit_ibm_runtime": "0.51.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0"
+  },
+  "validation": {
+    "qpy_deserialized": true,
+    "zero_unbound_parameters": true,
+    "isa_width_and_depth_match_metadata": true,
+    "backend_verified_from_saved_metadata": true,
+    "layout_verified_from_saved_metadata_and_qubit_table": true,
+    "seven_observables_match_layout": true,
+    "theta_21_finite_and_vector_hash_matches": true,
+    "already_transpiled_no_retranspilation": true,
+    "no_reoptimization_performed": true,
+    "studyA_angle_discrepancy_preserved": false
+  }
+}

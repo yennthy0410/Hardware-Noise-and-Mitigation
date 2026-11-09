@@ -1,0 +1,18 @@
+{
+  "error_type": "AttributeError",
+  "category": "TRANSIENT_OR_UNCLASSIFIED",
+  "frames": [
+    {
+      "file": "independent_n_campaign.py",
+      "line": 1222,
+      "function": "run_campaign_auto_manager"
+    },
+    {
+      "file": "independent_n_campaign.py",
+      "line": 981,
+      "function": "run_independent_campaign"
+    }
+  ],
+  "recorded_utc": "2026-11-05T08:44:19.827365Z",
+  "automatic_new_qpu_submission": false
+}

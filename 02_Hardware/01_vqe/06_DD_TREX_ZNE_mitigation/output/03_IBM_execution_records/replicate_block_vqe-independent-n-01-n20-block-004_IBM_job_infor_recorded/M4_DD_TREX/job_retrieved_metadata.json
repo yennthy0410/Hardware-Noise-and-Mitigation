@@ -1,0 +1,64 @@
+{
+  "job_id": "dbme07d8ft8s738un0f0",
+  "logical_block_id": "vqe-independent-n-01-n20-block-004",
+  "treatment_id": "M4_DD_TREX",
+  "backend": "ibm_fez",
+  "account_label": "labF",
+  "instance": "crn:v1:bluemix:public:quantum-computing:us-east:a/bcfd0a9cee4e427bb84c4c93ae619e69:6fd8c262-b477-43ab-b71c-447841066713::",
+  "batch_id": "49ea326f-7b89-4fbc-abc9-4c792c22e12d",
+  "submitted_client_utc": "2026-11-05T19:59:24.741288+00:00",
+  "submission_order": 4,
+  "execution_order": "not_assumed",
+  "shots_requested_per_pub": 4096,
+  "n": 5,
+  "pubs_per_treatment": 5,
+  "replicate_blocks": 1,
+  "input_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d"
+  },
+  "job_creation_date": "2026-11-06 03:59:25.257885+08:00",
+  "runtime_options_requested": {
+    "repr": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=True, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=True, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=False, zne=ZneOptions(amplifier=Unset, noise_factors=Unset, extrapolator=Unset, extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+  },
+  "collected_utc": "2026-11-05T20:08:23.614610+00:00",
+  "status": "DONE",
+  "metrics_raw": {
+    "caller": "qiskit_ibm_runtime~estimator.py",
+    "qiskit_version": "qiskit_ibm_runtime-0.51.0,qiskit-2.6.1*,qiskit_aer-0.18.2",
+    "timestamps": {
+      "created": "2026-11-05T19:59:25.257885Z",
+      "finished": "2026-11-05T20:06:40.704825Z",
+      "running": "2026-11-05T20:05:05.328067Z"
+    },
+    "usage": {
+      "qpu_charge_time_seconds": 16,
+      "value": 0.264324,
+      "unit": "resource_units",
+      "status": "complete",
+      "details": [
+        {
+          "value": 0.264324,
+          "unit": "resource_units",
+          "metric": {
+            "id": "caffe3ca-729c-5750-8777-df63bbf8bfd9",
+            "value": 16
+          }
+        }
+      ]
+    },
+    "circuits_execution_time_ns": 13775067904
+  },
+  "raw_result_path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\03_IBM_execution_records\\replicate_block_vqe-independent-n-01-n20-block-004_IBM_job_infor_recorded\\M4_DD_TREX\\raw_retrievals\\job_result_9bb6b48f5bef54289abe97540bad59a6960d0d7af83f227920bb771be2aac2ce.json",
+  "raw_result_sha256": "9bb6b48f5bef54289abe97540bad59a6960d0d7af83f227920bb771be2aac2ce",
+  "qpu_usage_s": null,
+  "timestamps": {
+    "created": "2026-11-05T19:59:25.257885Z",
+    "finished": "2026-11-05T20:06:40.704825Z",
+    "running": "2026-11-05T20:05:05.328067Z"
+  },
+  "execution_time_s": null,
+  "pub_results": 5,
+  "job_creation_date_utc": "2026-11-06 03:59:25.257885+08:00"
+}

@@ -1,0 +1,9 @@
+﻿treatment,treatment_label,requested_pubs,returned_pubs,valid_pubs,invalid_pubs,failure_rate,uncertainty_invalid_pubs,provider_qpu_usage_seconds,job_id,source_archive_sha256
+M0_Baseline,None,5,5,5,0,0.0,0,8.0,dbkcdmd6p51s73cmc170,41df19f1d870c6b3b5f4a17949785b2224a7476e7663958201a3c004dcacfc27
+M1_DD,DD,5,5,5,0,0.0,0,8.0,dbkcdmpffo6c73bb7thg,9f75e7eefd3b53082522795912a2e476abe5b700a5bd93e5cb775bcd979e36b5
+M2_TREX,TREX,5,5,5,0,0.0,0,16.0,dbkcdn56p51s73cmc180,ec8421fa3fa70053c763fd198d8484aa142d7e2ba04f128552cf76933b706ffb
+M3_ZNE,ZNE,5,5,5,0,0.0,0,18.0,dbkcdnd6p51s73cmc19g,2589c996156c416abd70a4b6aa7e3936145ab6c524425c6b303df383997fdfc8
+M4_DD_TREX,DD+TREX,5,5,5,0,0.0,0,16.0,dbkcdnhffo6c73bb7tig,3589e58cb73cae7690db89b25f722f36524b93e85025819f2ebcbb582c75bafd
+M5_DD_ZNE,DD+ZNE,5,5,4,1,0.2,1,18.0,dbkcdnt6p51s73cmc1c0,bb09d6689e18280c478b0202c258405656b7242191e8f94dffab366cd5fec8b7
+M6_TREX_ZNE,TREX+ZNE,5,5,5,0,0.0,0,28.0,dbkcdo56p51s73cmc1d0,b1d6216007aa4162dfb20a7a065d91a6ada00483d6e090c342f6eaa40aa172b0
+M7_ALL,DD+TREX+ZNE,5,5,5,0,0.0,0,28.0,dbkcdo9kdqps739263h0,cfdb836076d7b783d6a1cdb51d46fccf5f55dbfa56e8d49e6c3fb63da573d2b5

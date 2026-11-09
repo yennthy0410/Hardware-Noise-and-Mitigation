@@ -1,0 +1,6 @@
+scenario,mean_absolute_expectation_drift,max_absolute_expectation_drift,most_affected_observable
+ideal,0.0,0.0,Z0
+measurement,0.007865113295049218,0.013250041872495177,Z0
+decoherence,0.005107567418616016,0.00959345782571941,Z3
+gate,0.000674022035958889,0.00106188016406078,Z6
+combined_calibrated,0.011340272941384524,0.021647735495129106,Z6

@@ -1,0 +1,17 @@
+{
+  "round": "replicate_block_vqe_mitigation_adaptive-target-n30-chunk-5-block-006",
+  "repeat_count": 5,
+  "treatment_order": [
+    "M0_Baseline",
+    "M1_DD",
+    "M2_TREX",
+    "M3_ZNE",
+    "M4_DD_TREX",
+    "M5_DD_ZNE",
+    "M6_TREX_ZNE",
+    "M7_ALL"
+  ],
+  "created_utc": "2026-11-03T16:14:09.344350+00:00",
+  "locked_inputs": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\.mxs\\6c_c301c423\\mitigation\\output\\03_IBM_execution_records\\locked_inputs",
+  "submission_default": "disabled"
+}

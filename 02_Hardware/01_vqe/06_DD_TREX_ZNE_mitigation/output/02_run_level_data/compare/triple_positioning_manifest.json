@@ -1,0 +1,9 @@
+{
+  "state": "BLOCKED_REFERENCE",
+  "classical_SSE": 120.22451879422375,
+  "measured_M0_median_SSE": 570.1580954461737,
+  "supplied_M0_median_SSE": 569.5316528039577,
+  "supplied_ideal_SSE": 258.05897604193257,
+  "verified": false,
+  "reason": "M0 reference mismatch: supplied=569.5316528039577; accepted and historical=570.1580954461737"
+}

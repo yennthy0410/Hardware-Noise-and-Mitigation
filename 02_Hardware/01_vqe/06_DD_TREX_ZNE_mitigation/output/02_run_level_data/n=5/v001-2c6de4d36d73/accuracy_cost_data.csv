@@ -1,0 +1,9 @@
+﻿treatment,treatment_qpu_usage_seconds,qpu_usage_scope,qpu_usage_verified,source_job_ids,median_SSE,improvement_vs_baseline_pct,treatment_label
+M0_Baseline,8.0,sum_of_unique_provider_job_charges,True,"[""dbkcdmd6p51s73cmc170""]",479.82750438406254,0.0,None
+M1_DD,8.0,sum_of_unique_provider_job_charges,True,"[""dbkcdmpffo6c73bb7thg""]",462.193945233821,3.67497881824784,DD
+M2_TREX,16.0,sum_of_unique_provider_job_charges,True,"[""dbkcdn56p51s73cmc180""]",847.0435918592401,-76.5308541340413,TREX
+M3_ZNE,18.0,sum_of_unique_provider_job_charges,True,"[""dbkcdnd6p51s73cmc19g""]",463.10298455791036,3.4855275434076765,ZNE
+M4_DD_TREX,16.0,sum_of_unique_provider_job_charges,True,"[""dbkcdnhffo6c73bb7tig""]",475.77298335361866,0.8449955438983273,DD+TREX
+M5_DD_ZNE,23.0,sum_of_unique_provider_job_charges,True,"[""dbkcdnt6p51s73cmc1c0"", ""dblhda9kbkrc73cnnmgg""]",559.3663647204534,-16.57655295073008,DD+ZNE
+M6_TREX_ZNE,28.0,sum_of_unique_provider_job_charges,True,"[""dbkcdo56p51s73cmc1d0""]",578.0033316661985,-20.460650209737516,TREX+ZNE
+M7_ALL,28.0,sum_of_unique_provider_job_charges,True,"[""dbkcdo9kdqps739263h0""]",211.36302616676994,55.95020622294482,DD+TREX+ZNE

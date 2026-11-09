@@ -1,0 +1,4 @@
+Parameter sources found:
+C:\Users\nguye\OneDrive\Desktop\MXene QPU Hardware\01_quantum_eis_fit\01_vqe\output\classical_fit_parameters.csv
+C:\Users\nguye\OneDrive\Desktop\MXene QPU Hardware\01_quantum_eis_fit\02_qaoa\output\classical_fit_parameters.csv
+C:\Users\nguye\OneDrive\Desktop\MXene QPU Hardware\01_quantum_eis_fit\02_qaoa\output\p2_optimal_parameters.json

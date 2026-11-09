@@ -1,0 +1,79 @@
+{
+  "ordinary_C_and_D_recomputed_and_exact_CSV_match": true,
+  "central_estimates_unchanged": true,
+  "prior_cluster_seed": 20261109,
+  "cluster_seed": 1013,
+  "replicates": 10000,
+  "contrast_before_percentiles": true,
+  "shared_draws_E_F": true,
+  "figure_methods": {
+    "C": {
+      "label": "Ordinary pooled-prefix bootstrap, 3,000 replicates",
+      "seed": 1013,
+      "replicates": 3000,
+      "percentiles": [
+        2.5,
+        97.5
+      ],
+      "quantile_method": "linear",
+      "unit": "individual pooled PUB",
+      "caveat": "Ordinary bootstrap does not account for within-job or between-job dependence; no automatic significance."
+    },
+    "D": {
+      "label": "Ordinary PUB-level bootstrap, 3,000 replicates",
+      "seed": 1013,
+      "replicates": 3000,
+      "percentiles": [
+        2.5,
+        97.5
+      ],
+      "quantile_method": "linear",
+      "unit": "individual pooled PUB",
+      "caveat": "Ordinary bootstrap does not account for within-job or between-job dependence; no automatic significance."
+    },
+    "E": {
+      "label": "Matched n-level cluster bootstrap, 10,000 replicates",
+      "seed": 1013,
+      "replicates": 10000,
+      "percentiles": [
+        2.5,
+        97.5
+      ],
+      "quantile_method": "linear",
+      "unit": "whole n-level block; shared draws across treatments",
+      "caveat": "Conditional cluster-bootstrap sensitivity intervals; n-level independence/exchangeability not established. Recovery-job dependence and calibration drift may remain."
+    },
+    "F": {
+      "label": "Matched n-level cluster bootstrap, 10,000 replicates",
+      "seed": 1013,
+      "replicates": 10000,
+      "percentiles": [
+        2.5,
+        97.5
+      ],
+      "quantile_method": "linear",
+      "unit": "whole n-level block; shared draws across treatments",
+      "caveat": "Conditional cluster-bootstrap sensitivity intervals; n-level independence/exchangeability not established. Recovery-job dependence and calibration drift may remain."
+    }
+  },
+  "references": {
+    "verified": true,
+    "measured_M0_median_SSE": 570.1580954461737,
+    "classical_SSE": 120.22451879422375,
+    "ideal_SSE": 258.05897604193257,
+    "omissions": {},
+    "verification": {
+      "classical": "Canonical validator cross-checks reported SSE against 132 archived complex residuals",
+      "ideal": "Offline seven-qubit Statevector from locked theta; canonical parameter/model mapping; all six exported curves agree",
+      "qiskit_version": "2.6.1"
+    },
+    "recalculation": {
+      "observations": 840,
+      "max_abs_SSE_error": 0.0,
+      "max_abs_RMSE_error": 0.0,
+      "SSE_formula": "sum(abs(Zfit-Zexp)**2)",
+      "RMSE_formula": "sqrt(SSE/(2*132))"
+    }
+  },
+  "observations_sha256": "7136085b764843433274189b9f6963e67840713e55e03ece3141784a402ea282"
+}

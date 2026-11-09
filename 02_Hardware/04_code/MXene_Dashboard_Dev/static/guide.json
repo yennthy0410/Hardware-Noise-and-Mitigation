@@ -1,0 +1,259 @@
+{
+  "title": "MXene User Guide",
+  "verification": "Research interface: empirical findings, calculated comparisons and explicit uncertainty.",
+  "sources": [
+    "Dashboard README.md, app.py, reader.py, security.py, serve.py, start_dashboard.ps1",
+    "03_ai_assistant/README.md",
+    "03_ai_assistant/01_ai_agent/mxene.py, ai_assistance.py, offline_tools.py",
+    "03_ai_assistant/03_python_automation/independent_n_campaign.py, job_registry.py, batch_progression.py, final_configuration.py",
+    "03_ai_assistant/03_python_automation/scientific_exports.py, dependence_statistics.py",
+    "03_ai_assistant/02_skills/workflow-manager/SKILL.md, campaign-comparison/SKILL.md, dependence-aware-statistics/SKILL.md",
+    "Dashboard science_ui.py, local_ai.py, build_circuit.py, static/gallery.js, static/workspace.js, static/chat.js",
+    "Dashboard static/diagrams.js, static/diagrams.css and test_diagrams.cjs (presentation-only layouts and controls)",
+    "Dashboard start_all.ps1, service_launcher.py, auto_broker.py, worker_supervisor.py, execution_records.py; canonical 01_vqe/mitigation_pilot.py and Study A parameter_mapping.py (read only)"
+  ],
+  "sections": [
+    {
+      "id": "getting-started",
+      "title": "1. Getting Started",
+      "badge": "READ-ONLY",
+      "paragraphs": [
+        "Run start_all.ps1 to start the Dashboard and authenticated Broker transports. Healthy existing services are reused. The launcher never starts, resumes, pauses or stops automation and never submits, recovers or cancels IBM jobs. Automation stays stopped or paused unless an already-authorized worker was running; existing workers and campaign progress are preserved.",
+        "Use -Restart to restart only the identified Dashboard/Broker services. Unknown port owners and ambiguous process identities are refused. Service logs are under state/service-dashboard.log and state/service-broker.log. Existing Ollama environment settings are inherited. The original individual launch scripts remain available; Ctrl+C stops their foreground service, not remote IBM jobs.",
+        "Open http://127.0.0.1:8766. Saved results remain readable when automation is paused or the Broker is unavailable. A Broker error disables execution transport, not the historical results viewer. Refresh the browser after upgrading services."
+      ],
+      "commands": [
+        {
+          "id": "start",
+          "label": "Unified startup",
+          "badge": "LOCAL WRITE",
+          "code": "Set-Location 'C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\04_code\\MXene_Dashboard_Dev'\n.\\start_all.ps1"
+        },
+        {
+          "id": "restart",
+          "label": "Restart Dashboard and Broker services only",
+          "badge": "LOCAL WRITE",
+          "code": ".\\start_all.ps1 -Restart"
+        },
+        {
+          "id": "health",
+          "label": "Read Dashboard health",
+          "badge": "READ-ONLY",
+          "code": "Invoke-RestMethod http://127.0.0.1:8766/api/health"
+        }
+      ],
+      "related": [
+        "troubleshooting",
+        "safety"
+      ],
+      "topics": []
+    },
+    {
+      "id": "navigation",
+      "title": "2. Research Navigation",
+      "badge": "READ-ONLY",
+      "paragraphs": [
+        "Overview explains the study; Campaign shows experimental conditions and frozen inputs. Results and Statistics retain their scientific views. AI Research Workspace separates AI Chat, Auto Manager and Manual Execution. IBM Execution & Runtime Records is a historical, read-only view."
+      ],
+      "topics": [],
+      "related": [
+        "jobs",
+        "figures",
+        "getting-started"
+      ],
+      "commands": []
+    },
+    {
+      "id": "workflow",
+      "title": "3. Experimental Design",
+      "badge": "LOCAL WRITE",
+      "paragraphs": [
+        "Six independent experiments use n=5, 10, 15, 20, 25 and 30 observations per treatment. Eight mitigation treatments vary DD, TREX and ZNE while the scientific inputs remain fixed.",
+        "Start Automation starts a new local automation worker from verified STOPPED state when existing policy permits. Resume Automation continues a PAUSED campaign using the existing checkpoint. Pause Automation cooperatively stops automatic operations at a safe boundary; it does not cancel queued/running IBM jobs. A pause request remains RUNNING until the worker releases its lock.",
+        "STOPPED means no verified automation worker is active; PAUSED additionally has a recorded paused campaign. RUNNING requires verified worker ownership. ERROR means ownership/service evidence is unavailable or a recorded failure requires investigation; it is not proof of IBM job failure. One-shot manual/STEP activity is shown separately and blocks conflicting automation controls.",
+        "Authorization is displayed separately. POLICY_CONFIGURED is not live permission: preview, direct confirmation, fresh quota, frozen-input checks and duplicate/UNKNOWN reconciliation remain mandatory. Disabled actions show reasons. Restarting services does not reset campaign progress or pending jobs. No startup action changes MIN_BATCH_QUOTA_SECONDS=150.0 or MIN_RECOVERY_QUOTA_SECONDS=40.0.",
+        "For independent operations, use Manual Execution: target and operation, Preview, Preflight, Confirm / Execute. The retained advanced STEP controls are available for registered campaign operations. AI Chat remains read-only. Targeted recovery must identify an invalid or missing logical slot; PLANNED is not SUBMITTED, and SUBMITTED is not scientifically accepted.",
+        "Operation badges distinguish READ-ONLY queries, LOCAL WRITE actions and IBM-SIDE ACTION requests. BLOCKED means a required gate is unmet; visibility of a command is not authorization."
+      ],
+      "topics": [],
+      "related": [
+        "jobs",
+        "recovery",
+        "safety"
+      ],
+      "commands": []
+    },
+    {
+      "id": "jobs",
+      "title": "4. Dependence and Replication",
+      "badge": "READ-ONLY",
+      "paragraphs": [
+        "Accepted observations can share execution conditions. A PUB is not necessarily an independent experimental replicate. This matters when interpreting repeatability and uncertainty.",
+        "Navigate Batch → Jobs → Treatments → PUBs → Recovery History. Batch 001, Batch 002 and subsequent labels come from experiment_blocks.sequence_no, or the registered logical block identifier when sequence metadata is absent. Numbers are scoped to the registered n-level and logical block, not inferred from n itself. Unregistered/conflicting identities remain unnumbered; no new numbering is written to historical records.",
+        "Filter by n-level, Batch number, treatment, account, recorded status, original/replacement class or Job ID/UUID search. Expand a Batch and then a Job. Original IBM Job IDs and all Runtime Batch UUIDs remain copyable; a replacement Runtime Batch is linked to the original logical block rather than renumbering the campaign. Counts describe the filtered selection. Replacement PUBs are not added to the original planned-PUB denominator.",
+        "Inspect saved timestamps, PUB-level validation, accepted slots, ledger events and original/replacement provenance. Local IBM status and last verified provider observations include their own timestamps; neither is a live query. Reload reads local records only. QPU usage, elapsed time and quota reservations are different quantities. Missing/conflicting values are N/A; accepted observations may be dependent within a shared execution."
+      ],
+      "related": [
+        "recovery",
+        "troubleshooting",
+        "workflow"
+      ],
+      "topics": [],
+      "commands": []
+    },
+    {
+      "id": "recovery",
+      "title": "5. Accepted Scientific Observations",
+      "badge": "READ-ONLY",
+      "paragraphs": [
+        "Quantitative research tables include only observations whose selected logical slots match accepted records. Incomplete subsets are preliminary. Missing observations are not treated as zero errors.",
+        "DONE establishes execution completion, not acceptance of every PUB. A scientifically invalid PUB may coexist with valid PUBs in the same job. An incomplete or recovered dataset must report expected coverage, accepted slots, failed/missing slots and replacement lineage. Preserve originals and apply the existing validation/selection rules; do not substitute zeros for missing observations.",
+        "Recovery can introduce selection effects and different execution conditions. Recovered measurements are not automatically independent replicates or statistically interchangeable with originals. Analyze the available provenance and dependence structure before estimating uncertainty or claiming significance. A remotely completed job may still be locally uncollected: retrieve and validate the existing Job ID before requesting a replacement."
+      ],
+      "related": [
+        "jobs",
+        "safety",
+        "troubleshooting"
+      ],
+      "topics": [],
+      "commands": []
+    },
+    {
+      "id": "figures",
+      "title": "6. Figures and Quantitative Metrics",
+      "badge": "READ-ONLY",
+      "paragraphs": [
+        "Figure interpretations show a compact quantitative baseline/best-treatment comparison by default. Expand Show detailed analysis for per-treatment values, frequency-dependent discrepancies and limitations; Show less collapses only that figure. Curve RMS is not canonical per-PUB RMSE. Descriptive ranking does not establish significance or causality.",
+        "Nyquist discrepancies compare the real and imaginary impedance at matching frequencies. Bode errors compare magnitudes and phases at those frequencies. Normalized residuals divide the component residual by the measured impedance magnitude using the canonical small-denominator safeguard.",
+        "SSE sums squared complex residuals; canonical RMSE divides SSE by twice the frequency-point count before taking the square root. The dashboard reuses exported per-PUB metric values. Sample spread is not a confidence interval."
+      ],
+      "topics": [],
+      "related": [
+        "safety",
+        "workflow",
+        "recovery"
+      ],
+      "commands": []
+    },
+    {
+      "id": "agent",
+      "title": "7. Quick Assistant and AI Research Workspace",
+      "badge": "READ-ONLY",
+      "paragraphs": [
+        "Quick Assistant is the floating one-off utility. It shows only the current question and answer. Closing and reopening clears temporary messages; it never creates workspace conversation records. Scientific evidence auditing remains internal.",
+        "AI Research Workspace is a full-page conversation view. Use New Chat, select an existing title, rename it, or delete it with confirmation. Conversations survive refresh in dedicated Dashboard storage, separate from campaign data. Each chat retains its own scientific scope and follow-up context.",
+        "Both interfaces call the same authorized Python tools and local Ollama adapter. Routine commands work without Ollama; reasoning uses the existing explicit local-context permission. Granting permission does not merge histories.",
+        "Workspace supports readable text, headings, bold, inline code and fenced code. Unicode scientific notation is supported; LaTeX remains literal text rather than fully typeset mathematics. Tables and lazy-loaded derived charts remain available. Raw HTML is never executed.",
+        "Do not paste credentials or secrets into either assistant. Recognizable credentials are rejected by workspace storage. Conversation deletion removes only that chat, not scientific evidence records or production results.",
+        "AUTO control is available only through the separately started local execution broker. In Research Workspace, Start Auto Manager or Resume Auto Manager prepares a campaign-scoped LIVE confirmation; it does not start execution until explicitly confirmed. Pause Auto Manager safely requests a canonical checkpoint pause and does not cancel IBM jobs. Show Auto Manager status reports verified lock/process identity; UNKNOWN or STALE_UNRESOLVED blocks control. Quick Assistant stays read-only. Only the explicitly confirmed read-only diagnostic STEPs described below are enabled. No hardware campaign was executed during integration testing.",
+        "Phase 5B: Run preflight now offers a one-use confirmation for a single canonical provider-read check under exclusive campaign locks. Show step result returns its saved diagnostic report. No automatic advancement, submission, reservation or campaign update occurs. Quick Assistant rejects this operational command. Pending IBM jobs are left untouched. Generic monitor, collection and replacement execution remain BLOCKED with specific reasons; canonical monitor is not read-only. Analyze n=5 remains the existing read-only scientific query, and Review targeted recovery remains a local observation. Neither regenerates outputs or submits jobs.",
+        "The broker wraps the existing Python Auto Manager; it does not create an independent execution loop. AI Agent and Skills remain intact and selectively used for reasoning and diagnosis. Starting or refreshing the Dashboard never starts a campaign. Worker crash does not cause automatic restart. Broker credentials remain server-side and Windows DPAPI-protected.",
+        "The Python Auto Manager Commands panel remains above the Workspace input in new and existing conversations. Collapse the panel or its Status & Monitoring, AUTO Control and STEP-by-STEP groups. Clicking any chip only fills editable text. Capability badges and reasons are not execution permission. Quick Assistant has no operational suggestions. Show supported STEP commands returns deterministic capability help, never scientific SSE analysis.",
+        "Status & Monitoring reads locally recorded campaign, batch/job, quota and recovery evidence with timestamps; Worker Status verifies process/lock ownership. Local snapshot capture is not a fresh IBM observation. Monitor Batch 005 is an additional confirmed, fixed-scope read-only diagnostic using existing labK authorization, under canonical exclusive locks. It queries the eight registered jobs and Batch metadata only, then exits. It cannot collect, submit, cancel or recover. Use Show step result afterwards. An older broker that has not advertised this capability must be restarted separately. Generic Monitor / Collect requests one specific operation; collection remains blocked for its stated scope/archival safety reasons.",
+        "Canonical STEP update: Prepare verifies the existing six frozen target registrations without resetting the campaign. Analyze n-level n=5 performs one canonical analysis operation; Export n=5 figures packages its verified artifacts without running analysis. Both require explicit output-write confirmation, exclusive canonical locks, complete provenance-valid data and no UNKNOWN submission. Use Show step result for completion. Analyze n=5 remains a read-only research query for compatibility. Collection is still blocked pending a verified job/attempt/archive contract. No STEP advances the campaign or submits jobs.",
+        "Single-PUB Execution is under AI Research Workspace ? Auto Manager ? STEP-by-STEP. Prepare is preview-only. Existing one-PUB RECOVERY jobs may be monitored or collected after explicit confirmation; only verified DONE jobs are collected. TEST submission is BLOCKED because an isolated quota/storage contract is not approved. RECOVERY submission is BLOCKED until fresh source-job/attempt and quota evidence is bound to a one-time approval. Disabled LIVE controls do not create jobs or reservations. Use Show step result for asynchronous operation results. Pending originals, including uncollected Batch 005 work, are never inferred to need replacement."
+      ],
+      "related": [
+        "workflow",
+        "safety"
+      ],
+      "topics": [],
+      "commands": []
+    },
+    {
+      "id": "troubleshooting",
+      "title": "8. Missing Data and Unavailable Analysis",
+      "badge": "READ-ONLY",
+      "paragraphs": [
+        "If the page reports an outdated Dashboard backend, restart only the Dashboard and refresh. Updated JavaScript can otherwise be paired with an old Python server process. An unavailable local model must not block campaign progress or supported scientific comparison commands.",
+        "If a figure lacks an interpretation, numerical inputs or the statistical contract may be unavailable. A convergence image does not supply its underlying confidence intervals. Local AI connection errors are reported without simulated responses.",
+        "Diagnose the layer first: physical measurement noise, mitigation numerics, Runtime execution, retrieval/archival, or scientific validation. A timeout or UNKNOWN state requires identity reconciliation, not blind retry. A missing archive is not proof of failed hardware execution. Use Manual Execution diagnostics to inspect an authorized Job ID without starting automation.",
+        "If startup reports a duplicate, busy port or inaccessible process identity, inspect the displayed logs; do not terminate unrelated Python processes. Start/Pause/Resume availability depends on verified worker state and existing authorization. The Dashboard viewer remains independent of those execution gates."
+      ],
+      "related": [
+        "getting-started",
+        "jobs",
+        "recovery"
+      ],
+      "topics": [],
+      "commands": []
+    },
+    {
+      "id": "safety",
+      "title": "9. Theory and Uncertainty",
+      "badge": "READ-ONLY",
+      "paragraphs": [
+        "Physical interpretation: series resistance and inductance, a charge-transfer resistance in parallel with a constant-phase element, and a second series constant-phase element form the canonical circuit. Parameter shifts can reflect fitting sensitivity and noise but do not establish causality.",
+        "Confidence intervals requiring independent execution clusters and covariance-based error propagation remain unavailable until their assumptions and inputs are verified."
+      ],
+      "related": [
+        "recovery",
+        "agent"
+      ],
+      "topics": [
+        {
+          "id": "execution-failures",
+          "title": "9.1 IBM QPU Execution Failures and Recovery Mechanisms",
+          "badge": "READ-ONLY",
+          "paragraphs": [
+            "Physical noise affects accuracy. Readout errors misclassify measured states and can bias expectation values. Gate errors include coherent miscalibration and stochastic imperfections. Relaxation and dephasing alter quantum states during circuit execution; duration relative to coherence times matters. Queue waiting before initialization is not the circuit’s coherent evolution time, although calibration drift between executions may change measurement conditions.",
+            "Numerical mitigation failure is distinct from ordinary measurement noise. ZNE estimates a zero-noise value from deliberately noisier observations. Poorly conditioned extrapolation, model mismatch or uncertain input estimates can yield unstable or non-finite output. NaN/Inf is a numerical validity failure, not a large physical observable. A finite mitigated estimate can lie outside a Pauli observable’s physical range because extrapolation is an estimator; inspect the applicable validation and clipping rules instead of automatically declaring hardware failure.",
+            "Runtime and data-management failures include rejected/failed jobs, unavailable results, transport timeouts, interrupted downloads, malformed metadata, missing observables, and archive/hash mismatches. Missing PUB results must be distinguished from an uncollected result. QUEUED and RUNNING are pending states. UNKNOWN means the submission identity or observation is unresolved; a lost response may conceal a successful submission. Reconcile existing Job IDs and duplicate candidates before any replacement.",
+            "Scientific invalidity is determined per PUB by the established schema and validation policy: expected observable dimensions, finite values, required uncertainty information, result count and frozen-input provenance. Job completion alone is insufficient. High SSE or a noisy but valid measurement does not by itself justify recovery; replacing inconvenient outcomes would bias the dataset.",
+            "Targeted recovery preserves valid PUBs and submits only a verified failed/missing/invalid logical slot after authorization, quota and provenance checks. Repeating an entire Batch consumes additional resources and may replace valid observations under different hardware conditions. Retain original and replacement Job IDs, treatment, logical slot, frozen hashes, failure evidence, timestamps and validation. Accept the replacement only after successful validation. Recovery restores coverage, not proof of accuracy, independence or statistical significance."
+          ],
+          "references": [
+            {
+              "title": "IBM: error mitigation and suppression techniques",
+              "url": "https://quantum.cloud.ibm.com/docs/en/guides/error-mitigation-and-suppression-techniques"
+            }
+          ]
+        },
+        {
+          "id": "mitigation-fitting",
+          "title": "9.2 Why Error Mitigation Can Improve or Worsen EIS Fitting",
+          "badge": "READ-ONLY",
+          "paragraphs": [
+            "Dynamical Decoupling (DD) is error suppression: ideally identity-equivalent pulse sequences inserted in idle intervals reduce certain unwanted interactions. Benefits depend on idle structure, noise spectrum and pulse quality. Additional imperfect pulses can worsen performance, particularly when idle opportunities are limited. DD does not correct every error channel or undo arbitrary relaxation.",
+            "Twirled Readout Error Extinction (TREX) randomizes measurement and uses calibration to estimate a multiplicative readout attenuation for an observable. Rescaling can reduce readout bias while increasing sampling variance. For a schematic estimate μ̂=ŷ/ĉ, first-order variance is Var(μ̂)≈Var(ŷ)/c² + y² Var(ĉ)/c⁴ − 2y Cov(ŷ,ĉ)/c³. Small attenuation factors and drift between calibration and target measurements can make correction unstable. TREX does not remove general gate noise.",
+            "Zero-Noise Extrapolation (ZNE) estimates E(0) from E(λ), with λ denoting amplified noise. For polynomial cancellation, Ê₀=ΣᵢwᵢÊ(λᵢ), with Σᵢwᵢ=1 and Σᵢwᵢλᵢᵏ=0 for the cancelled orders k. This removes selected expansion terms only when the noise-scaling and expansion assumptions hold. Var(Ê₀)=wᵀΣw; for independent estimates it is Σᵢwᵢ²σᵢ². Large or alternating weights amplify statistical error. Nonlinear extrapolators require their own uncertainty treatment; this formula is an illustrative linear estimator, not a claim about the project’s configured extrapolator.",
+            "Bias and variance compete: MSE(Ê)=Bias(Ê)²+Var(Ê). Reducing bias may increase total error at finite shots. Circuit-dependent noise, imperfect amplification and calibration drift can violate mitigation assumptions. DD+TREX+ZNE is not guaranteed to outperform any component: suppression changes the noise that is subsequently calibrated/extrapolated, and overhead changes sampling precision. Treatment comparisons must use recorded settings and dependence-aware uncertainty, not assume monotonic benefit.",
+            "In this implementation, seven expectation values map to EIS parameters p=f(e), and the impedance model produces Z(ω;p). Positive parameters use logarithmic mappings while CPE exponents use linear mappings. Thus equal expectation-value shifts need not produce equal physical parameter shifts. In the following Jacobian formulas, Z denotes the stacked real and imaginary impedance components, so the Jacobians are real. Locally, δp≈J_f δe and δZ≈J_Z J_f δe. If a defensible covariance Σ_e is available, Σ_p≈J_f Σ_e J_fᵀ and Σ_Z≈J_Z Σ_p J_Zᵀ. These are first-order approximations, not computed confidence intervals. The canonical routine clips expectations to [−1,1]; derivatives at clipping boundaries are not described by a smooth interior Jacobian.",
+            "The existing calculation uses SSE=Σⱼ|Z_fit(ωⱼ)−Z_exp(ωⱼ)|² and RMSE=√[SSE/(2N)], where N is the number of complex frequency points and 2N counts real and imaginary residual components. These definitions describe the unchanged mitigation_pilot.calculate_pub_eis function. For stacked real/imaginary residuals r and A=∂r/∂e, the locally linear residual (Gauss-Newton) approximation, neglecting residual curvature, gives ΔSSE≈2rᵀAδe+δeᵀAᵀAδe. Sensitivity and direction matter: a smaller expectation-error norm does not necessarily give a smaller SSE relative to experimental EIS data.",
+            "An ideal quantum expectation vector is not necessarily the parameter vector minimizing discrepancy to experimental EIS data. Physical-model mismatch, fixed parameter mapping and nonlinear sensitivity also contribute. Distinguish a confirmed numerical comparison (validated CSV/JSON, exact treatment and Job provenance) from a possible explanation such as drift or hardware noise. The equations above explain mechanisms; they establish no experimental effect size, p-value or causal attribution. This section reports no new experimental measurements. Incomplete/recovered cohorts require explicit coverage and provenance before comparison."
+          ],
+          "references": [
+            {
+              "title": "Temme, Bravyi and Gambetta: Error mitigation for short-depth quantum circuits (2017)",
+              "url": "https://arxiv.org/abs/1612.02058"
+            },
+            {
+              "title": "van den Berg, Minev and Temme: Model-free readout-error mitigation for quantum expectation values (2022)",
+              "url": "https://arxiv.org/abs/2012.09738"
+            },
+            {
+              "title": "IBM: error mitigation and suppression techniques",
+              "url": "https://quantum.cloud.ibm.com/docs/en/guides/error-mitigation-and-suppression-techniques"
+            }
+          ]
+        }
+      ],
+      "commands": []
+    },
+    {
+      "id": "faq",
+      "title": "10. Research Conclusions",
+      "badge": "READ-ONLY",
+      "paragraphs": [
+        "Research outputs are separate from original scientific results. Lower median error does not establish statistical significance. Increasing n changes the experiment sample size and does not by itself prove improved reliability."
+      ],
+      "related": [
+        "jobs",
+        "recovery",
+        "troubleshooting"
+      ],
+      "topics": [],
+      "commands": []
+    }
+  ]
+}

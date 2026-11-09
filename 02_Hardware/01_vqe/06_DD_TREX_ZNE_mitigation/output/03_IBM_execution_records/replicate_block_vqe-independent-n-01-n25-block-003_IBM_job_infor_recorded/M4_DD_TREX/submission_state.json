@@ -1,0 +1,32 @@
+{
+  "status": "COMPLETED",
+  "attempt_id": "fc56bbec618c44808a666addb028595c",
+  "logical_block_id": "vqe-independent-n-01-n25-block-003",
+  "treatment_id": "M4_DD_TREX",
+  "account_label": "labK",
+  "instance": "crn:v1:bluemix:public:quantum-computing:us-east:a/adbc1a6566984416ad52fb0ff815619e:83cb31df-818d-47a4-8136-b721bbd23fe9::",
+  "backend": "ibm_fez",
+  "input_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d"
+  },
+  "created_utc": "2026-11-06T21:32:17.904436+00:00",
+  "updated_utc": "2026-11-06T22:35:45.900818+00:00",
+  "n": 5,
+  "pubs_per_treatment": 5,
+  "replicate_blocks": 1,
+  "requested_shots_per_pub": 4096,
+  "quota_reservation_seconds_per_treatment": 20.0,
+  "submission_order": 4,
+  "execution_order": "not_assumed",
+  "submit_started_utc": "2026-11-06T21:32:25.755507+00:00",
+  "job_id": "dbn4er0ou4as73b3rlsg",
+  "reconciliation_history": [
+    {
+      "status": "SUBMITTED",
+      "job_id": "dbn4er0ou4as73b3rlsg",
+      "updated_utc": "2026-11-06T21:32:27.332294+00:00"
+    }
+  ]
+}

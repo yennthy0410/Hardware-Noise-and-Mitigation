@@ -1,0 +1,91 @@
+{
+  "schema_version": 2,
+  "export_version": 1,
+  "export_id": "n5-v001-916ca837d879",
+  "experiment_id": "vqe-independent-n-01-n5",
+  "target_id": "vqe-independent-n-01-n5-target-n5-chunk-5",
+  "n": 5,
+  "source_run": "run_02",
+  "source_analysis_manifest_sha256": "916ca837d879fe718fb7266f5bbe219ba4549bc3b990927e6f94055a862a84e3",
+  "input_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff"
+  },
+  "partial_diagnostic_only": false,
+  "figure_directory": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\01_results_and_figures\\n=5\\v001-916ca837d879",
+  "data_directory": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\02_run_level_data\\n=5\\v001-916ca837d879",
+  "csv_sha256": {
+    "accuracy_cost_data.csv": "043e6717da754806fb93791493c9544898cbd48bb6d7e05b8ea6bb7348d913f1",
+    "bode_curves.csv": "4156de53cd314bdcae23075a387d72f4185cef955e5c2c5ec60d5a3b48be5a66",
+    "nyquist_curves.csv": "4578bee446ba551213f111c94154763498d6ff0b4731210565a9654b2742994b",
+    "params_table.csv": "cf312e689000a5eca8d2283c456b67f2b4f3576252a61119d08d2c0818499243",
+    "per_repeat.csv": "cf312e689000a5eca8d2283c456b67f2b4f3576252a61119d08d2c0818499243",
+    "residual_curves.csv": "547831794ed83ce459131dc7ffa1d76179a4e15de4dc31f265a598335d7c5f33",
+    "sse_plot_data.csv": "d4dc1df772df835c45a1c4086a2a077e9a040366650e97c932d78058ff395fa1",
+    "summary_mean_std.csv": "8041434987821d5ebe6e7d7777e03a63bacc8731d4e8a5492bb59eef38128a27",
+    "tail_stats.csv": "9215c5abb8ea5fe9912e62d0810eb4f11170bc87c55623cb23977c59ecc94e09",
+    "round_summary.json": "20bbe53b3d6c0b757c9ad246bbc125cd367af33bf9872d2c2177a7a418700dba",
+    "per_pub_validation.csv": "a9513433e2cca5086838b3545308b94c8fe028a782ba96cb3b9ff107af046af0",
+    "errors.csv": "00945946ab33a1d5ec19230689dc6451a54c0665cc4463e45f6044cf5fa21cb7",
+    "runtime.csv": "66a08a2a011c5e8d1aee60adbc1c9de76568c4e6a933e5b12b0468682f28b418"
+  },
+  "figures": {
+    "nyquist.png": {
+      "sha256": "f3b676fa8554d194349892bca134366c1464b4ce38d0851d9a0b990235641b98",
+      "valid": true
+    },
+    "bode_magnitude.png": {
+      "sha256": "212036976c089a13928efc72401dfb494e942424c57508125702e0aa8af89d0c",
+      "valid": true
+    },
+    "bode_phase.png": {
+      "sha256": "f6e8106ede1e7713aabc3c120d72971132010a975fda4f210ab79db6c28f273c",
+      "valid": true
+    },
+    "residual_real.png": {
+      "sha256": "fb7984de80093e31e70c0454262ce89bf4aa587ba12d73f1bfb8a3ea68370936",
+      "valid": true
+    },
+    "residual_imag.png": {
+      "sha256": "af778a7ee298284f8be5b7af3954f7004776b2744c24b4d8d93d3c24281e5cac",
+      "valid": true
+    },
+    "residual_real_normalized.png": {
+      "sha256": "52088d815d659651bcbb0d936833300b798fd7b8b07fdd36b337ff3629087e90",
+      "valid": true
+    },
+    "residual_imag_normalized.png": {
+      "sha256": "c0c8b167d870e3c95af4df5da5a8283c921326b7ff056947ed47ede12e94a437",
+      "valid": true
+    },
+    "04_mitigation_accuracy_cost.png": {
+      "sha256": "3420a581b4f638b86e06e74af485ca8a8e374201f27f598afb052396fe1fb999",
+      "valid": true
+    },
+    "bode_pilot.png": {
+      "sha256": "0887ac3672fa1782ec03728e66f5c5e2a4e637f8f7d5a047624142657b97e669",
+      "valid": true
+    },
+    "distribution_pilot.png": {
+      "sha256": "1f03eb64acfbdce100b75291d06f76155e797652c54a811cc9070bcd7953ae65",
+      "valid": true
+    },
+    "nyquist_pilot.png": {
+      "sha256": "8c2b5f5c6a6ddfd0160a870cf8e2c7bbf1a0eb7e3cea4096fcd546aa91e278ad",
+      "valid": true
+    },
+    "residual_pilot.png": {
+      "sha256": "52961968e38c6e9dc7a285d293e19c5d6110c7799d0b4c3c37efccdf8b0b14e2",
+      "valid": true
+    },
+    "05_mitigation_median_CI_convergence.png": {
+      "sha256": "11567a8c513632bc0a4b7557f92a32fcacb9de5224602c20d963bda2f655d12d",
+      "valid": true
+    },
+    "06_mitigation_three_tier_positioning.png": {
+      "sha256": "0047e9de1102e5682eacfe6157b009ecb97efa49b8dcacc7a177156336ea749f",
+      "valid": true
+    }
+  }
+}

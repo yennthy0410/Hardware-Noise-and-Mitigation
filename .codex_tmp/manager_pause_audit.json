@@ -1,0 +1,5835 @@
+{
+  "checkpoint": {
+    "account_decisions": {},
+    "automatic_new_qpu_submission": false,
+    "error_type": "RuntimeError",
+    "failure_category": "RECOVERY_OR_VALIDATION",
+    "fresh_selection_on_resume": true,
+    "pause_class": "PAUSED_OPERATOR_ACTION",
+    "previous_checkpoint": {
+      "block_id": "vqe-independent-n-01-n30-block-001",
+      "experiment_id": "vqe-independent-n-01-n30",
+      "n": 30
+    },
+    "reason": "Operator action or fresh evidence is required before campaign work can continue."
+  },
+  "events": [
+    {
+      "id": 1,
+      "type": "INDEPENDENT_CAMPAIGN_PLANNED",
+      "utc": "2026-11-03T15:34:46.973648+00:00"
+    },
+    {
+      "id": 2,
+      "type": "HISTORICAL_N5_ADOPTED",
+      "utc": "2026-11-03T17:36:50.075273+00:00"
+    },
+    {
+      "id": 3,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T09:41:50.968245+00:00"
+    },
+    {
+      "id": 4,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-04T09:42:43.688380+00:00"
+    },
+    {
+      "id": 5,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T09:49:04.953870+00:00"
+    },
+    {
+      "id": 6,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-04T09:49:52.452550+00:00"
+    },
+    {
+      "id": 7,
+      "type": "INDEPENDENT_N_LEVEL_REPAIRED_COMPLETE",
+      "utc": "2026-11-04T17:05:14.238358+00:00"
+    },
+    {
+      "id": 8,
+      "type": "CAMPAIGN_PREPARE_ERROR",
+      "utc": "2026-11-04T17:34:17.805788+00:00"
+    },
+    {
+      "id": 9,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T17:34:17.893506+00:00"
+    },
+    {
+      "id": 10,
+      "type": "CAMPAIGN_PREPARE_ERROR",
+      "utc": "2026-11-04T17:35:18.081954+00:00"
+    },
+    {
+      "id": 11,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T17:35:18.135782+00:00"
+    },
+    {
+      "id": 12,
+      "type": "CAMPAIGN_PREPARE_ERROR",
+      "utc": "2026-11-04T17:37:18.364504+00:00"
+    },
+    {
+      "id": 13,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T17:37:18.430916+00:00"
+    },
+    {
+      "id": 14,
+      "type": "CAMPAIGN_PREPARE_ERROR",
+      "utc": "2026-11-04T17:41:18.749640+00:00"
+    },
+    {
+      "id": 15,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T17:41:18.863944+00:00"
+    },
+    {
+      "id": 16,
+      "type": "CAMPAIGN_RUNTIME_EVIDENCE_BLOCKED",
+      "utc": "2026-11-04T17:52:57.981092+00:00"
+    },
+    {
+      "id": 17,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-04T17:52:58.095372+00:00"
+    },
+    {
+      "id": 18,
+      "type": "CAMPAIGN_QUOTA_REFUSED",
+      "utc": "2026-11-04T18:04:39.130937+00:00"
+    },
+    {
+      "id": 19,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-04T18:04:39.228003+00:00"
+    },
+    {
+      "id": 20,
+      "type": "CAMPAIGN_SUBMISSION_ERROR",
+      "utc": "2026-11-04T18:10:52.568610+00:00"
+    },
+    {
+      "id": 21,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T18:10:52.667884+00:00"
+    },
+    {
+      "id": 22,
+      "type": "AUTO_MANAGER_INTERRUPTED",
+      "utc": "2026-11-04T18:12:37.537444+00:00"
+    },
+    {
+      "id": 23,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T18:20:56.664847+00:00"
+    },
+    {
+      "id": 24,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T18:21:03.747239+00:00"
+    },
+    {
+      "id": 25,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T18:22:06.413676+00:00"
+    },
+    {
+      "id": 26,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T18:23:20.715067+00:00"
+    },
+    {
+      "id": 27,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T18:24:33.752174+00:00"
+    },
+    {
+      "id": 28,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T18:25:46.124829+00:00"
+    },
+    {
+      "id": 29,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T18:26:59.632851+00:00"
+    },
+    {
+      "id": 30,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-04T18:27:11.144414+00:00"
+    },
+    {
+      "id": 31,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T18:27:11.332053+00:00"
+    },
+    {
+      "id": 32,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T18:28:15.108181+00:00"
+    },
+    {
+      "id": 33,
+      "type": "PUB_VALIDATION_FAILURE",
+      "utc": "2026-11-04T18:28:33.818589+00:00"
+    },
+    {
+      "id": 34,
+      "type": "AI_DIAGNOSTIC",
+      "utc": "2026-11-04T18:28:33.829550+00:00"
+    },
+    {
+      "id": 35,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-04T18:29:20.047058+00:00"
+    },
+    {
+      "id": 36,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T18:29:20.168899+00:00"
+    },
+    {
+      "id": 37,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T18:31:24.673737+00:00"
+    },
+    {
+      "id": 38,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-04T18:32:17.946064+00:00"
+    },
+    {
+      "id": 39,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T18:32:18.089308+00:00"
+    },
+    {
+      "id": 40,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T18:36:21.215242+00:00"
+    },
+    {
+      "id": 41,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-04T18:37:11.312987+00:00"
+    },
+    {
+      "id": 42,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T18:37:11.424444+00:00"
+    },
+    {
+      "id": 43,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T19:02:13.352490+00:00"
+    },
+    {
+      "id": 44,
+      "type": "AI_DIAGNOSTIC",
+      "utc": "2026-11-04T19:02:27.001289+00:00"
+    },
+    {
+      "id": 45,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-04T19:03:06.275086+00:00"
+    },
+    {
+      "id": 46,
+      "type": "AUTO_MANAGER_SAFETY_DIAGNOSTIC",
+      "utc": "2026-11-04T19:03:06.288391+00:00"
+    },
+    {
+      "id": 47,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T19:22:10.950268+00:00"
+    },
+    {
+      "id": 48,
+      "type": "REPLACEMENT_PREFLIGHT",
+      "utc": "2026-11-04T19:23:53.001735+00:00"
+    },
+    {
+      "id": 49,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T19:25:03.018051+00:00"
+    },
+    {
+      "id": 50,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T19:27:09.573433+00:00"
+    },
+    {
+      "id": 51,
+      "type": "AUTO_MANAGER_INTERRUPTED",
+      "utc": "2026-11-04T19:27:17.374912+00:00"
+    },
+    {
+      "id": 52,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T20:54:23.306979+00:00"
+    },
+    {
+      "id": 53,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T20:56:33.548341+00:00"
+    },
+    {
+      "id": 54,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T20:58:34.988809+00:00"
+    },
+    {
+      "id": 55,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T21:00:33.944342+00:00"
+    },
+    {
+      "id": 56,
+      "type": "CAMPAIGN_SUBMISSION_ERROR",
+      "utc": "2026-11-04T21:07:40.856118+00:00"
+    },
+    {
+      "id": 57,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-04T21:07:41.029699+00:00"
+    },
+    {
+      "id": 58,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T21:25:03.571186+00:00"
+    },
+    {
+      "id": 59,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-04T21:25:11.865904+00:00"
+    },
+    {
+      "id": 60,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T21:38:26.484509+00:00"
+    },
+    {
+      "id": 61,
+      "type": "PUB_VALIDATION_FAILURE",
+      "utc": "2026-11-04T22:16:27.057145+00:00"
+    },
+    {
+      "id": 62,
+      "type": "AI_DIAGNOSTIC",
+      "utc": "2026-11-04T22:16:27.107189+00:00"
+    },
+    {
+      "id": 63,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T22:25:13.695681+00:00"
+    },
+    {
+      "id": 64,
+      "type": "REPLACEMENT_PREFLIGHT",
+      "utc": "2026-11-04T22:26:54.853574+00:00"
+    },
+    {
+      "id": 65,
+      "type": "REPLACEMENT_PREFLIGHT",
+      "utc": "2026-11-04T22:27:43.773207+00:00"
+    },
+    {
+      "id": 66,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-04T22:28:58.236703+00:00"
+    },
+    {
+      "id": 67,
+      "type": "CAMPAIGN_ANALYSIS_ERROR",
+      "utc": "2026-11-04T22:29:53.929077+00:00"
+    },
+    {
+      "id": 68,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T22:29:54.038521+00:00"
+    },
+    {
+      "id": 69,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T22:30:54.570253+00:00"
+    },
+    {
+      "id": 70,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T22:32:55.283354+00:00"
+    },
+    {
+      "id": 71,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-04T22:36:55.976124+00:00"
+    },
+    {
+      "id": 72,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-04T22:44:56.689803+00:00"
+    },
+    {
+      "id": 73,
+      "type": "INDEPENDENT_N_LEVEL_REPAIRED_COMPLETE",
+      "utc": "2026-11-05T00:33:03.673490+00:00"
+    },
+    {
+      "id": 74,
+      "type": "CAMPAIGN_QUOTA_REFUSED",
+      "utc": "2026-11-05T00:35:07.523825+00:00"
+    },
+    {
+      "id": 75,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-05T00:35:07.680530+00:00"
+    },
+    {
+      "id": 76,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T00:51:23.902898+00:00"
+    },
+    {
+      "id": 77,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-05T00:51:31.216390+00:00"
+    },
+    {
+      "id": 78,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T08:44:11.800767+00:00"
+    },
+    {
+      "id": 79,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-05T08:44:19.834167+00:00"
+    },
+    {
+      "id": 80,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T08:52:22.630774+00:00"
+    },
+    {
+      "id": 81,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T08:53:08.337950+00:00"
+    },
+    {
+      "id": 82,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T08:55:18.148046+00:00"
+    },
+    {
+      "id": 83,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T08:55:25.555282+00:00"
+    },
+    {
+      "id": 84,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T08:58:40.185415+00:00"
+    },
+    {
+      "id": 85,
+      "type": "PUB_VALIDATION_FAILURE",
+      "utc": "2026-11-05T08:59:02.470466+00:00"
+    },
+    {
+      "id": 86,
+      "type": "AI_DIAGNOSTIC",
+      "utc": "2026-11-05T08:59:02.484161+00:00"
+    },
+    {
+      "id": 87,
+      "type": "PUB_VALIDATION_FAILURE",
+      "utc": "2026-11-05T08:59:06.339249+00:00"
+    },
+    {
+      "id": 88,
+      "type": "AI_DIAGNOSTIC",
+      "utc": "2026-11-05T08:59:06.354624+00:00"
+    },
+    {
+      "id": 89,
+      "type": "REPLACEMENT_PREFLIGHT",
+      "utc": "2026-11-05T09:00:46.713047+00:00"
+    },
+    {
+      "id": 90,
+      "type": "REPLACEMENT_PREFLIGHT",
+      "utc": "2026-11-05T09:01:43.231358+00:00"
+    },
+    {
+      "id": 91,
+      "type": "CAMPAIGN_ANALYSIS_ERROR",
+      "utc": "2026-11-05T09:02:15.176033+00:00"
+    },
+    {
+      "id": 92,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T09:02:15.328051+00:00"
+    },
+    {
+      "id": 93,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T09:03:18.083728+00:00"
+    },
+    {
+      "id": 94,
+      "type": "CAMPAIGN_ANALYSIS_ERROR",
+      "utc": "2026-11-05T09:04:43.063848+00:00"
+    },
+    {
+      "id": 95,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T09:04:43.193932+00:00"
+    },
+    {
+      "id": 96,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T09:06:46.818671+00:00"
+    },
+    {
+      "id": 97,
+      "type": "CAMPAIGN_ANALYSIS_ERROR",
+      "utc": "2026-11-05T09:08:09.381567+00:00"
+    },
+    {
+      "id": 98,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T09:08:09.549001+00:00"
+    },
+    {
+      "id": 99,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T09:12:13.931017+00:00"
+    },
+    {
+      "id": 100,
+      "type": "CAMPAIGN_ANALYSIS_ERROR",
+      "utc": "2026-11-05T09:13:34.103510+00:00"
+    },
+    {
+      "id": 101,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T09:13:34.219051+00:00"
+    },
+    {
+      "id": 102,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T09:21:38.395978+00:00"
+    },
+    {
+      "id": 103,
+      "type": "CAMPAIGN_ANALYSIS_ERROR",
+      "utc": "2026-11-05T09:22:58.093211+00:00"
+    },
+    {
+      "id": 104,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T09:22:58.224792+00:00"
+    },
+    {
+      "id": 105,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T09:38:06.447826+00:00"
+    },
+    {
+      "id": 106,
+      "type": "CAMPAIGN_ANALYSIS_ERROR",
+      "utc": "2026-11-05T09:39:28.245666+00:00"
+    },
+    {
+      "id": 107,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T09:39:28.450412+00:00"
+    },
+    {
+      "id": 108,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T09:54:32.400243+00:00"
+    },
+    {
+      "id": 109,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:13:52.651074+00:00"
+    },
+    {
+      "id": 110,
+      "type": "INDEPENDENT_N_LEVEL_REPAIRED_COMPLETE",
+      "utc": "2026-11-05T11:14:52.209466+00:00"
+    },
+    {
+      "id": 111,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:17:04.805568+00:00"
+    },
+    {
+      "id": 112,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T11:17:12.618195+00:00"
+    },
+    {
+      "id": 113,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:18:16.250440+00:00"
+    },
+    {
+      "id": 114,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:19:30.378338+00:00"
+    },
+    {
+      "id": 115,
+      "type": "RECOVERY_SOURCE_VERIFICATION_BLOCKED",
+      "utc": "2026-11-05T11:19:42.447939+00:00"
+    },
+    {
+      "id": 116,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T11:19:42.556653+00:00"
+    },
+    {
+      "id": 117,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:20:45.571778+00:00"
+    },
+    {
+      "id": 118,
+      "type": "RECOVERY_SOURCE_VERIFICATION_BLOCKED",
+      "utc": "2026-11-05T11:20:57.586009+00:00"
+    },
+    {
+      "id": 119,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T11:20:57.676888+00:00"
+    },
+    {
+      "id": 120,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:23:00.844422+00:00"
+    },
+    {
+      "id": 121,
+      "type": "PUB_VALIDATION_FAILURE",
+      "utc": "2026-11-05T11:23:25.036574+00:00"
+    },
+    {
+      "id": 122,
+      "type": "AI_DIAGNOSTIC",
+      "utc": "2026-11-05T11:23:25.049510+00:00"
+    },
+    {
+      "id": 123,
+      "type": "REPLACEMENT_PREFLIGHT",
+      "utc": "2026-11-05T11:24:56.398192+00:00"
+    },
+    {
+      "id": 124,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:26:08.881796+00:00"
+    },
+    {
+      "id": 125,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T11:27:06.498198+00:00"
+    },
+    {
+      "id": 126,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T11:27:06.624907+00:00"
+    },
+    {
+      "id": 127,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:28:09.515029+00:00"
+    },
+    {
+      "id": 128,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T11:29:03.973710+00:00"
+    },
+    {
+      "id": 129,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T11:29:04.109036+00:00"
+    },
+    {
+      "id": 130,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:31:07.368696+00:00"
+    },
+    {
+      "id": 131,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T11:32:01.135258+00:00"
+    },
+    {
+      "id": 132,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T11:32:01.341826+00:00"
+    },
+    {
+      "id": 133,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:36:04.925100+00:00"
+    },
+    {
+      "id": 134,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T11:36:57.312116+00:00"
+    },
+    {
+      "id": 135,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T11:36:57.515781+00:00"
+    },
+    {
+      "id": 136,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:45:01.091614+00:00"
+    },
+    {
+      "id": 137,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T11:45:56.269947+00:00"
+    },
+    {
+      "id": 138,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T11:45:56.470884+00:00"
+    },
+    {
+      "id": 139,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:54:09.734190+00:00"
+    },
+    {
+      "id": 140,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T11:55:08.044783+00:00"
+    },
+    {
+      "id": 141,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T11:55:08.214561+00:00"
+    },
+    {
+      "id": 142,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:56:11.792900+00:00"
+    },
+    {
+      "id": 143,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T11:57:09.307488+00:00"
+    },
+    {
+      "id": 144,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T11:57:09.543851+00:00"
+    },
+    {
+      "id": 145,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T11:59:13.024559+00:00"
+    },
+    {
+      "id": 146,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T12:00:07.856279+00:00"
+    },
+    {
+      "id": 147,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T12:00:08.017606+00:00"
+    },
+    {
+      "id": 148,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T12:04:11.448848+00:00"
+    },
+    {
+      "id": 149,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T12:05:02.502186+00:00"
+    },
+    {
+      "id": 150,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T12:05:02.681057+00:00"
+    },
+    {
+      "id": 151,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T12:13:05.657635+00:00"
+    },
+    {
+      "id": 152,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T12:13:58.395695+00:00"
+    },
+    {
+      "id": 153,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T12:13:58.543274+00:00"
+    },
+    {
+      "id": 154,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T12:29:01.563123+00:00"
+    },
+    {
+      "id": 155,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T12:29:53.998238+00:00"
+    },
+    {
+      "id": 156,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T12:29:54.188840+00:00"
+    },
+    {
+      "id": 157,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T12:44:57.931980+00:00"
+    },
+    {
+      "id": 158,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T12:45:53.570600+00:00"
+    },
+    {
+      "id": 159,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T12:45:53.731984+00:00"
+    },
+    {
+      "id": 160,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T13:00:57.550863+00:00"
+    },
+    {
+      "id": 161,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T13:01:52.550357+00:00"
+    },
+    {
+      "id": 162,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T13:01:52.706453+00:00"
+    },
+    {
+      "id": 163,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T13:30:32.385134+00:00"
+    },
+    {
+      "id": 164,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T13:31:31.192162+00:00"
+    },
+    {
+      "id": 165,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T13:31:31.436662+00:00"
+    },
+    {
+      "id": 166,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T13:32:35.752767+00:00"
+    },
+    {
+      "id": 167,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T13:33:31.084766+00:00"
+    },
+    {
+      "id": 168,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T13:33:31.363327+00:00"
+    },
+    {
+      "id": 169,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T13:35:35.530774+00:00"
+    },
+    {
+      "id": 170,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T13:36:32.271974+00:00"
+    },
+    {
+      "id": 171,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T13:36:32.597605+00:00"
+    },
+    {
+      "id": 172,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T13:40:37.516235+00:00"
+    },
+    {
+      "id": 173,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T13:41:38.404102+00:00"
+    },
+    {
+      "id": 174,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T13:41:38.695602+00:00"
+    },
+    {
+      "id": 175,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T13:49:42.405306+00:00"
+    },
+    {
+      "id": 176,
+      "type": "AUTO_MANAGER_INTERRUPTED",
+      "utc": "2026-11-05T18:41:32.137537+00:00"
+    },
+    {
+      "id": 177,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T18:42:22.682999+00:00"
+    },
+    {
+      "id": 178,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T18:43:32.505260+00:00"
+    },
+    {
+      "id": 179,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T18:43:32.821913+00:00"
+    },
+    {
+      "id": 180,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T18:44:37.231768+00:00"
+    },
+    {
+      "id": 181,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T18:45:45.207978+00:00"
+    },
+    {
+      "id": 182,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T18:45:45.464943+00:00"
+    },
+    {
+      "id": 183,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T18:47:49.769207+00:00"
+    },
+    {
+      "id": 184,
+      "type": "AUTO_MANAGER_INTERRUPTED",
+      "utc": "2026-11-05T18:47:56.499252+00:00"
+    },
+    {
+      "id": 185,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:06:19.875704+00:00"
+    },
+    {
+      "id": 186,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T19:07:19.298381+00:00"
+    },
+    {
+      "id": 187,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:07:19.384850+00:00"
+    },
+    {
+      "id": 188,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:08:23.359339+00:00"
+    },
+    {
+      "id": 189,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T19:09:23.244422+00:00"
+    },
+    {
+      "id": 190,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:09:23.482402+00:00"
+    },
+    {
+      "id": 191,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:11:23.681258+00:00"
+    },
+    {
+      "id": 192,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T19:12:24.187000+00:00"
+    },
+    {
+      "id": 193,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:12:24.260113+00:00"
+    },
+    {
+      "id": 194,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:13:28.195910+00:00"
+    },
+    {
+      "id": 195,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T19:14:28.371149+00:00"
+    },
+    {
+      "id": 196,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:14:28.449345+00:00"
+    },
+    {
+      "id": 197,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:16:33.224336+00:00"
+    },
+    {
+      "id": 198,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T19:17:26.074722+00:00"
+    },
+    {
+      "id": 199,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:17:26.263558+00:00"
+    },
+    {
+      "id": 200,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:21:30.285201+00:00"
+    },
+    {
+      "id": 201,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T19:22:26.958510+00:00"
+    },
+    {
+      "id": 202,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:22:27.065528+00:00"
+    },
+    {
+      "id": 203,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:25:07.281868+00:00"
+    },
+    {
+      "id": 204,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T19:26:03.840946+00:00"
+    },
+    {
+      "id": 205,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:26:03.932976+00:00"
+    },
+    {
+      "id": 206,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:27:08.413313+00:00"
+    },
+    {
+      "id": 207,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T19:28:05.107719+00:00"
+    },
+    {
+      "id": 208,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:28:05.249273+00:00"
+    },
+    {
+      "id": 209,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:30:09.833826+00:00"
+    },
+    {
+      "id": 210,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T19:31:03.260678+00:00"
+    },
+    {
+      "id": 211,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:31:03.358839+00:00"
+    },
+    {
+      "id": 212,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:35:08.285672+00:00"
+    },
+    {
+      "id": 213,
+      "type": "CAMPAIGN_INCOMPLETE_BLOCK",
+      "utc": "2026-11-05T19:36:11.450735+00:00"
+    },
+    {
+      "id": 214,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:36:11.549814+00:00"
+    },
+    {
+      "id": 215,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:48:07.104522+00:00"
+    },
+    {
+      "id": 216,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:48:15.031313+00:00"
+    },
+    {
+      "id": 217,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:49:18.748203+00:00"
+    },
+    {
+      "id": 218,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:50:33.685433+00:00"
+    },
+    {
+      "id": 219,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:51:15.737607+00:00"
+    },
+    {
+      "id": 220,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:53:17.125820+00:00"
+    },
+    {
+      "id": 221,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:53:24.407542+00:00"
+    },
+    {
+      "id": 222,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:55:27.466672+00:00"
+    },
+    {
+      "id": 223,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:56:45.644822+00:00"
+    },
+    {
+      "id": 224,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:57:27.153956+00:00"
+    },
+    {
+      "id": 225,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T19:59:29.471882+00:00"
+    },
+    {
+      "id": 226,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T19:59:37.527120+00:00"
+    },
+    {
+      "id": 227,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T20:01:41.714410+00:00"
+    },
+    {
+      "id": 228,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T20:02:56.309041+00:00"
+    },
+    {
+      "id": 229,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T20:04:10.706026+00:00"
+    },
+    {
+      "id": 230,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T20:05:26.573656+00:00"
+    },
+    {
+      "id": 231,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T20:06:42.182132+00:00"
+    },
+    {
+      "id": 232,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-05T20:07:59.670576+00:00"
+    },
+    {
+      "id": 233,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T20:08:42.069076+00:00"
+    },
+    {
+      "id": 234,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T20:09:42.671635+00:00"
+    },
+    {
+      "id": 235,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T20:11:43.174000+00:00"
+    },
+    {
+      "id": 236,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T20:15:43.691590+00:00"
+    },
+    {
+      "id": 237,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T20:23:44.354611+00:00"
+    },
+    {
+      "id": 238,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T20:38:44.896697+00:00"
+    },
+    {
+      "id": 239,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T20:53:45.410106+00:00"
+    },
+    {
+      "id": 240,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T21:08:45.965511+00:00"
+    },
+    {
+      "id": 241,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T21:23:46.509017+00:00"
+    },
+    {
+      "id": 242,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T21:38:47.032077+00:00"
+    },
+    {
+      "id": 243,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T21:53:47.517858+00:00"
+    },
+    {
+      "id": 244,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T22:08:48.033380+00:00"
+    },
+    {
+      "id": 245,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T22:23:48.709919+00:00"
+    },
+    {
+      "id": 246,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T22:38:49.192493+00:00"
+    },
+    {
+      "id": 247,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T22:53:49.639106+00:00"
+    },
+    {
+      "id": 248,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T23:08:50.108848+00:00"
+    },
+    {
+      "id": 249,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T23:23:51.007010+00:00"
+    },
+    {
+      "id": 250,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T23:38:51.480209+00:00"
+    },
+    {
+      "id": 251,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-05T23:53:52.119533+00:00"
+    },
+    {
+      "id": 252,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T00:08:52.762754+00:00"
+    },
+    {
+      "id": 253,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T00:23:53.482672+00:00"
+    },
+    {
+      "id": 254,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T00:38:54.597586+00:00"
+    },
+    {
+      "id": 255,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T00:53:55.065253+00:00"
+    },
+    {
+      "id": 256,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T01:08:55.554839+00:00"
+    },
+    {
+      "id": 257,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T01:23:56.303526+00:00"
+    },
+    {
+      "id": 258,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T01:38:57.217557+00:00"
+    },
+    {
+      "id": 259,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T02:40:26.161206+00:00"
+    },
+    {
+      "id": 260,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T02:41:27.433251+00:00"
+    },
+    {
+      "id": 261,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T02:43:28.339894+00:00"
+    },
+    {
+      "id": 262,
+      "type": "INDEPENDENT_N_LEVEL_REPAIRED_COMPLETE",
+      "utc": "2026-11-06T02:46:02.754067+00:00"
+    },
+    {
+      "id": 263,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-06T02:49:59.370793+00:00"
+    },
+    {
+      "id": 264,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-06T02:51:08.335910+00:00"
+    },
+    {
+      "id": 265,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T06:54:53.795286+00:00"
+    },
+    {
+      "id": 266,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T06:55:01.583596+00:00"
+    },
+    {
+      "id": 267,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T06:56:05.847511+00:00"
+    },
+    {
+      "id": 268,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T06:57:19.066145+00:00"
+    },
+    {
+      "id": 269,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T06:58:30.869993+00:00"
+    },
+    {
+      "id": 270,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T06:59:48.242344+00:00"
+    },
+    {
+      "id": 271,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:01:01.148264+00:00"
+    },
+    {
+      "id": 272,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:02:13.793698+00:00"
+    },
+    {
+      "id": 273,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:03:27.130684+00:00"
+    },
+    {
+      "id": 274,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:04:41.310097+00:00"
+    },
+    {
+      "id": 275,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:05:54.690741+00:00"
+    },
+    {
+      "id": 276,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:07:11.407092+00:00"
+    },
+    {
+      "id": 277,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:08:25.324322+00:00"
+    },
+    {
+      "id": 278,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:09:38.485931+00:00"
+    },
+    {
+      "id": 279,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:10:52.544232+00:00"
+    },
+    {
+      "id": 280,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:12:06.338813+00:00"
+    },
+    {
+      "id": 281,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:13:19.481568+00:00"
+    },
+    {
+      "id": 282,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:14:32.925160+00:00"
+    },
+    {
+      "id": 283,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:15:46.160192+00:00"
+    },
+    {
+      "id": 284,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:17:00.548684+00:00"
+    },
+    {
+      "id": 285,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:18:12.932233+00:00"
+    },
+    {
+      "id": 286,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:19:25.417178+00:00"
+    },
+    {
+      "id": 287,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:20:39.270209+00:00"
+    },
+    {
+      "id": 288,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:21:56.309610+00:00"
+    },
+    {
+      "id": 289,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:23:09.167068+00:00"
+    },
+    {
+      "id": 290,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:24:20.902332+00:00"
+    },
+    {
+      "id": 291,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:25:34.231683+00:00"
+    },
+    {
+      "id": 292,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:26:47.604013+00:00"
+    },
+    {
+      "id": 293,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:28:04.424534+00:00"
+    },
+    {
+      "id": 294,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:29:17.343387+00:00"
+    },
+    {
+      "id": 295,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:30:32.837186+00:00"
+    },
+    {
+      "id": 296,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:31:48.234191+00:00"
+    },
+    {
+      "id": 297,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:33:03.557706+00:00"
+    },
+    {
+      "id": 298,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:34:17.064694+00:00"
+    },
+    {
+      "id": 299,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:35:31.427986+00:00"
+    },
+    {
+      "id": 300,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:36:47.252469+00:00"
+    },
+    {
+      "id": 301,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:38:01.345320+00:00"
+    },
+    {
+      "id": 302,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:39:17.260918+00:00"
+    },
+    {
+      "id": 303,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:40:32.525309+00:00"
+    },
+    {
+      "id": 304,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:41:50.314003+00:00"
+    },
+    {
+      "id": 305,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:43:05.202139+00:00"
+    },
+    {
+      "id": 306,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:44:19.268903+00:00"
+    },
+    {
+      "id": 307,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:45:33.123448+00:00"
+    },
+    {
+      "id": 308,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:46:47.554626+00:00"
+    },
+    {
+      "id": 309,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:48:01.010335+00:00"
+    },
+    {
+      "id": 310,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:49:14.809197+00:00"
+    },
+    {
+      "id": 311,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:50:28.948348+00:00"
+    },
+    {
+      "id": 312,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:51:42.981019+00:00"
+    },
+    {
+      "id": 313,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:52:58.456965+00:00"
+    },
+    {
+      "id": 314,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:54:11.937438+00:00"
+    },
+    {
+      "id": 315,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:55:25.695852+00:00"
+    },
+    {
+      "id": 316,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:56:40.392127+00:00"
+    },
+    {
+      "id": 317,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:57:53.496025+00:00"
+    },
+    {
+      "id": 318,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T07:59:06.851506+00:00"
+    },
+    {
+      "id": 319,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:00:21.473130+00:00"
+    },
+    {
+      "id": 320,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:01:36.742430+00:00"
+    },
+    {
+      "id": 321,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:02:51.574975+00:00"
+    },
+    {
+      "id": 322,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:04:05.331905+00:00"
+    },
+    {
+      "id": 323,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:05:19.337530+00:00"
+    },
+    {
+      "id": 324,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:06:32.627900+00:00"
+    },
+    {
+      "id": 325,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:07:52.314337+00:00"
+    },
+    {
+      "id": 326,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:09:06.330290+00:00"
+    },
+    {
+      "id": 327,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:10:21.932107+00:00"
+    },
+    {
+      "id": 328,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:11:34.996767+00:00"
+    },
+    {
+      "id": 329,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:12:48.348361+00:00"
+    },
+    {
+      "id": 330,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:14:02.002631+00:00"
+    },
+    {
+      "id": 331,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:15:14.962924+00:00"
+    },
+    {
+      "id": 332,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:16:28.891748+00:00"
+    },
+    {
+      "id": 333,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:17:42.400924+00:00"
+    },
+    {
+      "id": 334,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:18:55.364605+00:00"
+    },
+    {
+      "id": 335,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:20:08.654446+00:00"
+    },
+    {
+      "id": 336,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:21:22.287723+00:00"
+    },
+    {
+      "id": 337,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:22:35.546847+00:00"
+    },
+    {
+      "id": 338,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:23:48.947345+00:00"
+    },
+    {
+      "id": 339,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:25:03.428361+00:00"
+    },
+    {
+      "id": 340,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:26:17.904956+00:00"
+    },
+    {
+      "id": 341,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:27:32.455683+00:00"
+    },
+    {
+      "id": 342,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:28:46.198967+00:00"
+    },
+    {
+      "id": 343,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:30:02.131271+00:00"
+    },
+    {
+      "id": 344,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:31:17.997287+00:00"
+    },
+    {
+      "id": 345,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:32:33.799570+00:00"
+    },
+    {
+      "id": 346,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:33:48.057764+00:00"
+    },
+    {
+      "id": 347,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:35:01.729077+00:00"
+    },
+    {
+      "id": 348,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:36:15.865134+00:00"
+    },
+    {
+      "id": 349,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:37:29.331169+00:00"
+    },
+    {
+      "id": 350,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:38:48.243970+00:00"
+    },
+    {
+      "id": 351,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:40:01.025885+00:00"
+    },
+    {
+      "id": 352,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:41:13.730565+00:00"
+    },
+    {
+      "id": 353,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:42:35.210172+00:00"
+    },
+    {
+      "id": 354,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:43:48.522539+00:00"
+    },
+    {
+      "id": 355,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:45:01.616558+00:00"
+    },
+    {
+      "id": 356,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:46:16.002287+00:00"
+    },
+    {
+      "id": 357,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:47:28.871387+00:00"
+    },
+    {
+      "id": 358,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:48:41.269427+00:00"
+    },
+    {
+      "id": 359,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T08:49:54.001847+00:00"
+    },
+    {
+      "id": 360,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T13:22:54.867544+00:00"
+    },
+    {
+      "id": 361,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T13:24:19.087866+00:00"
+    },
+    {
+      "id": 362,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T13:25:33.731068+00:00"
+    },
+    {
+      "id": 363,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T13:26:47.404729+00:00"
+    },
+    {
+      "id": 364,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T16:54:29.944537+00:00"
+    },
+    {
+      "id": 365,
+      "type": "PUB_VALIDATION_FAILURE",
+      "utc": "2026-11-06T16:54:54.081340+00:00"
+    },
+    {
+      "id": 366,
+      "type": "AI_DIAGNOSTIC",
+      "utc": "2026-11-06T16:54:54.094520+00:00"
+    },
+    {
+      "id": 367,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T16:55:46.962480+00:00"
+    },
+    {
+      "id": 368,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T16:56:50.298536+00:00"
+    },
+    {
+      "id": 369,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T16:57:49.557149+00:00"
+    },
+    {
+      "id": 370,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T16:59:53.180872+00:00"
+    },
+    {
+      "id": 371,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T17:00:50.197673+00:00"
+    },
+    {
+      "id": 372,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T17:04:54.083294+00:00"
+    },
+    {
+      "id": 373,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T17:05:47.137503+00:00"
+    },
+    {
+      "id": 374,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T17:13:51.219652+00:00"
+    },
+    {
+      "id": 375,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T17:14:48.101721+00:00"
+    },
+    {
+      "id": 376,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T17:29:52.646261+00:00"
+    },
+    {
+      "id": 377,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T17:30:49.117218+00:00"
+    },
+    {
+      "id": 378,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T17:45:54.951503+00:00"
+    },
+    {
+      "id": 379,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T17:46:53.226389+00:00"
+    },
+    {
+      "id": 380,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T18:01:58.349323+00:00"
+    },
+    {
+      "id": 381,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T18:02:53.185822+00:00"
+    },
+    {
+      "id": 382,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T18:17:58.211124+00:00"
+    },
+    {
+      "id": 383,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T18:18:51.192244+00:00"
+    },
+    {
+      "id": 384,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T18:33:55.200032+00:00"
+    },
+    {
+      "id": 385,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T18:34:53.861861+00:00"
+    },
+    {
+      "id": 386,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T18:54:17.730496+00:00"
+    },
+    {
+      "id": 387,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T18:54:33.166445+00:00"
+    },
+    {
+      "id": 388,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T18:55:38.309550+00:00"
+    },
+    {
+      "id": 389,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T18:55:53.008784+00:00"
+    },
+    {
+      "id": 390,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T19:40:28.910135+00:00"
+    },
+    {
+      "id": 391,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T19:40:44.022164+00:00"
+    },
+    {
+      "id": 392,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T19:41:49.480787+00:00"
+    },
+    {
+      "id": 393,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T19:42:04.207230+00:00"
+    },
+    {
+      "id": 394,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T19:44:09.607400+00:00"
+    },
+    {
+      "id": 395,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T19:44:24.861580+00:00"
+    },
+    {
+      "id": 396,
+      "type": "CAMPAIGN_RESUME_DRY_RUN_BLOCKED",
+      "utc": "2026-11-06T20:20:53.438966+00:00"
+    },
+    {
+      "id": 397,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T20:28:33.998877+00:00"
+    },
+    {
+      "id": 398,
+      "type": "AUTO_MANAGER_BLOCKED_RETRYABLE",
+      "utc": "2026-11-06T20:28:42.095752+00:00"
+    },
+    {
+      "id": 399,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T20:29:45.675866+00:00"
+    },
+    {
+      "id": 400,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T20:31:02.330808+00:00"
+    },
+    {
+      "id": 401,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-06T20:33:41.163566+00:00"
+    },
+    {
+      "id": 402,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-06T20:39:24.209746+00:00"
+    },
+    {
+      "id": 403,
+      "type": "BATCH_ACCOUNT_SELECTED",
+      "utc": "2026-11-06T21:32:16.164412+00:00"
+    },
+    {
+      "id": 404,
+      "type": "CAMPAIGN_AMBIGUOUS_SUBMISSION",
+      "utc": "2026-11-06T21:35:36.893642+00:00"
+    },
+    {
+      "id": 405,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-06T21:35:37.145926+00:00"
+    },
+    {
+      "id": 406,
+      "type": "PUB_VALIDATION_FAILURE",
+      "utc": "2026-11-06T23:26:13.436697+00:00"
+    },
+    {
+      "id": 407,
+      "type": "M7_ONLY_COLLECTION_REVIEW",
+      "utc": "2026-11-07T06:21:46.239248+00:00"
+    },
+    {
+      "id": 408,
+      "type": "M3_PUB15_ONLY_COLLECTION_REVIEW",
+      "utc": "2026-11-07T06:38:58.565522+00:00"
+    },
+    {
+      "id": 409,
+      "type": "ORIGINAL_BATCH_003_ARCHIVE_STATUS_RECONCILED",
+      "utc": "2026-11-07T07:08:58.517984+00:00"
+    },
+    {
+      "id": 410,
+      "type": "BATCH_ACCOUNT_SELECTED",
+      "utc": "2026-11-07T07:27:34.738683+00:00"
+    },
+    {
+      "id": 411,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-07T07:28:02.528681+00:00"
+    },
+    {
+      "id": 412,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-07T07:29:33.752205+00:00"
+    },
+    {
+      "id": 413,
+      "type": "AUTO_MANAGER_INTERRUPTED",
+      "utc": "2026-11-07T07:29:53.076157+00:00"
+    },
+    {
+      "id": 414,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-07T07:37:03.503658+00:00"
+    },
+    {
+      "id": 415,
+      "type": "BATCH_ACCOUNT_SELECTED",
+      "utc": "2026-11-07T07:40:14.798835+00:00"
+    },
+    {
+      "id": 416,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-07T07:40:36.729330+00:00"
+    },
+    {
+      "id": 417,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-07T07:42:05.431304+00:00"
+    },
+    {
+      "id": 418,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-07T07:43:39.244236+00:00"
+    },
+    {
+      "id": 419,
+      "type": "INDEPENDENT_N_LEVEL_REPAIRED_COMPLETE",
+      "utc": "2026-11-07T07:44:30.287570+00:00"
+    },
+    {
+      "id": 420,
+      "type": "BATCH_ACCOUNT_SELECTED",
+      "utc": "2026-11-07T07:47:00.938728+00:00"
+    },
+    {
+      "id": 421,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-07T07:47:20.852019+00:00"
+    },
+    {
+      "id": 422,
+      "type": "CAMPAIGN_BATCH_ACTIVE",
+      "utc": "2026-11-07T07:48:50.218624+00:00"
+    },
+    {
+      "id": 423,
+      "type": "RECOVERY_SOURCE_VERIFICATION_BLOCKED",
+      "utc": "2026-11-07T07:49:02.070864+00:00"
+    },
+    {
+      "id": 424,
+      "type": "AUTO_MANAGER_PAUSED_SAFETY_GATE",
+      "utc": "2026-11-07T07:49:04.644668+00:00"
+    }
+  ],
+  "jobs": [
+    {
+      "job_id": "dbndeugou4as73b4bv30",
+      "batch_id": "affb5f40-649b-4fa7-8139-89b8c8454a80",
+      "treatment_id": "M0_Baseline",
+      "account_label": "labI",
+      "submission_state": "COMPLETED",
+      "monitor": {
+        "status": "DONE",
+        "failure_class": null,
+        "validation_error": null
+      }
+    },
+    {
+      "job_id": "dbndev0ou4as73b4bv50",
+      "batch_id": "affb5f40-649b-4fa7-8139-89b8c8454a80",
+      "treatment_id": "M1_DD",
+      "account_label": "labI",
+      "submission_state": "COMPLETED",
+      "monitor": {
+        "status": "DONE",
+        "failure_class": null,
+        "validation_error": null
+      }
+    },
+    {
+      "job_id": "dbndevk4148s7390qeig",
+      "batch_id": "affb5f40-649b-4fa7-8139-89b8c8454a80",
+      "treatment_id": "M2_TREX",
+      "account_label": "labI",
+      "submission_state": "SUBMITTED",
+      "monitor": {
+        "status": "RUNNING",
+        "failure_class": null,
+        "validation_error": null
+      }
+    },
+    {
+      "job_id": "dbndf00qtr0c73acrtd0",
+      "batch_id": "affb5f40-649b-4fa7-8139-89b8c8454a80",
+      "treatment_id": "M3_ZNE",
+      "account_label": "labI",
+      "submission_state": "COMPLETED",
+      "monitor": {
+        "status": "DONE",
+        "failure_class": null,
+        "validation_error": null
+      }
+    },
+    {
+      "job_id": "dbndf0k4148s7390qelg",
+      "batch_id": "affb5f40-649b-4fa7-8139-89b8c8454a80",
+      "treatment_id": "M4_DD_TREX",
+      "account_label": "labI",
+      "submission_state": "SUBMITTED",
+      "monitor": {
+        "status": "RUNNING",
+        "failure_class": null,
+        "validation_error": null
+      }
+    },
+    {
+      "job_id": "dbndf0tt7fqc73ajdrpg",
+      "batch_id": "affb5f40-649b-4fa7-8139-89b8c8454a80",
+      "treatment_id": "M5_DD_ZNE",
+      "account_label": "labI",
+      "submission_state": "COMPLETED",
+      "monitor": {
+        "status": "DONE",
+        "failure_class": "RESULT_CORRUPTION",
+        "validation_error": "M5_DD_ZNE/dbndf0tt7fqc73ajdrpg: PUB 5 contains a non-finite or non-numeric expectation"
+      }
+    },
+    {
+      "job_id": "dbndf18ou4as73b4bv90",
+      "batch_id": "affb5f40-649b-4fa7-8139-89b8c8454a80",
+      "treatment_id": "M6_TREX_ZNE",
+      "account_label": "labI",
+      "submission_state": "SUBMITTED",
+      "monitor": {
+        "status": null,
+        "failure_class": null,
+        "validation_error": null
+      }
+    },
+    {
+      "job_id": "dbndf1s4148s7390qeo0",
+      "batch_id": "affb5f40-649b-4fa7-8139-89b8c8454a80",
+      "treatment_id": "M7_ALL",
+      "account_label": "labI",
+      "submission_state": "SUBMITTED",
+      "monitor": {
+        "status": null,
+        "failure_class": null,
+        "validation_error": null
+      }
+    }
+  ],
+  "authorization": {
+    "live_auto_submit": true,
+    "total_runtime_budget_seconds": 1800.0,
+    "account_runtime_budget_seconds": {
+      "labA": 600.0,
+      "labB": 600.0,
+      "labC": 600.0,
+      "labD": 600.0,
+      "labE": 600.0,
+      "labF": 600.0,
+      "labG": 600.0,
+      "labH": 600.0,
+      "labI": 600.0,
+      "labK": 600.0
+    },
+    "allowed_actions": [
+      "prepare",
+      "preflight",
+      "dry-run",
+      "submit",
+      "monitor",
+      "collect",
+      "validate",
+      "recover",
+      "analyze",
+      "plot",
+      "report"
+    ]
+  },
+  "usage": {
+    "per_account": {
+      "labA": {
+        "consumed_seconds": 0.0,
+        "reserved_seconds": 0.0
+      },
+      "labB": {
+        "consumed_seconds": 140.0,
+        "reserved_seconds": 0.0
+      },
+      "labC": {
+        "consumed_seconds": 0.0,
+        "reserved_seconds": 0.0
+      },
+      "labD": {
+        "consumed_seconds": 5.0,
+        "reserved_seconds": 0.0
+      },
+      "labE": {
+        "consumed_seconds": 425.0,
+        "reserved_seconds": 0.0
+      },
+      "labF": {
+        "consumed_seconds": 445.0,
+        "reserved_seconds": 0.0
+      },
+      "labG": {
+        "consumed_seconds": 145.0,
+        "reserved_seconds": 0.0
+      },
+      "labH": {
+        "consumed_seconds": 420.0,
+        "reserved_seconds": 0.0
+      },
+      "labI": {
+        "consumed_seconds": 214.0,
+        "reserved_seconds": 88.0
+      },
+      "labK": {
+        "consumed_seconds": 425.0,
+        "reserved_seconds": 0.0
+      }
+    },
+    "provider_reservations": {
+      "labA": {
+        "reserved_seconds": 0.0,
+        "ambiguous": false
+      },
+      "labB": {
+        "reserved_seconds": 0.0,
+        "ambiguous": false
+      },
+      "labC": {
+        "reserved_seconds": 0.0,
+        "ambiguous": false
+      },
+      "labD": {
+        "reserved_seconds": 0.0,
+        "ambiguous": false
+      },
+      "labE": {
+        "reserved_seconds": 0.0,
+        "ambiguous": false
+      },
+      "labF": {
+        "reserved_seconds": 0.0,
+        "ambiguous": false
+      },
+      "labG": {
+        "reserved_seconds": 0.0,
+        "ambiguous": false
+      },
+      "labH": {
+        "reserved_seconds": 0.0,
+        "ambiguous": false
+      },
+      "labI": {
+        "reserved_seconds": 0.0,
+        "ambiguous": true
+      },
+      "labK": {
+        "reserved_seconds": 0.0,
+        "ambiguous": false
+      }
+    },
+    "historical_usage_records": [
+      {
+        "account_label": "labB",
+        "consumed_seconds": 583.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T09:42:03.243788+00:00",
+        "logical_block_id": "historical-vqe-calibration-pilot-02-seq-1"
+      },
+      {
+        "account_label": "labB",
+        "consumed_seconds": 583.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T09:42:16.468440+00:00",
+        "logical_block_id": "historical-vqe-calibration-pilot-02-seq-1"
+      },
+      {
+        "account_label": "labB",
+        "consumed_seconds": 583.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T09:42:28.575713+00:00",
+        "logical_block_id": "historical-vqe-calibration-pilot-02-seq-1"
+      },
+      {
+        "account_label": "labB",
+        "consumed_seconds": 583.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T09:42:38.571820+00:00",
+        "logical_block_id": "historical-vqe-calibration-pilot-02-seq-1"
+      },
+      {
+        "account_label": "labB",
+        "consumed_seconds": 583.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T09:49:16.274819+00:00",
+        "logical_block_id": "historical-vqe-calibration-pilot-02-seq-1"
+      },
+      {
+        "account_label": "labB",
+        "consumed_seconds": 583.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T09:49:27.919589+00:00",
+        "logical_block_id": "historical-vqe-calibration-pilot-02-seq-1"
+      },
+      {
+        "account_label": "labB",
+        "consumed_seconds": 583.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T09:49:39.595020+00:00",
+        "logical_block_id": "historical-vqe-calibration-pilot-02-seq-1"
+      },
+      {
+        "account_label": "labB",
+        "consumed_seconds": 583.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T09:49:49.347976+00:00",
+        "logical_block_id": "historical-vqe-calibration-pilot-02-seq-1"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:21:03.631920+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:22:16.748684+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:23:29.638151+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:24:42.329584+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:25:55.874180+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:27:10.560607+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:28:26.665934+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:28:52.493505+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:29:07.246906+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:29:19.797225+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:31:36.785798+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:31:49.960177+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:32:04.004481+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:32:17.699894+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:36:32.294086+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:36:44.362635+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:36:58.955872+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T18:37:11.080675+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T19:02:25.454214+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T19:02:39.344648+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T19:02:53.484663+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T19:03:05.769761+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T19:22:23.041678+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T19:22:37.664422+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T19:22:52.070001+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T19:23:05.175475+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T19:25:16.113011+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T19:25:31.129952+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T19:25:47.309961+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T19:26:00.811820+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T20:54:36.394921+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T20:54:54.441051+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T20:55:09.947099+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T20:55:23.156088+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T20:56:46.285203+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T20:57:00.362476+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T20:57:15.302600+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T20:57:29.617528+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T20:58:47.443721+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T20:59:01.212734+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T20:59:16.863905+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T20:59:30.013838+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T21:00:46.781052+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T21:01:00.951890+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T21:01:16.335872+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T21:01:29.174387+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-001"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T21:25:11.804585+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-002"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T22:25:24.142402+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-002"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T22:25:36.850332+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-002"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T22:25:50.893682+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-002"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T22:26:03.069942+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-002"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T22:29:10.730680+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-002"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T22:29:23.630921+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-002"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T22:29:37.347616+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-002"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-04T22:29:49.038125+00:00",
+        "logical_block_id": "vqe-independent-n-01-n10-block-002"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 15.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T00:51:31.010433+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 155.0,
+        "quota_scope": "provider-reported-scope-unverified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T01:28:40.293422+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-001"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T08:44:19.589534+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-002"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T08:52:36.935539+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-002"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T08:53:06.401734+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-002"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T08:55:25.370392+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T08:58:53.666450+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T08:59:22.237473+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T08:59:39.068799+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T08:59:53.760759+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:03:32.727687+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:03:50.381458+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:04:09.675604+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:04:26.556099+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:07:01.059149+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:07:18.330558+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:07:36.731431+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:07:52.967079+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:12:27.493765+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:12:44.199524+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:13:02.319835+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:13:17.314006+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:21:51.423440+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:22:07.030089+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:22:23.696537+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:22:38.406530+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:38:18.192214+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:38:31.911018+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:38:47.723907+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:39:01.712811+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T09:54:45.637743+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:14:05.221643+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:14:21.801959+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:14:37.007630+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:14:50.905266+00:00",
+        "logical_block_id": "vqe-independent-n-01-n15-block-003"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 165.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:17:12.496692+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 165.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:18:26.897732+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 165.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:19:42.232001+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 165.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:20:57.471751+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:23:14.010315+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:23:40.095106+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:23:55.184883+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:24:07.979772+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:26:20.356061+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:26:33.079024+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:26:47.381600+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:27:00.392581+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:28:22.771121+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:28:36.420330+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:28:50.637587+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:29:03.821256+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:31:19.750956+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:31:32.999997+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:31:47.565006+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:32:00.849196+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:36:16.507620+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:36:30.108202+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:36:44.382073+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:36:57.076368+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:45:14.986715+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:45:28.444244+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:45:42.494924+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:45:56.027102+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:54:22.904159+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:54:38.839627+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:54:54.483017+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:55:07.688844+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:56:24.789250+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:56:40.167176+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:56:54.877147+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:57:09.027322+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:59:25.599851+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:59:39.730521+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T11:59:54.147787+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:00:07.715445+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:04:23.408018+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:04:36.458867+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:04:50.531462+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:05:02.262162+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:13:17.766755+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:13:30.425271+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:13:46.119327+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:13:58.244216+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:29:14.139579+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:29:27.230910+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:29:41.315593+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:29:53.794344+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:45:12.513476+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:45:26.116605+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:45:40.468941+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T12:45:53.281947+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:01:10.207604+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:01:24.361970+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:01:39.999579+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:01:52.350387+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:30:45.779980+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:31:01.736230+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:31:17.299137+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:31:30.812810+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:32:48.407088+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:33:02.372071+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:33:17.192750+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:33:30.760441+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:35:48.288452+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:36:02.450091+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:36:18.375651+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:36:31.799865+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:40:52.365674+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:41:07.662514+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:41:24.246025+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:41:38.113095+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T13:49:56.257901+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T18:42:37.837598+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T18:42:57.995542+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T18:43:16.840591+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T18:43:32.160721+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T18:44:52.205852+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T18:45:07.721906+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T18:45:26.784022+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T18:45:44.837382+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:06:34.117993+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:06:49.076412+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:07:05.066143+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:07:19.040001+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:08:38.546773+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:08:52.804168+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:09:08.139472+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:09:22.944393+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:11:37.386908+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:11:53.330222+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:12:09.798070+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:12:23.989690+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:13:41.947765+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:13:57.810752+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:14:13.999941+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:14:28.197568+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:16:45.566565+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:16:58.976402+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:17:13.296358+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:17:25.650956+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:21:43.844533+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:21:57.897597+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:22:14.234614+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:22:26.757870+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:25:22.206310+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:25:37.068103+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:25:51.516627+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:26:03.603807+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:27:21.416210+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:27:35.067284+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:27:49.884547+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:28:04.884164+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:30:22.616477+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:30:35.953410+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:30:50.240892+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:31:03.034996+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:35:25.854763+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:35:43.755378+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:35:57.841250+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:36:11.211522+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-001"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:48:14.940761+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-002"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 280.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:49:30.158604+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-002"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 420.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:50:47.041540+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-002"
+      },
+      {
+        "account_label": "labH",
+        "consumed_seconds": 420.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:51:14.337183+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-002"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 285.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:53:24.250527+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-003"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 285.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:55:41.007282+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-003"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 425.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:56:59.805116+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-003"
+      },
+      {
+        "account_label": "labE",
+        "consumed_seconds": 425.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:57:27.000610+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-003"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T19:59:37.375518+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-004"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T20:01:51.952856+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-004"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T20:03:06.193157+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-004"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T20:04:21.866626+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-004"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T20:05:37.343582+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-004"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 305.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T20:06:54.289675+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-004"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 445.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T20:08:13.610065+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-004"
+      },
+      {
+        "account_label": "labF",
+        "consumed_seconds": 445.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-05T20:08:41.752586+00:00",
+        "logical_block_id": "vqe-independent-n-01-n20-block-004"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T06:55:01.293983+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T06:56:14.798956+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T06:57:27.616768+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T06:58:40.865436+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T06:59:57.063878+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:01:10.719286+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:02:22.924611+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:03:37.763010+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:04:50.721004+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:06:06.293478+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:07:21.971237+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:08:35.046539+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:09:47.989552+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:11:02.131386+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:12:15.601877+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:13:29.392073+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:14:42.675907+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:15:56.825357+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:17:09.453426+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:18:21.932078+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:19:34.836837+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:20:52.833408+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:22:05.210724+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:23:17.835872+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:24:31.018425+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:25:43.182290+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:26:57.139245+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:28:13.615665+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:29:27.507447+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:30:44.015559+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:31:57.871504+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:33:13.442546+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:34:27.503640+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:35:41.257849+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:36:57.423795+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:38:11.232239+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:39:27.828176+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:40:42.114391+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:41:59.644655+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:43:14.543304+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:44:28.999726+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:45:42.717155+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:46:56.498392+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:48:11.106828+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:49:25.243032+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:50:38.628390+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:51:53.633556+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:53:07.668130+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:54:21.551070+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:55:35.002716+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:56:49.516812+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:58:02.506908+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T07:59:17.071305+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:00:31.418372+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:01:46.494605+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:03:01.442968+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:04:15.033434+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:05:28.415873+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:06:42.701665+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:08:01.757055+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:09:16.457837+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:10:31.328373+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:11:44.333258+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:12:58.196701+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:14:11.224442+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:15:24.330309+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:16:38.869518+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:17:51.172683+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:19:04.365677+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:20:17.730289+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:21:31.263124+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:22:45.083548+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:23:58.809494+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:25:13.068139+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:26:27.574317+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:27:41.659003+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:28:55.699814+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:30:12.483698+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:31:28.294587+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:32:43.820733+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:33:57.851303+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:35:12.009577+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:36:25.273773+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:37:39.245352+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:38:57.231379+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:40:09.958508+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:41:31.475028+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:42:44.538266+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:43:57.699340+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:45:12.200840+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:46:25.263336+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:47:37.941427+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:48:50.180699+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T08:50:03.020038+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T13:23:07.471604+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T13:24:29.026416+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T13:25:43.176276+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T13:26:58.149640+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T16:54:44.092099+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T16:55:18.181662+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T16:55:33.649705+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T16:55:46.569667+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T16:57:03.880502+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T16:57:19.178924+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T16:57:35.123043+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T16:57:49.212596+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:00:07.137698+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:00:21.178876+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:00:36.662567+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:00:49.986808+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:05:07.073572+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:05:20.117022+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:05:34.097508+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:05:46.867543+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:14:04.568628+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:14:18.650478+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:14:34.416469+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:14:47.717268+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:30:06.136403+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:30:20.857600+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:30:36.049530+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:30:48.722098+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:46:09.119127+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:46:24.029349+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:46:39.835493+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T17:46:52.829126+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:02:11.476842+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:02:24.635984+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:02:40.156487+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:02:52.876315+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:18:10.945677+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:18:23.951317+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:18:37.819496+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:18:50.752663+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:34:09.194738+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:34:24.038779+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:34:39.351248+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:34:53.095586+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:54:31.010934+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T18:55:51.193742+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 145.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T19:40:41.792467+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 145.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T19:42:01.969802+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labG",
+        "consumed_seconds": 145.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T19:44:22.777391+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-001"
+      },
+      {
+        "account_label": "labI",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T20:28:41.733516+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-002"
+      },
+      {
+        "account_label": "labI",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T20:29:56.505914+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-002"
+      },
+      {
+        "account_label": "labI",
+        "consumed_seconds": 0.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T20:31:15.438086+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-002"
+      },
+      {
+        "account_label": "labI",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T20:33:54.005398+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-002"
+      },
+      {
+        "account_label": "labI",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-06T20:34:21.799054+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-002"
+      },
+      {
+        "account_label": "labK",
+        "consumed_seconds": 145.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-07T07:28:12.526480+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-004"
+      },
+      {
+        "account_label": "labK",
+        "consumed_seconds": 145.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-07T07:29:48.892914+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-004"
+      },
+      {
+        "account_label": "labK",
+        "consumed_seconds": 285.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-07T07:37:18.413511+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-004"
+      },
+      {
+        "account_label": "labK",
+        "consumed_seconds": 285.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-07T07:37:50.546153+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-004"
+      },
+      {
+        "account_label": "labK",
+        "consumed_seconds": 285.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-07T07:40:45.684988+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-005"
+      },
+      {
+        "account_label": "labK",
+        "consumed_seconds": 285.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-07T07:42:18.109501+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-005"
+      },
+      {
+        "account_label": "labK",
+        "consumed_seconds": 425.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-07T07:43:54.606289+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-005"
+      },
+      {
+        "account_label": "labK",
+        "consumed_seconds": 425.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-07T07:44:25.838449+00:00",
+        "logical_block_id": "vqe-independent-n-01-n25-block-005"
+      },
+      {
+        "account_label": "labI",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-07T07:47:29.033723+00:00",
+        "logical_block_id": "vqe-independent-n-01-n30-block-001"
+      },
+      {
+        "account_label": "labI",
+        "consumed_seconds": 140.0,
+        "quota_scope": "account_wide_verified",
+        "source": "Runtime service.usage",
+        "checked_at": "2026-11-07T07:49:01.783988+00:00",
+        "logical_block_id": "vqe-independent-n-01-n30-block-001"
+      }
+    ],
+    "campaign_consumed_seconds": 2219.0,
+    "campaign_reserved_seconds": 88.0,
+    "original_batches_reserved_or_attempted": 16,
+    "replacement_batches_reserved_or_attempted": 9,
+    "treatment_recovery_batches_reserved_or_attempted": 1,
+    "planned_original_batches": 21,
+    "submitted_original_batches": 16,
+    "completed_original_batches": 14,
+    "submitted_recovery_batches": 10,
+    "submitted_recovery_jobs": 10,
+    "recorded_validated_pubs": 600,
+    "batch_counts_monitoring_only": true,
+    "recovery_batches_reserved_or_attempted": 10,
+    "batches_reserved_or_attempted": 26
+  },
+  "recovery_dry_run": {
+    "target_id": "vqe-independent-n-01-n30-target-n30-chunk-5",
+    "target_n": 30,
+    "plans": [],
+    "blocked": [
+      {
+        "block_id": "vqe-independent-n-01-n30-block-001",
+        "treatment_id": "M0_Baseline",
+        "reason": "No immutable collected PUB archive/hash is recorded for this treatment",
+        "replacement_planned": false
+      },
+      {
+        "block_id": "vqe-independent-n-01-n30-block-001",
+        "treatment_id": "M1_DD",
+        "reason": "No immutable collected PUB archive/hash is recorded for this treatment",
+        "replacement_planned": false
+      },
+      {
+        "block_id": "vqe-independent-n-01-n30-block-001",
+        "treatment_id": "M3_ZNE",
+        "reason": "No immutable collected PUB archive/hash is recorded for this treatment",
+        "replacement_planned": false
+      },
+      {
+        "block_id": "vqe-independent-n-01-n30-block-001",
+        "treatment_id": "M5_DD_ZNE",
+        "reason": "No immutable collected PUB archive/hash is recorded for this treatment",
+        "replacement_planned": false
+      }
+    ],
+    "verified_source_archives": [],
+    "pub_archive_references_added": 0,
+    "selected_replacement_account": null,
+    "dry_run": true,
+    "automatic_submission": false,
+    "raw_archives_modified": false
+  },
+  "provider_inventory": {},
+  "fresh_preflight": {
+    "labA": {
+      "status": "FAIL",
+      "error_type": "InvalidAccountError"
+    },
+    "labB": {
+      "status": "FAIL",
+      "error_type": "InvalidAccountError"
+    },
+    "labC": {
+      "status": "FAIL",
+      "error_type": "InvalidAccountError"
+    },
+    "labD": {
+      "status": "FAIL",
+      "error_type": "InvalidAccountError"
+    },
+    "labE": {
+      "status": "FAIL",
+      "error_type": "InvalidAccountError"
+    },
+    "labF": {
+      "status": "FAIL",
+      "error_type": "InvalidAccountError"
+    },
+    "labG": {
+      "status": "FAIL",
+      "error_type": "InvalidAccountError"
+    },
+    "labH": {
+      "status": "FAIL",
+      "error_type": "InvalidAccountError"
+    },
+    "labI": {
+      "status": "FAIL",
+      "error_type": "InvalidAccountError"
+    },
+    "labK": {
+      "status": "FAIL",
+      "error_type": "InvalidAccountError"
+    }
+  },
+  "account_decisions": {
+    "labA": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 600.0,
+      "internal_campaign_remaining_seconds": -507.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Provider quota timestamp is missing, invalid or stale",
+      "batch_submission_eligible": false,
+      "recovery_submission_eligible": false,
+      "remaining_provider_quota_seconds": null,
+      "estimated_submission_runtime_seconds": 175.0,
+      "required_runtime_with_margin_seconds": null,
+      "account_selection_priority": 4,
+      "rejection_reason": "Provider quota timestamp is missing, invalid or stale",
+      "campaign_budget_mode": "monitoring_only",
+      "warnings": [
+        "Local campaign budget exhausted or insufficient for this workload; monitoring only"
+      ]
+    },
+    "labB": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 460.0,
+      "internal_campaign_remaining_seconds": -507.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Provider quota timestamp is missing, invalid or stale",
+      "batch_submission_eligible": false,
+      "recovery_submission_eligible": false,
+      "remaining_provider_quota_seconds": null,
+      "estimated_submission_runtime_seconds": 175.0,
+      "required_runtime_with_margin_seconds": null,
+      "account_selection_priority": 5,
+      "rejection_reason": "Provider quota timestamp is missing, invalid or stale",
+      "campaign_budget_mode": "monitoring_only",
+      "warnings": [
+        "Local campaign budget exhausted or insufficient for this workload; monitoring only"
+      ]
+    },
+    "labC": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 600.0,
+      "internal_campaign_remaining_seconds": -507.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Provider quota timestamp is missing, invalid or stale",
+      "batch_submission_eligible": false,
+      "recovery_submission_eligible": false,
+      "remaining_provider_quota_seconds": null,
+      "estimated_submission_runtime_seconds": 175.0,
+      "required_runtime_with_margin_seconds": null,
+      "account_selection_priority": 6,
+      "rejection_reason": "Provider quota timestamp is missing, invalid or stale",
+      "campaign_budget_mode": "monitoring_only",
+      "warnings": [
+        "Local campaign budget exhausted or insufficient for this workload; monitoring only"
+      ]
+    },
+    "labD": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 595.0,
+      "internal_campaign_remaining_seconds": -507.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Provider quota timestamp is missing, invalid or stale",
+      "batch_submission_eligible": false,
+      "recovery_submission_eligible": false,
+      "remaining_provider_quota_seconds": null,
+      "estimated_submission_runtime_seconds": 175.0,
+      "required_runtime_with_margin_seconds": null,
+      "account_selection_priority": 7,
+      "rejection_reason": "Provider quota timestamp is missing, invalid or stale",
+      "campaign_budget_mode": "monitoring_only",
+      "warnings": [
+        "Local campaign budget exhausted or insufficient for this workload; monitoring only"
+      ]
+    },
+    "labE": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 175.0,
+      "internal_campaign_remaining_seconds": -507.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Provider quota timestamp is missing, invalid or stale",
+      "batch_submission_eligible": false,
+      "recovery_submission_eligible": false,
+      "remaining_provider_quota_seconds": null,
+      "estimated_submission_runtime_seconds": 175.0,
+      "required_runtime_with_margin_seconds": null,
+      "account_selection_priority": 8,
+      "rejection_reason": "Provider quota timestamp is missing, invalid or stale",
+      "campaign_budget_mode": "monitoring_only",
+      "warnings": [
+        "Local campaign budget exhausted or insufficient for this workload; monitoring only"
+      ]
+    },
+    "labF": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 155.0,
+      "internal_campaign_remaining_seconds": -507.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Provider quota timestamp is missing, invalid or stale",
+      "batch_submission_eligible": false,
+      "recovery_submission_eligible": false,
+      "remaining_provider_quota_seconds": null,
+      "estimated_submission_runtime_seconds": 175.0,
+      "required_runtime_with_margin_seconds": null,
+      "account_selection_priority": 9,
+      "rejection_reason": "Provider quota timestamp is missing, invalid or stale",
+      "campaign_budget_mode": "monitoring_only",
+      "warnings": [
+        "Local campaign budget exhausted or insufficient for this workload; monitoring only"
+      ]
+    },
+    "labG": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 455.0,
+      "internal_campaign_remaining_seconds": -507.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Provider quota timestamp is missing, invalid or stale",
+      "batch_submission_eligible": false,
+      "recovery_submission_eligible": false,
+      "remaining_provider_quota_seconds": null,
+      "estimated_submission_runtime_seconds": 175.0,
+      "required_runtime_with_margin_seconds": null,
+      "account_selection_priority": 3,
+      "rejection_reason": "Provider quota timestamp is missing, invalid or stale",
+      "campaign_budget_mode": "monitoring_only",
+      "warnings": [
+        "Local campaign budget exhausted or insufficient for this workload; monitoring only"
+      ]
+    },
+    "labH": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 180.0,
+      "internal_campaign_remaining_seconds": -507.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Provider quota timestamp is missing, invalid or stale",
+      "batch_submission_eligible": false,
+      "recovery_submission_eligible": false,
+      "remaining_provider_quota_seconds": null,
+      "estimated_submission_runtime_seconds": 175.0,
+      "required_runtime_with_margin_seconds": null,
+      "account_selection_priority": 10,
+      "rejection_reason": "Provider quota timestamp is missing, invalid or stale",
+      "campaign_budget_mode": "monitoring_only",
+      "warnings": [
+        "Local campaign budget exhausted or insufficient for this workload; monitoring only"
+      ]
+    },
+    "labI": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 298.0,
+      "internal_campaign_remaining_seconds": -507.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Provider quota timestamp is missing, invalid or stale",
+      "batch_submission_eligible": false,
+      "recovery_submission_eligible": false,
+      "remaining_provider_quota_seconds": null,
+      "estimated_submission_runtime_seconds": 175.0,
+      "required_runtime_with_margin_seconds": null,
+      "account_selection_priority": 2,
+      "rejection_reason": "Provider quota timestamp is missing, invalid or stale",
+      "campaign_budget_mode": "monitoring_only",
+      "warnings": [
+        "Local campaign budget exhausted or insufficient for this workload; monitoring only"
+      ]
+    },
+    "labK": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 175.0,
+      "internal_campaign_remaining_seconds": -507.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Provider quota timestamp is missing, invalid or stale",
+      "batch_submission_eligible": false,
+      "recovery_submission_eligible": false,
+      "remaining_provider_quota_seconds": null,
+      "estimated_submission_runtime_seconds": 175.0,
+      "required_runtime_with_margin_seconds": null,
+      "account_selection_priority": 1,
+      "rejection_reason": "Provider quota timestamp is missing, invalid or stale",
+      "campaign_budget_mode": "monitoring_only",
+      "warnings": [
+        "Local campaign budget exhausted or insufficient for this workload; monitoring only"
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "account_label": "labC",
+  "authentication_mode": "saved-profile",
+  "backend": "ibm_fez",
+  "nominal_account_budget_seconds": 600.0,
+  "submission": false,
+  "checked_utc": "2026-11-02T15:40:04.504961Z",
+  "status": "FAIL",
+  "submission_eligible": false,
+  "checks": {
+    "authentication": "FAIL"
+  },
+  "reasons": [
+    "Authentication failed (InvalidAccountError)"
+  ],
+  "instances": [],
+  "usage_scope": "unknown"
+}

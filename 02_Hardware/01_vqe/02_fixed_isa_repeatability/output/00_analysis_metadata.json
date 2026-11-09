@@ -1,0 +1,16 @@
+{
+  "dataset": "EIS14",
+  "ideal_source": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\experiments\\HEA_VQE\\01_simulator_to_qpu_hardware\\results\\EIS14\\01_run_qpu\\references\\EIS14\\ideal_expectations.csv",
+  "classical_source": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\reference_results\\classical\\EIS14\\fit_parameters.csv",
+  "experimental_source": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene-Quantum-EIS-Hardware\\data\\EIS14.csv",
+  "n_points": 132,
+  "formulas": {
+    "residual": "Z_fit - Z_exp",
+    "SSE": "sum(abs(residual)**2)",
+    "RMSE": "sqrt(SSE/(2*N))"
+  },
+  "limitations": [
+    "Read-only Fixed ISA; no physical noise attribution",
+    "Missing backend metadata retained as N/A"
+  ]
+}

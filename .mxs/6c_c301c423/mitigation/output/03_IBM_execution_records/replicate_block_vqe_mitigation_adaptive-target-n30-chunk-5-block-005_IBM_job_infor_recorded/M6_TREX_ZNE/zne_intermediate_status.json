@@ -1,0 +1,5 @@
+{
+  "treatment": "M6_TREX_ZNE",
+  "available": false,
+  "reason": "No ZNE intermediate arrays exposed in Runtime PUB results."
+}

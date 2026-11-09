@@ -1,0 +1,8 @@
+{
+  "version": 7,
+  "published_at": "2026-11-09T16:04:16.343733+00:00",
+  "manifest": "comparison_manifest__v007.json",
+  "manifest_sha256": "7858442331ec4ee3af23db91a8316270809a7c0b05317b00e72e10f2df5b3ac2",
+  "hash_inventory": "SHA256SUMS__v007.json",
+  "hash_inventory_sha256": "81cc64814de1074f2268aa587344639355ec897844f986ca1498789c3b54316c"
+}

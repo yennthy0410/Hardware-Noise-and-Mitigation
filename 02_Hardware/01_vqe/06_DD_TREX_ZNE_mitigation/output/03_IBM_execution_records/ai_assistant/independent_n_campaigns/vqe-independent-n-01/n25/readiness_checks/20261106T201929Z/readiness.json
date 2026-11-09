@@ -1,0 +1,545 @@
+{
+  "campaign_id": "vqe-independent-n-01",
+  "block_id": "vqe-independent-n-01-n25-block-002",
+  "checked_utc": "2026-11-06T20:19:29.650622+00:00",
+  "previous_checkpoint": {
+    "automatic_new_qpu_submission": false,
+    "error_type": "RuntimeError",
+    "failure_category": "TRANSIENT_OR_UNCLASSIFIED",
+    "note": "A later cycle must pass fresh preflight, quota, scope, runtime and duplicate gates.",
+    "retry_after_seconds": 240,
+    "retry_cycle": 3
+  },
+  "previous_state": "BLOCKED",
+  "batch_001": {
+    "eligible": true,
+    "dataset_status": "REPAIRED_COMPLETE",
+    "expected_slots": 40,
+    "validated_slots": 40,
+    "missing_slots": [],
+    "frozen_inputs_verified": true,
+    "reason": "Complete validated logical PUB coverage with frozen inputs"
+  },
+  "batch_002_absent": true,
+  "frozen_inputs_verified": true,
+  "dry_run": {
+    "offline_dry_run": true,
+    "logical_block_id": "vqe-independent-n-01-n25-block-002",
+    "source_run": "run_02",
+    "input_hashes": {
+      "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+      "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff",
+      "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d"
+    },
+    "backend": "ibm_fez",
+    "jobs": [
+      {
+        "treatment_id": "M0_Baseline",
+        "pubs": 5,
+        "shots_per_pub": 4096,
+        "options": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=False, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=False, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=False, zne=ZneOptions(amplifier=Unset, noise_factors=Unset, extrapolator=Unset, extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+      },
+      {
+        "treatment_id": "M1_DD",
+        "pubs": 5,
+        "shots_per_pub": 4096,
+        "options": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=True, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=False, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=False, zne=ZneOptions(amplifier=Unset, noise_factors=Unset, extrapolator=Unset, extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+      },
+      {
+        "treatment_id": "M2_TREX",
+        "pubs": 5,
+        "shots_per_pub": 4096,
+        "options": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=False, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=True, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=False, zne=ZneOptions(amplifier=Unset, noise_factors=Unset, extrapolator=Unset, extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+      },
+      {
+        "treatment_id": "M3_ZNE",
+        "pubs": 5,
+        "shots_per_pub": 4096,
+        "options": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=False, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=False, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=True, zne=ZneOptions(amplifier='gate_folding', noise_factors=(1.0, 3.0, 5.0), extrapolator='exponential', extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+      },
+      {
+        "treatment_id": "M4_DD_TREX",
+        "pubs": 5,
+        "shots_per_pub": 4096,
+        "options": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=True, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=True, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=False, zne=ZneOptions(amplifier=Unset, noise_factors=Unset, extrapolator=Unset, extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+      },
+      {
+        "treatment_id": "M5_DD_ZNE",
+        "pubs": 5,
+        "shots_per_pub": 4096,
+        "options": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=True, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=False, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=True, zne=ZneOptions(amplifier='gate_folding', noise_factors=(1.0, 3.0, 5.0), extrapolator='exponential', extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+      },
+      {
+        "treatment_id": "M6_TREX_ZNE",
+        "pubs": 5,
+        "shots_per_pub": 4096,
+        "options": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=False, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=True, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=True, zne=ZneOptions(amplifier='gate_folding', noise_factors=(1.0, 3.0, 5.0), extrapolator='exponential', extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+      },
+      {
+        "treatment_id": "M7_ALL",
+        "pubs": 5,
+        "shots_per_pub": 4096,
+        "options": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=True, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=True, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=True, zne=ZneOptions(amplifier='gate_folding', noise_factors=(1.0, 3.0, 5.0), extrapolator='exponential', extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+      }
+    ],
+    "logical_pubs": 40,
+    "expectation_values_per_pub": 7,
+    "theta_count": 21,
+    "physical_qubits": [
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146
+    ],
+    "batch_created": false,
+    "reservation_created": false,
+    "submission_performed": false
+  },
+  "runtime_estimate": {
+    "target_n": 5,
+    "per_treatment": {
+      "M0_Baseline": {
+        "exact_target_n_samples": 0,
+        "observed_max_seconds": 8.0,
+        "stress_envelope_seconds": 10.0,
+        "provenance": "operator_reported_n5_registry_snapshot_unverified_here",
+        "statistically_defensible": false
+      },
+      "M1_DD": {
+        "exact_target_n_samples": 0,
+        "observed_max_seconds": 8.0,
+        "stress_envelope_seconds": 10.0,
+        "provenance": "operator_reported_n5_registry_snapshot_unverified_here",
+        "statistically_defensible": false
+      },
+      "M2_TREX": {
+        "exact_target_n_samples": 0,
+        "observed_max_seconds": 16.0,
+        "stress_envelope_seconds": 20.0,
+        "provenance": "operator_reported_n5_registry_snapshot_unverified_here",
+        "statistically_defensible": false
+      },
+      "M3_ZNE": {
+        "exact_target_n_samples": 0,
+        "observed_max_seconds": 18.0,
+        "stress_envelope_seconds": 22.5,
+        "provenance": "operator_reported_n5_registry_snapshot_unverified_here",
+        "statistically_defensible": false
+      },
+      "M4_DD_TREX": {
+        "exact_target_n_samples": 0,
+        "observed_max_seconds": 16.0,
+        "stress_envelope_seconds": 20.0,
+        "provenance": "operator_reported_n5_registry_snapshot_unverified_here",
+        "statistically_defensible": false
+      },
+      "M5_DD_ZNE": {
+        "exact_target_n_samples": 0,
+        "observed_max_seconds": 18.0,
+        "stress_envelope_seconds": 22.5,
+        "provenance": "operator_reported_n5_registry_snapshot_unverified_here",
+        "statistically_defensible": false
+      },
+      "M6_TREX_ZNE": {
+        "exact_target_n_samples": 0,
+        "observed_max_seconds": 28.0,
+        "stress_envelope_seconds": 35.0,
+        "provenance": "operator_reported_n5_registry_snapshot_unverified_here",
+        "statistically_defensible": false
+      },
+      "M7_ALL": {
+        "exact_target_n_samples": 0,
+        "observed_max_seconds": 28.0,
+        "stress_envelope_seconds": 35.0,
+        "provenance": "operator_reported_n5_registry_snapshot_unverified_here",
+        "statistically_defensible": false
+      }
+    },
+    "observed_target_block_seconds": 140.0,
+    "stress_block_seconds": 175.0,
+    "safety_factor": 1.25,
+    "minimum_exact_n_samples": 2,
+    "defensible": false,
+    "blockers": [],
+    "historical_preliminary_sample_count": 0,
+    "scope": "full_batch",
+    "operator_approved_provisional": true
+  },
+  "campaign_headroom_seconds": 220.0,
+  "protected_table_hashes": {
+    "recovery_events": "05302da0ce9e25ab8a3ee6802f2e7a112e47e37874e1a4f8864cd73e8ae62ec6",
+    "experiment_targets": "b0192fd59626dcc682fe295007634405620f5d7f4c6086d2e68c69fed44ed88e",
+    "batch_recovery_reviews": "cb156eaed0cf41926d69f6f45a85973f4bdcab72cef417d0419ba3f2c648f584",
+    "batch_monitor_state": "42358b1b401c93d5eee4a7a91ae14dc9d52594898595c6c1eacf4cc1db99e8ad",
+    "batch_monitor_events": "f8b7fb3ca6e8029f8e548dc9a837db957a640caf2eb35f1b332b06bcbff9dca7",
+    "account_usage_snapshots": "b5ef768eab16704db229cba7cb9ab70abfd7f89f30294b35e8c52294fe402e26",
+    "pub_validation_records": "3b8bb57e4ffb106325193cadc878151d85ac21bd1da67059a827c5c3b55b475b",
+    "validated_pub_values": "02e44b93d15b9c894f9bc991de44a23400d5858f8195f35b6423e63b492b335d",
+    "pub_replacement_events": "dfdd510dea31d6afa7ffb7c537d92099d3a2ac1efb5b62ae4a941f14ef1eedab",
+    "pub_archive_references": "dc286aa07e9ab71ce181253cbe47fc49493d24ca0cd593a0583f7e8f1846ed17",
+    "jobs": "ead8dd1e8d220839e8fcfab846b2312706e6ff6a852bc39c99a489e02fc55fd4",
+    "experiment_blocks": "d59e8affffcb28273331f3c60629b8a20a6aa6f07433cbc3daaf0175986d39a6",
+    "pub_replacement_jobs": "ca0d777d97550c5127fe10b44b65645da0f22a8ed6c3258990ffc4b7c0245181"
+  },
+  "preflight_reports": {
+    "labC": {
+      "schema_version": 1,
+      "account_label": "labC",
+      "authentication_mode": "saved-profile",
+      "backend": "ibm_fez",
+      "nominal_account_budget_seconds": 600.0,
+      "submission": false,
+      "checked_utc": "2026-11-06T20:19:29.652438Z",
+      "status": "FAIL",
+      "submission_eligible": false,
+      "checks": {
+        "authentication": "FAIL"
+      },
+      "reasons": [
+        "Authentication failed (InvalidAccountError)"
+      ],
+      "instances": [],
+      "usage_scope": "unknown"
+    },
+    "labA": {
+      "schema_version": 1,
+      "account_label": "labA",
+      "authentication_mode": "saved-profile",
+      "backend": "ibm_fez",
+      "nominal_account_budget_seconds": 600.0,
+      "submission": false,
+      "checked_utc": "2026-11-06T20:19:29.651592Z",
+      "status": "FAIL",
+      "submission_eligible": false,
+      "checks": {
+        "authentication": "FAIL"
+      },
+      "reasons": [
+        "Authentication failed (InvalidAccountError)"
+      ],
+      "instances": [],
+      "usage_scope": "unknown"
+    },
+    "labB": {
+      "schema_version": 1,
+      "account_label": "labB",
+      "authentication_mode": "saved-profile",
+      "backend": "ibm_fez",
+      "nominal_account_budget_seconds": 600.0,
+      "submission": false,
+      "checked_utc": "2026-11-06T20:19:29.652053Z",
+      "status": "FAIL",
+      "submission_eligible": false,
+      "checks": {
+        "authentication": "FAIL"
+      },
+      "reasons": [
+        "Authentication failed (InvalidAccountError)"
+      ],
+      "instances": [],
+      "usage_scope": "unknown"
+    },
+    "labF": {
+      "schema_version": 1,
+      "account_label": "labF",
+      "authentication_mode": "saved-profile",
+      "backend": "ibm_fez",
+      "nominal_account_budget_seconds": 600.0,
+      "submission": false,
+      "checked_utc": "2026-11-06T20:19:31.803530Z",
+      "status": "FAIL",
+      "submission_eligible": false,
+      "checks": {
+        "authentication": "FAIL"
+      },
+      "reasons": [
+        "Authentication failed (InvalidAccountError)"
+      ],
+      "instances": [],
+      "usage_scope": "unknown"
+    },
+    "labD": {
+      "schema_version": 1,
+      "account_label": "labD",
+      "authentication_mode": "saved-profile",
+      "backend": "ibm_fez",
+      "nominal_account_budget_seconds": 600.0,
+      "submission": false,
+      "checked_utc": "2026-11-06T20:19:31.802850Z",
+      "status": "FAIL",
+      "submission_eligible": false,
+      "checks": {
+        "authentication": "FAIL"
+      },
+      "reasons": [
+        "Authentication failed (InvalidAccountError)"
+      ],
+      "instances": [],
+      "usage_scope": "unknown"
+    },
+    "labE": {
+      "schema_version": 1,
+      "account_label": "labE",
+      "authentication_mode": "saved-profile",
+      "backend": "ibm_fez",
+      "nominal_account_budget_seconds": 600.0,
+      "submission": false,
+      "checked_utc": "2026-11-06T20:19:31.803235Z",
+      "status": "FAIL",
+      "submission_eligible": false,
+      "checks": {
+        "authentication": "FAIL"
+      },
+      "reasons": [
+        "Authentication failed (InvalidAccountError)"
+      ],
+      "instances": [],
+      "usage_scope": "unknown"
+    },
+    "labG": {
+      "schema_version": 1,
+      "account_label": "labG",
+      "authentication_mode": "saved-profile",
+      "backend": "ibm_fez",
+      "nominal_account_budget_seconds": 600.0,
+      "submission": false,
+      "checked_utc": "2026-11-06T20:19:33.854092Z",
+      "status": "FAIL",
+      "submission_eligible": false,
+      "checks": {
+        "authentication": "FAIL"
+      },
+      "reasons": [
+        "Authentication failed (InvalidAccountError)"
+      ],
+      "instances": [],
+      "usage_scope": "unknown"
+    },
+    "labH": {
+      "schema_version": 1,
+      "account_label": "labH",
+      "authentication_mode": "saved-profile",
+      "backend": "ibm_fez",
+      "nominal_account_budget_seconds": 600.0,
+      "submission": false,
+      "checked_utc": "2026-11-06T20:19:33.854484Z",
+      "status": "FAIL",
+      "submission_eligible": false,
+      "checks": {
+        "authentication": "FAIL"
+      },
+      "reasons": [
+        "Authentication failed (InvalidAccountError)"
+      ],
+      "instances": [],
+      "usage_scope": "unknown"
+    },
+    "labI": {
+      "schema_version": 1,
+      "account_label": "labI",
+      "authentication_mode": "saved-profile",
+      "backend": "ibm_fez",
+      "nominal_account_budget_seconds": 600.0,
+      "submission": false,
+      "checked_utc": "2026-11-06T20:19:33.854740Z",
+      "status": "FAIL",
+      "submission_eligible": false,
+      "checks": {
+        "authentication": "FAIL"
+      },
+      "reasons": [
+        "Authentication failed (InvalidAccountError)"
+      ],
+      "instances": [],
+      "usage_scope": "unknown"
+    },
+    "labK": {
+      "schema_version": 1,
+      "account_label": "labK",
+      "authentication_mode": "saved-profile",
+      "backend": "ibm_fez",
+      "nominal_account_budget_seconds": 600.0,
+      "submission": false,
+      "checked_utc": "2026-11-06T20:19:35.929450Z",
+      "status": "FAIL",
+      "submission_eligible": false,
+      "checks": {
+        "authentication": "FAIL"
+      },
+      "reasons": [
+        "Authentication failed (InvalidAccountError)"
+      ],
+      "instances": [],
+      "usage_scope": "unknown"
+    }
+  },
+  "submission_performed": false,
+  "reservation_created": false,
+  "account_decisions": {
+    "labA": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 600.0,
+      "internal_campaign_remaining_seconds": 220.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Saved-profile authentication failed"
+    },
+    "labB": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 460.0,
+      "internal_campaign_remaining_seconds": 220.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Saved-profile authentication failed"
+    },
+    "labC": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 600.0,
+      "internal_campaign_remaining_seconds": 220.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Saved-profile authentication failed"
+    },
+    "labD": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 595.0,
+      "internal_campaign_remaining_seconds": 220.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Saved-profile authentication failed"
+    },
+    "labE": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 175.0,
+      "internal_campaign_remaining_seconds": 220.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Saved-profile authentication failed"
+    },
+    "labF": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 155.0,
+      "internal_campaign_remaining_seconds": 220.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Saved-profile authentication failed"
+    },
+    "labG": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 455.0,
+      "internal_campaign_remaining_seconds": 220.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Saved-profile authentication failed"
+    },
+    "labH": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 180.0,
+      "internal_campaign_remaining_seconds": 220.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Saved-profile authentication failed"
+    },
+    "labI": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 600.0,
+      "internal_campaign_remaining_seconds": 220.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Saved-profile authentication failed"
+    },
+    "labK": {
+      "provider_remaining_seconds": null,
+      "provider_available_seconds": null,
+      "internal_account_remaining_seconds": 600.0,
+      "internal_campaign_remaining_seconds": 220.0,
+      "estimated_batch_seconds": 175.0,
+      "safety_margin_seconds": 10.0,
+      "eligible": false,
+      "reason": "Saved-profile authentication failed"
+    }
+  },
+  "selected_account": null,
+  "state": "BLOCKED",
+  "reasons": [
+    "Fresh IBM preflight failed for all ten authorized saved profiles. Instance discovery raised InvalidAccountError; the labA diagnostic traced this to ProxyError / ConnectionRefusedError (WinError 10061). Provider quota and backend readiness cannot be verified from this execution environment."
+  ],
+  "connection_diagnosis": [
+    {
+      "type": "InvalidAccountError",
+      "errno": null,
+      "winerror": null,
+      "diagnostic_markers": [
+        "Unable to retrieve instances"
+      ]
+    },
+    {
+      "type": "ProxyError",
+      "errno": null,
+      "winerror": null,
+      "diagnostic_markers": [
+        "10061",
+        "ProxyError"
+      ]
+    },
+    {
+      "type": "MaxRetryError",
+      "errno": null,
+      "winerror": null,
+      "diagnostic_markers": [
+        "10061",
+        "ProxyError"
+      ]
+    },
+    {
+      "type": "ProxyError",
+      "errno": null,
+      "winerror": null,
+      "diagnostic_markers": [
+        "10061"
+      ]
+    },
+    {
+      "type": "NewConnectionError",
+      "errno": null,
+      "winerror": null,
+      "diagnostic_markers": [
+        "10061"
+      ]
+    },
+    {
+      "type": "ConnectionRefusedError",
+      "errno": 10061,
+      "winerror": 10061,
+      "diagnostic_markers": [
+        "10061"
+      ]
+    }
+  ],
+  "historical_submission_and_scientific_tables_unchanged": true,
+  "n_level_records_unchanged": true,
+  "prior_audit_events_preserved": true,
+  "checkpoint_event_appended": true,
+  "checkpoint_reconciled": true
+}

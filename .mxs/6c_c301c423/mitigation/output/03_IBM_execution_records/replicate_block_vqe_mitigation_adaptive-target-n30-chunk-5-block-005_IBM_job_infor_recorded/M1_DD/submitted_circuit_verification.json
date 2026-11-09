@@ -1,0 +1,9 @@
+{
+  "base_ISA_sha256": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+  "locked_archive_sha256": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+  "theta_sha256": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff",
+  "observables_sha256": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d",
+  "job_id": "fake-0034",
+  "mitigation_options_requested_path": "mitigation_options_requested.json",
+  "note": "Verifies the shared input only. Runtime-internal modified circuits are not claimed."
+}

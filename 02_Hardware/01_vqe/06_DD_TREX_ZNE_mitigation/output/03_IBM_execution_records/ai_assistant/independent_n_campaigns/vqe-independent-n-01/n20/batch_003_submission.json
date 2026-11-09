@@ -1,0 +1,34 @@
+{
+  "account_label": "labE",
+  "batch_id": "69d8d004-d21b-443e-bacc-76857f641c48",
+  "block_id": "vqe-independent-n-01-n20-block-003",
+  "execution_order_guaranteed": false,
+  "experiment_id": "vqe-independent-n-01-n20",
+  "input_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff"
+  },
+  "job_ids": [
+    "dbmdt8l8ft8s738umqk0",
+    "dbmdt9674qds73ds4lag",
+    "dbmdt99kbkrc73cpbgq0",
+    "dbmdt9t8mdtc73d7q3ag",
+    "dbmdta58ft8s738umqn0",
+    "dbmdtam74qds73ds4lgg",
+    "dbmdtapkbkrc73cpbgt0",
+    "dbmdtb674qds73ds4lig"
+  ],
+  "n": 20,
+  "submission_order": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "M7"
+  ],
+  "submitted_utc": "2026-11-05T19:53:17.115451Z"
+}

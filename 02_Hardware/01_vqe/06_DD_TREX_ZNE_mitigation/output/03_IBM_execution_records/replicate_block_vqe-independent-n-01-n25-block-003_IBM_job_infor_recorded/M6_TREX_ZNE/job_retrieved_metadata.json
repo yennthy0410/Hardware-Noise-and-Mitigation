@@ -1,0 +1,69 @@
+{
+  "job_id": "dbn4ergou4as73b3rlu0",
+  "batch_context_entered_utc": "2026-11-06T21:32:18.387888+00:00",
+  "batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+  "instance": "crn:v1:bluemix:public:quantum-computing:us-east:a/adbc1a6566984416ad52fb0ff815619e:83cb31df-818d-47a4-8136-b721bbd23fe9::",
+  "reconciliation_evidence": {
+    "batch_id": "d9e6cd69-775b-4597-9267-7e27a864879d",
+    "frozen_inputs_verified": true,
+    "identity_basis": "submission_intent_and_scientific_inputs",
+    "job_creation_date": "2026-11-06T21:32:31.028014+00:00",
+    "pub_count": 5,
+    "reconciled_utc": "2026-11-06T22:35:39.169173+00:00",
+    "submit_started_utc": "2026-11-06T21:32:28.782101+00:00",
+    "treatment_verified": "M6_TREX_ZNE"
+  },
+  "submission_order": 6,
+  "submit_started_utc": "2026-11-06T21:32:28.782101+00:00",
+  "logical_block_id": "vqe-independent-n-01-n25-block-003",
+  "treatment": "M6_TREX_ZNE",
+  "backend": "ibm_fez",
+  "account_label": "labK",
+  "input_hashes": {
+    "circuit.qpy": "2bd4899c52f87441e60416cb6e0aeb3341648ff09cd4c89fad17986128b6381c",
+    "observables.json": "4d38b9d9da8e12e4ef1c64fa06630a8a35043e40748334d5f281c1d5c479147d",
+    "theta.csv": "4e21f92e9bafe27fe5abfbd2891d32fd7f4e03f4238b4e0ca40e655c0d844aff"
+  },
+  "collected_utc": "2026-11-06T22:35:49.387955+00:00",
+  "status": "DONE",
+  "metrics_raw": {
+    "caller": "qiskit_ibm_runtime~estimator.py",
+    "qiskit_version": "qiskit_ibm_runtime-0.51.0,qiskit-2.6.1*,qiskit_aer-0.18.2",
+    "timestamps": {
+      "created": "2026-11-06T21:32:31.028014Z",
+      "finished": "2026-11-06T21:46:13.004001Z",
+      "running": "2026-11-06T21:42:52.07799Z"
+    },
+    "usage": {
+      "qpu_charge_time_seconds": 28,
+      "value": 0.45202,
+      "unit": "resource_units",
+      "status": "complete",
+      "details": [
+        {
+          "value": 0.45202,
+          "unit": "resource_units",
+          "metric": {
+            "id": "caffe3ca-729c-5750-8777-df63bbf8bfd9",
+            "value": 28
+          }
+        }
+      ]
+    },
+    "circuits_execution_time_ns": 24396650752
+  },
+  "raw_result_path": "C:\\Users\\nguye\\OneDrive\\Desktop\\MXene QPU Hardware\\02_Hardware\\01_vqe\\06_DD_TREX_ZNE_mitigation\\output\\03_IBM_execution_records\\replicate_block_vqe-independent-n-01-n25-block-003_IBM_job_infor_recorded\\M6_TREX_ZNE\\raw_retrievals\\job_result_e8c74ecc6f499311c0db2f68c963259927ad921b0c6cbdc1bb023bd62fc83f14.json",
+  "raw_result_sha256": "e8c74ecc6f499311c0db2f68c963259927ad921b0c6cbdc1bb023bd62fc83f14",
+  "qpu_usage_s": null,
+  "timestamps": {
+    "created": "2026-11-06T21:32:31.028014Z",
+    "finished": "2026-11-06T21:46:13.004001Z",
+    "running": "2026-11-06T21:42:52.07799Z"
+  },
+  "execution_time_s": null,
+  "runtime_options_requested": {
+    "repr": "EstimatorOptions(_VERSION=2, max_execution_time=Unset, environment=EnvironmentOptions(log_level='WARNING', job_tags=None, private=False), simulator=SimulatorOptions(noise_model=Unset, seed_simulator=Unset, coupling_map=Unset, basis_gates=Unset), default_precision=Unset, default_shots=4096, resilience_level=0, seed_estimator=Unset, dynamical_decoupling=DynamicalDecouplingOptions(enable=False, sequence_type='XpXm', extra_slack_distribution=Unset, scheduling_method='alap', skip_reset_qubits=Unset), resilience=ResilienceOptionsV2(measure_mitigation=True, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations=Unset, shots_per_randomization=Unset), zne_mitigation=True, zne=ZneOptions(amplifier='gate_folding', noise_factors=(1.0, 3.0, 5.0), extrapolator='exponential', extrapolated_noise_factors=Unset), pec_mitigation=False, pec=PecOptions(max_overhead=Unset, noise_gain=Unset), layer_noise_learning=LayerNoiseLearningOptions(max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset), layer_noise_model=Unset), execution=ExecutionOptionsV2(init_qubits=Unset, rep_delay=Unset), twirling=TwirlingOptions(enable_gates=False, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset), experimental=Unset)"
+  },
+  "pub_results": 5,
+  "job_creation_date_utc": "2026-11-07 05:32:31.028014+08:00"
+}

@@ -1,0 +1,53 @@
+{
+  "observations_sha256": "7136085b764843433274189b9f6963e67840713e55e03ece3141784a402ea282",
+  "replicates": 10000,
+  "seed": 20261109,
+  "rng": "numpy.default_rng / PCG64",
+  "percentiles": [
+    2.5,
+    97.5
+  ],
+  "quantile_method": "linear",
+  "shared_draws_across_treatments": true,
+  "connected_components": [
+    [
+      5
+    ],
+    [
+      10
+    ],
+    [
+      15
+    ],
+    [
+      20
+    ],
+    [
+      25
+    ],
+    [
+      30
+    ]
+  ],
+  "cross_n_effective_job_links": [],
+  "component_matches_primary": true,
+  "equal_weight_point_weights": {
+    "5": 0.16666666666666666,
+    "10": 0.16666666666666666,
+    "15": 0.16666666666666666,
+    "20": 0.16666666666666666,
+    "25": 0.16666666666666666,
+    "30": 0.16666666666666666
+  },
+  "component_weighting": "uniform component draws; retain all observations, including component multiplicities",
+  "equal_weight_formula": "contrast arithmetic means of n-level medians; not pooled medians",
+  "delta_formula": "estimand_treatment_SSE - estimand_M0_SSE",
+  "reduction_formula": "100 * (1 - estimand_treatment_SSE / estimand_M0_SSE)",
+  "pairing": "n-level design labels only; no paired PUB or job measurements assumed",
+  "limitations": [
+    "Sensitivity intervals only; independence and exchangeability are not established.",
+    "Effective-job components preserve observed links, not unknown calibration/account/time dependence.",
+    "Original/replacement provenance is retained; replacement jobs are not independent replicates.",
+    "Equal weights change the estimand. No significance or multiplicity-adjusted claims."
+  ]
+}
