@@ -1,5 +1,5 @@
 from pathlib import Path
-import sqlite3
+import os, sqlite3
 from fastapi import FastAPI, HTTPException, Query, Request
 from pydantic import BaseModel, Field
 from typing import Literal
@@ -11,7 +11,7 @@ from reader import Reader
 HERE=Path(__file__).resolve().parent
 reader=Reader()
 app=FastAPI(title='MXene Observatory',docs_url=None,redoc_url=None,openapi_url=None)
-app.add_middleware(TrustedHostMiddleware,allowed_hosts=['127.0.0.1','localhost'])
+app.add_middleware(TrustedHostMiddleware,allowed_hosts=['127.0.0.1','localhost','mxene-hardware-noise-and-mitigation.onrender.com'])
 
 @app.get('/api/data-revision')
 def local_data_revision():
@@ -122,6 +122,12 @@ def authorize_tools(request):
     if request.headers.get('X-MXene-AI')!='local-only':raise HTTPException(403,'Dashboard request header required')
     origin=request.headers.get('origin')
     if origin and origin.rstrip('/')!=str(request.base_url).rstrip('/'):raise HTTPException(403,'Same-origin requests only')
+
+def authorize_operator(request):
+    # Render is public even when a proxy supplies a loopback Host header.
+    if os.environ.get('RENDER') or request.url.hostname not in ('127.0.0.1','localhost'):
+        raise HTTPException(403,'Operator controls are available only on the local Dashboard')
+    authorize_tools(request)
 
 from research import BridgeRequest
 @app.post('/api/research/tool')
@@ -250,7 +256,7 @@ def campaign_progress(request:Request):
 
 @app.post('/api/conversations/{key}/manual')
 def manual_workspace_request(key:str,body:ControlRequest,request:Request):
-    authorize_tools(request)
+    authorize_operator(request)
     if body.operation not in ('manual','analyze','export'):
         raise HTTPException(409,'Manual workspace permits status/collection and n-level Analyze/Export only')
     if body.operation!='manual' and body.manual_scope is not None:
@@ -266,7 +272,7 @@ def manual_workspace_request(key:str,body:ControlRequest,request:Request):
 @app.post('/api/conversations/{key}/operator')
 def existing_operator_request(key:str,body:AnalysisRequest,request:Request):
     """Existing exact command preparation, isolated from conversational input/LLMs."""
-    authorize_tools(request)
+    authorize_operator(request)
     control=route_control(body.message)
     if control is None:raise HTTPException(400,'Select an existing operator control.')
     try:
@@ -298,7 +304,7 @@ class IndependentManualRequest(BaseModel):
 
 @app.post('/api/manual-execution')
 def independent_manual(body:IndependentManualRequest,request:Request):
-    authorize_tools(request)
+    authorize_operator(request)
     from broker_client import call
     try:return call('/manual-operation',body.model_dump(exclude={'consent'},exclude_none=True))
     except Exception:raise HTTPException(503,'Manual execution service unavailable. Start the broker transport; AUTO does not need to run. Inspect the existing request before retrying a confirmation.')
@@ -379,7 +385,7 @@ class ControlConfirmation(BaseModel):
 
 @app.post('/api/conversations/{key}/controls/{request_id}/confirm')
 def confirm_worker_control(key:str,request_id:str,body:ControlConfirmation,request:Request):
-    authorize_tools(request)
+    authorize_operator(request)
     try:
         with store.turn(key):
             store.get(key)
@@ -408,7 +414,7 @@ class SinglePubRequest(BaseModel):
 
 @app.post('/api/single-pub/preview')
 def single_pub_preview(body:SinglePubRequest,request:Request):
-    authorize_tools(request)
+    authorize_operator(request)
     if body.action!='preview':raise HTTPException(400,'Preview endpoint cannot execute operations')
     from broker_client import call
     try:return call('/single-pub-preview',body.model_dump(include={'n','purpose','treatment','slot','account'}))
@@ -416,7 +422,7 @@ def single_pub_preview(body:SinglePubRequest,request:Request):
 
 @app.post('/api/conversations/{key}/single-pub')
 def single_pub_request(key:str,body:SinglePubRequest,request:Request):
-    authorize_tools(request)
+    authorize_operator(request)
     if body.action not in ('monitor','collect') or body.purpose!='RECOVERY':
         raise HTTPException(409,'Single-PUB submission/preflight authorization is not enabled. TEST requires an approved isolated quota/storage policy; RECOVERY requires a fresh provider/quota authorization contract. No job submitted.')
     from worker_supervisor import ControlRequest,SinglePubScope
